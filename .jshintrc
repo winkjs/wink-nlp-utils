@@ -1,0 +1,14 @@
+{
+    "node": true,
+    "bitwise": true,
+    "eqeqeq": true,
+    "esversion": 5,
+    "freeze": true,
+    "futurehostile": true,
+    "latedef": "nofunc",
+    "nonew": true,
+    "strict": false,
+    "undef": true,
+    "unused": true,
+    "esversion": 6
+}

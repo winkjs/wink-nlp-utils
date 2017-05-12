@@ -1,0 +1,43 @@
+{
+  "name": "wink-nlp-utils",
+  "version": "1.0.0",
+  "description": "Implementation of Porter Stemmer Algorithm V2 by Dr Martin F Porter",
+  "keywords": [
+    "Stemmer",
+    "Porter Stemmer V2",
+    "NLP",
+    "Natural Language Processing"
+  ],
+  "main": "src/wink-nlp-utils.js",
+  "scripts": {
+    "pretest": "npm run lint && npm run hint",
+    "test": "istanbul cover _mocha ./test/",
+    "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "docs": "docco -o ./docs/ ./src/*.js",
+    "hint": "jshint ./src/*.js ./test/*.js",
+    "lint": "eslint ./src/*.js ./test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/decisively/wink-nlp-utils.git"
+  },
+  "author": "Sanjaya Kumar Saxena",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/decisively/wink-nlp-utils/issues"
+  },
+  "homepage": "https://github.com/decisively/wink-nlp-utils#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.11.15",
+    "docco": "^0.7.0",
+    "eslint": "^3.13.1",
+    "istanbul": "^0.4.5",
+    "jshint": "^2.9.4",
+    "mocha": "^3.1.0",
+    "mocha-lcov-reporter": "^1.2.0"
+  },
+  "dependencies": {
+    "wink-porter2-stemmer": "^1.0.1"
+  }
+}

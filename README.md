@@ -1,6 +1,6 @@
 # wink-nlp-utils [![Build Status](https://api.travis-ci.org/decisively/wink-nlp-utils.svg?branch=master)](https://travis-ci.org/decisively/wink-nlp-utils) [![Coverage Status](https://coveralls.io/repos/github/decisively/wink-nlp-utils/badge.svg?branch=master)](https://coveralls.io/github/decisively/wink-nlp-utils?branch=master)
 
->
+> Natural Language Processing Utilities that let you tokenize, stem, phonetize, create ngrams, bag of words and more.
 
 **wink-nlp-utils** is a part of **wink**, which is a collection of Machine Learning utilites.
 

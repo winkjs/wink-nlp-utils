@@ -3,7 +3,7 @@
 
 > Easily tokenize, stem, phonetize, remove stop words, manage elisions, create ngrams, bag of words and more.
 
-### [![Build Status](https://api.travis-ci.org/decisively/wink-nlp-utils.svg?branch=master)](https://travis-ci.org/decisively/wink-nlp-utils) [![Coverage Status](https://coveralls.io/repos/github/decisively/wink-nlp-utils/badge.svg?branch=master)](https://coveralls.io/github/decisively/wink-nlp-utils?branch=master)
+### [![Build Status](https://api.travis-ci.org/decisively/wink-nlp-utils.svg?branch=master)](https://travis-ci.org/decisively/wink-nlp-utils) [![Coverage Status](https://coveralls.io/repos/github/decisively/wink-nlp-utils/badge.svg?branch=master)](https://coveralls.io/github/decisively/wink-nlp-utils?branch=master) [![dependencies Status](https://david-dm.org/decisively/wink-nlp-utils/status.svg)](https://david-dm.org/decisively/wink-nlp-utils) [![devDependencies Status](https://david-dm.org/decisively/wink-nlp-utils/dev-status.svg)](https://david-dm.org/decisively/wink-nlp-utils?type=dev)
 
 <img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" >
 

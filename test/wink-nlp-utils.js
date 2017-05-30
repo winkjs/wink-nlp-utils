@@ -543,7 +543,8 @@ describe( 'string.tokenize0()', function () {
     { whenInputIs: [ 'Isn\'t it? ' ], expectedOutputIs: [ 'Is', 'not', 'it' ] },
     { whenInputIs: [ 'John\'s work ISN\'t done! ' ], expectedOutputIs: [ 'John', 's', 'work', 'IS', 'not', 'done' ] },
     { whenInputIs: [ 'This cannot be handled!' ], expectedOutputIs: [ 'This', 'can', 'not', 'be', 'handled' ] },
-    { whenInputIs: [ 'This is an _ character in the sentence.' ], expectedOutputIs: [ 'This', 'is', 'an', '_', 'character', 'in', 'the', 'sentence' ] }
+    { whenInputIs: [ 'This is an _ character in the sentence.' ], expectedOutputIs: [ 'This', 'is', 'an', '_', 'character', 'in', 'the', 'sentence' ] },
+    { whenInputIs: [ '.Started with a non-word character' ], expectedOutputIs: [ 'Started', 'with', 'a', 'non', 'word', 'character' ] }
   ];
 
   tests.forEach( function ( test ) {

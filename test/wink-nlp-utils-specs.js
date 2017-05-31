@@ -878,6 +878,89 @@ describe( 'prepare.helper.index()', function () {
   } );
 } );
 
+// ### helper.returnQuotedTextExtractor
+
+describe( 'helper.returnQuotedTextExtractor', function () {
+  // Use default quotes first
+  var extractor1 = prepare.helper.returnQuotedTextExtractor();
+  var tests1 = [
+    { whenInputIs: undefined, expectedOutputIs: null },
+    { whenInputIs: null, expectedOutputIs: null },
+    { whenInputIs: 1, expectedOutputIs: null },
+    { whenInputIs: '', expectedOutputIs: null },
+    { whenInputIs: 'dummy', expectedOutputIs: null },
+    { whenInputIs: '"dummy"', expectedOutputIs: [ 'dummy' ] },
+    { whenInputIs: 'I said "Hi", you said "Hello" but I expected "Ola"', expectedOutputIs: [ 'Hi', 'Hello', 'Ola' ] },
+    { whenInputIs: 'I said "Hi", you said "Hello" but I expected "Ola', expectedOutputIs: [ 'Hi', 'Hello' ] },
+    { whenInputIs: 'I said "Hi", you said "Hello" but I expected ""', expectedOutputIs: [ 'Hi', 'Hello', '' ] }
+  ];
+
+  tests1.forEach( function ( test ) {
+    it( 'should return ' + JSON.stringify( test.expectedOutputIs ) + ' when input is ' + JSON.stringify( test.whenInputIs ), function () {
+      expect( extractor1( test.whenInputIs ) ).to.deep.equal( test.expectedOutputIs );
+    } );
+  } );
+  // now incorrect values leading to default
+  var extractor2 = prepare.helper.returnQuotedTextExtractor( 1, 1 );
+  var tests2 = [
+    { whenInputIs: undefined, expectedOutputIs: null },
+    { whenInputIs: null, expectedOutputIs: null },
+    { whenInputIs: 1, expectedOutputIs: null },
+    { whenInputIs: '', expectedOutputIs: null },
+    { whenInputIs: 'dummy', expectedOutputIs: null },
+    { whenInputIs: '"dummy"', expectedOutputIs: [ 'dummy' ] },
+    { whenInputIs: 'I said "Hi", you said "Hello" but I expected "Ola"', expectedOutputIs: [ 'Hi', 'Hello', 'Ola' ] },
+    { whenInputIs: 'I said "Hi", you said "Hello" but I expected "Ola', expectedOutputIs: [ 'Hi', 'Hello' ] },
+    { whenInputIs: 'I said "Hi", you said "Hello" but I expected ""', expectedOutputIs: [ 'Hi', 'Hello', '' ] }
+  ];
+
+  tests2.forEach( function ( test ) {
+    it( 'should return ' + JSON.stringify( test.expectedOutputIs ) + ' when input is ' + JSON.stringify( test.whenInputIs ), function () {
+      expect( extractor2( test.whenInputIs ) ).to.deep.equal( test.expectedOutputIs );
+    } );
+  } );
+
+  // Balanced but 2 chars
+  var extractor3 = prepare.helper.returnQuotedTextExtractor( '{{', '}}' );
+  var tests3 = [
+    { whenInputIs: undefined, expectedOutputIs: null },
+    { whenInputIs: null, expectedOutputIs: null },
+    { whenInputIs: 1, expectedOutputIs: null },
+    { whenInputIs: '', expectedOutputIs: null },
+    { whenInputIs: 'dummy', expectedOutputIs: null },
+    { whenInputIs: '{{dummy}}', expectedOutputIs: [ 'dummy' ] },
+    { whenInputIs: 'I said {{Hi}}, you said {{Hello}} but I expected {{Ola}}', expectedOutputIs: [ 'Hi', 'Hello', 'Ola' ] },
+    { whenInputIs: 'I said {{Hi}}, you said {{Hello}} but I expected {{Ola}', expectedOutputIs: [ 'Hi', 'Hello' ] },
+    { whenInputIs: 'I said {{Hi}}, you said {{Hello}} but I expected {{}}', expectedOutputIs: [ 'Hi', 'Hello', '' ] }
+  ];
+
+  tests3.forEach( function ( test ) {
+    it( 'should return ' + JSON.stringify( test.expectedOutputIs ) + ' when input is ' + JSON.stringify( test.whenInputIs ), function () {
+      expect( extractor3( test.whenInputIs ) ).to.deep.equal( test.expectedOutputIs );
+    } );
+  } );
+
+  // Balanced but 1 char
+  var extractor4 = prepare.helper.returnQuotedTextExtractor( '[', ']' );
+  var tests4 = [
+    { whenInputIs: undefined, expectedOutputIs: null },
+    { whenInputIs: null, expectedOutputIs: null },
+    { whenInputIs: 1, expectedOutputIs: null },
+    { whenInputIs: '', expectedOutputIs: null },
+    { whenInputIs: 'dummy', expectedOutputIs: null },
+    { whenInputIs: '[dummy]', expectedOutputIs: [ 'dummy' ] },
+    { whenInputIs: 'I said [Hi], you said [Hello] but I expected [Ola]', expectedOutputIs: [ 'Hi', 'Hello', 'Ola' ] },
+    { whenInputIs: 'I said [Hi], you said [Hello] but I expected [Ola', expectedOutputIs: [ 'Hi', 'Hello' ] },
+    { whenInputIs: 'I said [Hi], you said [Hello] but I expected []', expectedOutputIs: [ 'Hi', 'Hello', '' ] }
+  ];
+
+  tests4.forEach( function ( test ) {
+    it( 'should return ' + JSON.stringify( test.expectedOutputIs ) + ' when input is ' + JSON.stringify( test.whenInputIs ), function () {
+      expect( extractor4( test.whenInputIs ) ).to.deep.equal( test.expectedOutputIs );
+    } );
+  } );
+} );
+
 // ### Create remove html tags test cases.
 
 // Tests all except hexacodes

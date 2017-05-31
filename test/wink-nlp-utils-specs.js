@@ -529,6 +529,26 @@ describe( 'string.sentences()', function () {
   } );
 } );
 
+// ### Create composeCorpus test cases.
+
+describe( 'string.composeCorpus()', function () {
+  var tests = [
+    { whenInputIs: undefined, expectedOutputIs: [] },
+    { whenInputIs: null, expectedOutputIs: [] },
+    { whenInputIs: 3, expectedOutputIs: [] },
+    { whenInputIs: ' ', expectedOutputIs: [] },
+    { whenInputIs: '[]', expectedOutputIs: [ '' ] },
+    { whenInputIs: '[Hi]', expectedOutputIs: [ 'Hi' ] },
+    { whenInputIs: '[Hi|Hello]', expectedOutputIs: [ 'Hi', 'Hello' ] },
+    { whenInputIs: '[Hi|Hello] [how are you] [feeling|doing]', expectedOutputIs: [ 'Hi how are you feeling', 'Hi how are you doing', 'Hello how are you feeling', 'Hello how are you doing' ] },
+  ];
+
+  tests.forEach( function ( test ) {
+    it( 'should return ' + JSON.stringify( test.expectedOutputIs ) + ' if the input is ' + JSON.stringify( test.whenInputIs ), function () {
+      expect( prepare.string.composeCorpus( test.whenInputIs ) ).to.deep.equal( test.expectedOutputIs );
+    } );
+  } );
+} );
 
 // ### Create tokenize0 test cases.
 

@@ -27,6 +27,7 @@ var ncrgx = require( './name_cleaner_regexes.js' );
 var porter2Stemmer = require( 'wink-porter2-stemmer' );
 var phnrgx = require( './phonetize_regexes.js' );
 var defaultStopWords = require( './dictionaries/stop_words.json' );
+var helpers = require( 'wink-helpers' );
 
 // ### Prepare Name Space
 
@@ -402,6 +403,27 @@ prepare.string.sentences = function ( s, splChar ) {
             .map( prepare.string.trim )
          );
 }; // sentences()
+
+// #### compose corpus
+
+//
+prepare.string.composeCorpus = function ( s ) {
+  if ( !s || ( typeof s !== 'string' ) ) return [];
+  var extractQuotedText = prepare.helper.returnQuotedTextExtractor( '[', ']' );
+  var quotedTextElems = extractQuotedText( s );
+  var corpus = [];
+  var finalCorpus = [];
+
+  if ( !quotedTextElems ) return [];
+  quotedTextElems.forEach( function ( e ) {
+    corpus.push( e.split( '|' ) );
+  } );
+
+  helpers.array.product( corpus ).forEach( function ( e ) {
+    finalCorpus.push( e.join( ' ' ) );
+  } );
+  return ( finalCorpus );
+}; // composeCorpus()
 
 // #### tokenize0
 

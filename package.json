@@ -44,6 +44,7 @@
     "mocha-lcov-reporter": "^1.2.0"
   },
   "dependencies": {
+    "wink-helpers": "^1.1.0",
     "wink-porter2-stemmer": "^1.0.1"
   }
 }

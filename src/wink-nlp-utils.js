@@ -69,6 +69,9 @@ prepare.helper.words = function ( w, givenMappers ) {
   };
 }; // words()
 
+// Make better **alias** name for the `word()` function.
+prepare.helper.returnWordsFilter = prepare.helper.words;
+
 // Create default stop words here - an internal variable.
 defaultStopWords = prepare.helper.words( defaultStopWords );
 
@@ -101,6 +104,53 @@ prepare.helper.index = function () {
   return methods;
 }; // index()
 
+// Make better **alias** name for the `index()` function.
+prepare.helper.returnIndexer = prepare.helper.index;
+
+// #### return Quoted Text Extractor
+
+// Returns a uoated text extractor function. The (returned) extractor function
+// takes `s` string argument; extracts all the text elements quoted between
+// `lq` (left quote) and `rq` (right quote) string; and finally returns an
+// array of those text elements. Note elements do not contain quote strings.
+// If `lq` and/or `rq` is not defined or is not a string then it defaults to `'"'`.
+prepare.helper.returnQuotedTextExtractor = function ( lq, rq ) {
+  var // Index variable for *for-loop*
+      i,
+      // Set defaults for left quote, if required.
+      lq1 = ( ( lq && ( typeof lq === 'string' ) ) ? lq : '"' ),
+      // Extracts its length
+      lqLen = lq1.length,
+      // The regular expression is created here.
+      regex = null,
+      // The string containing the regular expression builds here.
+      rgxStr = '',
+      // Set defaults for right quote, if required.
+      rq1 = ( ( rq && ( typeof rq === 'string' ) ) ? rq : lq1 ),
+      // Extract its length.
+      rqLen = rq1.length;
+
+  // Build `rgxStr`
+  for ( i = 0; i < lqLen; i += 1 ) rgxStr += '\\' + lq1.charAt( i );
+  rgxStr += '.*?';
+  for ( i = 0; i < rqLen; i += 1 ) rgxStr += '\\' + rq1.charAt( i );
+  // Create regular expression.
+  regex = new RegExp( rgxStr, 'g' );
+  // Return the extractor function.
+  return ( function ( s ) {
+    if ( !s || ( typeof s !== 'string' ) ) return null;
+    var // Extracted elements are captured here.
+        elements = [],
+        // Extract matches with quotes
+        matches = s.match( regex );
+    if ( !matches || ( matches.length === 0 ) ) return null;
+    // Collect elements after removing the quotes.
+    for ( var k = 0, kmax = matches.length; k < kmax; k += 1 ) {
+      elements.push( matches[ k ].substr( lqLen, matches[ k ].length - ( rqLen + lqLen ) ) );
+    }
+    return ( elements );
+  } );
+}; // returnQuotedTextExtractor()
 
 // ### Prepare.String Name Space
 

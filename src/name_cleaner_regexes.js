@@ -1,24 +1,24 @@
-//     wink-utils
-//     Utilities for Statistics, Text Mining,
-//     Machine Learning, and more.
+//     wink-nlp-utils
+//     Easily tokenize, stem, phonetize, remove stop words,
+//     manage elisions, create ngrams, bag of words and more
 //
 //     Copyright (C) 2017  GRAYPE Systems Private Limited
 //
-//     This file is part of “wink-utils”.
+//     This file is part of “wink-nlp-utils”.
 //
-//     “wink-utils” is free software: you can redistribute it
+//     “wink-nlp-utils” is free software: you can redistribute it
 //     and/or modify it under the terms of the GNU Affero
 //     General Public License as published by the Free
 //     Software Foundation, version 3 of the License.
 //
-//     “wink-utils” is distributed in the hope that it will
+//     “wink-nlp-utils” is distributed in the hope that it will
 //     be useful, but WITHOUT ANY WARRANTY; without even
 //     the implied warranty of MERCHANTABILITY or FITNESS
 //     FOR A PARTICULAR PURPOSE.  See the GNU Affero General
 //     Public License for more details.
 //
 //     You should have received a copy of the GNU Affero
-//     General Public License along with “wink-utils”.
+//     General Public License along with “wink-nlp-utils”.
 //     If not, see <http://www.gnu.org/licenses/>.
 
 //

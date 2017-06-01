@@ -406,7 +406,11 @@ prepare.string.sentences = function ( s, splChar ) {
 
 // #### compose corpus
 
-//
+// Generates all possible sentences from the input argument string — s.
+// The string s must follow a special syntax:</br>
+// `'[I] [am having|have] [a] [problem|question]'`</br>
+// The corpus is composed by computing the cartesian product of all the phrases.
+// It returns an array of sentences (i.e. strings).
 prepare.string.composeCorpus = function ( s ) {
   if ( !s || ( typeof s !== 'string' ) ) return [];
   var extractQuotedText = prepare.helper.returnQuotedTextExtractor( '[', ']' );

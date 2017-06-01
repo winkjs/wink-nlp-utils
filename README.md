@@ -10,7 +10,7 @@
 **wink-nlp-utils** is a part of **[wink](https://www.npmjs.com/~sanjaya)**, which is a family of Machine Learning NPM packages. They consist of simple and/or higher order functions that can be combined with NodeJS `stream` and `child processes` to create recipes for analytics driven business solutions.
 
 
-Prepares raw text for Natural Language Processing (NLP).  It offers a set of **[APIs](#apis)** to work on **[strings](#string)** such as names, sentences, paragraphs and **[tokens](#tokens)** represented as an array of strings/words. They perform the required pre-processing for ML tasks such as **similarity detection**, **classification**, and **semantic search**.
+Prepares raw text for Natural Language Processing (NLP).  It offers a set of **[APIs](#apis)** to work on **[strings](#string)** such as names, sentences, paragraphs and **[tokens](#tokens)** represented as an array of strings/words. They perform the required pre-processing for many simple ML tasks such as [semantic search](https://www.npmjs.com/package/wink-bm25-text-search), and [classification](https://www.npmjs.com/package/wink-naive-bayes-text-classifier).
 
 
 ## Installation
@@ -28,13 +28,21 @@ npm install wink-nlp-utils --save
 // Load wink-nlp-utils
 var nlp = require( 'wink-nlp-utils' );
 
-// Use a string Function
-// Input argument is a string
+// Use a string Function - Input argument is a string
+// Extract person's name from a string:
 var name = nlp.string.extractPersonsName( 'Dr. Sarah Connor M. Tech., PhD. - AI' );
 // name -> 'Sarah Connor'
 
-// Use a tokens Function
-// Input argument is an array of tokens; remove stop words.
+// Compose all possible sentences from a string:
+var str = '[I] [am having|have] [a] [problem|question]';
+console.log( prepare.string.composeCorpus( str ) );
+// -> [ 'I am having a problem',
+// ->   'I am having a question',
+// ->   'I have a problem',
+// ->   'I have a question' ]
+
+// Use a tokens Function - Input argument is an array of tokens
+// Remove stop words:
 var t = nlp.tokens.removeWords( [ 'mary', 'had', 'a', 'little', 'lamb' ] );
 // t -> [ 'mary', 'little', 'lamb' ]
 
@@ -129,6 +137,16 @@ The input string `s` is stemmed using the [Porter2 English Stemming Algorithm](h
 
 Splits the text contained in the input string `s` into sentences returned in the form of an array. Punctuation marks found at the end of a sentence are retained. The function can handle sentences beginning with numbers as well, though it is not a good english practice. It uses `~` as the `splChar` for splitting and therefore it must not be present in the input string; else you may give another `splChar` as the second argument.
 
+#### composeCorpus( s )
+Generates all possible sentences from the input argument string — **`s`**. The string `s` must follow a special syntax as illustrated in the example below:
+
+```javascript
+'[I] [am having|have] [a] [problem|question]'
+```
+
+Each phrase must be quoted between `[]` and each possible option of phrases (if any) must be separated by a `|` character. The corpus is composed by computing the cartesian product of all the phrases as highlighted in the [usage](#usage) section. It
+returns an array of sentences (i.e. strings).
+
 #### tokenize0( s )
 
 Tokenizes by splitting the input string `s` on non-words. This means tokens would consists of only alphas, numerals and underscores; all other characters will be stripped as they are treated as separators. However negations are retained and amplified but all other elisions are removed. `Tokenize0` is useful when the text strings are clean and do not require pre-processing like removing punctuations,extra spaces, handling elisions etc.
@@ -217,6 +235,8 @@ Returns an object contains the following functions
 
 If the second argument `givenMappers` is passed as an array of mapper functions then these are applied on the input array before converting into a set. Typical example of mapper functions are `prepare.string.stem()` and `prepare.string.phonetize()`.
 
+It has an alias `returnWordsFilter()`.
+
 #### index()
 Builds an index and returns 2 functions as follows:
 
@@ -224,6 +244,19 @@ Builds an index and returns 2 functions as follows:
 (b) `result()` can be probed anytime to access the output of `build()`.
 
 Probing the result() returns  `ifn` and `idx` values for the calling function as in n `soc()`, `song()`, `bong()`, `bow()`, and `sow()`. Note: usage of `ifn` are limited by the developer’s imagination!
+
+It has an alias `returnIndexer()`.
+
+#### returnQuotedTextExtractor( leftQuote, rightQuote )
+It returns a function that extracts all occurrences of every quoted text between the `leftQuote` and the `rightQuote`
+characters from its argument `s` - a string. Both the default quote characters are same — **`"`**. Usage is illustrated below:
+
+```javascript
+var extractQuotedText = prepare.helper.returnQuotedTextExtractor();
+console.log( extractQuotedText( 'Raise 2 issues - "fix a bug" & "run tests"' ) );
+// -> [ 'fix a bug', 'run tests' ]
+```
+
 
 
 

@@ -557,6 +557,7 @@ describe( 'string.composeCorpus()', function () {
 
 describe( 'string.tokenize0()', function () {
   var tests = [
+    { whenInputIs: [ '' ], expectedOutputIs: [ ] },
     { whenInputIs: [ ' ' ], expectedOutputIs: [] },
     { whenInputIs: [ 'rain rain go away, come again another day.' ], expectedOutputIs: [ 'rain', 'rain', 'go', 'away', 'come', 'again', 'another', 'day' ] },
     { whenInputIs: [ 'what\'s ended in the year 1919 ~?  1918 year ended when the year 1919 began:-)' ], expectedOutputIs: [ 'what', 'ended', 'in', 'the', 'year', '1919', '1918', 'year', 'ended', 'when', 'the', 'year', '1919', 'began' ] },
@@ -585,7 +586,9 @@ describe( 'string.tokenize0()', function () {
 
 describe( 'string.tokenize()', function () {
   var tests = [
-    { whenInputIs: [ ' ' ], expectedOutputIs: [ '' ] },
+    // `tokenize()`, like `tokenize0()`, must return an empty array for an empty string.
+    { whenInputIs: [ '' ], expectedOutputIs: [ ] },
+    { whenInputIs: [ ' ' ], expectedOutputIs: [ ] },
     { whenInputIs: [ 'rain rain go away, come again another day' ], expectedOutputIs: [ 'rain', 'rain', 'go', 'away', ',', 'come', 'again', 'another', 'day' ] },
     { whenInputIs: [ 'rain rain_ go away, come again another day' ], expectedOutputIs: [ 'rain', 'rain_', 'go', 'away', ',', 'come', 'again', 'another', 'day' ] },
     { whenInputIs: [ 'what\'s ended in the year 1919 ~?  The $1 was equal to 1.2 rupees.' ], expectedOutputIs: [ 'what', '\'s', 'ended', 'in', 'the', 'year', '1919', '~', '?', 'The', '$', '1', 'was', 'equal', 'to', '1.2', 'rupees', '.' ] },

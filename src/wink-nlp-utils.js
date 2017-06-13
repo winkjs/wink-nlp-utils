@@ -467,7 +467,7 @@ prepare.string.tokenize = function ( s ) {
             .replace( /([a-z0-9])(\’|\')(\W)/gi, '$1 $2 $3')
             .replace( '...', '…' )
             .replace( '…', ' … ' );
-  return ( prepare.string.splitElisions( prepare.string.amplifyNotElision( su ) )
+  var tokens = prepare.string.splitElisions( prepare.string.amplifyNotElision( su ) )
             // Handle cannot.
             .replace( rgx.cannot, '$1 $2' )
             // Separate out punctuations that are not part of a number.
@@ -481,8 +481,10 @@ prepare.string.tokenize = function ( s ) {
             // Handle period sign in the end specially.
             .replace( /\.$/, ' .' )
             // Now tokenize on space!
-            .split( ' ' )
-         );
+            .split( ' ' );
+  // Splitting an empty string on space leaves an empty string in the array,
+  // get rid of it.
+  return ( ( tokens.length === 1 && tokens[ 0 ] === '' ) ? [] : tokens );
 }; // tokenize()
 
 // #### stem

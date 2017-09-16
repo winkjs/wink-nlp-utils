@@ -25,14 +25,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/decisively/wink-nlp-utils.git"
+    "url": "git+https://github.com/winkjs/wink-nlp-utils.git"
   },
   "author": "Sanjaya Kumar Saxena",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/decisively/wink-nlp-utils/issues"
+    "url": "https://github.com/winkjs/wink-nlp-utils/issues"
   },
-  "homepage": "https://github.com/decisively/wink-nlp-utils#readme",
+  "homepage": "https://github.com/winkjs/wink-nlp-utils#readme",
   "devDependencies": {
     "chai": "^4.1.1",
     "coveralls": "^2.11.15",
@@ -44,7 +44,7 @@
     "mocha-lcov-reporter": "^1.2.0"
   },
   "dependencies": {
-    "wink-helpers": "^1.1.0",
-    "wink-porter2-stemmer": "^1.0.1"
+    "wink-helpers": "^1.2.0",
+    "wink-porter2-stemmer": "^1.0.7"
   }
 }

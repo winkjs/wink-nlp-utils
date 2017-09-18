@@ -654,5 +654,20 @@ prepare.tokens.propagateNegations = function ( t, upto ) {
   return tokens;
 }; // propagateNegations()
 
+// #### Bigrams
+
+// Creates bigrams from the input `t` tokens.
+prepare.tokens.bigrams = function ( t ) {
+  // Bigrams will be stored here.
+  var bgs = [];
+  // Helper variables.
+  var i, imax;
+  // Create bigrams.
+  for ( i = 0, imax = t.length - 1; i < imax; i += 1 ) {
+    bgs.push( [ t[ i ], t[ i + 1 ] ] );
+  }
+  return bgs;
+}; // bigrams()
+
 // Export prepare.
 module.exports = prepare;

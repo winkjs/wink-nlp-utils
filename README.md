@@ -222,6 +222,10 @@ It looks for negation tokens in the input array of tokens `t` and propagates neg
 tokens by prefixing them by a `!`: useful in handling text containing negations
 during similarity detection or classification.
 
+#### bigrams( t )
+
+Generates the bigram from the input tokens `t`.
+
 
 ### helper
 `helper` name space contains functions which returns function(s). They can be used for generating input arguments by the  calling function.

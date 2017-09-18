@@ -1037,3 +1037,20 @@ describe( 'prepare.tokens.propagateNegations()', function () {
     } );
   } );
 } );
+
+// ### Bigrams test cases.
+
+describe( 'prepare.tokens.bigrams()', function () {
+  var tests = [
+    { whenInputIs: [ [ 'mary', 'is', 'feeling', 'good', 'today' ] ], expectedOutputIs: [ [ 'mary', 'is' ], [ 'is', 'feeling' ], [ 'feeling', 'good' ], [ 'good', 'today' ] ] },
+    { whenInputIs: [ [ 'mary' ] ], expectedOutputIs: [ ] },
+    { whenInputIs: [ [ 'mary', 'is' ] ], expectedOutputIs: [ [ 'mary', 'is' ] ] },
+    { whenInputIs: [ [ ] ], expectedOutputIs: [ ] },
+  ];
+
+  tests.forEach( function ( test ) {
+    it( 'should return ' + JSON.stringify( test.expectedOutputIs ) + ' if the input is ' + JSON.stringify( test.whenInputIs ), function () {
+      expect( prepare.tokens.bigrams.apply( null, test.whenInputIs ) ).to.deep.equal( test.expectedOutputIs );
+    } );
+  } );
+} );

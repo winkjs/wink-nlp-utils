@@ -226,6 +226,10 @@ during similarity detection or classification.
 
 Generates the bigram from the input tokens `t`.
 
+#### appendBigrams( t )
+
+Generates bigrams from the input `t` tokens and returns them by appending to `t`.
+
 
 ### helper
 `helper` name space contains functions which returns function(s). They can be used for generating input arguments by the  calling function.

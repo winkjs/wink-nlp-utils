@@ -669,5 +669,17 @@ prepare.tokens.bigrams = function ( t ) {
   return bgs;
 }; // bigrams()
 
+// ### Append Bigrams
+
+// Generates bigrams from the input `t` tokens and returns them by
+// appending to `t`.
+prepare.tokens.appendBigrams = function ( t ) {
+  var i, imax;
+  for ( i = 0, imax = t.length - 1; i < imax; i += 1 ) {
+    t.push( t[ i ] + '_' + t[ i + 1 ] );
+  }
+  return t;
+}; // appendBigrams()
+
 // Export prepare.
 module.exports = prepare;

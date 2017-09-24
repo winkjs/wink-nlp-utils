@@ -1054,3 +1054,20 @@ describe( 'prepare.tokens.bigrams()', function () {
     } );
   } );
 } );
+
+// ### Append Bigrams test cases.
+
+describe( 'prepare.tokens.appendBigrams()', function () {
+  var tests = [
+    { whenInputIs: [ [ 'mary', 'is', 'feeling', 'good', 'today' ] ], expectedOutputIs: [ 'mary', 'is', 'feeling', 'good', 'today', 'mary_is', 'is_feeling', 'feeling_good', 'good_today' ] },
+    { whenInputIs: [ [ 'mary' ] ], expectedOutputIs: [ 'mary' ] },
+    { whenInputIs: [ [ 'mary', 'is' ] ], expectedOutputIs: [ 'mary', 'is', 'mary_is' ] },
+    { whenInputIs: [ [ ] ], expectedOutputIs: [ ] },
+  ];
+
+  tests.forEach( function ( test ) {
+    it( 'should return ' + JSON.stringify( test.expectedOutputIs ) + ' if the input is ' + JSON.stringify( test.whenInputIs ), function () {
+      expect( prepare.tokens.appendBigrams.apply( null, test.whenInputIs ) ).to.deep.equal( test.expectedOutputIs );
+    } );
+  } );
+} );

@@ -168,6 +168,11 @@ The function follows set of rules given below to remove and preserve punctuation
 
 Phonetizes the input string `s` using an algorithmic adaptation of [Metaphone](https://en.wikipedia.org/wiki/Metaphone).
 
+#### soundex( s, maxLength )
+
+Generates the [soundex](https://en.wikipedia.org/wiki/Soundex) code from the input `s`. The `maxLength` determines the
+maximum length of soundex code to be returned; it is optional and has a default value of **4**.
+
 
 <br/>
 

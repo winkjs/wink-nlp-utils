@@ -199,6 +199,11 @@ Creates a Set of tokens from the input array `t`. It is required as an input for
 
 An array of tokens `t` are phonetized using an algorithmic adaptation of [Metaphone](https://en.wikipedia.org/wiki/Metaphone).  This is not to be confused with `phonetize( s )` for string only phonetization.
 
+#### soundex( t )
+
+Generates the [soundex](https://en.wikipedia.org/wiki/Soundex) code from the input array of tokens `t`. This is not to be confused with `string.soundex( s )` for string only soundex code generation.
+
+
 #### set( t )
 
 Creates a `Set of tokens` from the input array `t`. It is required as an input for computing similarity using `Jaccard` or `Tversky` Indexes. This is not to be confused with set( s ) of string sets for computing similarity.

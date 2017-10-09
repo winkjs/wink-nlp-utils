@@ -634,10 +634,18 @@ prepare.tokens.stem = function ( t ) {
 
 // #### phonetize
 
-// Stems the input token `t` using `string.stem()`.
+// Phonetize the input tokens `t` using an algorithmic adaption of Metaphone.
 prepare.tokens.phonetize = function ( t ) {
   return t.map( prepare.string.phonetize );
 }; // phonetize()
+
+// #### soundex
+
+// Produces the soundex code from the input `word`.
+prepare.tokens.soundex = function ( tokens ) {
+  // Need to send `maxLength` as `undefined`.
+  return tokens.map( ( t ) => prepare.string.soundex( t ) );
+}; // soundex()
 
 // #### Remove Words
 

@@ -1156,3 +1156,24 @@ describe( 'prepare.string.soundex()', function () {
     } );
   } );
 } );
+
+// ### Create tokens soundex test cases.
+
+describe( 'prepare.tokens.soundex()', function () {
+  var tests = [
+    { whenInputIs: [ 'robert', 'rupert', 'williams', 'woolcock' ], expectedOutputIs: [ 'R163', 'R163', 'W452', 'W422' ] },
+    { whenInputIs: [  ], expectedOutputIs: [  ] },
+  ];
+
+  tests.forEach( function ( test ) {
+    it( 'should return ' + JSON.stringify( test.expectedOutputIs ) + ' if the input is ' + JSON.stringify( test.whenInputIs ), function () {
+      expect( prepare.tokens.soundex( test.whenInputIs ) ).to.deep.equal( test.expectedOutputIs );
+    } );
+  } );
+
+  errors.slice( 0, 2 ).forEach( function ( error ) {
+    it( 'should throw ' + error.expectedOutputIs + ' if the input is ' + JSON.stringify( error.whenInputIs ), function () {
+      expect( prepare.tokens.phonetize.bind( null, error.whenInputIs ) ).to.throw( error.expectedOutputIs );
+    } );
+  } );
+} );

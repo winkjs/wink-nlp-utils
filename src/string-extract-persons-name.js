@@ -39,8 +39,8 @@ var ncrgx = require( './name_cleaner_regexes.js' );
  * @param {string} str — the input string.
  * @return {string} extracted name.
  * @example
- * extractPersonsName( 'Dr. Neil Nitin Sharma B. Tech., M. Tech., PhD. - Electrical' )
- * // -> 'Neil Nitin Sharma'
+ * extractPersonsName( 'Dr. Sarah Connor M. Tech., PhD. - AI' );
+ * // -> 'Sarah Connor'
  */
 var extractPersonsName = function ( str ) {
   // Remove Degrees by making the list of indexes of each degree and subsequently

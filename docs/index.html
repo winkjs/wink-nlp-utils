@@ -45,6 +45,16 @@
               
                 
                 <li><a
+                  href='#stringextractrunofcapitalwords'
+                  class="">
+                  string.extractRunOfCapitalWords
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#stringlowercase'
                   class="">
                   string.lowerCase
@@ -58,6 +68,16 @@
                   href='#stringremoveextraspaces'
                   class="">
                   string.removeExtraSpaces
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#stringremovepunctuations'
+                  class="">
+                  string.removePunctuations
                   
                 </a>
                 
@@ -252,8 +272,88 @@ Entities in square brackets are optional.</p>
     <div class='py1 quiet mt1 prose-big'>Example</div>
     
       
-      <pre class='p1 overflow-auto round fill-light'>extractPersonsName( <span class="hljs-string">'Dr. Neil Nitin Sharma B. Tech., M. Tech., PhD. - Electrical'</span> )
-<span class="hljs-comment">// -&gt; 'Neil Nitin Sharma'</span></pre>
+      <pre class='p1 overflow-auto round fill-light'>extractPersonsName( <span class="hljs-string">'Dr. Sarah Connor M. Tech., PhD. - AI'</span> );
+<span class="hljs-comment">// -&gt; 'Sarah Connor'</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringextractrunofcapitalwords'>
+      string.extractRunOfCapitalWords
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Extracts the array of text appearing as Title Case or in ALL CAPS from the
+input string.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.extractRunOfCapitalWords</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>></code>:
+        of text appearing in Title Case or in ALL CAPS; if no such
+text is found then 
+<code>null</code>
+ is returned.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>extractRunOfCapitalWords( <span class="hljs-string">'In The Terminator, Sarah Connor is in Los Angeles'</span> );
+<span class="hljs-comment">// -&gt; [ 'In The Terminator', 'Sarah Connor', 'Los Angeles' ]</span></pre>
     
   
 
@@ -408,6 +508,85 @@ whitespaces.
       
       <pre class='p1 overflow-auto round fill-light'>removeExtraSpaces( <span class="hljs-string">'   Padded   Text    '</span> );
 <span class="hljs-comment">// -&gt; 'Padded Text'</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringremovepunctuations'>
+      string.removePunctuations
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Removes each punctuation mark by replacing it with a whitespace. It looks for
+the following punctuations — <code>.,;!?:"!'... - () [] {}</code>.</p>
+<p>Extra spaces, if required, may be removed using <a href="#stringremoveextraspaces">string.removeExtraSpaces</a>
+function.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.removePunctuations</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#string">string</a></code>:
+        input string after removal of punctuations.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>removePunctuations( <span class="hljs-string">'Punctuations like "\'\',;!?:"!... are removed'</span> );
+<span class="hljs-comment">// -&gt; 'Punctuations like               are removed'</span></pre>
     
   
 

@@ -1,8 +1,10 @@
 toc:
   - name: string
   - string.extractPersonsName
+  - string.extractRunOfCapitalWords
   - string.lowerCase
   - string.removeExtraSpaces
+  - string.removePunctuations
   - string.retainAlphaNums
   - string.trim
   - string.upperCase

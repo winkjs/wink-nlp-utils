@@ -119,18 +119,13 @@ prepare.string.extractPersonsName = require( './string-extract-persons-name.js' 
 
 // Returns an array of **run of captial words** from thr input string `s`,
 // if any; otherwise returns `null`.
-prepare.string.extractRunOfCapitalWords = function ( s ) {
-  var m = s.match( rgx.rocWords );
-  return ( ( m ) ? m.map( prepare.string.trim ) : m );
-}; // extractRunOfCapitalWords()
+prepare.string.extractRunOfCapitalWords = require( './string-extract-run-of-capital-words.js' );
 
 // #### Remove Punctuations
 
 // Removes punctuations from the input string `s` by replacing each one of them
 // by a single space character.
-prepare.string.removePunctuations = function ( s ) {
-  return s.replace( rgx.punctuations, ' ' );
-}; // removePunctuations()
+prepare.string.removePunctuations = require( './string-remove-punctuations.js' );
 
 // #### Remove Special Chars
 

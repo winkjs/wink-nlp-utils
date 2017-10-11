@@ -1,0 +1,14 @@
+toc:
+  - name: helper
+  - helper.returnWordsFilter
+  - name: string
+  - string.extractPersonsName
+  - string.lowerCase
+  - string.removeExtraSpaces
+  - string.retainAlphaNums
+  - string.trim
+  - string.upperCase
+
+  - name: Definitions
+
+  - wordsFilter

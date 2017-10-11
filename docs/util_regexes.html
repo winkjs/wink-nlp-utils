@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>util_regexes.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page_wrapper">
+            <div id="jump_page">
+              
+                
+                <a class="source" href="name_cleaner_regexes.html">
+                  name_cleaner_regexes.js
+                </a>
+              
+                
+                <a class="source" href="phonetize_regexes.html">
+                  phonetize_regexes.js
+                </a>
+              
+                
+                <a class="source" href="util_regexes.html">
+                  util_regexes.js
+                </a>
+              
+                
+                <a class="source" href="wink-nlp-utils.html">
+                  wink-nlp-utils.js
+                </a>
+              
+            </div>
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>util_regexes.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <pre><code>wink-nlp-utils
+Easily tokenize, stem, phonetize, remove stop words,
+manage elisions, create ngrams, bag <span class="hljs-keyword">of</span> words and more
+
+Copyright (C) <span class="hljs-number">2017</span>  GRAYPE Systems Private Limited
+
+This file is part <span class="hljs-keyword">of</span> “wink-nlp-utils”.
+
+“wink-nlp-utils” is free software: you can redistribute it
+and/or modify it under the terms <span class="hljs-keyword">of</span> the GNU Affero
+General Public License <span class="hljs-keyword">as</span> published by the Free
+Software Foundation, version <span class="hljs-number">3</span> <span class="hljs-keyword">of</span> the License.
+
+“wink-nlp-utils” is distributed <span class="hljs-keyword">in</span> the hope that it will
+be useful, but WITHOUT ANY WARRANTY; without even
+the implied warranty <span class="hljs-keyword">of</span> MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU Affero General
+Public License <span class="hljs-keyword">for</span> more details.
+
+You should have received a copy <span class="hljs-keyword">of</span> the GNU Affero
+General Public License along <span class="hljs-keyword">with</span> “wink-nlp-utils”.
+If not, see &lt;http:<span class="hljs-comment">//www.gnu.org/licenses/&gt;.</span>
+</code></pre>
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> rgx = <span class="hljs-built_in">Object</span>.create( <span class="hljs-literal">null</span> );</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Matches standard english punctuations in a text.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.punctuations = <span class="hljs-regexp">/[\’\'\‘\’\`\“\”\"\[\]\(\)\{\}\…\,\.\!\;\?\/\-\:]/ig</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>End Of Sentence Punctuations - useful for splitting text into sentences.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.eosPunctuations = <span class="hljs-regexp">/([\.\?\!])\s*(?=[a-z]|\s+\d)/gi</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Matches special characters: <code>* + % # @ ^ = ~ | \</code> in a text.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.splChars = <span class="hljs-regexp">/[\*\+\%\#\@\^\=\~\|\\]/ig</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Matches common english elisions including n’t.
+These are special ones as ‘s otherwise may be apostrophe!</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.elisionsSpl = <span class="hljs-regexp">/(\b)(it|let|that|who|what|here|there|when|where|why|how)(\'s)\b/gi</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Single (1) character elisions.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.elisions1 = <span class="hljs-regexp">/([a-z])(\'d|\'m)\b/gi</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Two (2) character elisions.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.elisions2 = <span class="hljs-regexp">/([a-z])(\'ll|\'ve|\'re|n\'t)\b/gi</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Sperate not elision ‘nt.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.notElision = <span class="hljs-regexp">/([a-z])(n\'t)\b/gi</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Specially handle cannot</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.cannot = <span class="hljs-regexp">/\b(can)(not)\b/gi</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Matches space, tab, or new line characters in text.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.spaces = <span class="hljs-regexp">/\s+/ig</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Matches anything other than space, tab, or new line characters.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.notSpace = <span class="hljs-regexp">/\S/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Matches alpha and space characters in a text.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.alphaSpace = <span class="hljs-regexp">/[a-z\s]/ig</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Matches alphanumerals and space characters in a text.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.alphaNumericSpace = <span class="hljs-regexp">/[a-z0-9\s]/ig</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Matches non alpha characters in a text.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.notAlpha = <span class="hljs-regexp">/[^a-z]/ig</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Matches non alphanumerals in a text.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.notAlphaNumeric = <span class="hljs-regexp">/[^a-z0-9]/ig</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Matches one or more non-words characters.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.nonWords = <span class="hljs-regexp">/\W+/ig</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Matches complete negation token</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.negations = <span class="hljs-regexp">/^(never|none|not|no)$/ig</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>Matches run of capital words in a text.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.rocWords = <span class="hljs-regexp">/(?:\b[A-Z][A-Za-z]*\s*){2,}/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Matches integer, decimal, JS floating point numbers in a text.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.number = <span class="hljs-regexp">/[0-9]*\.[0-9]+e[\+\-]{1}[0-9]+|[0-9]*\.[0-9]+|[0-9]+/ig</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Matches time in 12 hour am/pm format in a text.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.timeIn12HrAMPM = <span class="hljs-regexp">/(?:[0-9]|0[0-9]|1[0-2])((:?:[0-5][0-9])){0,1}\s?(?:[aApP][mM])/ig</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Matches HTML tags - in fact any thing enclosed in angular brackets including
+the brackets.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.htmlTags = <span class="hljs-regexp">/(?:&lt;[^&gt;]*&gt;)/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Matches the HTML Esc Sequences
+Esc Seq of type <code>&amp;lt;</code> or <code>&amp;nbsp;</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.htmlEscSeq1 = <span class="hljs-regexp">/(?:&amp;[a-z]{2,6};)/gi</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>Esc Seq of type <code>&amp;#32;</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.htmlEscSeq2 = <span class="hljs-regexp">/(?:&amp;#[0-9]{2,4};)/gi</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>Tests if a given string is possibly in the Indian mobile telephone number format.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.mobileIndian = <span class="hljs-regexp">/^(0|\+91)?[789]\d{9}$/</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>Tests if a given string is in the valid email format.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.email = <span class="hljs-regexp">/^(([^&lt;&gt;()[\]\\.,;:\s@"]+(\.[^&lt;&gt;()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>Extracts any number and text from a <number><text> format text.
+Useful in extracting value and UoM from strings like <code>2.7 Kgs</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.separateNumAndText = <span class="hljs-regexp">/([0-9]*\.[0-9]+e[\+\-]{1}[0-9]+|[0-9]*\.[0-9]+|[0-9]+)[\s]*(.*)/i</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>Crude date parser for a string containg date in a valid format.</p>
+<blockquote>
+<p>TODO: Need to improve this one!</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.date = <span class="hljs-regexp">/(\d+)/ig</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <p>Following 3 regexes are specially coded for <code>tokenize()</code> in prepare_text.
+Matches punctuations that are not a part of a number.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.nonNumPunctuations = <span class="hljs-regexp">/[\.\,\-](?=\D)/gi</span>;
+rgx.otherPunctuations = <span class="hljs-regexp">/[\’\'\‘\’\`\“\”\"\[\]\(\)\{\}\…\!\;\?\/\:]/ig</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <blockquote>
+<p>TODO: Add more currency symbols here.</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.currency = <span class="hljs-regexp">/[\$\£\¥\€]/ig</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">module</span>.exports = rgx;</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

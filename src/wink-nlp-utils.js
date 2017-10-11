@@ -23,7 +23,7 @@
 
 //
 var rgx = require( './util_regexes.js' );
-var ncrgx = require( './name_cleaner_regexes.js' );
+// var ncrgx = require( './name_cleaner_regexes.js' );
 var porter2Stemmer = require( 'wink-porter2-stemmer' );
 var phnrgx = require( './phonetize_regexes.js' );
 var defaultStopWords = require( './dictionaries/stop_words.json' );
@@ -47,28 +47,7 @@ prepare.helper = Object.create( null );
 // array of **mapper** functions then these are applied on the input array
 // before converting in to a set. Typical example of mapper functions are
 // `prepare.string.stem()` and `prepare.string.phonetize()`.
-prepare.helper.words = function ( w, givenMappers ) {
-  var mappedWords = w;
-  var mappers = givenMappers || [];
-  mappers.forEach( function ( m ) {
-    mappedWords = mappedWords.map( m );
-  } );
-
-  mappedWords = new Set( mappedWords );
-
-  var exclude = function ( t ) {
-    return ( !( mappedWords.has( t ) ) );
-  }; // exclude()
-
-  var set = function () {
-    return mappedWords;
-  }; // set()
-
-  return {
-    set: set,
-    exclude: exclude
-  };
-}; // words()
+prepare.helper.words = require( './helper-return-words-filter.js' );
 
 // Make better **alias** name for the `word()` function.
 prepare.helper.returnWordsFilter = prepare.helper.words;
@@ -161,47 +140,29 @@ prepare.string = Object.create( null );
 // #### Lower Case
 
 // Converts the input string `s` to lower case.
-prepare.string.lowerCase = function ( s ) {
-  return ( s.toLowerCase() );
-}; // lowerCase()
+prepare.string.lowerCase = require( './string-lower-case.js' );
 
 // #### Upper Case
 
 // Converts the input sting `s` to upper case.
-prepare.string.upperCase = function ( s ) {
-  return ( s.toUpperCase() );
-}; // upperCase()
+prepare.string.upperCase = require( './string-upper-case.js' );
 
 // #### Trim
 
 // Trims leading and trailing spaces from the input string `s`.
-prepare.string.trim = function ( s ) {
-  return ( s.trim() );
-}; // trim()
+prepare.string.trim = require( './string-trim.js' );
 
 // #### Remove Extra Spaces
 
 // Removes leading & trailing whitespaces, extra in-between spaces from the input
 // string `s`.
-prepare.string.removeExtraSpaces = function ( s ) {
-  return ( s
-            .trim()
-            .replace( rgx.spaces, ' ')
-         );
-}; // removeExtraSpaces()
+prepare.string.removeExtraSpaces = require( './string-remove-extra-spaces.js' );
 
 // #### Retain Alpha-numerics
 
 // Retains only apha, numerals, and spaces and removes all other characters from
 // the input string `s`.
-prepare.string.retainAlphaNums = function ( s ) {
-  return ( s
-            .toLowerCase()
-            .replace( rgx.notAlphaNumeric, ' ')
-            .replace( rgx.spaces, ' ')
-            .trim()
-          );
-}; // retainAlphaNums()
+prepare.string.retainAlphaNums = require( './string-retain-alpha-nums.js' );
 
 // #### Extract Person's Name
 
@@ -210,22 +171,7 @@ prepare.string.retainAlphaNums = function ( s ) {
 // the titles and degrees.
 // It assmues the following name format:
 // `[<salutations>] <name part in FN, MN, LN> [<degrees>]`.
-prepare.string.extractPersonsName = function ( s ) {
-  // Remove Degrees by making the list of indexes of each degree and subsequently
-  // finding the minimum and slicing from there!
-  var indexes = ncrgx.degrees.map( function ( r ) {
-    var m = r.exec( s );
-    return ( m ) ? m.index : 999999;
-  } );
-  var sp = Math.min.apply( null, indexes );
-
-  // Generate an Array of Every Elelemnt of Name (e.g. title, first name,
-  // sir name, honours, etc)
-  var aeen = s.slice( 0, sp ).replace( rgx.notAlpha, ' ').replace( rgx.spaces, ' ').trim().split(' ');
-  // Remove titles from the beginning.
-  while ( aeen.length && ncrgx.titles.test( aeen[0] ) ) aeen.shift();
-  return aeen.join(' ');
-}; // extractPersonsName()
+prepare.string.extractPersonsName = require( './string-extract-persons-name.js' );
 
 // #### Extract Run of Capital Words
 

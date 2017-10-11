@@ -1,0 +1,832 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>wink-nlp-utils 1.6.0 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+  <link href='assets/split.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation m0'>
+    <div class='flex'>
+      <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>wink-nlp-utils</h3>
+          <div class='mb1'><code>1.6.0</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block input'
+            type='text' />
+          <div id='toc'>
+            <ul class='list-reset h5 py1-ul'>
+              
+                
+                <li><a
+                  href='#helper'
+                  class="h5 bold black caps">
+                  helper
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#helperreturnwordsfilter'
+                  class="">
+                  helper.returnWordsFilter
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#string'
+                  class="h5 bold black caps">
+                  string
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#stringextractpersonsname'
+                  class="">
+                  string.extractPersonsName
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#stringlowercase'
+                  class="">
+                  string.lowerCase
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#stringremoveextraspaces'
+                  class="">
+                  string.removeExtraSpaces
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#stringretainalphanums'
+                  class="">
+                  string.retainAlphaNums
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#stringtrim'
+                  class="">
+                  string.trim
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#stringuppercase'
+                  class="">
+                  string.upperCase
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#definitions'
+                  class="h5 bold black caps">
+                  Definitions
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#wordsfilter'
+                  class="">
+                  wordsFilter
+                  
+                </a>
+                
+                </li>
+              
+            </ul>
+          </div>
+          <div class='mt1 h6 quiet'>
+            <a href='http://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+          </div>
+        </div>
+      </div>
+      <div id='split-right' class='relative overflow-auto height-viewport-100'>
+        
+          
+            <div class='keyline-top-not py2'><section class='py2 clearfix'>
+
+  <h2 id='helper' class='mt0'>
+    helper
+  </h2>
+
+  
+    
+
+  
+</section>
+</div>
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='helperreturnwordsfilter'>
+      helper.returnWordsFilter
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Returns an object contains the following functions: (a) <code>set()</code>, which returns
+a set of mapped words given in the input array <code>words</code>. (b) <code>exclude()</code> that
+is suitable for array filtering operations.</p>
+<p>If the second argument <code>mappers</code> is provided as an array of maping functions
+then these are applied on the input array before converting into a set.
+Examples of mapper functions are <code>string.stem()</code> and
+<code>string.phonetize()</code>.</p>
+
+
+  <div class='pre p1 fill-light mt0'>helper.returnWordsFilter</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>words</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>mappers</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#wordsfilter">wordsFilter</a></code>:
+        input string in lower case.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> stopWords = [ <span class="hljs-string">'This'</span>, <span class="hljs-string">'That'</span>, <span class="hljs-string">'Are'</span>, <span class="hljs-string">'Is'</span>, <span class="hljs-string">'Was'</span>, <span class="hljs-string">'Will'</span>, <span class="hljs-string">'a'</span> ];
+<span class="hljs-keyword">var</span> myFilter = returnWordsFilter( stopWords, [ string.lowerCase ] );
+[ <span class="hljs-string">'this'</span>, <span class="hljs-string">'is'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'cat'</span> ].filter( myFilter.exclude );
+<span class="hljs-comment">// -&gt; [ 'cat' ]</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <div class='keyline-top-not py2'><section class='py2 clearfix'>
+
+  <h2 id='string' class='mt0'>
+    string
+  </h2>
+
+  
+    
+
+  
+</section>
+</div>
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringextractpersonsname'>
+      string.extractPersonsName
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Attempts to extract person's name from input string.
+It assmues the following name format:<br/>
+<code>[&#x3C;salutations>] &#x3C;name part as FN [MN] [LN]> [&#x3C;degrees>]</code><br/>
+Entities in square brackets are optional.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.extractPersonsName</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#string">string</a></code>:
+        extracted name.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>extractPersonsName( <span class="hljs-string">'Dr. Neil Nitin Sharma B. Tech., M. Tech., PhD. - Electrical'</span> )
+<span class="hljs-comment">// -&gt; 'Neil Nitin Sharma'</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringlowercase'>
+      string.lowerCase
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Converts the input string to lower case.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.lowerCase</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#string">string</a></code>:
+        input string in lower case.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>lowerCase( <span class="hljs-string">'Lower Case'</span> );
+<span class="hljs-comment">// -&gt; 'lower case'</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringremoveextraspaces'>
+      string.removeExtraSpaces
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Removes leading, trailing and any extra in-between whitespaces from the input
+string.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.removeExtraSpaces</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#string">string</a></code>:
+        input string after removal of leading, trailing and extra
+whitespaces.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>removeExtraSpaces( <span class="hljs-string">'   Padded   Text    '</span> );
+<span class="hljs-comment">// -&gt; 'Padded Text'</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringretainalphanums'>
+      string.retainAlphaNums
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Retains only apha, numerals, and removes all other characters from
+the input string, including leading, trailing and extra in-between
+whitespaces.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.retainAlphaNums</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#string">string</a></code>:
+        input string after removal of non-alphanumeric characters,
+leading, trailing and extra whitespaces.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>retainAlphaNums( <span class="hljs-string">' This, text here, has  (other) chars_! '</span> );
+<span class="hljs-comment">// -&gt; 'This text here has other chars'</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringtrim'>
+      string.trim
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Trims leading and trailing whitespaces from the input string.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.trim</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#string">string</a></code>:
+        input string with leading &#x26; trailing whitespaces removed.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>trim( <span class="hljs-string">'  Padded   '</span> );
+<span class="hljs-comment">// -&gt; 'Padded'</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringuppercase'>
+      string.upperCase
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Converts the input string to upper case.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.upperCase</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#string">string</a></code>:
+        input string in upper case.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>upperCase( <span class="hljs-string">'Upper Case'</span> );
+<span class="hljs-comment">// -&gt; 'UPPER CASE'</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <div class='keyline-top-not py2'><section class='py2 clearfix'>
+
+  <h2 id='definitions' class='mt0'>
+    Definitions
+  </h2>
+
+  
+    
+
+  
+</section>
+</div>
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='wordsfilter'>
+      wordsFilter
+    </h3>
+    
+    
+  </div>
+  
+
+  
+
+  <div class='pre p1 fill-light mt0'>wordsFilter</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>set</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
+          : contains the set created from the array 
+<code>words</code>
+.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>exclude</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
+          : used with array's filter method to exclude
+the 
+<code>words</code>
+ or mapped 
+<code>words</code>
+ if 
+<code>givenMappers</code>
+ are defined.
+
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+      </div>
+    </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/split.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>

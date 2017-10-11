@@ -1,0 +1,2327 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>wink-nlp-utils.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page_wrapper">
+            <div id="jump_page">
+              
+                
+                <a class="source" href="name_cleaner_regexes.html">
+                  name_cleaner_regexes.js
+                </a>
+              
+                
+                <a class="source" href="phonetize_regexes.html">
+                  phonetize_regexes.js
+                </a>
+              
+                
+                <a class="source" href="util_regexes.html">
+                  util_regexes.js
+                </a>
+              
+                
+                <a class="source" href="wink-nlp-utils.html">
+                  wink-nlp-utils.js
+                </a>
+              
+            </div>
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>wink-nlp-utils.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <pre><code>wink-nlp-utils
+Easily tokenize, stem, phonetize, remove stop words,
+manage elisions, create ngrams, bag <span class="hljs-keyword">of</span> words and more
+
+Copyright (C) <span class="hljs-number">2017</span>  GRAYPE Systems Private Limited
+
+This file is part <span class="hljs-keyword">of</span> “wink-nlp-utils”.
+
+“wink-nlp-utils” is free software: you can redistribute it
+and/or modify it under the terms <span class="hljs-keyword">of</span> the GNU Affero
+General Public License <span class="hljs-keyword">as</span> published by the Free
+Software Foundation, version <span class="hljs-number">3</span> <span class="hljs-keyword">of</span> the License.
+
+“wink-nlp-utils” is distributed <span class="hljs-keyword">in</span> the hope that it will
+be useful, but WITHOUT ANY WARRANTY; without even
+the implied warranty <span class="hljs-keyword">of</span> MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU Affero General
+Public License <span class="hljs-keyword">for</span> more details.
+
+You should have received a copy <span class="hljs-keyword">of</span> the GNU Affero
+General Public License along <span class="hljs-keyword">with</span> “wink-nlp-utils”.
+If not, see &lt;http:<span class="hljs-comment">//www.gnu.org/licenses/&gt;.</span>
+</code></pre>
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> rgx = <span class="hljs-built_in">require</span>( <span class="hljs-string">'./util_regexes.js'</span> );
+<span class="hljs-keyword">var</span> ncrgx = <span class="hljs-built_in">require</span>( <span class="hljs-string">'./name_cleaner_regexes.js'</span> );
+<span class="hljs-keyword">var</span> porter2Stemmer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-porter2-stemmer'</span> );
+<span class="hljs-keyword">var</span> phnrgx = <span class="hljs-built_in">require</span>( <span class="hljs-string">'./phonetize_regexes.js'</span> );
+<span class="hljs-keyword">var</span> defaultStopWords = <span class="hljs-built_in">require</span>( <span class="hljs-string">'./dictionaries/stop_words.json'</span> );
+<span class="hljs-keyword">var</span> helpers = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-helpers'</span> );</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h3 id="prepare-name-space">Prepare Name Space</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Create prepare name space.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> prepare = <span class="hljs-built_in">Object</span>.create( <span class="hljs-literal">null</span> );</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <h3 id="prepare-helper-name-space">Prepare.Helper name space</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Create prepare.helper name space.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.helper = <span class="hljs-built_in">Object</span>.create( <span class="hljs-literal">null</span> );</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <h4 id="words">Words</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Returns an object containing functions (a) <code>set</code>, which returns a <code>Set</code> of
+words given in the input array <code>w</code> and (b) <code>exclude</code> that is suitable for
+filtering operations. If the second argment <code>givenMappers</code> is given as an
+array of <strong>mapper</strong> functions then these are applied on the input array
+before converting in to a set. Typical example of mapper functions are
+<code>prepare.string.stem()</code> and <code>prepare.string.phonetize()</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.helper.words = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> w, givenMappers </span>) </span>{
+  <span class="hljs-keyword">var</span> mappedWords = w;
+  <span class="hljs-keyword">var</span> mappers = givenMappers || [];
+  mappers.forEach( <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> m </span>) </span>{
+    mappedWords = mappedWords.map( m );
+  } );
+
+  mappedWords = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>( mappedWords );
+
+  <span class="hljs-keyword">var</span> exclude = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> t </span>) </span>{
+    <span class="hljs-keyword">return</span> ( !( mappedWords.has( t ) ) );
+  }; <span class="hljs-comment">// exclude()</span>
+
+  <span class="hljs-keyword">var</span> set = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> mappedWords;
+  }; <span class="hljs-comment">// set()</span>
+
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">set</span>: set,
+    <span class="hljs-attr">exclude</span>: exclude
+  };
+}; <span class="hljs-comment">// words()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Make better <strong>alias</strong> name for the <code>word()</code> function.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.helper.returnWordsFilter = prepare.helper.words;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Create default stop words here - an internal variable.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>defaultStopWords = prepare.helper.words( defaultStopWords );</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <h4 id="index">index</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Builds index - returns 2 functions viz. (a) <code>build</code> and <code>result</code>. Useful with
+bag &amp; set creation functions, where by bassing the build function, they can
+also build an index of each key/member.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.helper.index = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> theIndex = <span class="hljs-built_in">Object</span>.create( <span class="hljs-literal">null</span> );
+  <span class="hljs-keyword">var</span> methods = <span class="hljs-built_in">Object</span>.create( <span class="hljs-literal">null</span> );</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Builds index by adding the <code>element</code> and <code>itsIndex</code>. The <code>itsIndex</code> should
+be a valid JS array index; no validation checks are performed while building
+index.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> build = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> element, itsIndex </span>) </span>{
+    theIndex[ element ] = theIndex[ element ] || [];
+    theIndex[ element ].push( itsIndex );
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  }; <span class="hljs-comment">// build()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Returns the index built so far.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> result = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> theIndex;
+  }; <span class="hljs-comment">// result()</span>
+
+  methods.build = build;
+  methods.result = result;
+
+  <span class="hljs-keyword">return</span> methods;
+}; <span class="hljs-comment">// index()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Make better <strong>alias</strong> name for the <code>index()</code> function.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.helper.returnIndexer = prepare.helper.index;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <h4 id="return-quoted-text-extractor">return Quoted Text Extractor</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Returns a uoated text extractor function. The (returned) extractor function
+takes <code>s</code> string argument; extracts all the text elements quoted between
+<code>lq</code> (left quote) and <code>rq</code> (right quote) string; and finally returns an
+array of those text elements. Note elements do not contain quote strings.
+If <code>lq</code> and/or <code>rq</code> is not defined or is not a string then it defaults to <code>&#39;&quot;&#39;</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.helper.returnQuotedTextExtractor = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> lq, rq </span>) </span>{
+  <span class="hljs-keyword">var</span> <span class="hljs-comment">// Index variable for *for-loop*</span>
+      i,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Set defaults for left quote, if required.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      lq1 = ( ( lq &amp;&amp; ( <span class="hljs-keyword">typeof</span> lq === <span class="hljs-string">'string'</span> ) ) ? lq : <span class="hljs-string">'"'</span> ),</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>Extracts its length</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      lqLen = lq1.length,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>The regular expression is created here.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      regex = <span class="hljs-literal">null</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>The string containing the regular expression builds here.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      rgxStr = <span class="hljs-string">''</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Set defaults for right quote, if required.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      rq1 = ( ( rq &amp;&amp; ( <span class="hljs-keyword">typeof</span> rq === <span class="hljs-string">'string'</span> ) ) ? rq : lq1 ),</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Extract its length.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      rqLen = rq1.length;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>Build <code>rgxStr</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &lt; lqLen; i += <span class="hljs-number">1</span> ) rgxStr += <span class="hljs-string">'\\'</span> + lq1.charAt( i );
+  rgxStr += <span class="hljs-string">'.*?'</span>;
+  <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &lt; rqLen; i += <span class="hljs-number">1</span> ) rgxStr += <span class="hljs-string">'\\'</span> + rq1.charAt( i );</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>Create regular expression.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  regex = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>( rgxStr, <span class="hljs-string">'g'</span> );</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>Return the extractor function.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">return</span> ( <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s </span>) </span>{
+    <span class="hljs-keyword">if</span> ( !s || ( <span class="hljs-keyword">typeof</span> s !== <span class="hljs-string">'string'</span> ) ) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">var</span> <span class="hljs-comment">// Extracted elements are captured here.</span>
+        elements = [],</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>Extract matches with quotes</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        matches = s.match( regex );
+    <span class="hljs-keyword">if</span> ( !matches || ( matches.length === <span class="hljs-number">0</span> ) ) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>Collect elements after removing the quotes.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">var</span> k = <span class="hljs-number">0</span>, kmax = matches.length; k &lt; kmax; k += <span class="hljs-number">1</span> ) {
+      elements.push( matches[ k ].substr( lqLen, matches[ k ].length - ( rqLen + lqLen ) ) );
+    }
+    <span class="hljs-keyword">return</span> ( elements );
+  } );
+}; <span class="hljs-comment">// returnQuotedTextExtractor()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <h3 id="prepare-string-name-space">Prepare.String Name Space</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p>Create prepare.string name space.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string = <span class="hljs-built_in">Object</span>.create( <span class="hljs-literal">null</span> );</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              <h4 id="lower-case">Lower Case</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <p>Converts the input string <code>s</code> to lower case.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.lowerCase = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s </span>) </span>{
+  <span class="hljs-keyword">return</span> ( s.toLowerCase() );
+}; <span class="hljs-comment">// lowerCase()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-33">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-33">&#182;</a>
+              </div>
+              <h4 id="upper-case">Upper Case</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-34">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-34">&#182;</a>
+              </div>
+              <p>Converts the input sting <code>s</code> to upper case.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.upperCase = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s </span>) </span>{
+  <span class="hljs-keyword">return</span> ( s.toUpperCase() );
+}; <span class="hljs-comment">// upperCase()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-35">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-35">&#182;</a>
+              </div>
+              <h4 id="trim">Trim</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-36">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <p>Trims leading and trailing spaces from the input string <code>s</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.trim = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s </span>) </span>{
+  <span class="hljs-keyword">return</span> ( s.trim() );
+}; <span class="hljs-comment">// trim()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-37">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-37">&#182;</a>
+              </div>
+              <h4 id="remove-extra-spaces">Remove Extra Spaces</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-38">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-38">&#182;</a>
+              </div>
+              <p>Removes leading &amp; trailing whitespaces, extra in-between spaces from the input
+string <code>s</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.removeExtraSpaces = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s </span>) </span>{
+  <span class="hljs-keyword">return</span> ( s
+            .trim()
+            .replace( rgx.spaces, <span class="hljs-string">' '</span>)
+         );
+}; <span class="hljs-comment">// removeExtraSpaces()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-39">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-39">&#182;</a>
+              </div>
+              <h4 id="retain-alpha-numerics">Retain Alpha-numerics</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-40">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-40">&#182;</a>
+              </div>
+              <p>Retains only apha, numerals, and spaces and removes all other characters from
+the input string <code>s</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.retainAlphaNums = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s </span>) </span>{
+  <span class="hljs-keyword">return</span> ( s
+            .toLowerCase()
+            .replace( rgx.notAlphaNumeric, <span class="hljs-string">' '</span>)
+            .replace( rgx.spaces, <span class="hljs-string">' '</span>)
+            .trim()
+          );
+}; <span class="hljs-comment">// retainAlphaNums()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-41">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-41">&#182;</a>
+              </div>
+              <h4 id="extract-person-s-name">Extract Person’s Name</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-42">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-42">&#182;</a>
+              </div>
+              <p>Attemts to extract person’s name from input string <code>s</code> in formats like
+<strong>Dr. Ashwini Kumar Sharma B. Tech., M. Tech., PhD. - Electrical</strong> by dropping
+the titles and degrees.
+It assmues the following name format:
+<code>[&lt;salutations&gt;] &lt;name part in FN, MN, LN&gt; [&lt;degrees&gt;]</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.extractPersonsName = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s </span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-43">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-43">&#182;</a>
+              </div>
+              <p>Remove Degrees by making the list of indexes of each degree and subsequently
+finding the minimum and slicing from there!</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> indexes = ncrgx.degrees.map( <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> r </span>) </span>{
+    <span class="hljs-keyword">var</span> m = r.exec( s );
+    <span class="hljs-keyword">return</span> ( m ) ? m.index : <span class="hljs-number">999999</span>;
+  } );
+  <span class="hljs-keyword">var</span> sp = <span class="hljs-built_in">Math</span>.min.apply( <span class="hljs-literal">null</span>, indexes );</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-44">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-44">&#182;</a>
+              </div>
+              <p>Generate an Array of Every Elelemnt of Name (e.g. title, first name,
+sir name, honours, etc)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> aeen = s.slice( <span class="hljs-number">0</span>, sp ).replace( rgx.notAlpha, <span class="hljs-string">' '</span>).replace( rgx.spaces, <span class="hljs-string">' '</span>).trim().split(<span class="hljs-string">' '</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-45">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-45">&#182;</a>
+              </div>
+              <p>Remove titles from the beginning.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">while</span> ( aeen.length &amp;&amp; ncrgx.titles.test( aeen[<span class="hljs-number">0</span>] ) ) aeen.shift();
+  <span class="hljs-keyword">return</span> aeen.join(<span class="hljs-string">' '</span>);
+}; <span class="hljs-comment">// extractPersonsName()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-46">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-46">&#182;</a>
+              </div>
+              <h4 id="extract-run-of-capital-words">Extract Run of Capital Words</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-47">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-47">&#182;</a>
+              </div>
+              <p>Returns an array of <strong>run of captial words</strong> from thr input string <code>s</code>,
+if any; otherwise returns <code>null</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.extractRunOfCapitalWords = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s </span>) </span>{
+  <span class="hljs-keyword">var</span> m = s.match( rgx.rocWords );
+  <span class="hljs-keyword">return</span> ( ( m ) ? m.map( prepare.string.trim ) : m );
+}; <span class="hljs-comment">// extractRunOfCapitalWords()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-48">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-48">&#182;</a>
+              </div>
+              <h4 id="remove-punctuations">Remove Punctuations</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-49">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-49">&#182;</a>
+              </div>
+              <p>Removes punctuations from the input string <code>s</code> by replacing each one of them
+by a single space character.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.removePunctuations = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s </span>) </span>{
+  <span class="hljs-keyword">return</span> s.replace( rgx.punctuations, <span class="hljs-string">' '</span> );
+}; <span class="hljs-comment">// removePunctuations()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-50">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-50">&#182;</a>
+              </div>
+              <h4 id="remove-special-chars">Remove Special Chars</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-51">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-51">&#182;</a>
+              </div>
+              <p>Removes special characters from the input string <code>s</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.removeSplChars = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s </span>) </span>{
+  <span class="hljs-keyword">return</span> s.replace( rgx.splChars, <span class="hljs-string">' '</span> );
+}; <span class="hljs-comment">// removeSplChars()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-52">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-52">&#182;</a>
+              </div>
+              <h4 id="remove-html-tags">Remove HTML Tags</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-53">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-53">&#182;</a>
+              </div>
+              <p>Removes HTML tags from the input string <code>s</code> and replaces them by a space char.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.removeHTMLTags = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s </span>) </span>{
+  <span class="hljs-keyword">return</span> ( s
+            .replace( rgx.htmlTags, <span class="hljs-string">' '</span> )
+            .replace( rgx.htmlEscSeq1, <span class="hljs-string">' '</span> )
+            .replace( rgx.htmlEscSeq2, <span class="hljs-string">' '</span> )
+         );
+}; <span class="hljs-comment">// removeHTMLTags()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-54">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-54">&#182;</a>
+              </div>
+              <h4 id="remove-elisions">Remove Elisions</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-55">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-55">&#182;</a>
+              </div>
+              <p>Removes elisions from the input string <code>s</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.removeElisions = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s </span>) </span>{
+  <span class="hljs-keyword">return</span> ( s
+            .replace( rgx.elisionsSpl, <span class="hljs-string">'$2'</span> )
+            .replace( rgx.elisions1, <span class="hljs-string">'$1'</span> )
+            .replace( rgx.elisions2, <span class="hljs-string">'$1'</span> )
+         );
+}; <span class="hljs-comment">// removeElisions()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-56">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-56">&#182;</a>
+              </div>
+              <h4 id="split-elisions">Split Elisions</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-57">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-57">&#182;</a>
+              </div>
+              <p>Splits elisions from the input string <code>s</code> by inserting a space.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.splitElisions = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s </span>) </span>{
+  <span class="hljs-keyword">return</span> ( s
+            .replace( rgx.elisionsSpl, <span class="hljs-string">'$2 $3'</span> )
+            .replace( rgx.elisions1, <span class="hljs-string">'$1 $2'</span> )
+            .replace( rgx.elisions2, <span class="hljs-string">'$1 $2'</span> )
+         );
+}; <span class="hljs-comment">// splitElisions()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-58">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-58">&#182;</a>
+              </div>
+              <h4 id="amplify-not-elision">Amplify Not Elision</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-59">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-59">&#182;</a>
+              </div>
+              <p>Amplifies the not elision by replacing it by the word <strong>not</strong> in the input string <code>s</code>;
+it must be used before calling the <code>removeElisions()</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.amplifyNotElision = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s </span>) </span>{
+  <span class="hljs-keyword">return</span> s.replace( rgx.notElision, <span class="hljs-string">'$1 not'</span> );
+}; <span class="hljs-comment">// amplifyNotElision()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-60">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-60">&#182;</a>
+              </div>
+              <h4 id="marker">Marker</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-61">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-61">&#182;</a>
+              </div>
+              <p>Generate a <strong>marker</strong> for the input string <code>s</code> - an 1-gram sorted and joined back as
+string again; it is useful for in determining a quick but approximate degree
+of match between short strings (with potentially more false positives).</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.marker = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s </span>) </span>{
+  <span class="hljs-keyword">var</span> uniqChars = <span class="hljs-built_in">Object</span>.create( <span class="hljs-literal">null</span> );
+  <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>, imax = s.length; i &lt; imax; i += <span class="hljs-number">1</span> ) {
+    uniqChars[ s[ i ] ] = <span class="hljs-literal">true</span>;
+  }
+  <span class="hljs-keyword">return</span> ( <span class="hljs-built_in">Object</span>.keys( uniqChars ).sort().join(<span class="hljs-string">''</span>) );
+}; <span class="hljs-comment">// marker()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-62">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-62">&#182;</a>
+              </div>
+              <h4 id="soc">SOC</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-63">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-63">&#182;</a>
+              </div>
+              <p>Creates a <strong>s</strong>et <strong>o</strong>f <strong>c</strong>hars from the input string <code>s</code>. This is useful
+in even more aggressive string matching using Jaccard or Tversky compared to
+<code>marker()</code>.</p>
+<p>If <code>ifn</code> and <code>idx</code> arguments are passed then it builds an <em>alphabetic
+index</em> of <code>s</code>. In other words, only the first character of <code>s</code> is passed to the
+indexer function (<code>ifn</code>) along with <code>idx</code>. This pattern is also used in <code>song()</code>,
+<code>bong()</code>, <code>bow()</code>, and <code>sow()</code>. However for these functions either ngram or
+word/token (whatever is applicable) is passed along with <code>idx</code> to <code>ifn</code>. Note:
+usage of <code>ifn</code> are limited by the developer’s imagination!</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.soc = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s, ifn, idx </span>) </span>{
+  <span class="hljs-keyword">var</span> cset = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>( s );
+  <span class="hljs-keyword">if</span> ( <span class="hljs-keyword">typeof</span> ifn === <span class="hljs-string">'function'</span> ) {
+      ifn( s[ <span class="hljs-number">0</span> ], idx );
+  }
+  <span class="hljs-keyword">return</span> ( cset );
+}; <span class="hljs-comment">// soc()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-64">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-64">&#182;</a>
+              </div>
+              <h4 id="ngrams">ngrams</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-65">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-65">&#182;</a>
+              </div>
+              <p>Generates an array of ngrams of <code>size</code> from the input string <code>s</code>.
+The default value of <code>size</code> is 2. The <code>size</code> 0 is forced to 2.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.ngrams = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s, size </span>) </span>{
+  <span class="hljs-keyword">var</span> ng = ( size || <span class="hljs-number">2</span> ),
+      ngramz = [],
+      tg;
+  <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>, imax = s.length; i &lt; imax; i += <span class="hljs-number">1</span> ) {
+    tg = s.slice( i, i + ng );
+    <span class="hljs-keyword">if</span> ( tg.length === ng ) ngramz.push( tg );
+  }
+  <span class="hljs-keyword">return</span> ( ngramz );
+}; <span class="hljs-comment">// ngrams()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-66">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-66">&#182;</a>
+              </div>
+              <h4 id="bong">BONG</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-67">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-67">&#182;</a>
+              </div>
+              <p>Generates the <strong>b</strong>ag <strong>o</strong>f <strong>ng</strong>rams of <code>size</code> from the input string <code>s</code>.
+The default value of <code>size</code> is 2. The <code>size</code> 0 is forced to 2.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.bong = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s, size, ifn, idx </span>) </span>{
+  <span class="hljs-keyword">var</span> ng = ( size || <span class="hljs-number">2</span> ),
+      ngBOW = <span class="hljs-built_in">Object</span>.create( <span class="hljs-literal">null</span> ),
+      tg;
+  <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>, imax = s.length; i &lt; imax; i += <span class="hljs-number">1</span> ) {
+    tg = s.slice( i, i + ng );
+    <span class="hljs-keyword">if</span> ( tg.length === ng ) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-68">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-68">&#182;</a>
+              </div>
+              <p>Call <code>ifn</code> iff its defined and <code>tg</code> is appearing for the first time;
+this avoids multiple calls to <code>ifn</code>. Strategy applies to <code>song()</code>,
+and <code>bow()</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> ( ( <span class="hljs-keyword">typeof</span> ifn === <span class="hljs-string">'function'</span> ) &amp;&amp; !ngBOW[ tg ] ) {
+          ifn( tg, idx );
+      }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-69">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-69">&#182;</a>
+              </div>
+              <p>Now define, if required and then update counts.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      ngBOW[ tg ] = <span class="hljs-number">1</span> + ( ngBOW[ tg ] || <span class="hljs-number">0</span> );
+    }
+  }
+  <span class="hljs-keyword">return</span> ( ngBOW );
+}; <span class="hljs-comment">// bong()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-70">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-70">&#182;</a>
+              </div>
+              <h4 id="song">SONG</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-71">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-71">&#182;</a>
+              </div>
+              <p>Generates the <strong>s</strong>et <strong>o</strong>f <strong>ng</strong>rams of <code>size</code> from the input string <code>s</code>.
+The default value of <code>size</code> is 2. The <code>size</code> 0 is forced to 2.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.song = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s, size, ifn, idx </span>) </span>{
+  <span class="hljs-keyword">var</span> ng = ( size || <span class="hljs-number">2</span> ),
+      ngSet = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>(),
+      tg;
+  <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>, imax = s.length; i &lt; imax; i += <span class="hljs-number">1</span> ) {
+    tg = s.slice( i, i + ng );
+    <span class="hljs-keyword">if</span> ( tg.length === ng ) {
+      <span class="hljs-keyword">if</span> ( ( <span class="hljs-keyword">typeof</span> ifn === <span class="hljs-string">'function'</span> ) &amp;&amp; !ngSet.has( tg ) ) {
+          ifn( tg, idx );
+      }
+      ngSet.add( tg );
+    }
+  }
+  <span class="hljs-keyword">return</span> ( ngSet );
+}; <span class="hljs-comment">// song()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-72">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-72">&#182;</a>
+              </div>
+              <h4 id="sentences">sentences</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-73">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-73">&#182;</a>
+              </div>
+              <p>Splits the text contained in the input string <code>s</code> into sentences returned
+in form of an array. Note, the end-of-sentence punctuations are retained in
+each of the sentence. It can handle sentences started from numeric values as
+well, though it is not a good english practice.
+It uses <code>~</code> as the <code>splChar</code> for splitting and therefore
+it must not be present in the input string; you may give another <code>splChar</code>
+as the second argument.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.sentences = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s, splChar </span>) </span>{
+  <span class="hljs-keyword">var</span> splCh = splChar || <span class="hljs-string">'~'</span>;
+  <span class="hljs-keyword">var</span> substitute = <span class="hljs-string">'$1'</span> + splCh;
+  <span class="hljs-keyword">return</span> ( s
+            .replace( <span class="hljs-string">'...'</span>, <span class="hljs-string">'…'</span> )
+            .replace( rgx.eosPunctuations, substitute )
+            .split( splCh )
+            .map( prepare.string.trim )
+         );
+}; <span class="hljs-comment">// sentences()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-74">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-74">&#182;</a>
+              </div>
+              <h4 id="compose-corpus">compose corpus</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-75">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-75">&#182;</a>
+              </div>
+              <p>Generates all possible sentences from the input argument string — s.
+The string s must follow a special syntax:</br>
+<code>&#39;[I] [am having|have] [a] [problem|question]&#39;</code></br>
+The corpus is composed by computing the cartesian product of all the phrases.
+It returns an array of sentences (i.e. strings).</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.composeCorpus = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s </span>) </span>{
+  <span class="hljs-keyword">if</span> ( !s || ( <span class="hljs-keyword">typeof</span> s !== <span class="hljs-string">'string'</span> ) ) <span class="hljs-keyword">return</span> [];
+  <span class="hljs-keyword">var</span> extractQuotedText = prepare.helper.returnQuotedTextExtractor( <span class="hljs-string">'['</span>, <span class="hljs-string">']'</span> );
+  <span class="hljs-keyword">var</span> quotedTextElems = extractQuotedText( s );
+  <span class="hljs-keyword">var</span> corpus = [];
+  <span class="hljs-keyword">var</span> finalCorpus = [];
+
+  <span class="hljs-keyword">if</span> ( !quotedTextElems ) <span class="hljs-keyword">return</span> [];
+  quotedTextElems.forEach( <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> e </span>) </span>{
+    corpus.push( e.split( <span class="hljs-string">'|'</span> ) );
+  } );
+
+  helpers.array.product( corpus ).forEach( <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> e </span>) </span>{
+    finalCorpus.push( e.join( <span class="hljs-string">' '</span> ) );
+  } );
+  <span class="hljs-keyword">return</span> ( finalCorpus );
+}; <span class="hljs-comment">// composeCorpus()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-76">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-76">&#182;</a>
+              </div>
+              <h4 id="tokenize0">tokenize0</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-77">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-77">&#182;</a>
+              </div>
+              <p>Quick &amp; dirty tokenizer by splitting the input string <code>s</code> on non-words.
+This means tokens would consists of only alphas, numerals and underscores;
+all other characters will be stripped as they are treated as separators.
+However negations are retained and amplified but all other elisions are removed.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.tokenize0 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s </span>) </span>{
+  <span class="hljs-keyword">var</span> tokens = prepare.string.removeElisions( prepare.string.amplifyNotElision( s ) )
+                .replace( rgx.cannot, <span class="hljs-string">'$1 $2'</span> )
+                .split( rgx.nonWords );</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-78">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-78">&#182;</a>
+              </div>
+              <p>Check the 0th and last element of array for empty string because if
+fisrt/last characters are non-words then these will be empty stings!</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> ( tokens[ <span class="hljs-number">0</span> ] === <span class="hljs-string">''</span> ) tokens.shift();
+  <span class="hljs-keyword">if</span> ( tokens[ tokens.length - <span class="hljs-number">1</span> ] === <span class="hljs-string">''</span> ) tokens.pop();
+  <span class="hljs-keyword">return</span> tokens;
+}; <span class="hljs-comment">// tokenize0()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-79">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-79">&#182;</a>
+              </div>
+              <h4 id="tokenize">tokenize</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-80">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-80">&#182;</a>
+              </div>
+              <p>Tokenizes the input string <code>s</code> by applying following rules:</p>
+<ol>
+<li>Single quotes are processed first as they may be part of elisions; and
+<code>...</code> are converted to ellipses.</li>
+<li>Split elisions after amplifying not elisions i.e. balance elisions get tokenized,</li>
+<li><code>cannot</code> is split in to <code>can not</code>.</li>
+<li><code>. , -</code> punctuations that commonly embedded in numbers are left intact,</li>
+<li>All other punctuations are tokenized,</li>
+<li>currency symbols are padded by space i.e. become separate tokens,</li>
+<li>Retains <code>_</code> as is - no tokenization,</li>
+<li>Spacial characters are left untouched and may/may not become separate token.</li>
+<li>Finally after removing extra/leading/trailing spaces, split on space to tokenize.</li>
+</ol>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.tokenize = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s </span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-81">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-81">&#182;</a>
+              </div>
+              <p>Handle single quotes first &amp; ellipses.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> su = s</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-82">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-82">&#182;</a>
+              </div>
+              <blockquote>
+<p>TODO: promote to regex utils after adding more test cases</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            .replace( <span class="hljs-regexp">/(^|[^a-z0-9])(\’|\')/gi</span>, <span class="hljs-string">'$1 $2 '</span>)
+            .replace( <span class="hljs-regexp">/([a-z0-9])(\’|\')(\W)/gi</span>, <span class="hljs-string">'$1 $2 $3'</span>)
+            .replace( <span class="hljs-string">'...'</span>, <span class="hljs-string">'…'</span> )
+            .replace( <span class="hljs-string">'…'</span>, <span class="hljs-string">' … '</span> );
+  <span class="hljs-keyword">return</span> ( prepare.string.splitElisions( prepare.string.amplifyNotElision( su ) )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-83">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-83">&#182;</a>
+              </div>
+              <p>Handle cannot.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            .replace( rgx.cannot, <span class="hljs-string">'$1 $2'</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-84">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-84">&#182;</a>
+              </div>
+              <p>Separate out punctuations that are not part of a number.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            .replace( rgx.nonNumPunctuations, <span class="hljs-string">' $&amp; '</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-85">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-85">&#182;</a>
+              </div>
+              <p>Separate out all other punctuations.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            .replace( <span class="hljs-regexp">/[\‘\’\`\“\”\"\[\]\(\)\{\}\…\!\;\?\/\:]/ig</span>, <span class="hljs-string">' $&amp; '</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-86">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-86">&#182;</a>
+              </div>
+              <p>Separate out currency symbol; all separated stuff becomes a token.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            .replace( rgx.currency, <span class="hljs-string">' $&amp; '</span>)
+            .replace( rgx.spaces, <span class="hljs-string">' '</span> )
+            .trim()</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-87">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-87">&#182;</a>
+              </div>
+              <p>Handle period sign in the end specially.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            .replace( <span class="hljs-regexp">/\.$/</span>, <span class="hljs-string">' .'</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-88">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-88">&#182;</a>
+              </div>
+              <p>Now tokenize on space!</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            .split( <span class="hljs-string">' '</span> )
+         );
+}; <span class="hljs-comment">// tokenize()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-89">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-89">&#182;</a>
+              </div>
+              <h4 id="stem">stem</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-90">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-90">&#182;</a>
+              </div>
+              <p>Stems the input string using Porter V2 stemmer. Details in <code>porter2_stemmer.js</code>
+file.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.string.stem = porter2Stemmer;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-91">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-91">&#182;</a>
+              </div>
+              <h4 id="phonetize">phonetize</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-92">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-92">&#182;</a>
+              </div>
+              <p>Phonetize the input string <code>s</code> using an algorithmic adaption of Metaphone.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* eslint no-underscore-dangle: "off" */</span>
+prepare.string.phonetize = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> s </span>) </span>{
+  <span class="hljs-keyword">var</span> p = s.toLowerCase();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-93">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-93">&#182;</a>
+              </div>
+              <p>Remove repeating letters.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  p = p.replace( phnrgx.repeatingChars, <span class="hljs-string">'$1'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-94">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-94">&#182;</a>
+              </div>
+              <p>Drop first character of <code>kgknPairs</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> ( phnrgx.kngnPairs.test( p ) ) {
+    p = p.substr( <span class="hljs-number">1</span>, p.length - <span class="hljs-number">1</span> );
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-95">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-95">&#182;</a>
+              </div>
+              <p>Run Regex Express now!</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  p = p</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-96">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-96">&#182;</a>
+              </div>
+              <p>Change <code>ough</code> in the end as <code>f</code>,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      .replace( phnrgx.ough, <span class="hljs-string">'f'</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-97">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-97">&#182;</a>
+              </div>
+              <p>Change <code>dg</code> to <code>j</code>, in <code>dge, dgi, dgy</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      .replace( phnrgx.dge, <span class="hljs-string">'je'</span> )
+      .replace( phnrgx.dgi, <span class="hljs-string">'ji'</span> )
+      .replace( phnrgx.dgy, <span class="hljs-string">'jy'</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-98">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-98">&#182;</a>
+              </div>
+              <p>Change <code>c</code> to <code>k</code> in <code>sch</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      .replace( phnrgx.sch, <span class="hljs-string">'sk'</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-99">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-99">&#182;</a>
+              </div>
+              <p>Drop <code>c</code> in <code>sci, sce, scy</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      .replace( phnrgx.sci, <span class="hljs-string">'si'</span> )
+      .replace( phnrgx.sce, <span class="hljs-string">'se'</span> )
+      .replace( phnrgx.scy, <span class="hljs-string">'sy'</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-100">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-100">&#182;</a>
+              </div>
+              <p>Drop <code>t</code> if it appears as <code>tch</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      .replace( phnrgx.tch, <span class="hljs-string">'ch'</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-101">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-101">&#182;</a>
+              </div>
+              <p>Replace <code>tio &amp; tia</code> by <code>sh</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      .replace( phnrgx.tio, <span class="hljs-string">'sh'</span> )
+      .replace( phnrgx.tia, <span class="hljs-string">'sh'</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-102">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-102">&#182;</a>
+              </div>
+              <p>Drop <code>b</code> if it appears as <code>mb</code> in the end.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      .replace( phnrgx.mb_, <span class="hljs-string">'m'</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-103">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-103">&#182;</a>
+              </div>
+              <p>Drop <code>r</code> if it preceeds a vowel and not followed by a vowel or <code>y</code>
+.replace( rgx.vrnotvy, ‘$1$3’ )
+Replace <code>c</code> by <code>s</code> in <code>ce, ci, cy</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      .replace( phnrgx.ce, <span class="hljs-string">'se'</span> )
+      .replace( phnrgx.ci, <span class="hljs-string">'si'</span> )
+      .replace( phnrgx.cy, <span class="hljs-string">'sy'</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-104">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-104">&#182;</a>
+              </div>
+              <p>Replace <code>cq</code> by <code>q</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      .replace( phnrgx.cq, <span class="hljs-string">'q'</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-105">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-105">&#182;</a>
+              </div>
+              <p>Replace <code>ck</code> by <code>k</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      .replace( phnrgx.ck, <span class="hljs-string">'k'</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-106">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-106">&#182;</a>
+              </div>
+              <p>Replace <code>ph</code> by <code>f</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      .replace( phnrgx.ph, <span class="hljs-string">'f'</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-107">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-107">&#182;</a>
+              </div>
+              <p>Replace <code>th</code> by <code>0</code> (theta look alike!).</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      .replace( phnrgx.th, <span class="hljs-string">'0'</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-108">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-108">&#182;</a>
+              </div>
+              <p>Replace <code>c</code> by <code>k</code> if it is not followed by <code>h</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      .replace( phnrgx.cnoth, <span class="hljs-string">'k$2'</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-109">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-109">&#182;</a>
+              </div>
+              <p>Replace <code>q</code> by <code>k</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      .replace( phnrgx.q, <span class="hljs-string">'k'</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-110">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-110">&#182;</a>
+              </div>
+              <p>Replace <code>x</code> by <code>s</code> if it appears in the beginning.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      .replace( phnrgx._x, <span class="hljs-string">'s'</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-111">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-111">&#182;</a>
+              </div>
+              <p>Other wise replace <code>x</code> by <code>ks</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      .replace( phnrgx.x, <span class="hljs-string">'ks'</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-112">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-112">&#182;</a>
+              </div>
+              <p>Replace <code>sh, sia, sio</code> by <code>x</code>. Needs to be done post <code>x</code> processing!</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      .replace( phnrgx.sh, <span class="hljs-string">'x'</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-113">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-113">&#182;</a>
+              </div>
+              <p>Drop <code>y</code> if it is now followed by a <strong>vowel</strong>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      .replace( phnrgx.ynotv, <span class="hljs-string">'$2'</span> )
+      .replace( phnrgx.y_, <span class="hljs-string">''</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-114">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-114">&#182;</a>
+              </div>
+              <p>Replace <code>z</code> by <code>s</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      .replace( phnrgx.z, <span class="hljs-string">'s'</span> )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-115">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-115">&#182;</a>
+              </div>
+              <p>Drop all <strong>vowels</strong> excluding the first one.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      .replace( phnrgx.__vowels, <span class="hljs-string">''</span> );
+
+      <span class="hljs-keyword">return</span> ( p );
+}; <span class="hljs-comment">// phonetize()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-116">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-116">&#182;</a>
+              </div>
+              <h3 id="prepare-tokens-name-space">Prepare.Tokens Name Space</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-117">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-117">&#182;</a>
+              </div>
+              <p>Create prepare.tokens name space.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.tokens = <span class="hljs-built_in">Object</span>.create( <span class="hljs-literal">null</span> );</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-118">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-118">&#182;</a>
+              </div>
+              <h4 id="stem">stem</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-119">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-119">&#182;</a>
+              </div>
+              <p>Stems the input token <code>t</code> using <code>string.stem()</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.tokens.stem = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> t </span>) </span>{
+  <span class="hljs-keyword">return</span> t.map( prepare.string.stem );
+}; <span class="hljs-comment">// stem()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-120">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-120">&#182;</a>
+              </div>
+              <h4 id="phonetize">phonetize</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-121">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-121">&#182;</a>
+              </div>
+              <p>Stems the input token <code>t</code> using <code>string.stem()</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.tokens.phonetize = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> t </span>) </span>{
+  <span class="hljs-keyword">return</span> t.map( prepare.string.phonetize );
+}; <span class="hljs-comment">// phonetize()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-122">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-122">&#182;</a>
+              </div>
+              <h4 id="remove-words">Remove Words</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-123">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-123">&#182;</a>
+              </div>
+              <p>Removes the <code>givenStopWords</code> or the <code>defaultStopWords</code> from the input
+array of tokens <code>t</code>. The input stop words must be created using
+<code>prepare.words()</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.tokens.removeWords = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> t, givenStopWords </span>) </span>{
+  <span class="hljs-keyword">var</span> stopWords = ( givenStopWords || defaultStopWords );
+  <span class="hljs-keyword">return</span> t.filter( stopWords.exclude );
+}; <span class="hljs-comment">// remove()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-124">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-124">&#182;</a>
+              </div>
+              <h4 id="bow">bow</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-125">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-125">&#182;</a>
+              </div>
+              <p>Creates Bag of Words from the input array of tokens <code>t</code>. The <code>logCounts</code> flags
+to use log2( word counts ) instead of counts directly. The idea behind using
+log2 is to ensure that a word’s importance does not increase linearly with its
+count. It is required as an input for computing similarity using Cosine similarity.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.tokens.bow = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> t, logCounts, ifn, idx </span>) </span>{
+  <span class="hljs-keyword">var</span> bow = <span class="hljs-built_in">Object</span>.create( <span class="hljs-literal">null</span> ),
+      i, imax,
+      token,
+      words;
+  <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>, imax = t.length; i &lt; imax; i += <span class="hljs-number">1</span> ) {
+    token = t[ i ];
+    <span class="hljs-keyword">if</span> ( ( <span class="hljs-keyword">typeof</span> ifn === <span class="hljs-string">'function'</span> ) &amp;&amp; !bow[ token ] ) {
+        ifn( token, idx );
+    }
+    bow[ token ] = <span class="hljs-number">1</span> + ( bow[ token ] || <span class="hljs-number">0</span> );
+  }
+  <span class="hljs-keyword">if</span> ( !logCounts ) <span class="hljs-keyword">return</span> ( bow );
+  words = <span class="hljs-built_in">Object</span>.keys( bow );
+  <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>, imax = words.length; i &lt; imax; i += <span class="hljs-number">1</span> ) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-126">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-126">&#182;</a>
+              </div>
+              <p>Add <code>1</code> to ensure non-zero count! (Note: log2(1) is 0)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    bow[ words[ i ] ] = <span class="hljs-built_in">Math</span>.log2( bow[ words[ i ] ] + <span class="hljs-number">1</span> );
+  }
+  <span class="hljs-keyword">return</span> ( bow );
+}; <span class="hljs-comment">// bow()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-127">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-127">&#182;</a>
+              </div>
+              <h4 id="sow">sow</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-128">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-128">&#182;</a>
+              </div>
+              <p>Creates a Set of tokens from the input array <code>t</code>. It is required as an input
+for computing similarity using Jaccard or Tversky Indexes.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.tokens.sow = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> t, ifn, idx </span>) </span>{
+  <span class="hljs-keyword">var</span> tset = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>( t );
+  <span class="hljs-keyword">if</span> ( <span class="hljs-keyword">typeof</span> ifn === <span class="hljs-string">'function'</span> ) {
+    tset.forEach( <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> m </span>) </span>{
+        ifn( m, idx );
+    } );
+  }
+  <span class="hljs-keyword">return</span> ( tset );
+}; <span class="hljs-comment">// set()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-129">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-129">&#182;</a>
+              </div>
+              <h4 id="propagate-negations">Propagate Negations</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-130">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-130">&#182;</a>
+              </div>
+              <p>It looks for neagtion tokens in <code>t</code> and propagate negation in subsequent <code>upto</code>
+tokens by prefixing them by a <code>!</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>prepare.tokens.propagateNegations = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> t, upto </span>) </span>{
+  <span class="hljs-keyword">var</span> i, imax, j, jmax;
+  <span class="hljs-keyword">var</span> tokens = t;
+  <span class="hljs-keyword">var</span> limit = upto || <span class="hljs-number">2</span>;
+  <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>, imax = tokens.length; i &lt; imax; i += <span class="hljs-number">1</span> ) {
+    <span class="hljs-keyword">if</span> ( rgx.negations.test( tokens[ i ] ) ) {
+      <span class="hljs-keyword">for</span> ( j = i + <span class="hljs-number">1</span>, jmax = <span class="hljs-built_in">Math</span>.min( imax, i + limit + <span class="hljs-number">1</span> ); j &lt; jmax; j += <span class="hljs-number">1</span> ) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-131">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-131">&#182;</a>
+              </div>
+              <p>Hit a punctuation mark, break out of the loop otherwise go <em>upto the limit</em>.</p>
+<blockquote>
+<p>TODO: promote to utilities regex, after test cases have been added.</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> ( <span class="hljs-regexp">/[\,\.\;\:\!\?]/</span>.test( tokens[ j ] ) ) <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-132">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-132">&#182;</a>
+              </div>
+              <p>Propoage negation: invert the token by prefixing a <code>!</code> to it.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        tokens[ j ] = <span class="hljs-string">'!'</span> + tokens[ j ];
+      }
+      i = j;
+    }
+  }
+  <span class="hljs-keyword">return</span> tokens;
+}; <span class="hljs-comment">// propagateNegations()</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-133">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-133">&#182;</a>
+              </div>
+              <p>Export prepare.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">module</span>.exports = prepare;</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

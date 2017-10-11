@@ -1,5 +1,6 @@
 test
 docs
+sourcedocs
 .eslintrc.json
 .jshintrc
 .travis.yml

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>phonetize_regexes.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page_wrapper">
+            <div id="jump_page">
+              
+                
+                <a class="source" href="name_cleaner_regexes.html">
+                  name_cleaner_regexes.js
+                </a>
+              
+                
+                <a class="source" href="phonetize_regexes.html">
+                  phonetize_regexes.js
+                </a>
+              
+                
+                <a class="source" href="util_regexes.html">
+                  util_regexes.js
+                </a>
+              
+                
+                <a class="source" href="wink-nlp-utils.html">
+                  wink-nlp-utils.js
+                </a>
+              
+            </div>
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>phonetize_regexes.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <pre><code>wink-nlp-utils
+Easily tokenize, stem, phonetize, remove stop words,
+manage elisions, create ngrams, bag <span class="hljs-keyword">of</span> words and more
+
+Copyright (C) <span class="hljs-number">2017</span>  GRAYPE Systems Private Limited
+
+This file is part <span class="hljs-keyword">of</span> “wink-nlp-utils”.
+
+“wink-nlp-utils” is free software: you can redistribute it
+and/or modify it under the terms <span class="hljs-keyword">of</span> the GNU Affero
+General Public License <span class="hljs-keyword">as</span> published by the Free
+Software Foundation, version <span class="hljs-number">3</span> <span class="hljs-keyword">of</span> the License.
+
+“wink-nlp-utils” is distributed <span class="hljs-keyword">in</span> the hope that it will
+be useful, but WITHOUT ANY WARRANTY; without even
+the implied warranty <span class="hljs-keyword">of</span> MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU Affero General
+Public License <span class="hljs-keyword">for</span> more details.
+
+You should have received a copy <span class="hljs-keyword">of</span> the GNU Affero
+General Public License along <span class="hljs-keyword">with</span> “wink-nlp-utils”.
+If not, see &lt;http:<span class="hljs-comment">//www.gnu.org/licenses/&gt;.</span>
+</code></pre>
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* eslint no-underscore-dangle: "off" */</span>
+<span class="hljs-keyword">var</span> rgx = <span class="hljs-built_in">Object</span>.create( <span class="hljs-literal">null</span> );</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Remove repeating characters.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.repeatingChars = <span class="hljs-regexp">/([^c])\1/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Drop first character from character pairs, if found in the beginning.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.kngnPairs = <span class="hljs-regexp">/^(kn|gn|pn|ae|wr)/</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Drop vowels that are not found in the beginning.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.__vowels = <span class="hljs-regexp">/(?!^)[aeiou]/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Replaces <code>ough</code> in the end by ‘f’</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.ough = <span class="hljs-regexp">/ough$/</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Replace following 3 instances of <code>dg</code> by <code>j</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.dge = <span class="hljs-regexp">/dge/g</span>;
+rgx.dgi = <span class="hljs-regexp">/dgi/g</span>;
+rgx.dgy = <span class="hljs-regexp">/dgy/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Replace <code>sch</code> by <code>sk</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.sch = <span class="hljs-regexp">/sch/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Drop <code>c</code> in <code>sci, sce, scy</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.sci = <span class="hljs-regexp">/sci/g</span>;
+rgx.sce = <span class="hljs-regexp">/sce/g</span>;
+rgx.scy = <span class="hljs-regexp">/scy/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Make ‘sh’ out of <code>tio &amp; tia</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.tio = <span class="hljs-regexp">/tio/g</span>;
+rgx.tia = <span class="hljs-regexp">/tia/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p><code>t</code> is silent in <code>tch</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.tch = <span class="hljs-regexp">/tch/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Drop <code>b</code> in the end if preceeded by <code>m</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.mb_ = <span class="hljs-regexp">/mb$/</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>These are pronounced as <code>k</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.cq = <span class="hljs-regexp">/cq/g</span>;
+rgx.ck = <span class="hljs-regexp">/ck/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Here <code>c</code> sounds like <code>s</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.ce = <span class="hljs-regexp">/ce/g</span>;
+rgx.ci = <span class="hljs-regexp">/ci/g</span>;
+rgx.cy = <span class="hljs-regexp">/cy/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>And this <code>f</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.ph = <span class="hljs-regexp">/ph/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>The <code>sh</code> finally replaced by <code>x</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.sh = <span class="hljs-regexp">/sh|sio|sia/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>This is open rgx - TODO: need to finalize.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.vrnotvy = <span class="hljs-regexp">/([aeiou])(r)([^aeiouy])/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p><code>th</code> sounds like theta - make it 0.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.th = <span class="hljs-regexp">/th/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p><code>c</code> sounds like <code>k</code> except when it is followed by <code>h</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.cnoth = <span class="hljs-regexp">/(c)([^h])/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Even <code>q</code> sounds like <code>k</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.q = <span class="hljs-regexp">/q/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>The first <code>x</code> sounds like <code>s</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx._x = <span class="hljs-regexp">/^x/</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Otherwise <code>x</code> is more like <code>ks</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.x = <span class="hljs-regexp">/x/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Drop <code>y</code> if not followed by a vowel or appears in the end.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.ynotv = <span class="hljs-regexp">/(y)([^aeiou])/g</span>;
+rgx.y_ = <span class="hljs-regexp">/y$/</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p><code>z</code> is <code>s</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>rgx.z = <span class="hljs-regexp">/z/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>Export rgx.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">module</span>.exports = rgx;</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

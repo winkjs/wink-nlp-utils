@@ -142,10 +142,10 @@ describe( 'string.retainAlphaNums()', function () {
   var tests = [
     { whenInputIs: '', expectedOutputIs: '' },
     { whenInputIs: '        ', expectedOutputIs: '' },
-    { whenInputIs: 'A sample sentence.', expectedOutputIs: 'a sample sentence' },
-    { whenInputIs: 'This is a ( somewhat )  complex (1)!?', expectedOutputIs: 'this is a somewhat complex 1' },
+    { whenInputIs: 'A sample sentence.', expectedOutputIs: 'A sample sentence' },
+    { whenInputIs: 'This is a ( somewhat )  complex (1)!?', expectedOutputIs: 'This is a somewhat complex 1' },
     { whenInputIs: '!@#$%^&*()', expectedOutputIs: '' },
-    { whenInputIs: '  A1 [sample  ]? sentence with 123456   . ', expectedOutputIs: 'a1 sample sentence with 123456' }
+    { whenInputIs: '  A1 [sample  ]? sentence with 123456   . ', expectedOutputIs: 'A1 sample sentence with 123456' }
   ];
 
   tests.forEach( function ( test ) {

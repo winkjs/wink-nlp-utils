@@ -34,7 +34,7 @@ jspm_packages
 .node_repl_history
 
 # Documentation
-docs
+sourcedocs
 
 # Mac stuff
 .DS_Store

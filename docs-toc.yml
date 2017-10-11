@@ -1,6 +1,4 @@
 toc:
-  - name: helper
-  - helper.returnWordsFilter
   - name: string
   - string.extractPersonsName
   - string.lowerCase
@@ -8,7 +6,10 @@ toc:
   - string.retainAlphaNums
   - string.trim
   - string.upperCase
-
-  - name: Definitions
-
+  - name: helper
+  - helper.returnIndexer
+  - helper.returnQuotedTextExtractor
+  - helper.returnWordsFilter
+  - name: type-defs
   - wordsFilter
+  - indexer

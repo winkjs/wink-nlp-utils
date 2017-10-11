@@ -60,29 +60,7 @@ defaultStopWords = prepare.helper.words( defaultStopWords );
 // Builds index - returns 2 functions viz. (a) `build` and `result`. Useful with
 // bag & set creation functions, where by bassing the build function, they can
 // also build an index of each key/member.
-prepare.helper.index = function () {
-  var theIndex = Object.create( null );
-  var methods = Object.create( null );
-
-  // Builds index by adding the `element` and `itsIndex`. The `itsIndex` should
-  // be a valid JS array index; no validation checks are performed while building
-  // index.
-  var build = function ( element, itsIndex ) {
-    theIndex[ element ] = theIndex[ element ] || [];
-    theIndex[ element ].push( itsIndex );
-    return true;
-  }; // build()
-
-  // Returns the index built so far.
-  var result = function () {
-    return theIndex;
-  }; // result()
-
-  methods.build = build;
-  methods.result = result;
-
-  return methods;
-}; // index()
+prepare.helper.index = require( './helper-return-indexer.js' );
 
 // Make better **alias** name for the `index()` function.
 prepare.helper.returnIndexer = prepare.helper.index;
@@ -94,43 +72,7 @@ prepare.helper.returnIndexer = prepare.helper.index;
 // `lq` (left quote) and `rq` (right quote) string; and finally returns an
 // array of those text elements. Note elements do not contain quote strings.
 // If `lq` and/or `rq` is not defined or is not a string then it defaults to `'"'`.
-prepare.helper.returnQuotedTextExtractor = function ( lq, rq ) {
-  var // Index variable for *for-loop*
-      i,
-      // Set defaults for left quote, if required.
-      lq1 = ( ( lq && ( typeof lq === 'string' ) ) ? lq : '"' ),
-      // Extracts its length
-      lqLen = lq1.length,
-      // The regular expression is created here.
-      regex = null,
-      // The string containing the regular expression builds here.
-      rgxStr = '',
-      // Set defaults for right quote, if required.
-      rq1 = ( ( rq && ( typeof rq === 'string' ) ) ? rq : lq1 ),
-      // Extract its length.
-      rqLen = rq1.length;
-
-  // Build `rgxStr`
-  for ( i = 0; i < lqLen; i += 1 ) rgxStr += '\\' + lq1.charAt( i );
-  rgxStr += '.*?';
-  for ( i = 0; i < rqLen; i += 1 ) rgxStr += '\\' + rq1.charAt( i );
-  // Create regular expression.
-  regex = new RegExp( rgxStr, 'g' );
-  // Return the extractor function.
-  return ( function ( s ) {
-    if ( !s || ( typeof s !== 'string' ) ) return null;
-    var // Extracted elements are captured here.
-        elements = [],
-        // Extract matches with quotes
-        matches = s.match( regex );
-    if ( !matches || ( matches.length === 0 ) ) return null;
-    // Collect elements after removing the quotes.
-    for ( var k = 0, kmax = matches.length; k < kmax; k += 1 ) {
-      elements.push( matches[ k ].substr( lqLen, matches[ k ].length - ( rqLen + lqLen ) ) );
-    }
-    return ( elements );
-  } );
-}; // returnQuotedTextExtractor()
+prepare.helper.returnQuotedTextExtractor = require( './helper-return-quoted-text-extractor.js' );
 
 // ### Prepare.String Name Space
 

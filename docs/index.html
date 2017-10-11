@@ -25,26 +25,6 @@
               
                 
                 <li><a
-                  href='#helper'
-                  class="h5 bold black caps">
-                  helper
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#helperreturnwordsfilter'
-                  class="">
-                  helper.returnWordsFilter
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
                   href='#string'
                   class="h5 bold black caps">
                   string
@@ -115,9 +95,49 @@
               
                 
                 <li><a
-                  href='#definitions'
+                  href='#helper'
                   class="h5 bold black caps">
-                  Definitions
+                  helper
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#helperreturnindexer'
+                  class="">
+                  helper.returnIndexer
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#helperreturnquotedtextextractor'
+                  class="">
+                  helper.returnQuotedTextExtractor
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#helperreturnwordsfilter'
+                  class="">
+                  helper.returnWordsFilter
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#type-defs'
+                  class="h5 bold black caps">
+                  type-defs
                   
                 </a>
                 
@@ -133,6 +153,16 @@
                 
                 </li>
               
+                
+                <li><a
+                  href='#indexer'
+                  class="">
+                  indexer
+                  
+                </a>
+                
+                </li>
+              
             </ul>
           </div>
           <div class='mt1 h6 quiet'>
@@ -141,114 +171,6 @@
         </div>
       </div>
       <div id='split-right' class='relative overflow-auto height-viewport-100'>
-        
-          
-            <div class='keyline-top-not py2'><section class='py2 clearfix'>
-
-  <h2 id='helper' class='mt0'>
-    helper
-  </h2>
-
-  
-    
-
-  
-</section>
-</div>
-          
-        
-          
-            <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='helperreturnwordsfilter'>
-      helper.returnWordsFilter
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Returns an object contains the following functions: (a) <code>set()</code>, which returns
-a set of mapped words given in the input array <code>words</code>. (b) <code>exclude()</code> that
-is suitable for array filtering operations.</p>
-<p>If the second argument <code>mappers</code> is provided as an array of maping functions
-then these are applied on the input array before converting into a set.
-Examples of mapper functions are <code>string.stem()</code> and
-<code>string.phonetize()</code>.</p>
-
-
-  <div class='pre p1 fill-light mt0'>helper.returnWordsFilter</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>words</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>>)</code>
-	    — the input string.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>mappers</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>>)</code>
-	    — the input string.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="#wordsfilter">wordsFilter</a></code>:
-        input string in lower case.
-
-      
-    
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> stopWords = [ <span class="hljs-string">'This'</span>, <span class="hljs-string">'That'</span>, <span class="hljs-string">'Are'</span>, <span class="hljs-string">'Is'</span>, <span class="hljs-string">'Was'</span>, <span class="hljs-string">'Will'</span>, <span class="hljs-string">'a'</span> ];
-<span class="hljs-keyword">var</span> myFilter = returnWordsFilter( stopWords, [ string.lowerCase ] );
-[ <span class="hljs-string">'this'</span>, <span class="hljs-string">'is'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'cat'</span> ].filter( myFilter.exclude );
-<span class="hljs-comment">// -&gt; [ 'cat' ]</span></pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-          
         
           
             <div class='keyline-top-not py2'><section class='py2 clearfix'>
@@ -732,8 +654,287 @@ leading, trailing and extra whitespaces.
           
             <div class='keyline-top-not py2'><section class='py2 clearfix'>
 
-  <h2 id='definitions' class='mt0'>
-    Definitions
+  <h2 id='helper' class='mt0'>
+    helper
+  </h2>
+
+  
+    
+
+  
+</section>
+</div>
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='helperreturnindexer'>
+      helper.returnIndexer
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Returns an Indexer object that contains two functions. The first function <code>build()</code>
+incrementally builds an index for each <code>element</code> using <code>itsIndex</code> — both passed as
+parameters to it. The second function — <code>result()</code> allows accessing the index anytime.</p>
+<p>It is typically used with <a href="#stringsoc">string.soc</a>, <a href="#stringbong">string.bong</a>,
+<a href="#stringsong">string.song</a>, and <a href="#tokenssow">tokens.sow</a>.</p>
+
+
+  <div class='pre p1 fill-light mt0'>helper.returnIndexer</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#indexer">indexer</a></code>:
+        used to build and access the index.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> indexer = returnIndexer();
+<span class="hljs-comment">// -&gt; { build: [function], result: [function] }</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='helperreturnquotedtextextractor'>
+      helper.returnQuotedTextExtractor
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Returns a function that extracts all occurrences of every quoted text
+between the <code>lq</code> and the <code>rq</code> characters from its argument. This argument
+must be of type string.</p>
+
+
+  <div class='pre p1 fill-light mt0'>helper.returnQuotedTextExtractor</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>lq</span> <code class='quiet'>(<a href="#string">string</a>
+            = <code>&#39;&quot;&#39;</code>)</code>
+	    — the left quote character.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>rq</span> <code class='quiet'>(<a href="#string">string</a>
+            = <code>&#39;&quot;&#39;</code>)</code>
+	    — the right quote character.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a></code>:
+        that will accept an input string argument and return an
+array of all substrings that are quoted between 
+<code>lq</code>
+ and 
+<code>rq</code>
+.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> extractQuotedText = returnQuotedTextExtractor();
+extractQuotedText( <span class="hljs-string">'Raise 2 issues - "fix a bug" &amp; "run tests"'</span> );
+<span class="hljs-comment">// -&gt; [ 'fix a bug', 'run tests' ]</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='helperreturnwordsfilter'>
+      helper.returnWordsFilter
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Returns an object containing the following functions: (a) <code>set()</code>, which returns
+a set of mapped words given in the input array <code>words</code>. (b) <code>exclude()</code> that
+is suitable for array filtering operations.</p>
+<p>If the second argument <code>mappers</code> is provided as an array of maping functions
+then these are applied on the input array before converting into a set. A
+mapper function must accept a string as argument and return a string as the result.
+Examples of mapper functions are typically <strong>string</strong> functionss of <strong><code>wink-nlp-utils</code></strong>
+such as <code>string.lowerCase()</code>, <code>string.stem()</code> and
+<code>string.soundex()</code>.</p>
+
+
+  <div class='pre p1 fill-light mt0'>helper.returnWordsFilter</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>words</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>>)</code>
+	    — that can be filtered using the returned wordsFilter.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>mappers</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>>
+            = <code>undefined</code>)</code>
+	    — optionally used to map each word before creating
+the wordsFilter.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#wordsfilter">wordsFilter</a></code>:
+        object containg 
+<code>set()</code>
+ and 
+<code>exclude()</code>
+ functions for 
+<code>words</code>
+.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> stopWords = [ <span class="hljs-string">'This'</span>, <span class="hljs-string">'That'</span>, <span class="hljs-string">'Are'</span>, <span class="hljs-string">'Is'</span>, <span class="hljs-string">'Was'</span>, <span class="hljs-string">'Will'</span>, <span class="hljs-string">'a'</span> ];
+<span class="hljs-keyword">var</span> myFilter = returnWordsFilter( stopWords, [ string.lowerCase ] );
+[ <span class="hljs-string">'this'</span>, <span class="hljs-string">'is'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'cat'</span> ].filter( myFilter.exclude );
+<span class="hljs-comment">// -&gt; [ 'cat' ]</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <div class='keyline-top-not py2'><section class='py2 clearfix'>
+
+  <h2 id='type-defs' class='mt0'>
+    type-defs
   </h2>
 
   
@@ -801,6 +1002,90 @@ the
  if 
 <code>givenMappers</code>
  are defined.
+
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='indexer'>
+      indexer
+    </h3>
+    
+    
+  </div>
+  
+
+  
+
+  <div class='pre p1 fill-light mt0'>indexer</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>build</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
+          : accepts two parameters viz. 
+<code>element</code>
+ and 
+<code>itsIndex</code>
+ to
+incrementally build index for each 
+<code>element/itsIndex</code>
+ combination passed.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>result</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
+          : is used to access the index. This index is in a
+form of an object that contains each element as key. The value of each key is an array
+containing all index positions to the element in question. Note these index positions
+are nothing but each 
+<code>itsIndex</code>
+ value passed for the 
+<code>element</code>
+.
 
           
         </div>

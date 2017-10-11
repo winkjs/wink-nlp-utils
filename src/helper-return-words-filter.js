@@ -29,19 +29,22 @@
 
 /**
  *
- * Returns an object contains the following functions: (a) `set()`, which returns
+ * Returns an object containing the following functions: (a) `set()`, which returns
  * a set of mapped words given in the input array `words`. (b) `exclude()` that
  * is suitable for array filtering operations.
  *
  * If the second argument `mappers` is provided as an array of maping functions
- * then these are applied on the input array before converting into a set.
- * Examples of mapper functions are `string.stem()` and
- * `string.phonetize()`.
+ * then these are applied on the input array before converting into a set. A
+ * mapper function must accept a string as argument and return a string as the result.
+ * Examples of mapper functions are typically **string** functionss of **`wink-nlp-utils`**
+ * such as `string.lowerCase()`, `string.stem()` and
+ * `string.soundex()`.
  *
  * @name helper.returnWordsFilter
- * @param {string[]} words — the input string.
- * @param {function[]} mappers — the input string.
- * @return {wordsFilter} input string in lower case.
+ * @param {string[]} words — that can be filtered using the returned wordsFilter.
+ * @param {function[]} [mappers=undefined] — optionally used to map each word before creating
+ * the wordsFilter.
+ * @return {wordsFilter} object containg `set()` and `exclude()` functions for `words`.
  * @example
  * var stopWords = [ 'This', 'That', 'Are', 'Is', 'Was', 'Will', 'a' ];
  * var myFilter = returnWordsFilter( stopWords, [ string.lowerCase ] );

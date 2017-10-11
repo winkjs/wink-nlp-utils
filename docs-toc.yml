@@ -4,7 +4,9 @@ toc:
   - string.extractRunOfCapitalWords
   - string.lowerCase
   - string.removeExtraSpaces
+  - string.removeHTMLTags
   - string.removePunctuations
+  - string.removeSplChars
   - string.retainAlphaNums
   - string.trim
   - string.upperCase

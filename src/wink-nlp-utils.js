@@ -130,20 +130,12 @@ prepare.string.removePunctuations = require( './string-remove-punctuations.js' )
 // #### Remove Special Chars
 
 // Removes special characters from the input string `s`.
-prepare.string.removeSplChars = function ( s ) {
-  return s.replace( rgx.splChars, ' ' );
-}; // removeSplChars()
+prepare.string.removeSplChars = require( './string-remove-spl-chars.js' );
 
 // #### Remove HTML Tags
 
 // Removes HTML tags from the input string `s` and replaces them by a space char.
-prepare.string.removeHTMLTags = function ( s ) {
-  return ( s
-            .replace( rgx.htmlTags, ' ' )
-            .replace( rgx.htmlEscSeq1, ' ' )
-            .replace( rgx.htmlEscSeq2, ' ' )
-         );
-}; // removeHTMLTags()
+prepare.string.removeHTMLTags = require( './string-remove-html-tags.js' );
 
 // #### Remove Elisions
 

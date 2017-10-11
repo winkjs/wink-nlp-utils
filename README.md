@@ -5,9 +5,9 @@
 
 ### [![Build Status](https://api.travis-ci.org/winkjs/wink-nlp-utils.svg?branch=master)](https://travis-ci.org/winkjs/wink-nlp-utils) [![Coverage Status](https://coveralls.io/repos/github/winkjs/wink-nlp-utils/badge.svg?branch=master)](https://coveralls.io/github/winkjs/wink-nlp-utils?branch=master) [![Inline docs](http://inch-ci.org/github/winkjs/wink-nlp-utils.svg?branch=master)](http://inch-ci.org/github/winkjs/wink-nlp-utils) [![dependencies Status](https://david-dm.org/winkjs/wink-nlp-utils/status.svg)](https://david-dm.org/winkjs/wink-nlp-utils) [![devDependencies Status](https://david-dm.org/winkjs/wink-nlp-utils/dev-status.svg)](https://david-dm.org/winkjs/wink-nlp-utils?type=dev)
 
-<img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" >
+[<img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" >](http://wink.org.in/)
 
-Prepare raw text for Natural Language Processing (NLP) using **`wink-nlp-utils`**.It is a part of _[wink](https://www.npmjs.com/~sanjaya)_ — a growing family of high quality packages for Statistical Analysis, Natural Language Processing and Machine Learning in NodeJS.
+Prepare raw text for Natural Language Processing (NLP) using **`wink-nlp-utils`**.It is a part of _[wink](http://wink.org.in/)_ — a growing family of high quality packages for Statistical Analysis, Natural Language Processing and Machine Learning in NodeJS.
 
 It offers a set of **[APIs](#apis)** to work on **[strings](#string)** such as names, sentences, paragraphs and **[tokens](#tokens)** represented as an array of strings/words. They perform the required pre-processing for many simple ML tasks such as [semantic search](https://www.npmjs.com/package/wink-bm25-text-search), and [classification](https://www.npmjs.com/package/wink-naive-bayes-text-classifier).
 

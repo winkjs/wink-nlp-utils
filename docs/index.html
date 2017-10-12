@@ -75,6 +75,26 @@
               
                 
                 <li><a
+                  href='#stringmarker'
+                  class="">
+                  string.marker
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#stringngram'
+                  class="">
+                  string.ngram
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#stringremoveelisions'
                   class="">
                   string.removeElisions
@@ -128,6 +148,16 @@
                   href='#stringretainalphanums'
                   class="">
                   string.retainAlphaNums
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#stringsoc'
+                  class="">
+                  string.soc
                   
                 </a>
                 
@@ -557,6 +587,180 @@ text is found then
       
       <pre class='p1 overflow-auto round fill-light'>lowerCase( <span class="hljs-string">'Lower Case'</span> );
 <span class="hljs-comment">// -&gt; 'lower case'</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringmarker'>
+      string.marker
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Generates a <code>marker</code> of the input string; it is defined as 1-gram, sorted
+and joined back as a string again. Marker is a quick and aggressive way
+to detect similarity between short strings. Its aggression may lead to more
+false positives such as <code>Meter</code> and <code>Metre</code> or <code>no melon</code> and <code>no lemon</code>.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.marker</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#string">string</a></code>:
+        the marker.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>marker( <span class="hljs-string">'the quick brown fox jumps over the lazy dog'</span> );
+<span class="hljs-comment">// -&gt; ' abcdefghijklmnopqrstuvwxyz'</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringngram'>
+      string.ngram
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Generates an array of ngrams of a specified size from the input string. The
+default size is 2, which means it will generate bigrams by default.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.ngram</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>size</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
+            = <code>2</code>)</code>
+	    — ngram's size.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>></code>:
+        ngrams of 
+<code>size</code>
+ from 
+<code>str</code>
+.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>ngram( <span class="hljs-string">'FRANCE'</span> );
+<span class="hljs-comment">// -&gt; [ 'FR', 'RA', 'AN', 'NC', 'CE' ]</span>
+ngram( <span class="hljs-string">'FRENCH'</span> );
+<span class="hljs-comment">// -&gt; [ 'FR', 'RE', 'EN', 'NC', 'CH' ]</span>
+ngram( <span class="hljs-string">'FRANCE'</span>, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// -&gt; [ 'FRA', 'RAN', 'ANC', 'NCE' ]</span></pre>
     
   
 
@@ -1028,6 +1232,122 @@ leading, trailing and extra whitespaces.
       
       <pre class='p1 overflow-auto round fill-light'>retainAlphaNums( <span class="hljs-string">' This, text here, has  (other) chars_! '</span> );
 <span class="hljs-comment">// -&gt; 'This text here has other chars'</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringsoc'>
+      string.soc
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Creates a <strong>s</strong>et <strong>o</strong>f <strong>c</strong>hars from the input string <code>s</code>. This is useful
+in even more aggressive string matching using Jaccard or Tversky compared to
+<code>marker()</code>.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.soc</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>ifn</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>
+            = <code>undefined</code>)</code>
+	    — a function to build index; it receives the first
+character of 
+<code>str</code>
+ and the 
+<code>idx</code>
+ as input arguments. The 
+<code>build()</code>
+ function of
+
+<a href="#helperreturnindexer">helper.returnIndexer</a>
+ may be used as 
+<code>ifn</code>
+. If 
+<code>undefined</code>
+
+then index is not built.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>idx</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
+            = <code>undefined</code>)</code>
+	    — the index; passed as the second argument to the 
+<code>ifn</code>
+
+function.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#string">string</a></code>:
+        the soc.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>soc( <span class="hljs-string">'the quick brown fox jumps over the lazy dog'</span> );
+<span class="hljs-comment">// -&gt; ' abcdefghijklmnopqrstuvwxyz'</span></pre>
     
   
 

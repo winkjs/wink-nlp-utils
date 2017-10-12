@@ -158,13 +158,7 @@ prepare.string.amplifyNotElision = require( './string-amplify-not-elision' );
 // Generate a **marker** for the input string `s` - an 1-gram sorted and joined back as
 // string again; it is useful for in determining a quick but approximate degree
 // of match between short strings (with potentially more false positives).
-prepare.string.marker = function ( s ) {
-  var uniqChars = Object.create( null );
-  for ( var i = 0, imax = s.length; i < imax; i += 1 ) {
-    uniqChars[ s[ i ] ] = true;
-  }
-  return ( Object.keys( uniqChars ).sort().join('') );
-}; // marker()
+prepare.string.marker = require( './string-marker.js' );
 
 // #### SOC
 
@@ -178,28 +172,13 @@ prepare.string.marker = function ( s ) {
 // `bong()`, `bow()`, and `sow()`. However for these functions either ngram or
 // word/token (whatever is applicable) is passed along with `idx` to `ifn`. Note:
 // usage of `ifn` are limited by the developer's imagination!
-prepare.string.soc = function ( s, ifn, idx ) {
-  var cset = new Set( s );
-  if ( typeof ifn === 'function' ) {
-      ifn( s[ 0 ], idx );
-  }
-  return ( cset );
-}; // soc()
+prepare.string.soc = require( './string-soc.js' );
 
 // #### ngrams
 
 // Generates an array of ngrams of `size` from the input string `s`.
 // The default value of `size` is 2. The `size` 0 is forced to 2.
-prepare.string.ngrams = function ( s, size ) {
-  var ng = ( size || 2 ),
-      ngramz = [],
-      tg;
-  for ( var i = 0, imax = s.length; i < imax; i += 1 ) {
-    tg = s.slice( i, i + ng );
-    if ( tg.length === ng ) ngramz.push( tg );
-  }
-  return ( ngramz );
-}; // ngrams()
+prepare.string.ngrams = require( './string-ngram.js' );
 
 // #### BONG
 

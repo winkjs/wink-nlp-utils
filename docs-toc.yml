@@ -4,12 +4,15 @@ toc:
   - string.extractPersonsName
   - string.extractRunOfCapitalWords
   - string.lowerCase
+  - string.marker
+  - string.ngram
   - string.removeElisions
   - string.removeExtraSpaces
   - string.removeHTMLTags
   - string.removePunctuations
   - string.removeSplChars
   - string.retainAlphaNums
+  - string.soc
   - string.splitElisions
   - string.trim
   - string.upperCase

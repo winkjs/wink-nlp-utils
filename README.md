@@ -30,7 +30,7 @@ var nlp = require( 'wink-nlp-utils' );
 // Extract person's name from a string:
 var name = nlp.string.extractPersonsName( 'Dr. Sarah Connor M. Tech., PhD. - AI' );
 console.log( name );
-// name -> 'Sarah Connor'
+// -> 'Sarah Connor'
 
 // Compose all possible sentences from a string:
 var str = '[I] [am having|have] [a] [problem|question]';

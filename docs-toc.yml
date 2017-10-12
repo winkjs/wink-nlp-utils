@@ -1,7 +1,8 @@
 toc:
   - name: string
-  - string.bong
   - string.amplifyNotElision
+  - string.bong
+  - string.composeCorpus
   - string.extractPersonsName
   - string.extractRunOfCapitalWords
   - string.lowerCase
@@ -13,9 +14,11 @@ toc:
   - string.removePunctuations
   - string.removeSplChars
   - string.retainAlphaNums
+  - string.sentences
   - string.soc
   - string.song
   - string.splitElisions
+  - string.stem
   - string.trim
   - string.upperCase
   - name: helper

@@ -35,6 +35,16 @@
               
                 
                 <li><a
+                  href='#stringamplifynotelision'
+                  class="">
+                  string.amplifyNotElision
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#stringbong'
                   class="">
                   string.bong
@@ -45,9 +55,9 @@
               
                 
                 <li><a
-                  href='#stringamplifynotelision'
+                  href='#stringcomposecorpus'
                   class="">
-                  string.amplifyNotElision
+                  string.composeCorpus
                   
                 </a>
                 
@@ -165,6 +175,16 @@
               
                 
                 <li><a
+                  href='#stringsentences'
+                  class="">
+                  string.sentences
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#stringsoc'
                   class="">
                   string.soc
@@ -188,6 +208,16 @@
                   href='#stringsplitelisions'
                   class="">
                   string.splitElisions
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#stringstem'
+                  class="">
+                  string.stem
                   
                 </a>
                 
@@ -305,6 +335,83 @@
   
 </section>
 </div>
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringamplifynotelision'>
+      string.amplifyNotElision
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Amplifies the not elision by converting it into not; for example <code>isn't</code>
+becomes <code>is not</code>.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.amplifyNotElision</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#string">string</a></code>:
+        input string after not elision amplification.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>amplifyNotElision( <span class="hljs-string">"someone's wallet, isn't it?"</span> );
+<span class="hljs-comment">// -&gt; "someone's wallet, is not it?"</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
           
         
           
@@ -446,19 +553,24 @@ bong( <span class="hljs-string">'mamma'</span> );
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='stringamplifynotelision'>
-      string.amplifyNotElision
+    <h3 class='fl m0' id='stringcomposecorpus'>
+      string.composeCorpus
     </h3>
     
     
   </div>
   
 
-  <p>Amplifies the not elision by converting it into not; for example <code>isn't</code>
-becomes <code>is not</code>.</p>
+  <p>Generates all possible sentences from the input argument string.
+The string s must follow a special syntax as illustrated in the
+example below:<br/>
+<code>'[I] [am having|have] [a] [problem|question]'</code><br/></p>
+<p>Each phrase must be quoted between <code>[ ]</code> and each possible option of phrases
+(if any) must be separated by a <code>|</code> character. The corpus is composed by
+computing the cartesian product of all the phrases.</p>
 
 
-  <div class='pre p1 fill-light mt0'>string.amplifyNotElision</div>
+  <div class='pre p1 fill-light mt0'>string.composeCorpus</div>
   
   
 
@@ -490,8 +602,8 @@ becomes <code>is not</code>.</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="#string">string</a></code>:
-        input string after not elision amplification.
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>></code>:
+        of all possible sentences.
 
       
     
@@ -503,8 +615,11 @@ becomes <code>is not</code>.</p>
     <div class='py1 quiet mt1 prose-big'>Example</div>
     
       
-      <pre class='p1 overflow-auto round fill-light'>amplifyNotElision( <span class="hljs-string">"someone's wallet, isn't it?"</span> );
-<span class="hljs-comment">// -&gt; "someone's wallet, is not it?"</span></pre>
+      <pre class='p1 overflow-auto round fill-light'>composeCorpus( <span class="hljs-string">'[I] [am having|have] [a] [problem|question]'</span> );
+<span class="hljs-comment">// -&gt; [ 'I am having a problem',</span>
+<span class="hljs-comment">//      'I am having a question',</span>
+<span class="hljs-comment">//      'I have a problem',</span>
+<span class="hljs-comment">//      'I have a question' ]</span></pre>
     
   
 
@@ -1403,6 +1518,99 @@ leading, trailing and extra whitespaces.
   
   <div class='clearfix'>
     
+    <h3 class='fl m0' id='stringsentences'>
+      string.sentences
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Splits the input string into sentences. Punctuation marks found at the end
+of a sentence are retained. The function can handle sentences beginning with
+numbers as well, though it is not a good english practice. It uses <code>~</code> as the
+special character for splitting and therefore it must not be present in the
+input string; else you may give another special character as the second argument.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.sentences</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>splChar</span> <code class='quiet'>(char
+            = <code>&#39;~&#39;</code>)</code>
+	    — a single character to be used for splitting into sentences;
+it must not be resent in the 
+<code>str</code>
+.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>></code>:
+        of sentences.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>sentences( <span class="hljs-string">'There is a cat. 2 dogs are running!'</span> );
+<span class="hljs-comment">// -&gt; [ 'There is a cat.', '2 dogs are running!' ]</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
     <h3 class='fl m0' id='stringsoc'>
       string.soc
     </h3>
@@ -1712,6 +1920,82 @@ not touch apostrophe used to indicate possession.</p>
       
       <pre class='p1 overflow-auto round fill-light'>splitElisions( <span class="hljs-string">"someone's wallet, isn't it?"</span> );
 <span class="hljs-comment">// -&gt; "someone's wallet, is n't it?"</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringstem'>
+      string.stem
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Stems an inflected word using Porter2 stemming algorithm.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.stem</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>word</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — to be stemmed.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#string">string</a></code>:
+        the stemmed word.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>stem( <span class="hljs-string">'consisting'</span> );
+<span class="hljs-comment">// -&gt; 'consist'</span></pre>
     
   
 

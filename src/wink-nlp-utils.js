@@ -27,7 +27,7 @@ var rgx = require( './util_regexes.js' );
 var porter2Stemmer = require( 'wink-porter2-stemmer' );
 var phnrgx = require( './phonetize_regexes.js' );
 var defaultStopWords = require( './dictionaries/stop_words.json' );
-var helpers = require( 'wink-helpers' );
+// var helpers = require( 'wink-helpers' );
 
 // ### Prepare Name Space
 
@@ -201,16 +201,7 @@ prepare.string.song = require( './string-song.js' );
 // It uses `~` as the `splChar` for splitting and therefore
 // it must not be present in the input string; you may give another `splChar`
 // as the second argument.
-prepare.string.sentences = function ( s, splChar ) {
-  var splCh = splChar || '~';
-  var substitute = '$1' + splCh;
-  return ( s
-            .replace( '...', '…' )
-            .replace( rgx.eosPunctuations, substitute )
-            .split( splCh )
-            .map( prepare.string.trim )
-         );
-}; // sentences()
+prepare.string.sentences = require( './string-sentences.js' );
 
 // #### compose corpus
 
@@ -219,23 +210,7 @@ prepare.string.sentences = function ( s, splChar ) {
 // `'[I] [am having|have] [a] [problem|question]'`</br>
 // The corpus is composed by computing the cartesian product of all the phrases.
 // It returns an array of sentences (i.e. strings).
-prepare.string.composeCorpus = function ( s ) {
-  if ( !s || ( typeof s !== 'string' ) ) return [];
-  var extractQuotedText = prepare.helper.returnQuotedTextExtractor( '[', ']' );
-  var quotedTextElems = extractQuotedText( s );
-  var corpus = [];
-  var finalCorpus = [];
-
-  if ( !quotedTextElems ) return [];
-  quotedTextElems.forEach( function ( e ) {
-    corpus.push( e.split( '|' ) );
-  } );
-
-  helpers.array.product( corpus ).forEach( function ( e ) {
-    finalCorpus.push( e.join( ' ' ) );
-  } );
-  return ( finalCorpus );
-}; // composeCorpus()
+prepare.string.composeCorpus = require( './string-compose-corpus.js' );
 
 // #### tokenize0
 

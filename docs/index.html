@@ -225,6 +225,26 @@
               
                 
                 <li><a
+                  href='#stringtokenize'
+                  class="">
+                  string.tokenize
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#stringtokenize0'
+                  class="">
+                  string.tokenize0
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#stringtrim'
                   class="">
                   string.trim
@@ -1996,6 +2016,174 @@ not touch apostrophe used to indicate possession.</p>
       
       <pre class='p1 overflow-auto round fill-light'>stem( <span class="hljs-string">'consisting'</span> );
 <span class="hljs-comment">// -&gt; 'consist'</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringtokenize'>
+      string.tokenize
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>The function uses the following set of rules to tokenize: </p>
+<ol>
+<li>Single quotes are processed first as they may be part of elisions; and
+<code>...</code> are converted to ellipses.</li>
+<li><code>Not</code> elisions are amplified and then split on elisions. Thus words with elisions get tokenized.</li>
+<li>The word <code>cannot</code> is split in to <code>can not</code>.</li>
+<li><code>. , -</code> punctuations that commonly embedded in numbers are left intact,</li>
+<li>All other punctuations are tokenized.</li>
+<li>The currency symbols are padded by space i.e. become separate tokens.</li>
+<li>Underscore (<code>_</code>) embedded in the word is preserved.</li>
+<li>Spacial characters are left untouched and may/may not become separate token.</li>
+<li>Finally after removing extra/leading/trailing spaces, split on space to tokenize.</li>
+</ol>
+
+
+  <div class='pre p1 fill-light mt0'>string.tokenize</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>></code>:
+        of tokens.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>tokenize( <span class="hljs-string">"someone's wallet, isn't it? I'll return!"</span> );
+<span class="hljs-comment">// -&gt; [ 'someone\'s', 'wallet', ',', 'is', 'not', 'it',</span>
+<span class="hljs-comment">//      '?', 'i', '\'ll', 'return', '!' ]</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringtokenize0'>
+      string.tokenize0
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Tokenizes by splitting the input string on <strong>non-words</strong>. This means tokens would
+consists of only alphas, numerals and underscores; all other characters will
+be stripped as they are treated as separators. It also removes all elisions;
+however negations are retained and amplified.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.tokenize0</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>></code>:
+        of tokens.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>tokenize0( <span class="hljs-string">"someone's wallet, isn't it?"</span> );
+<span class="hljs-comment">// -&gt; [ 'someone', 's', 'wallet', 'is', 'not', 'it' ]</span></pre>
     
   
 

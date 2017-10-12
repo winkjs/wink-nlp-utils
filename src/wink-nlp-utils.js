@@ -218,16 +218,7 @@ prepare.string.composeCorpus = require( './string-compose-corpus.js' );
 // This means tokens would consists of only alphas, numerals and underscores;
 // all other characters will be stripped as they are treated as separators.
 // However negations are retained and amplified but all other elisions are removed.
-prepare.string.tokenize0 = function ( s ) {
-  var tokens = prepare.string.removeElisions( prepare.string.amplifyNotElision( s ) )
-                .replace( rgx.cannot, '$1 $2' )
-                .split( rgx.nonWords );
-  // Check the 0th and last element of array for empty string because if
-  // fisrt/last characters are non-words then these will be empty stings!
-  if ( tokens[ 0 ] === '' ) tokens.shift();
-  if ( tokens[ tokens.length - 1 ] === '' ) tokens.pop();
-  return tokens;
-}; // tokenize0()
+prepare.string.tokenize0 = require( './string-tokenize0.js' );
 
 // #### tokenize
 
@@ -242,33 +233,7 @@ prepare.string.tokenize0 = function ( s ) {
 // 6. Retains `_` as is - no tokenization,
 // 7. Spacial characters are left untouched and may/may not become separate token.
 // 8. Finally after removing extra/leading/trailing spaces, split on space to tokenize.
-prepare.string.tokenize = function ( s ) {
-  // Handle single quotes first & ellipses.
-  var su = s
-            // > TODO: promote to regex utils after adding more test cases
-            .replace( /(^|[^a-z0-9])(\’|\')/gi, '$1 $2 ')
-            .replace( /([a-z0-9])(\’|\')(\W)/gi, '$1 $2 $3')
-            .replace( '...', '…' )
-            .replace( '…', ' … ' );
-  var tokens = prepare.string.splitElisions( prepare.string.amplifyNotElision( su ) )
-            // Handle cannot.
-            .replace( rgx.cannot, '$1 $2' )
-            // Separate out punctuations that are not part of a number.
-            .replace( rgx.nonNumPunctuations, ' $& ' )
-            // Separate out all other punctuations.
-            .replace( /[\‘\’\`\“\”\"\[\]\(\)\{\}\…\!\;\?\/\:]/ig, ' $& ' )
-            // Separate out currency symbol; all separated stuff becomes a token.
-            .replace( rgx.currency, ' $& ')
-            .replace( rgx.spaces, ' ' )
-            .trim()
-            // Handle period sign in the end specially.
-            .replace( /\.$/, ' .' )
-            // Now tokenize on space!
-            .split( ' ' );
-  // Splitting an empty string on space leaves an empty string in the array,
-  // get rid of it.
-  return ( ( tokens.length === 1 && tokens[ 0 ] === '' ) ? [] : tokens );
-}; // tokenize()
+prepare.string.tokenize = require( './string-tokenize.js' );
 
 // #### stem
 

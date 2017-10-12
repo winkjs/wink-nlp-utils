@@ -19,6 +19,8 @@ toc:
   - string.song
   - string.splitElisions
   - string.stem
+  - string.tokenize
+  - string.tokenize0
   - string.trim
   - string.upperCase
   - name: helper

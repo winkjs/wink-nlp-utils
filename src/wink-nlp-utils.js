@@ -140,32 +140,18 @@ prepare.string.removeHTMLTags = require( './string-remove-html-tags.js' );
 // #### Remove Elisions
 
 // Removes elisions from the input string `s`.
-prepare.string.removeElisions = function ( s ) {
-  return ( s
-            .replace( rgx.elisionsSpl, '$2' )
-            .replace( rgx.elisions1, '$1' )
-            .replace( rgx.elisions2, '$1' )
-         );
-}; // removeElisions()
+prepare.string.removeElisions = require( './string-remove-elisions.js' );
 
 // #### Split Elisions
 
 // Splits elisions from the input string `s` by inserting a space.
-prepare.string.splitElisions = function ( s ) {
-  return ( s
-            .replace( rgx.elisionsSpl, '$2 $3' )
-            .replace( rgx.elisions1, '$1 $2' )
-            .replace( rgx.elisions2, '$1 $2' )
-         );
-}; // splitElisions()
+prepare.string.splitElisions = require( './string-split-elisions.js' );
 
 // #### Amplify Not Elision
 
 // Amplifies the not elision by replacing it by the word **not** in the input string `s`;
 // it must be used before calling the `removeElisions()`.
-prepare.string.amplifyNotElision = function ( s ) {
-  return s.replace( rgx.notElision, '$1 not' );
-}; // amplifyNotElision()
+prepare.string.amplifyNotElision = require( './string-amplify-not-elision' );
 
 // #### Marker
 

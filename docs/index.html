@@ -35,6 +35,16 @@
               
                 
                 <li><a
+                  href='#stringamplifynotelision'
+                  class="">
+                  string.amplifyNotElision
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#stringextractpersonsname'
                   class="">
                   string.extractPersonsName
@@ -58,6 +68,16 @@
                   href='#stringlowercase'
                   class="">
                   string.lowerCase
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#stringremoveelisions'
+                  class="">
+                  string.removeElisions
                   
                 </a>
                 
@@ -108,6 +128,16 @@
                   href='#stringretainalphanums'
                   class="">
                   string.retainAlphaNums
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#stringsplitelisions'
+                  class="">
+                  string.splitElisions
                   
                 </a>
                 
@@ -225,6 +255,83 @@
   
 </section>
 </div>
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringamplifynotelision'>
+      string.amplifyNotElision
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Amplifies the not elision by converting it into not; for example <code>isn't</code>
+becomes <code>is not</code>.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.amplifyNotElision</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#string">string</a></code>:
+        input string after not elision amplification.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>amplifyNotElision( <span class="hljs-string">"someone's wallet, isn't it?"</span> );
+<span class="hljs-comment">// -&gt; "someone's wallet, is not it?"</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
           
         
           
@@ -450,6 +557,84 @@ text is found then
       
       <pre class='p1 overflow-auto round fill-light'>lowerCase( <span class="hljs-string">'Lower Case'</span> );
 <span class="hljs-comment">// -&gt; 'lower case'</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringremoveelisions'>
+      string.removeElisions
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Removes basic elisions found in the input string. Typical example of elisions
+are <code>it's, let's, where's, I'd, I'm, I'll, I've, and Isn't</code> etc. Note it retains
+apostrophe used to indicate possession.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.removeElisions</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#string">string</a></code>:
+        input string after removal of elisions.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>removeElisions( <span class="hljs-string">"someone's wallet, isn't it?"</span> );
+<span class="hljs-comment">// -&gt; "someone's wallet, is it?"</span></pre>
     
   
 
@@ -843,6 +1028,84 @@ leading, trailing and extra whitespaces.
       
       <pre class='p1 overflow-auto round fill-light'>retainAlphaNums( <span class="hljs-string">' This, text here, has  (other) chars_! '</span> );
 <span class="hljs-comment">// -&gt; 'This text here has other chars'</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringsplitelisions'>
+      string.splitElisions
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Splits basic elisions found in the input string. Typical example of elisions
+are <code>it's, let's, where's, I'd, I'm, I'll, I've, and Isn't</code> etc. Note it does
+not touch apostrophe used to indicate possession.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.splitElisions</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#string">string</a></code>:
+        input string after splitting of elisions.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>splitElisions( <span class="hljs-string">"someone's wallet, isn't it?"</span> );
+<span class="hljs-comment">// -&gt; "someone's wallet, is n't it?"</span></pre>
     
   
 

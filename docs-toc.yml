@@ -1,13 +1,16 @@
 toc:
   - name: string
+  - string.amplifyNotElision
   - string.extractPersonsName
   - string.extractRunOfCapitalWords
   - string.lowerCase
+  - string.removeElisions
   - string.removeExtraSpaces
   - string.removeHTMLTags
   - string.removePunctuations
   - string.removeSplChars
   - string.retainAlphaNums
+  - string.splitElisions
   - string.trim
   - string.upperCase
   - name: helper

@@ -19,7 +19,7 @@ npm install wink-nlp-utils --save
 ```
 
 
-## Usage
+## Getting Started
 
 
 ```javascript
@@ -27,9 +27,9 @@ npm install wink-nlp-utils --save
 // Load wink-nlp-utils
 var nlp = require( 'wink-nlp-utils' );
 
-// Use a string Function - Input argument is a string
 // Extract person's name from a string:
 var name = nlp.string.extractPersonsName( 'Dr. Sarah Connor M. Tech., PhD. - AI' );
+console.log( name );
 // name -> 'Sarah Connor'
 
 // Compose all possible sentences from a string:
@@ -40,10 +40,10 @@ console.log( prepare.string.composeCorpus( str ) );
 // ->   'I have a problem',
 // ->   'I have a question' ]
 
-// Use a tokens Function - Input argument is an array of tokens
 // Remove stop words:
 var t = nlp.tokens.removeWords( [ 'mary', 'had', 'a', 'little', 'lamb' ] );
-// t -> [ 'mary', 'little', 'lamb' ]
+console.log( t );
+// -> [ 'mary', 'little', 'lamb' ]
 
 ```
 

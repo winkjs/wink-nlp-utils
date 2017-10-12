@@ -35,6 +35,16 @@
               
                 
                 <li><a
+                  href='#stringbong'
+                  class="">
+                  string.bong
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#stringamplifynotelision'
                   class="">
                   string.amplifyNotElision
@@ -165,6 +175,16 @@
               
                 
                 <li><a
+                  href='#stringsong'
+                  class="">
+                  string.song
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#stringsplitelisions'
                   class="">
                   string.splitElisions
@@ -245,9 +265,9 @@
               
                 
                 <li><a
-                  href='#wordsfilter'
+                  href='#indexer'
                   class="">
-                  wordsFilter
+                  indexer
                   
                 </a>
                 
@@ -255,9 +275,9 @@
               
                 
                 <li><a
-                  href='#indexer'
+                  href='#wordsfilter'
                   class="">
-                  indexer
+                  wordsFilter
                   
                 </a>
                 
@@ -285,6 +305,139 @@
   
 </section>
 </div>
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringbong'>
+      string.bong
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Generates the <strong>b</strong>ag <strong>o</strong>f <strong>ng</strong>rams of <code>size</code> from the input string. The
+default size is 2, which means it will generate bag of bigrams by default.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.bong</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>size</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
+            = <code>2</code>)</code>
+	    — ngram size.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>ifn</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>
+            = <code>undefined</code>)</code>
+	    — a function to build index; it is called for
+every 
+<strong>unique occurrence of ngram</strong>
+ of 
+<code>str</code>
+; and it receives the ngram and the 
+<code>idx</code>
+
+as input arguments. The 
+<code>build()</code>
+ function of 
+<a href="#helperreturnindexer">helper.returnIndexer</a>
+
+may be used as 
+<code>ifn</code>
+. If 
+<code>undefined</code>
+ then index is not built.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>idx</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
+            = <code>undefined</code>)</code>
+	    — the index; passed as the second argument to the 
+<code>ifn</code>
+
+function.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
+        bag of ngrams of 
+<code>size</code>
+ from 
+<code>str</code>
+.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>bong( <span class="hljs-string">'mama'</span> );
+<span class="hljs-comment">// -&gt; { ma: 2, am: 1 }</span>
+bong( <span class="hljs-string">'mamma'</span> );
+<span class="hljs-comment">// -&gt; { ma: 2, am: 1, mm: 1 }</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
           
         
           
@@ -613,7 +766,7 @@ text is found then
   </div>
   
 
-  <p>Generates a <code>marker</code> of the input string; it is defined as 1-gram, sorted
+  <p>Generates <code>marker</code> of the input string; it is defined as 1-gram, sorted
 and joined back as a string again. Marker is a quick and aggressive way
 to detect similarity between short strings. Its aggression may lead to more
 false positives such as <code>Meter</code> and <code>Metre</code> or <code>no melon</code> and <code>no lemon</code>.</p>
@@ -1366,6 +1519,139 @@ function.
   
   <div class='clearfix'>
     
+    <h3 class='fl m0' id='stringsong'>
+      string.song
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Generates the <strong>s</strong>et <strong>o</strong>f <strong>ng</strong>rams of <code>size</code> from the input string. The
+default size is 2, which means it will generate set of bigrams by default.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.song</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>size</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
+            = <code>2</code>)</code>
+	    — ngram size.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>ifn</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>
+            = <code>undefined</code>)</code>
+	    — a function to build index; it is called for
+every 
+<strong>unique occurrence of ngram</strong>
+ of 
+<code>str</code>
+; and it receives the ngram and the 
+<code>idx</code>
+
+as input arguments. The 
+<code>build()</code>
+ function of 
+<a href="#helperreturnindexer">helper.returnIndexer</a>
+
+may be used as 
+<code>ifn</code>
+. If 
+<code>undefined</code>
+ then index is not built.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>idx</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
+            = <code>undefined</code>)</code>
+	    — the index; passed as the second argument to the 
+<code>ifn</code>
+
+function.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">set</a></code>:
+        of ngrams of 
+<code>size</code>
+ of 
+<code>str</code>
+.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>song( <span class="hljs-string">'mama'</span> );
+<span class="hljs-comment">// -&gt; Set { 'ma', 'am' }</span>
+song( <span class="hljs-string">'mamma'</span> );
+<span class="hljs-comment">// -&gt; Set { 'ma', 'am', 'mm' }</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
     <h3 class='fl m0' id='stringsplitelisions'>
       string.splitElisions
     </h3>
@@ -1890,85 +2176,6 @@ the wordsFilter.
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='wordsfilter'>
-      wordsFilter
-    </h3>
-    
-    
-  </div>
-  
-
-  
-
-  <div class='pre p1 fill-light mt0'>wordsFilter</div>
-  
-    <p>
-      Type:
-      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
-    </p>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Properties</div>
-    <div>
-      
-        <div class='space-bottom0'>
-          <span class='code bold'>set</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
-          : contains the set created from the array 
-<code>words</code>
-.
-
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <span class='code bold'>exclude</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
-          : used with array's filter method to exclude
-the 
-<code>words</code>
- or mapped 
-<code>words</code>
- if 
-<code>givenMappers</code>
- are defined.
-
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-          
-        
-          
-            <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
     <h3 class='fl m0' id='indexer'>
       indexer
     </h3>
@@ -2025,6 +2232,85 @@ are nothing but each
  value passed for the 
 <code>element</code>
 .
+
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='wordsfilter'>
+      wordsFilter
+    </h3>
+    
+    
+  </div>
+  
+
+  
+
+  <div class='pre p1 fill-light mt0'>wordsFilter</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>set</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
+          : contains the set created from the array 
+<code>words</code>
+.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>exclude</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
+          : used with array's filter method to exclude
+the 
+<code>words</code>
+ or mapped 
+<code>words</code>
+ if 
+<code>givenMappers</code>
+ are defined.
 
           
         </div>

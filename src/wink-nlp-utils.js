@@ -184,45 +184,13 @@ prepare.string.ngrams = require( './string-ngram.js' );
 
 // Generates the **b**ag **o**f **ng**rams of `size` from the input string `s`.
 // The default value of `size` is 2. The `size` 0 is forced to 2.
-prepare.string.bong = function ( s, size, ifn, idx ) {
-  var ng = ( size || 2 ),
-      ngBOW = Object.create( null ),
-      tg;
-  for ( var i = 0, imax = s.length; i < imax; i += 1 ) {
-    tg = s.slice( i, i + ng );
-    if ( tg.length === ng ) {
-      // Call `ifn` iff its defined and `tg` is appearing for the first time;
-      // this avoids multiple calls to `ifn`. Strategy applies to `song()`,
-      // and `bow()`.
-      if ( ( typeof ifn === 'function' ) && !ngBOW[ tg ] ) {
-          ifn( tg, idx );
-      }
-      // Now define, if required and then update counts.
-      ngBOW[ tg ] = 1 + ( ngBOW[ tg ] || 0 );
-    }
-  }
-  return ( ngBOW );
-}; // bong()
+prepare.string.bong = require( './string-bong.js' );
 
 // #### SONG
 
 // Generates the **s**et **o**f **ng**rams of `size` from the input string `s`.
 // The default value of `size` is 2. The `size` 0 is forced to 2.
-prepare.string.song = function ( s, size, ifn, idx ) {
-  var ng = ( size || 2 ),
-      ngSet = new Set(),
-      tg;
-  for ( var i = 0, imax = s.length; i < imax; i += 1 ) {
-    tg = s.slice( i, i + ng );
-    if ( tg.length === ng ) {
-      if ( ( typeof ifn === 'function' ) && !ngSet.has( tg ) ) {
-          ifn( tg, idx );
-      }
-      ngSet.add( tg );
-    }
-  }
-  return ( ngSet );
-}; // song()
+prepare.string.song = require( './string-song.js' );
 
 // #### sentences
 

@@ -295,6 +295,16 @@
               
                 
                 <li><a
+                  href='#tokensbow'
+                  class="">
+                  tokens.bow
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#tokensphonetize'
                   class="">
                   tokens.phonetize
@@ -318,6 +328,16 @@
                   href='#tokenssoundex'
                   class="">
                   tokens.soundex
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#tokenssow'
+                  class="">
+                  tokens.sow
                   
                 </a>
                 
@@ -2610,6 +2630,141 @@ however negations are retained and amplified.</p>
   
   <div class='clearfix'>
     
+    <h3 class='fl m0' id='tokensbow'>
+      tokens.bow
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Generates the <strong>b</strong>ag <strong>o</strong>f <strong>w</strong>ords from the input string. By default it
+uses <code>word count</code> as it's frequency; but if <code>logCounts</code> parameter is set to true then
+it will use <code>log2( word counts + 1 )</code> as it's frequency.</p>
+
+
+  <div class='pre p1 fill-light mt0'>tokens.bow</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>tokens</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>>)</code>
+	    — the input tokens.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>logCounts</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
+            = <code>false</code>)</code>
+	    — a true value flags the use of 
+<code>log2( word count + 1 )</code>
+
+instead of just 
+<code>word count</code>
+ as frequency.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>ifn</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>
+            = <code>undefined</code>)</code>
+	    — a function to build index; it is called for
+every 
+<strong>unique occurrence of word</strong>
+ in 
+<code>tokens</code>
+; and it receives the word and the 
+<code>idx</code>
+
+as input arguments. The 
+<code>build()</code>
+ function of 
+<a href="#helperreturnindexer">helper.returnIndexer</a>
+
+may be used as 
+<code>ifn</code>
+. If 
+<code>undefined</code>
+ then index is not built.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>idx</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
+            = <code>undefined</code>)</code>
+	    — the index; passed as the second argument to the 
+<code>ifn</code>
+
+function.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
+        bag of words from tokens.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>bow( [ <span class="hljs-string">'rain'</span>, <span class="hljs-string">'rain'</span>, <span class="hljs-string">'go'</span>, <span class="hljs-string">'away'</span> ] );
+<span class="hljs-comment">// -&gt; { rain: 2, go: 1, away: 1 }</span>
+bow( [ <span class="hljs-string">'rain'</span>, <span class="hljs-string">'rain'</span>, <span class="hljs-string">'go'</span>, <span class="hljs-string">'away'</span> ], <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// -&gt; { rain: 1.584962500721156, go: 1, away: 1 }</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
     <h3 class='fl m0' id='tokensphonetize'>
       tokens.phonetize
     </h3>
@@ -2838,6 +2993,120 @@ Custom stop words can be created using
       
       <pre class='p1 overflow-auto round fill-light'>soundex( [ <span class="hljs-string">'he'</span>, <span class="hljs-string">'acted'</span>, <span class="hljs-string">'decisively'</span>, <span class="hljs-string">'today'</span> ] );
 <span class="hljs-comment">// -&gt; [ 'H000', 'A233', 'D221', 'T300' ]</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='tokenssow'>
+      tokens.sow
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Generates the <strong>s</strong>et <strong>o</strong>f <strong>w</strong>ords from the input string.</p>
+
+
+  <div class='pre p1 fill-light mt0'>tokens.sow</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>tokens</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>>)</code>
+	    — the input tokens.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>ifn</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>
+            = <code>undefined</code>)</code>
+	    — a function to build index; it is called for
+every 
+<strong>member word of the set </strong>
+; and it receives the word and the 
+<code>idx</code>
+
+as input arguments. The 
+<code>build()</code>
+ function of 
+<a href="#helperreturnindexer">helper.returnIndexer</a>
+
+may be used as 
+<code>ifn</code>
+. If 
+<code>undefined</code>
+ then index is not built.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>idx</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
+            = <code>undefined</code>)</code>
+	    — the index; passed as the second argument to the 
+<code>ifn</code>
+
+function.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">set</a></code>:
+        of words from tokens.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>sow( [ <span class="hljs-string">'rain'</span>, <span class="hljs-string">'rain'</span>, <span class="hljs-string">'go'</span>, <span class="hljs-string">'away'</span> ] );
+<span class="hljs-comment">// -&gt; Set { 'rain', 'go', 'away' }</span></pre>
     
   
 

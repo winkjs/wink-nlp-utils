@@ -26,9 +26,11 @@ toc:
   - string.trim
   - string.upperCase
   - name: tokens
+  - tokens.bow
   - tokens.phonetize
   - tokens.removeWords
   - tokens.soundex
+  - tokens.sow
   - tokens.stem
   - name: helper
   - helper.returnIndexer

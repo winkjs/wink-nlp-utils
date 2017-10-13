@@ -287,40 +287,13 @@ prepare.tokens.removeWords = require( './tokens-remove-words.js' );
 // to use log2( word counts ) instead of counts directly. The idea behind using
 // log2 is to ensure that a word's importance does not increase linearly with its
 // count. It is required as an input for computing similarity using Cosine similarity.
-prepare.tokens.bow = function ( t, logCounts, ifn, idx ) {
-  var bow = Object.create( null ),
-      i, imax,
-      token,
-      words;
-  for ( i = 0, imax = t.length; i < imax; i += 1 ) {
-    token = t[ i ];
-    if ( ( typeof ifn === 'function' ) && !bow[ token ] ) {
-        ifn( token, idx );
-    }
-    bow[ token ] = 1 + ( bow[ token ] || 0 );
-  }
-  if ( !logCounts ) return ( bow );
-  words = Object.keys( bow );
-  for ( i = 0, imax = words.length; i < imax; i += 1 ) {
-    // Add `1` to ensure non-zero count! (Note: log2(1) is 0)
-    bow[ words[ i ] ] = Math.log2( bow[ words[ i ] ] + 1 );
-  }
-  return ( bow );
-}; // bow()
+prepare.tokens.bow = require( './tokens-bow.js' );
 
 // #### sow
 
 // Creates a Set of tokens from the input array `t`. It is required as an input
 // for computing similarity using Jaccard or Tversky Indexes.
-prepare.tokens.sow = function ( t, ifn, idx ) {
-  var tset = new Set( t );
-  if ( typeof ifn === 'function' ) {
-    tset.forEach( function ( m ) {
-        ifn( m, idx );
-    } );
-  }
-  return ( tset );
-}; // set()
+prepare.tokens.sow = require( './tokens-sow.js' );
 
 // #### Propagate Negations
 

@@ -285,6 +285,46 @@
               
                 
                 <li><a
+                  href='#tokens'
+                  class="h5 bold black caps">
+                  tokens
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#tokensphonetize'
+                  class="">
+                  tokens.phonetize
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#tokenssoundex'
+                  class="">
+                  tokens.soundex
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#tokensstem'
+                  class="">
+                  tokens.stem
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#helper'
                   class="h5 bold black caps">
                   helper
@@ -2527,6 +2567,249 @@ however negations are retained and amplified.</p>
       
       <pre class='p1 overflow-auto round fill-light'>upperCase( <span class="hljs-string">'Upper Case'</span> );
 <span class="hljs-comment">// -&gt; 'UPPER CASE'</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <div class='keyline-top-not py2'><section class='py2 clearfix'>
+
+  <h2 id='tokens' class='mt0'>
+    tokens
+  </h2>
+
+  
+    
+
+  
+</section>
+</div>
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='tokensphonetize'>
+      tokens.phonetize
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Phonetizes input tokens using using an algorithmic adaptation of Metaphone.</p>
+
+
+  <div class='pre p1 fill-light mt0'>tokens.phonetize</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>tokens</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>>)</code>
+	    — the input tokens.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#string">string</a></code>:
+        phonetized tokens.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>phonetize( [ <span class="hljs-string">'he'</span>, <span class="hljs-string">'acted'</span>, <span class="hljs-string">'decisively'</span>, <span class="hljs-string">'today'</span> ] );
+<span class="hljs-comment">// -&gt; [ 'h', 'aktd', 'dssvl', 'td' ]</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='tokenssoundex'>
+      tokens.soundex
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Generates the soundex coded tokens from the input tokens.</p>
+
+
+  <div class='pre p1 fill-light mt0'>tokens.soundex</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>tokens</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>>)</code>
+	    — the input tokens.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#string">string</a></code>:
+        soundex coded tokens.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>soundex( [ <span class="hljs-string">'he'</span>, <span class="hljs-string">'acted'</span>, <span class="hljs-string">'decisively'</span>, <span class="hljs-string">'today'</span> ] );
+<span class="hljs-comment">// -&gt; [ 'H000', 'A233', 'D221', 'T300' ]</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='tokensstem'>
+      tokens.stem
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Stems input tokens using Porter Stemming Algorithm Version 2.</p>
+
+
+  <div class='pre p1 fill-light mt0'>tokens.stem</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>tokens</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>>)</code>
+	    — the input tokens.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#string">string</a></code>:
+        stemmed tokens.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>stem( [ <span class="hljs-string">'he'</span>, <span class="hljs-string">'acted'</span>, <span class="hljs-string">'decisively'</span>, <span class="hljs-string">'today'</span> ] );
+<span class="hljs-comment">// -&gt; [ 'he', 'act', 'decis', 'today' ]</span></pre>
     
   
 

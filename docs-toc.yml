@@ -25,6 +25,10 @@ toc:
   - string.tokenize0
   - string.trim
   - string.upperCase
+  - name: tokens
+  - tokens.phonetize
+  - tokens.soundex
+  - tokens.stem
   - name: helper
   - helper.returnIndexer
   - helper.returnQuotedTextExtractor

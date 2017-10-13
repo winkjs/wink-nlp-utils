@@ -262,24 +262,17 @@ prepare.tokens = Object.create( null );
 // #### stem
 
 // Stems the input token `t` using `string.stem()`.
-prepare.tokens.stem = function ( t ) {
-  return t.map( prepare.string.stem );
-}; // stem()
+prepare.tokens.stem = require( './tokens-stem.js' );
 
 // #### phonetize
 
 // Phonetize the input tokens `t` using an algorithmic adaption of Metaphone.
-prepare.tokens.phonetize = function ( t ) {
-  return t.map( prepare.string.phonetize );
-}; // phonetize()
+prepare.tokens.phonetize = require( './tokens-phonetize.js' );
 
 // #### soundex
 
 // Produces the soundex code from the input `word`.
-prepare.tokens.soundex = function ( tokens ) {
-  // Need to send `maxLength` as `undefined`.
-  return tokens.map( ( t ) => prepare.string.soundex( t ) );
-}; // soundex()
+prepare.tokens.soundex = require( './tokens-soundex.js' );
 
 // #### Remove Words
 

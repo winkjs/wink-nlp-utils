@@ -305,6 +305,16 @@
               
                 
                 <li><a
+                  href='#tokensremovewords'
+                  class="">
+                  tokens.removeWords
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#tokenssoundex'
                   class="">
                   tokens.soundex
@@ -2658,6 +2668,100 @@ however negations are retained and amplified.</p>
       
       <pre class='p1 overflow-auto round fill-light'>phonetize( [ <span class="hljs-string">'he'</span>, <span class="hljs-string">'acted'</span>, <span class="hljs-string">'decisively'</span>, <span class="hljs-string">'today'</span> ] );
 <span class="hljs-comment">// -&gt; [ 'h', 'aktd', 'dssvl', 'td' ]</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='tokensremovewords'>
+      tokens.removeWords
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Removes the stop words from the input array of tokens.</p>
+
+
+  <div class='pre p1 fill-light mt0'>tokens.removeWords</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>tokens</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>>)</code>
+	    — the input tokens.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>stopWords</span> <code class='quiet'>(<a href="#wordsfilter">wordsFilter</a>
+            = <code>defaultStopWords</code>)</code>
+	    — default stop words are
+loaded from 
+<code>stop_words.json</code>
+ located under the 
+<code>src/dictionaries/</code>
+ directory.
+Custom stop words can be created using 
+<a href="#helperreturnwordsfilter">helper.returnWordsFilter </a>
+.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>></code>:
+        balance tokens.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>removeWords( [ <span class="hljs-string">'this'</span>, <span class="hljs-string">'is'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'cat'</span> ] );
+<span class="hljs-comment">// -&gt; [ 'cat' ]</span></pre>
     
   
 

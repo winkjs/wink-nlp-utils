@@ -26,7 +26,7 @@ var rgx = require( './util_regexes.js' );
 // var ncrgx = require( './name_cleaner_regexes.js' );
 var porter2Stemmer = require( 'wink-porter2-stemmer' );
 // var phnrgx = require( './phonetize_regexes.js' );
-var defaultStopWords = require( './dictionaries/stop_words.json' );
+// var defaultStopWords = require( './dictionaries/stop_words.json' );
 // var helpers = require( 'wink-helpers' );
 
 // ### Prepare Name Space
@@ -53,7 +53,7 @@ prepare.helper.words = require( './helper-return-words-filter.js' );
 prepare.helper.returnWordsFilter = prepare.helper.words;
 
 // Create default stop words here - an internal variable.
-defaultStopWords = prepare.helper.words( defaultStopWords );
+// defaultStopWords = prepare.helper.words( defaultStopWords );
 
 // #### index
 
@@ -279,10 +279,7 @@ prepare.tokens.soundex = require( './tokens-soundex.js' );
 // Removes the `givenStopWords` or the `defaultStopWords` from the input
 // array of tokens `t`. The input stop words must be created using
 // `prepare.words()`.
-prepare.tokens.removeWords = function ( t, givenStopWords ) {
-  var stopWords = ( givenStopWords || defaultStopWords );
-  return t.filter( stopWords.exclude );
-}; // remove()
+prepare.tokens.removeWords = require( './tokens-remove-words.js' );
 
 // #### bow
 

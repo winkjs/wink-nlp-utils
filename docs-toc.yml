@@ -27,6 +27,7 @@ toc:
   - string.upperCase
   - name: tokens
   - tokens.phonetize
+  - tokens.removeWords
   - tokens.soundex
   - tokens.stem
   - name: helper

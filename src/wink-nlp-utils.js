@@ -25,7 +25,7 @@
 var rgx = require( './util_regexes.js' );
 // var ncrgx = require( './name_cleaner_regexes.js' );
 var porter2Stemmer = require( 'wink-porter2-stemmer' );
-var phnrgx = require( './phonetize_regexes.js' );
+// var phnrgx = require( './phonetize_regexes.js' );
 var defaultStopWords = require( './dictionaries/stop_words.json' );
 // var helpers = require( 'wink-helpers' );
 
@@ -245,128 +245,14 @@ prepare.string.stem = porter2Stemmer;
 
 // Phonetize the input string `s` using an algorithmic adaption of Metaphone.
 /* eslint no-underscore-dangle: "off" */
-prepare.string.phonetize = function ( s ) {
-  var p = s.toLowerCase();
-  // Remove repeating letters.
-  p = p.replace( phnrgx.repeatingChars, '$1');
-  // Drop first character of `kgknPairs`.
-  if ( phnrgx.kngnPairs.test( p ) ) {
-    p = p.substr( 1, p.length - 1 );
-  }
-  // Run Regex Express now!
-  p = p
-      // Change `ough` in the end as `f`,
-      .replace( phnrgx.ough, 'f' )
-      // Change `dg` to `j`, in `dge, dgi, dgy`.
-      .replace( phnrgx.dge, 'je' )
-      .replace( phnrgx.dgi, 'ji' )
-      .replace( phnrgx.dgy, 'jy' )
-      // Change `c` to `k` in `sch`
-      .replace( phnrgx.sch, 'sk' )
-      // Drop `c` in `sci, sce, scy`.
-      .replace( phnrgx.sci, 'si' )
-      .replace( phnrgx.sce, 'se' )
-      .replace( phnrgx.scy, 'sy' )
-      // Drop `t` if it appears as `tch`.
-      .replace( phnrgx.tch, 'ch' )
-      // Replace `tio & tia` by `sh`.
-      .replace( phnrgx.tio, 'sh' )
-      .replace( phnrgx.tia, 'sh' )
-      // Drop `b` if it appears as `mb` in the end.
-      .replace( phnrgx.mb_, 'm' )
-      // Drop `r` if it preceeds a vowel and not followed by a vowel or `y`
-      // .replace( rgx.vrnotvy, '$1$3' )
-      // Replace `c` by `s` in `ce, ci, cy`.
-      .replace( phnrgx.ce, 'se' )
-      .replace( phnrgx.ci, 'si' )
-      .replace( phnrgx.cy, 'sy' )
-      // Replace `cq` by `q`.
-      .replace( phnrgx.cq, 'q' )
-      // Replace `ck` by `k`.
-      .replace( phnrgx.ck, 'k' )
-      // Replace `ph` by `f`.
-      .replace( phnrgx.ph, 'f' )
-      // Replace `th` by `0` (theta look alike!).
-      .replace( phnrgx.th, '0' )
-      // Replace `c` by `k` if it is not followed by `h`.
-      .replace( phnrgx.cnoth, 'k$2' )
-      // Replace `q` by `k`.
-      .replace( phnrgx.q, 'k' )
-      // Replace `x` by `s` if it appears in the beginning.
-      .replace( phnrgx._x, 's' )
-      // Other wise replace `x` by `ks`.
-      .replace( phnrgx.x, 'ks' )
-      // Replace `sh, sia, sio` by `x`. Needs to be done post `x` processing!
-      .replace( phnrgx.sh, 'x' )
-      // Drop `y` if it is now followed by a **vowel**.
-      .replace( phnrgx.ynotv, '$2' )
-      .replace( phnrgx.y_, '' )
-      // Replace `z` by `s`.
-      .replace( phnrgx.z, 's' )
-      // Drop all **vowels** excluding the first one.
-      .replace( phnrgx.__vowels, '' );
+prepare.string.phonetize = require( './string-phonetize.js' );
 
-      return ( p );
-}; // phonetize()
-
-// Soundex Code for alphabets.
-/* eslint-disable object-property-newline */
-var soundexMap = {
-  A: 0, E: 0, I: 0, O: 0, U: 0, Y: 0,
-  B: 1, F: 1, P: 1, V: 1,
-  C: 2, G: 2, J: 2, K: 2, Q: 2, S: 2, X: 2, Z: 2,
-  D: 3, T: 3,
-  L: 4,
-  M: 5, N: 5,
-  R: 6
-};
 
 // #### soundex
 
 // Produces the soundex code from the input `word`. Default value of maxLength
 // is **4**.
-prepare.string.soundex = function ( word, maxLength ) {
-  // Upper case right in the begining.
-  var s = ( word.length ) ? word.toUpperCase() : '?';
-  var i,
-      imax = s.length;
-  // Soundex code builds here.
-  var sound = [];
-  // Helpers - `ch` is a char from `s` and `code/prevCode` are sondex codes
-  // for consonants.
-  var ch, code,
-      prevCode = 9;
-  // Use default of 4.
-  var maxLen = maxLength || 4;
-  // Iterate through every character.
-  for ( i = 0; i < imax; i += 1 ) {
-    ch = s[ i ];
-    code = soundexMap[ ch ];
-    if ( i ) {
-      // Means i is > 0.
-      // `code` is either (a) `undefined` if an unknown character is
-      // encountered including `h & w`, or (b) `0` if it is vowel, or
-      // (c) the soundex code for a consonant.
-      if ( code && code !== prevCode ) {
-        // Consonant and not adjecant duplicates!
-        sound.push( code );
-      } else if ( code !== 0 ) {
-        // Means `h or w` or an unknown character: ensure `prevCode` is
-        // remembered so that adjecant duplicates can be handled!
-        code = prevCode;
-      }
-    } else {
-      // Retain the first letter
-      sound.push( ch );
-    }
-    prevCode = code;
-  }
-  s = sound.join( '' );
-  // Always ensure minimum length of 4 characters for maxLength > 4.
-  if ( s.length < 4 ) s += '000';
-  // Return the required length.
-  return s.substr( 0, maxLen );
-}; // soundex()
+prepare.string.soundex = require( './string-soundex.js' );
 
 // ### Prepare.Tokens Name Space
 

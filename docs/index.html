@@ -115,6 +115,16 @@
               
                 
                 <li><a
+                  href='#stringphonetize'
+                  class="">
+                  string.phonetize
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#stringremoveelisions'
                   class="">
                   string.removeElisions
@@ -198,6 +208,16 @@
                   href='#stringsong'
                   class="">
                   string.song
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#stringsoundex'
+                  class="">
+                  string.soundex
                   
                 </a>
                 
@@ -1067,6 +1087,87 @@ ngram( <span class="hljs-string">'FRANCE'</span>, <span class="hljs-number">3</s
   
   <div class='clearfix'>
     
+    <h3 class='fl m0' id='stringphonetize'>
+      string.phonetize
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Phonetizes the input string using an algorithmic adaptation of Metaphone; It
+is not an exact implementation of Metaphone.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.phonetize</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>word</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input word.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#string">string</a></code>:
+        phonetic code of 
+<code>word</code>
+.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>phonetize( <span class="hljs-string">'perspective'</span> );
+<span class="hljs-comment">// -&gt; 'prspktv'</span>
+phonetize( <span class="hljs-string">'phenomenon'</span> );
+<span class="hljs-comment">// -&gt; 'fnmnn'</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
     <h3 class='fl m0' id='stringremoveelisions'>
       string.removeElisions
     </h3>
@@ -1862,6 +1963,96 @@ function.
 <span class="hljs-comment">// -&gt; Set { 'ma', 'am' }</span>
 song( <span class="hljs-string">'mamma'</span> );
 <span class="hljs-comment">// -&gt; Set { 'ma', 'am', 'mm' }</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringsoundex'>
+      string.soundex
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Produces the soundex code from the input <code>word</code>.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.soundex</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>word</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input word.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>maxLength</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
+            = <code>4</code>)</code>
+	    — of soundex code to be returned.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#string">string</a></code>:
+        soundex code of 
+<code>word</code>
+.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>soundex( <span class="hljs-string">'Burroughs'</span> );
+<span class="hljs-comment">// -&gt; 'B620'</span>
+soundex( <span class="hljs-string">'Burrows'</span> );
+<span class="hljs-comment">// -&gt; 'B620'</span></pre>
     
   
 

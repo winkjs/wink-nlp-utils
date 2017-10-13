@@ -8,6 +8,7 @@ toc:
   - string.lowerCase
   - string.marker
   - string.ngram
+  - string.phonetize
   - string.removeElisions
   - string.removeExtraSpaces
   - string.removeHTMLTags
@@ -17,6 +18,7 @@ toc:
   - string.sentences
   - string.soc
   - string.song
+  - string.soundex
   - string.splitElisions
   - string.stem
   - string.tokenize

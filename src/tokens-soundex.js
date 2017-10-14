@@ -33,7 +33,7 @@ var stringSoundex = require( './string-soundex.js' );
  *
  * @name tokens.soundex
  * @param {string[]} tokens — the input tokens.
- * @return {string} soundex coded tokens.
+ * @return {string[]} soundex coded tokens.
  * @example
  * soundex( [ 'he', 'acted', 'decisively', 'today' ] );
  * // -> [ 'H000', 'A233', 'D221', 'T300' ]

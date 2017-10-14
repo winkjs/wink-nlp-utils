@@ -1,8 +1,8 @@
 //     wink-nlp-utils
 //     NLP Functions for removing HTML Tags, Managing Elisions,
-//     NGrams, phonetizeming, Phoneticising to Tokenizating and more.
+//     NGrams, appendBigramsming, Phoneticising to Tokenizating and more.
 //
-//     Copyright (C) 2017  GRAYPE Syphonetizes Private Limited
+//     Copyright (C) 2017  GRAYPE SyappendBigramss Private Limited
 //
 //     This file is part of “wink-nlp-utils”.
 //
@@ -22,24 +22,33 @@
 //     If not, see <http://www.gnu.org/licenses/>.
 
 //
-var stringPhonetize = require( './string-phonetize.js' );
 
 // ## tokens
 
-// ### phonetize
+// ### appendBigrams
 /**
  *
- * Phonetizes input tokens using using an algorithmic adaptation of Metaphone.
+ * Generates bigrams from the input tokens and appends them to the input tokens.
  *
- * @name tokens.phonetize
+ * @name tokens.appendBigrams
  * @param {string[]} tokens — the input tokens.
- * @return {string[]} phonetized tokens.
+ * @return {string[]} the input tokens appended with their bigrams.
  * @example
- * phonetize( [ 'he', 'acted', 'decisively', 'today' ] );
- * // -> [ 'h', 'aktd', 'dssvl', 'td' ]
+ * appendBigrams( [ 'he', 'acted', 'decisively', 'today' ] );
+ * // -> [ 'he',
+ * //      'acted',
+ * //      'decisively',
+ * //      'today',
+ * //      'he_acted',
+ * //      'acted_decisively',
+ * //      'decisively_today' ]
  */
-var phonetize = function ( tokens ) {
-  return tokens.map( stringPhonetize );
-}; // phonetize()
+var appendBigrams = function ( tokens ) {
+  var i, imax;
+  for ( i = 0, imax = tokens.length - 1; i < imax; i += 1 ) {
+    tokens.push( tokens[ i ] + '_' + tokens[ i + 1 ] );
+  }
+  return tokens;
+}; // appendBigrams()
 
-module.exports = phonetize;
+module.exports = appendBigrams;

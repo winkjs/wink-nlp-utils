@@ -295,6 +295,26 @@
               
                 
                 <li><a
+                  href='#tokensappendbigrams'
+                  class="">
+                  tokens.appendBigrams
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#tokensbigrams'
+                  class="">
+                  tokens.bigrams
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#tokensbow'
                   class="">
                   tokens.bow
@@ -2640,6 +2660,166 @@ however negations are retained and amplified.</p>
   
   <div class='clearfix'>
     
+    <h3 class='fl m0' id='tokensappendbigrams'>
+      tokens.appendBigrams
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Generates bigrams from the input tokens and appends them to the input tokens.</p>
+
+
+  <div class='pre p1 fill-light mt0'>tokens.appendBigrams</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>tokens</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>>)</code>
+	    — the input tokens.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>></code>:
+        the input tokens appended with their bigrams.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>appendBigrams( [ <span class="hljs-string">'he'</span>, <span class="hljs-string">'acted'</span>, <span class="hljs-string">'decisively'</span>, <span class="hljs-string">'today'</span> ] );
+<span class="hljs-comment">// -&gt; [ 'he',</span>
+<span class="hljs-comment">//      'acted',</span>
+<span class="hljs-comment">//      'decisively',</span>
+<span class="hljs-comment">//      'today',</span>
+<span class="hljs-comment">//      'he_acted',</span>
+<span class="hljs-comment">//      'acted_decisively',</span>
+<span class="hljs-comment">//      'decisively_today' ]</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='tokensbigrams'>
+      tokens.bigrams
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Generates bigrams from the input tokens.</p>
+
+
+  <div class='pre p1 fill-light mt0'>tokens.bigrams</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>tokens</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>>)</code>
+	    — the input tokens.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>></code>:
+        the bigrams.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>bigrams( [ <span class="hljs-string">'he'</span>, <span class="hljs-string">'acted'</span>, <span class="hljs-string">'decisively'</span>, <span class="hljs-string">'today'</span> ] );
+<span class="hljs-comment">// -&gt; [ [ 'he', 'acted' ],</span>
+<span class="hljs-comment">//      [ 'acted', 'decisively' ],</span>
+<span class="hljs-comment">//      [ 'decisively', 'today' ] ]</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
     <h3 class='fl m0' id='tokensbow'>
       tokens.bow
     </h3>
@@ -2818,7 +2998,7 @@ bow( [ <span class="hljs-string">'rain'</span>, <span class="hljs-string">'rain'
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="#string">string</a></code>:
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>></code>:
         phonetized tokens.
 
       
@@ -3083,7 +3263,7 @@ Custom stop words can be created using
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="#string">string</a></code>:
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>></code>:
         soundex coded tokens.
 
       
@@ -3273,7 +3453,7 @@ function.
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="#string">string</a></code>:
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>></code>:
         stemmed tokens.
 
       

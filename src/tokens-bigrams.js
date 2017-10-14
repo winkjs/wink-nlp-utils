@@ -1,8 +1,8 @@
 //     wink-nlp-utils
 //     NLP Functions for removing HTML Tags, Managing Elisions,
-//     NGrams, phonetizeming, Phoneticising to Tokenizating and more.
+//     NGrams, bigramsming, Phoneticising to Tokenizating and more.
 //
-//     Copyright (C) 2017  GRAYPE Syphonetizes Private Limited
+//     Copyright (C) 2017  GRAYPE Sybigramss Private Limited
 //
 //     This file is part of “wink-nlp-utils”.
 //
@@ -22,24 +22,33 @@
 //     If not, see <http://www.gnu.org/licenses/>.
 
 //
-var stringPhonetize = require( './string-phonetize.js' );
 
 // ## tokens
 
-// ### phonetize
+// ### bigrams
 /**
  *
- * Phonetizes input tokens using using an algorithmic adaptation of Metaphone.
+ * Generates bigrams from the input tokens.
  *
- * @name tokens.phonetize
+ * @name tokens.bigrams
  * @param {string[]} tokens — the input tokens.
- * @return {string[]} phonetized tokens.
+ * @return {string[]} the bigrams.
  * @example
- * phonetize( [ 'he', 'acted', 'decisively', 'today' ] );
- * // -> [ 'h', 'aktd', 'dssvl', 'td' ]
+ * bigrams( [ 'he', 'acted', 'decisively', 'today' ] );
+ * // -> [ [ 'he', 'acted' ],
+ * //      [ 'acted', 'decisively' ],
+ * //      [ 'decisively', 'today' ] ]
  */
-var phonetize = function ( tokens ) {
-  return tokens.map( stringPhonetize );
-}; // phonetize()
+var bigrams = function ( tokens ) {
+  // Bigrams will be stored here.
+  var bgs = [];
+  // Helper variables.
+  var i, imax;
+  // Create bigrams.
+  for ( i = 0, imax = tokens.length - 1; i < imax; i += 1 ) {
+    bgs.push( [ tokens[ i ], tokens[ i + 1 ] ] );
+  }
+  return bgs;
+}; // bigrams()
 
-module.exports = phonetize;
+module.exports = bigrams;

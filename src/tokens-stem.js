@@ -33,7 +33,7 @@ var porter2Stemmer = require( 'wink-porter2-stemmer' );
  *
  * @name tokens.stem
  * @param {string[]} tokens — the input tokens.
- * @return {string} stemmed tokens.
+ * @return {string[]} stemmed tokens.
  * @example
  * stem( [ 'he', 'acted', 'decisively', 'today' ] );
  * // -> [ 'he', 'act', 'decis', 'today' ]

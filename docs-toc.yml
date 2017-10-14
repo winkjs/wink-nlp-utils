@@ -26,6 +26,8 @@ toc:
   - string.trim
   - string.upperCase
   - name: tokens
+  - tokens.appendBigrams
+  - tokens.bigrams
   - tokens.bow
   - tokens.phonetize
   - tokens.propagateNegations

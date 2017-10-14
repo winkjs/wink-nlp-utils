@@ -25,6 +25,16 @@
               
                 
                 <li><a
+                  href='#introduction'
+                  class="h5 bold black caps">
+                  Introduction
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#string'
                   class="h5 bold black caps">
                   string
@@ -461,6 +471,59 @@
         </div>
       </div>
       <div id='split-right' class='relative overflow-auto height-viewport-100'>
+        
+          
+            <div class='keyline-top-not py2'><section class='py2 clearfix'>
+
+  <h2 id='introduction' class='mt0'>
+    Introduction
+  </h2>
+
+  
+    <h1>wink-nlp-utils</h1>
+<p>NLP Functions for amplifying negations, managing elisions, creating ngrams, stems, phonetic codes to tokens and more.</p>
+<h3><a href="https://travis-ci.org/winkjs/wink-nlp-utils"><img src="https://api.travis-ci.org/winkjs/wink-nlp-utils.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/winkjs/wink-nlp-utils?branch=master"><img src="https://coveralls.io/repos/github/winkjs/wink-nlp-utils/badge.svg?branch=master" alt="Coverage Status"></a> <a href="http://inch-ci.org/github/winkjs/wink-nlp-utils"><img src="http://inch-ci.org/github/winkjs/wink-nlp-utils.svg?branch=master" alt="Inline docs"></a> <a href="https://david-dm.org/winkjs/wink-nlp-utils"><img src="https://david-dm.org/winkjs/wink-nlp-utils/status.svg" alt="dependencies Status"></a> <a href="https://david-dm.org/winkjs/wink-nlp-utils?type=dev"><img src="https://david-dm.org/winkjs/wink-nlp-utils/dev-status.svg" alt="devDependencies Status"></a></h3>
+<p><a href="http://wink.org.in/"><img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" ></a></p>
+<p>Prepare raw text for Natural Language Processing (NLP) using <strong><code>wink-nlp-utils</code></strong>.It is a part of <em><a href="http://wink.org.in/">wink</a></em> — a growing family of high quality packages for Statistical Analysis, Natural Language Processing and Machine Learning in NodeJS.</p>
+<p>It offers a set of <strong><a href="http://wink.org.in/wink-nlp-utils/">APIs</a></strong> to work on <strong><a href="http://wink.org.in/wink-nlp-utils/#string">strings</a></strong> such as names, sentences, paragraphs and <strong><a href="http://wink.org.in/wink-nlp-utils/#tokens">tokens</a></strong> represented as an array of strings/words. They perform the required pre-processing for many ML tasks such as <a href="https://www.npmjs.com/package/wink-bm25-text-search">semantic search</a>, and <a href="https://www.npmjs.com/package/wink-naive-bayes-text-classifier">classification</a>.</p>
+<h2>Installation</h2>
+<p>Use <strong><a href="https://www.npmjs.com/package/wink-nlp-utils">npm</a></strong> to install:</p>
+<pre><code>npm install wink-nlp-utils --save
+</code></pre>
+<h2>Getting Started</h2>
+<pre class='hljs'><span class="hljs-comment">// Load wink-nlp-utils</span>
+<span class="hljs-keyword">var</span> nlp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-nlp-utils'</span> );
+
+<span class="hljs-comment">// Extract person's name from a string:</span>
+<span class="hljs-keyword">var</span> name = nlp.string.extractPersonsName( <span class="hljs-string">'Dr. Sarah Connor M. Tech., PhD. - AI'</span> );
+<span class="hljs-built_in">console</span>.log( name );
+<span class="hljs-comment">// -&gt; 'Sarah Connor'</span>
+
+<span class="hljs-comment">// Compose all possible sentences from a string:</span>
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'[I] [am having|have] [a] [problem|question]'</span>;
+<span class="hljs-built_in">console</span>.log( prepare.string.composeCorpus( str ) );
+<span class="hljs-comment">// -&gt; [ 'I am having a problem',</span>
+<span class="hljs-comment">// -&gt;   'I am having a question',</span>
+<span class="hljs-comment">// -&gt;   'I have a problem',</span>
+<span class="hljs-comment">// -&gt;   'I have a question' ]</span>
+
+<span class="hljs-comment">// Remove stop words:</span>
+<span class="hljs-keyword">var</span> t = nlp.tokens.removeWords( [ <span class="hljs-string">'mary'</span>, <span class="hljs-string">'had'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'little'</span>, <span class="hljs-string">'lamb'</span> ] );
+<span class="hljs-built_in">console</span>.log( t );
+<span class="hljs-comment">// -&gt; [ 'mary', 'little', 'lamb' ]</span></pre>
+<h3>Documentation</h3>
+<p>For detailed API docs, check out <a href="http://wink.org.in/wink-nlp-utils/">http://wink.org.in/wink-nlp-utils/</a> URL!</p>
+<h2>Need Help?</h2>
+<p>If you spot a bug and the same has not yet been reported, raise a new <a href="https://github.com/winkjs/wink-nlp-utils/issues">issue</a> or consider fixing it and sending a pull request.</p>
+<h2>Copyright &#x26; License</h2>
+<p><strong>wink-nlp-utils</strong> is copyright 2017 GRAYPE Systems Private Limited.</p>
+<p>It is licensed under the under the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, version 3 of the License.</p>
+
+  
+</section>
+</div>
+          
         
           
             <div class='keyline-top-not py2'><section class='py2 clearfix'>

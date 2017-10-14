@@ -1,4 +1,6 @@
 toc:
+  - name: Introduction
+    file: README.md  
   - name: string
   - string.amplifyNotElision
   - string.bong

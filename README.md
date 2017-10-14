@@ -1,7 +1,7 @@
 
 # wink-nlp-utils
 
-> Easily tokenize, stem, phonetize, remove stop words, manage elisions, create ngrams, bag of words and more
+> NLP Functions for amplifying negations, managing elisions, creating ngrams, stems, phonetic codes to tokens and more.
 
 ### [![Build Status](https://api.travis-ci.org/winkjs/wink-nlp-utils.svg?branch=master)](https://travis-ci.org/winkjs/wink-nlp-utils) [![Coverage Status](https://coveralls.io/repos/github/winkjs/wink-nlp-utils/badge.svg?branch=master)](https://coveralls.io/github/winkjs/wink-nlp-utils?branch=master) [![Inline docs](http://inch-ci.org/github/winkjs/wink-nlp-utils.svg?branch=master)](http://inch-ci.org/github/winkjs/wink-nlp-utils) [![dependencies Status](https://david-dm.org/winkjs/wink-nlp-utils/status.svg)](https://david-dm.org/winkjs/wink-nlp-utils) [![devDependencies Status](https://david-dm.org/winkjs/wink-nlp-utils/dev-status.svg)](https://david-dm.org/winkjs/wink-nlp-utils?type=dev)
 
@@ -9,7 +9,7 @@
 
 Prepare raw text for Natural Language Processing (NLP) using **`wink-nlp-utils`**.It is a part of _[wink](http://wink.org.in/)_ — a growing family of high quality packages for Statistical Analysis, Natural Language Processing and Machine Learning in NodeJS.
 
-It offers a set of **[APIs](#apis)** to work on **[strings](#string)** such as names, sentences, paragraphs and **[tokens](#tokens)** represented as an array of strings/words. They perform the required pre-processing for many simple ML tasks such as [semantic search](https://www.npmjs.com/package/wink-bm25-text-search), and [classification](https://www.npmjs.com/package/wink-naive-bayes-text-classifier).
+It offers a set of **[APIs](wink.org.in/wink-nlp-utils/)** to work on **[strings](http://wink.org.in/wink-nlp-utils/#string)** such as names, sentences, paragraphs and **[tokens](http://wink.org.in/wink-nlp-utils/#tokens)** represented as an array of strings/words. They perform the required pre-processing for many simple ML tasks such as [semantic search](https://www.npmjs.com/package/wink-bm25-text-search), and [classification](https://www.npmjs.com/package/wink-naive-bayes-text-classifier).
 
 
 ## Installation

@@ -1,7 +1,7 @@
 {
   "name": "wink-nlp-utils",
   "version": "1.6.0",
-  "description": "Natural Language Processing Utilities that let you tokenize, stem, phonetize, create ngrams, bag of words and more.",
+  "description": "NLP Functions for amplifying negations, managing elisions, creating ngrams, stems, phonetic codes to tokens and more.",
   "keywords": [
     "Tokenize",
     "Stem",

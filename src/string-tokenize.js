@@ -1,6 +1,6 @@
 //     wink-nlp-utils
-//     NLP Functions for removing HTML Tags, Managing Elisions,
-//     NGrams, Stemming, Phoneticising to Tokenizating and more.
+//     NLP Functions for amplifying negations, managing elisions,
+//     creating ngrams, stems, phonetic codes to tokens and more.
 //
 //     Copyright (C) 2017  GRAYPE Systems Private Limited
 //
@@ -31,7 +31,7 @@ var rgx = require( './util_regexes.js' );
 // ### tokenize
 /**
  *
- * The function uses the following set of rules to tokenize: 
+ * The function uses the following set of rules to tokenize:
  *
  * 1. Single quotes are processed first as they may be part of elisions; and
  * `...` are converted to ellipses.

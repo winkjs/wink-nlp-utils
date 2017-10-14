@@ -1,6 +1,6 @@
 //     wink-nlp-utils
-//     Easily tokenize, stem, phonetize, remove stop words,
-//     manage elisions, create ngrams, bag of words and more
+//     NLP Functions for amplifying negations, managing elisions,
+//     creating ngrams, stems, phonetic codes to tokens and more.
 //
 //     Copyright (C) 2017  GRAYPE Systems Private Limited
 //

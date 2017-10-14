@@ -1,6 +1,6 @@
 //     wink-nlp-utils
-//     NLP Functions for removing HTML Tags, Managing Elisions,
-//     songs, Stemming, Phoneticising to Tokenizating and more.
+//     NLP Functions for amplifying negations, managing elisions,
+//     creating ngrams, stems, phonetic codes to tokens and more.
 //
 //     Copyright (C) 2017  GRAYPE Systems Private Limited
 //

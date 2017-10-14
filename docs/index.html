@@ -315,6 +315,16 @@
               
                 
                 <li><a
+                  href='#tokenspropagatenegations'
+                  class="">
+                  tokens.propagateNegations
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#tokensremovewords'
                   class="">
                   tokens.removeWords
@@ -2823,6 +2833,101 @@ bow( [ <span class="hljs-string">'rain'</span>, <span class="hljs-string">'rain'
       
       <pre class='p1 overflow-auto round fill-light'>phonetize( [ <span class="hljs-string">'he'</span>, <span class="hljs-string">'acted'</span>, <span class="hljs-string">'decisively'</span>, <span class="hljs-string">'today'</span> ] );
 <span class="hljs-comment">// -&gt; [ 'h', 'aktd', 'dssvl', 'td' ]</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='tokenspropagatenegations'>
+      tokens.propagateNegations
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>It looks for negation tokens in the input array of tokens and propagates
+negation to subsequent <code>upto</code> tokens by prefixing them by a <code>!</code>. It is useful
+in handling text containing negations during tasks like similarity detection,
+classification or search.</p>
+
+
+  <div class='pre p1 fill-light mt0'>tokens.propagateNegations</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>tokens</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>>)</code>
+	    — the input tokens.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>upto</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
+            = <code>2</code>)</code>
+	    — number of tokens to be negated after the negation
+token. Note, tokens are only negated either 
+<code>upto</code>
+ tokens or up to the token
+preceeding the 
+<strong><code>, . ; : ! ?</code></strong>
+ punctuations.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>></code>:
+        tokens with negation propagated.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>propagateNegations( [ <span class="hljs-string">'mary'</span>, <span class="hljs-string">'is'</span>, <span class="hljs-string">'not'</span>, <span class="hljs-string">'feeling'</span>, <span class="hljs-string">'good'</span>, <span class="hljs-string">'today'</span> ] );
+<span class="hljs-comment">// -&gt; [ 'mary', 'is', 'not', '!feeling', '!good', 'today' ]</span></pre>
     
   
 

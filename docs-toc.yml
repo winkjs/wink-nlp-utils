@@ -28,6 +28,7 @@ toc:
   - name: tokens
   - tokens.bow
   - tokens.phonetize
+  - tokens.propagateNegations
   - tokens.removeWords
   - tokens.soundex
   - tokens.sow

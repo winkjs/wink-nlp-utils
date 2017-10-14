@@ -22,7 +22,7 @@
 //     If not, see <http://www.gnu.org/licenses/>.
 
 //
-var rgx = require( './util_regexes.js' );
+// var rgx = require( './util_regexes.js' );
 // var ncrgx = require( './name_cleaner_regexes.js' );
 var porter2Stemmer = require( 'wink-porter2-stemmer' );
 // var phnrgx = require( './phonetize_regexes.js' );
@@ -299,24 +299,7 @@ prepare.tokens.sow = require( './tokens-sow.js' );
 
 // It looks for neagtion tokens in `t` and propagate negation in subsequent `upto`
 // tokens by prefixing them by a `!`.
-prepare.tokens.propagateNegations = function ( t, upto ) {
-  var i, imax, j, jmax;
-  var tokens = t;
-  var limit = upto || 2;
-  for ( i = 0, imax = tokens.length; i < imax; i += 1 ) {
-    if ( rgx.negations.test( tokens[ i ] ) ) {
-      for ( j = i + 1, jmax = Math.min( imax, i + limit + 1 ); j < jmax; j += 1 ) {
-        // Hit a punctuation mark, break out of the loop otherwise go *upto the limit*.
-        // > TODO: promote to utilities regex, after test cases have been added.
-        if ( /[\,\.\;\:\!\?]/.test( tokens[ j ] ) ) break;
-        // Propoage negation: invert the token by prefixing a `!` to it.
-        tokens[ j ] = '!' + tokens[ j ];
-      }
-      i = j;
-    }
-  }
-  return tokens;
-}; // propagateNegations()
+prepare.tokens.propagateNegations = require( './tokens-propagate-negations.js' );
 
 // #### Bigrams
 

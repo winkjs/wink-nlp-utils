@@ -83,6 +83,8 @@ prepare.string.marker = require( './string-marker.js' );
 prepare.string.soc = require( './string-soc.js' );
 // NGrams
 prepare.string.ngrams = require( './string-ngram.js' );
+// Edge NGrams
+prepare.string.edgeNGrams = require( './string-edge-ngrams.js' );
 // BONG
 prepare.string.bong = require( './string-bong.js' );
 // SONG

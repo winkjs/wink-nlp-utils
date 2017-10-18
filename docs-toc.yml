@@ -1,10 +1,11 @@
 toc:
   - name: Introduction
-    file: README.md  
+    file: README.md
   - name: string
   - string.amplifyNotElision
   - string.bong
   - string.composeCorpus
+  - string.edgeNGrams
   - string.extractPersonsName
   - string.extractRunOfCapitalWords
   - string.lowerCase

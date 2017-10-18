@@ -75,6 +75,16 @@
               
                 
                 <li><a
+                  href='#stringedgengrams'
+                  class="">
+                  string.edgeNGrams
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#stringextractpersonsname'
                   class="">
                   string.extractPersonsName
@@ -823,6 +833,152 @@ computing the cartesian product of all the phrases.</p>
 <span class="hljs-comment">//      'I am having a question',</span>
 <span class="hljs-comment">//      'I have a problem',</span>
 <span class="hljs-comment">//      'I have a question' ]</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stringedgengrams'>
+      string.edgeNGrams
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Generates the edge ngrams from the input string.</p>
+
+
+  <div class='pre p1 fill-light mt0'>string.edgeNGrams</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+	    — the input string.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>min</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
+            = <code>2</code>)</code>
+	    — size of ngram generated.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>max</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
+            = <code>8</code>)</code>
+	    — size of ngram is generated.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>delta</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
+            = <code>2</code>)</code>
+	    — edge ngrams are generated in increments of this value.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>ifn</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>
+            = <code>undefined</code>)</code>
+	    — a function to build index; it is called for
+every edge ngram of 
+<code>str</code>
+; and it receives the edge ngram and the 
+<code>idx</code>
+
+as input arguments. The 
+<code>build()</code>
+ function of 
+<a href="#helperreturnindexer">helper.returnIndexer</a>
+
+may be used as 
+<code>ifn</code>
+. If 
+<code>undefined</code>
+ then index is not built.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>idx</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
+            = <code>undefined</code>)</code>
+	    — the index; passed as the second argument to the 
+<code>ifn</code>
+
+function.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>></code>:
+        of edge ngrams.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>edgeNGrams( <span class="hljs-string">'decisively'</span> );
+<span class="hljs-comment">// -&gt; [ 'de', 'deci', 'decisi', 'decisive' ]</span>
+edgeNGrams( <span class="hljs-string">'decisively'</span>, <span class="hljs-number">8</span>, <span class="hljs-number">10</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// -&gt; [ 'decisive', 'decisivel', 'decisively' ]</span></pre>
     
   
 

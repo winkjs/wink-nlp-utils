@@ -2,7 +2,7 @@
 //     NLP Functions for amplifying negations, managing elisions,
 //     creating ngrams, stems, phonetic codes to tokens and more.
 //
-//     Copyright (C) 2017  GRAYPE Syphonetizes Private Limited
+//     Copyright (C) 2017-18  GRAYPE Syphonetizes Private Limited
 //
 //     This file is part of “wink-nlp-utils”.
 //

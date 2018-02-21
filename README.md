@@ -34,7 +34,7 @@ console.log( name );
 
 // Compose all possible sentences from a string:
 var str = '[I] [am having|have] [a] [problem|question]';
-console.log( prepare.string.composeCorpus( str ) );
+console.log( nlp.string.composeCorpus( str ) );
 // -> [ 'I am having a problem',
 // ->   'I am having a question',
 // ->   'I have a problem',

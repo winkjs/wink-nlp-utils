@@ -33,7 +33,7 @@
   "bugs": {
     "url": "https://github.com/winkjs/wink-nlp-utils/issues"
   },
-  "homepage": "https://github.com/winkjs/wink-nlp-utils#readme",
+  "homepage": "http://winkjs.org/",
   "devDependencies": {
     "chai": "^4.1.2",
     "coveralls": "^3.0.0",

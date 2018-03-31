@@ -40,6 +40,13 @@ console.log( nlp.string.composeCorpus( str ) );
 // ->   'I have a problem',
 // ->   'I have a question' ]
 
+// Sentence Boundary Detection.
+var para = 'AI Inc. is focussing on AI. I work for AI Inc. My mail is r2d2@yahoo.com';
+console.log( nlp.string.sentences( para ) );
+// -> [ 'AI Inc. is focussing on AI.',
+//      'I work for AI Inc.',
+//      'My mail is r2d2@yahoo.com' ]
+
 // Remove stop words:
 var t = nlp.tokens.removeWords( [ 'mary', 'had', 'a', 'little', 'lamb' ] );
 console.log( t );

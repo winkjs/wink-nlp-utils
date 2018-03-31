@@ -517,6 +517,13 @@
 <span class="hljs-comment">// -&gt;   'I have a problem',</span>
 <span class="hljs-comment">// -&gt;   'I have a question' ]</span>
 
+<span class="hljs-comment">// Sentence Boundary Detection.</span>
+<span class="hljs-keyword">var</span> para = <span class="hljs-string">'AI Inc. is focussing on AI. I work for AI Inc. My mail is r2d2@yahoo.com'</span>;
+<span class="hljs-built_in">console</span>.log( nlp.string.sentences( para ) );
+<span class="hljs-comment">// -&gt; [ 'AI Inc. is focussing on AI.',</span>
+<span class="hljs-comment">//      'I work for AI Inc.',</span>
+<span class="hljs-comment">//      'My mail is r2d2@yahoo.com' ]</span>
+
 <span class="hljs-comment">// Remove stop words:</span>
 <span class="hljs-keyword">var</span> t = nlp.tokens.removeWords( [ <span class="hljs-string">'mary'</span>, <span class="hljs-string">'had'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'little'</span>, <span class="hljs-string">'lamb'</span> ] );
 <span class="hljs-built_in">console</span>.log( t );
@@ -1966,11 +1973,8 @@ leading, trailing and extra whitespaces.
   </div>
   
 
-  <p>Splits the input string into sentences. Punctuation marks found at the end
-of a sentence are retained. The function can handle sentences beginning with
-numbers as well, though it is not a good english practice. It uses <code>~</code> as the
-special character for splitting and therefore it must not be present in the
-input string; else you may give another special character as the second argument.</p>
+  <p>Detects the sentence boundaries in the input <code>paragraph</code> and splits it into
+an array of sentence(s).</p>
 
 
   <div class='pre p1 fill-light mt0'>string.sentences</div>
@@ -1990,21 +1994,8 @@ input string; else you may give another special character as the second argument
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+            <span class='code bold'>paragraph</span> <code class='quiet'>(<a href="#string">string</a>)</code>
 	    — the input string.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>splChar</span> <code class='quiet'>(char
-            = <code>&#39;~&#39;</code>)</code>
-	    — a single character to be used for splitting into sentences;
-it must not be resent in the 
-<code>str</code>
-.
 
           </div>
           
@@ -2031,8 +2022,15 @@ it must not be resent in the
     <div class='py1 quiet mt1 prose-big'>Example</div>
     
       
-      <pre class='p1 overflow-auto round fill-light'>sentences( <span class="hljs-string">'There is a cat. 2 dogs are running!'</span> );
-<span class="hljs-comment">// -&gt; [ 'There is a cat.', '2 dogs are running!' ]</span></pre>
+      <pre class='p1 overflow-auto round fill-light'>sentences( <span class="hljs-string">'AI Inc. is focussing on AI. I work for AI Inc. My mail is r2d2@yahoo.com'</span> );
+<span class="hljs-comment">// -&gt; [ 'AI Inc. is focussing on AI.',</span>
+<span class="hljs-comment">//      'I work for AI Inc.',</span>
+<span class="hljs-comment">//      'My mail is r2d2@yahoo.com' ]</span>
+
+sentences( <span class="hljs-string">'U.S.A is my birth place. I was born on 06.12.1924. I climbed Mt. Everest.'</span> );
+<span class="hljs-comment">// -&gt; [ 'U.S.A is my birth place.',</span>
+<span class="hljs-comment">//      'I was born on 06.12.1924.',</span>
+<span class="hljs-comment">//      'I climbed Mt. Everest.' ]</span></pre>
     
   
 

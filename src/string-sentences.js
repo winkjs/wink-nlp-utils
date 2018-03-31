@@ -22,37 +22,100 @@
 //     If not, see <http://www.gnu.org/licenses/>.
 
 //
-var rgx = require( './util_regexes.js' );
-var trim = require( './string-trim.js' );
+// Abbreviations with `.` but are never are EOS.
+const abbrvNoEOS = Object.create( null );
+abbrvNoEOS[ 'mr.' ] = true;
+abbrvNoEOS[ 'mrs.' ] = true;
+abbrvNoEOS[ 'ms.' ] = true;
+abbrvNoEOS[ 'er.' ] = true;
+abbrvNoEOS[ 'dr.' ] = true;
+abbrvNoEOS[ 'miss.' ] = true;
+abbrvNoEOS[ 'shri.' ] = true;
+abbrvNoEOS[ 'smt.' ] = true;
+abbrvNoEOS[ 'i.e.' ] = true;
+abbrvNoEOS[ 'ie.' ] = true;
+abbrvNoEOS[ 'e.g.' ] = true;
+abbrvNoEOS[ 'eg.' ] = true;
+abbrvNoEOS[ 'viz.' ] = true;
+abbrvNoEOS[ 'pvt.' ] = true;
+// et al.
+abbrvNoEOS[ 'et.' ] = true;
+abbrvNoEOS[ 'al.' ] = true;
+// Mount Kailash!
+abbrvNoEOS[ 'mt.' ] = true;
+// Pages!
+abbrvNoEOS[ 'pp.' ] = true;
+
+const abbrvMayBeEOS = Object.create( null );
+abbrvMayBeEOS[ 'inc.' ] = true;
+abbrvMayBeEOS[ 'ltd.' ] = true;
+abbrvMayBeEOS[ 'al.' ] = true;
+// Regex to test potential End-Of-Sentence.
+const rgxPotentialEOS = /\.$|\!$|\?$/;
+// Regex to test special cases of "I" at eos.
+const rgxSplI = /i\?$|i\!$/;
+// Regex to test first char as alpha only
+const rgxAlphaAt0 = /^[^a-z]/i;
+
 // ## string
 
 // ### sentences
 /**
  *
- * Splits the input string into sentences. Punctuation marks found at the end
- * of a sentence are retained. The function can handle sentences beginning with
- * numbers as well, though it is not a good english practice. It uses `~` as the
- * special character for splitting and therefore it must not be present in the
- * input string; else you may give another special character as the second argument.
+ * Detects the sentence boundaries in the input `paragraph` and splits it into
+ * an array of sentence(s).
  *
  * @name string.sentences
- * @param {string} str — the input string.
- * @param {char} [splChar='~'] — a single character to be used for splitting into sentences;
- * it must not be resent in the `str`.
+ * @param {string} paragraph — the input string.
  * @return {string[]} of sentences.
  * @example
- * sentences( 'There is a cat. 2 dogs are running!' );
- * // -> [ 'There is a cat.', '2 dogs are running!' ]
+ * sentences( 'AI Inc. is focussing on AI. I work for AI Inc. My mail is r2d2@yahoo.com' );
+ * // -> [ 'AI Inc. is focussing on AI.',
+ * //      'I work for AI Inc.',
+ * //      'My mail is r2d2@yahoo.com' ]
+ *
+ * sentences( 'U.S.A is my birth place. I was born on 06.12.1924. I climbed Mt. Everest.' );
+ * // -> [ 'U.S.A is my birth place.',
+ * //      'I was born on 06.12.1924.',
+ * //      'I climbed Mt. Everest.' ]
  */
-var sentences = function ( str, splChar ) {
-  var splCh = splChar || '~';
-  var substitute = '$1' + splCh;
-  return ( str
-            .replace( '...', '…' )
-            .replace( rgx.eosPunctuations, substitute )
-            .split( splCh )
-            .map( trim )
-         );
-}; // sentences()
+var punkt = function ( paragraph ) {
+  // The basic idea is to split the paragraph on `spaces` and thereafter
+  // examine each word ending with an EOS punctuation for a possible EOS.
 
-module.exports = sentences;
+  // Split on **space** to obtain all the `tokens` in the `para`.
+  const paraTokens = paragraph.split( ' ' );
+  var sentenceTokens = [];
+  var sentences = [];
+
+  for ( let k = 0; k < paraTokens.length; k += 1 ) {
+    // A para token.
+    const pt = paraTokens[ k ];
+    // A lower cased para token.
+    const lcpt = pt.toLowerCase();
+    if ( ( rgxPotentialEOS.test( pt ) ) && !abbrvNoEOS[ lcpt ] && ( pt.length !== 2 || rgxAlphaAt0.test( pt ) || rgxSplI.test( lcpt ) ) ) {
+      // Next para token that is non-blank.
+      let nextpt;
+      // Append this token to the current sentence tokens.
+      sentenceTokens.push( pt );
+      // If the current token is one of the abbreviations that may also mean EOS.
+      if ( abbrvMayBeEOS[ lcpt ] ) {
+        for ( let j = k + 1; j < paraTokens.length && !nextpt; j += 1 ) {
+          nextpt = paraTokens[ j ];
+        }
+      }
+      // If no next para token or if present then starts from a Cap Letter then
+      // only complete sentence and start a new one!
+      if ( nextpt === undefined || ( /^[A-Z]/ ).test( nextpt ) ) {
+        sentences.push( sentenceTokens.join( ' ' ) );
+        sentenceTokens = [];
+      }
+    } else sentenceTokens.push( pt );
+  }
+
+  if ( sentenceTokens.length > 0 ) sentences.push( sentenceTokens.join( ' ' ) );
+
+  return sentences;
+}; // punkt()
+
+module.exports = punkt;

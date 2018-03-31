@@ -510,10 +510,25 @@ describe( 'string.song()', function () {
 
 describe( 'string.sentences()', function () {
   var tests = [
-    { whenInputIs: [ ' ' ], expectedOutputIs: [ '' ] },
+    { whenInputIs: [ ' ' ], expectedOutputIs: [ ' ' ] },
     { whenInputIs: [ 'rain rain go away, come again another day. Little Adrianna wants to go out and play.' ], expectedOutputIs: [ 'rain rain go away, come again another day.', 'Little Adrianna wants to go out and play.' ] },
-    { whenInputIs: [ 'what ended in the year 1919 ~?  1918 year ended when the year 1919 began:-)! Isn\'t it?', '^' ], expectedOutputIs: [ 'what ended in the year 1919 ~?', '1918 year ended when the year 1919 began:-)!', 'Isn\'t it?' ] },
+    { whenInputIs: [ 'what ended in the year 1919 ~?  1918 year ended when the year 1919 began:-)! Isn\'t it?' ], expectedOutputIs: [ 'what ended in the year 1919 ~?', ' 1918 year ended when the year 1919 began:-)!', 'Isn\'t it?' ] },
     { whenInputIs: [ 'The goods from Mexico in 2015 were worth about $60 billion more than the goods exported to Mexico! So federal revenue in the short term would increase by roughly $12 billion.', '|' ], expectedOutputIs: [ 'The goods from Mexico in 2015 were worth about $60 billion more than the goods exported to Mexico!', 'So federal revenue in the short term would increase by roughly $12 billion.' ] },
+    {
+      whenInputIs: [ 'Who am I? I am I. K Gujral. Who are you? Bharat Ratna Avul Pakir Jainulabdeen Abdul Kalam also known as Dr. A. P. J Abdul Kalam. “It’s too much, there’s only us two, how are we going to eat this?” I asked young Zhao. Cardoso, P.C., Maziero, E.G., Jorge, M., Seno et al. wrote a paper on SBD. Of some 27,000 examples, our system makes 67 errors, 23 involving the word U.S. I know Ms. Ritz, her mail id is ritz@gmail.com. She was born in 12.12.3012 . I climbed Mt. Everest! I work for Google Inc. aNd my name is Larry Page!' ],
+      expectedOutputIs: [ 'Who am I?',
+                          'I am I. K Gujral.',
+                          'Who are you?',
+                          'Bharat Ratna Avul Pakir Jainulabdeen Abdul Kalam also known as Dr. A. P. J Abdul Kalam.',
+                          '“It’s too much, there’s only us two, how are we going to eat this?” I asked young Zhao.',
+                          'Cardoso, P.C., Maziero, E.G., Jorge, M., Seno et al. wrote a paper on SBD.',
+                          'Of some 27,000 examples, our system makes 67 errors, 23 involving the word U.S.',
+                          'I know Ms. Ritz, her mail id is ritz@gmail.com.',
+                          'She was born in 12.12.3012 .',
+                          'I climbed Mt. Everest!',
+                          'I work for Google Inc. aNd my name is Larry Page!'
+                        ]
+    },
   ];
 
   tests.forEach( function ( test ) {

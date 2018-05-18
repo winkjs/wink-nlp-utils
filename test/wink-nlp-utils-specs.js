@@ -605,18 +605,31 @@ describe( 'string.tokenize()', function () {
     { whenInputIs: [ '' ], expectedOutputIs: [ ] },
     { whenInputIs: [ ' ' ], expectedOutputIs: [ ] },
     { whenInputIs: [ 'rain rain go away, come again another day' ], expectedOutputIs: [ 'rain', 'rain', 'go', 'away', ',', 'come', 'again', 'another', 'day' ] },
-    { whenInputIs: [ 'rain rain_ go away, come again another day' ], expectedOutputIs: [ 'rain', 'rain_', 'go', 'away', ',', 'come', 'again', 'another', 'day' ] },
+    { whenInputIs: [ 'rain rain_ go away, come again another day' ], expectedOutputIs: [ 'rain', 'rain', '_', 'go', 'away', ',', 'come', 'again', 'another', 'day' ] },
     { whenInputIs: [ 'what\'s ended in the year 1919 ~?  The $1 was equal to 1.2 rupees.' ], expectedOutputIs: [ 'what', '\'s', 'ended', 'in', 'the', 'year', '1919', '~', '?', 'The', '$', '1', 'was', 'equal', 'to', '1.2', 'rupees', '.' ] },
-    { whenInputIs: [ 'what ended in the 1919 year~?  The £1 was equal to 1.2 rupees.' ], expectedOutputIs: [ 'what', 'ended', 'in', 'the', '1919', 'year~', '?', 'The', '£', '1', 'was', 'equal', 'to', '1.2', 'rupees', '.' ] },
+    { whenInputIs: [ 'what ended in the 1919 year~?  The £1 was equal to 1.2 rupees.' ], expectedOutputIs: [ 'what', 'ended', 'in', 'the', '1919', 'year', '~', '?', 'The', '£', '1', 'was', 'equal', 'to', '1.2', 'rupees', '.' ] },
     { whenInputIs: [ 'what\'ll \'end in the year 1919\'?  The ¥1 was equal to 1.2 rupees.' ], expectedOutputIs: [ 'what', '\'ll', '\'', 'end', 'in', 'the', 'year', '1919', '\'', '?', 'The', '¥', '1', 'was', 'equal', 'to', '1.2', 'rupees', '.' ] },
-    { whenInputIs: [ 'what ended in the year\'s last month ?  The €1 cannot be equal to 1.2 rupees.' ], expectedOutputIs: [ 'what', 'ended', 'in', 'the', 'year\'s', 'last', 'month', '?', 'The', '€', '1', 'can', 'not', 'be', 'equal', 'to', '1.2', 'rupees', '.' ] },
-    { whenInputIs: [ 'Isn\'t... it? ' ], expectedOutputIs: [ 'Is', 'not', '…', 'it', '?' ] },
+    { whenInputIs: [ 'what ended in the year\'s last month ?  The €1 cannot be equal to 1.2 rupees.' ], expectedOutputIs: [ 'what', 'ended', 'in', 'the', 'year', '\'s', 'last', 'month', '?', 'The', '€', '1', 'cannot', 'be', 'equal', 'to', '1.2', 'rupees', '.' ] },
+    { whenInputIs: [ 'Isn\'t... it? ' ], expectedOutputIs: [ 'Is', 'n\'t', '…', 'it', '?' ] },
   ];
 
   tests.forEach( function ( test ) {
     it( 'should return ' + JSON.stringify( test.expectedOutputIs ) + ' if the input is ' + JSON.stringify( test.whenInputIs ), function () {
       expect( prepare.string.tokenize.apply( null, test.whenInputIs ) ).to.deep.equal( test.expectedOutputIs );
     } );
+  } );
+
+  it( 'should tokenize a sentence with multiple contractions & containing extra spaces', function () {
+    var output = [ { value: 'I', tag: 'word' },
+                   { value: '\'ll', tag: 'word' },
+                   { value: 'eat', tag: 'word' },
+                   { value: 'John', tag: 'word' },
+                   { value: '\'s', tag: 'word' },
+                   { value: 'food', tag: 'word' },
+                   { value: 'today', tag: 'word' },
+                   { value: 'with', tag: 'word' },
+                   { value: 'O\'kelly', tag: 'word' } ];
+    expect( prepare.string.tokenize( '     I\'ll eat      John\'s food today with O\'kelly  ', true ) ).to.deep.equal( output );
   } );
 
   errors.slice( 0, 2 ).forEach( function ( error ) {

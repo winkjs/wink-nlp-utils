@@ -524,6 +524,20 @@
 <span class="hljs-comment">//      'I work for AI Inc.',</span>
 <span class="hljs-comment">//      'My mail is r2d2@yahoo.com' ]</span>
 
+<span class="hljs-comment">// Tokenize a sentence.</span>
+<span class="hljs-keyword">var</span> s = <span class="hljs-string">'For details on wink, check out http://winkjs.org/ URL!'</span>;
+<span class="hljs-built_in">console</span>.log( nlp.string.tokenize( s, <span class="hljs-literal">true</span> ) );
+<span class="hljs-comment">// -&gt; [ { value: 'For', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'details', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'on', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'wink', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: ',', tag: 'punctuation' },</span>
+<span class="hljs-comment">//      { value: 'check', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'out', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'http://winkjs.org/', tag: 'url' },</span>
+<span class="hljs-comment">//      { value: 'URL', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: '!', tag: 'punctuation' } ]</span>
+
 <span class="hljs-comment">// Remove stop words:</span>
 <span class="hljs-keyword">var</span> t = nlp.tokens.removeWords( [ <span class="hljs-string">'mary'</span>, <span class="hljs-string">'had'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'little'</span>, <span class="hljs-string">'lamb'</span> ] );
 <span class="hljs-built_in">console</span>.log( t );
@@ -2550,19 +2564,12 @@ not touch apostrophe used to indicate possession.</p>
   </div>
   
 
-  <p>The function uses the following set of rules to tokenize:</p>
-<ol>
-<li>Single quotes are processed first as they may be part of elisions; and
-<code>...</code> are converted to ellipses.</li>
-<li><code>Not</code> elisions are amplified and then split on elisions. Thus words with elisions get tokenized.</li>
-<li>The word <code>cannot</code> is split in to <code>can not</code>.</li>
-<li><code>. , -</code> punctuations that commonly embedded in numbers are left intact,</li>
-<li>All other punctuations are tokenized.</li>
-<li>The currency symbols are padded by space i.e. become separate tokens.</li>
-<li>Underscore (<code>_</code>) embedded in the word is preserved.</li>
-<li>Spacial characters are left untouched and may/may not become separate token.</li>
-<li>Finally after removing extra/leading/trailing spaces, split on space to tokenize.</li>
-</ol>
+  <p>Tokenizes the input <code>sentence</code> according to the value of <code>detailed</code> flag.
+Any occurance of <code>...</code> in the <code>sentence</code> is
+converted to ellipses. In <code>detailed = true</code> mode, it
+tags every token with its type; the supported tags are currency, email,
+emoji, emoticon, hashtag, number, ordinal, punctuation, quoted_phrase, symbol,
+time, mention, url, and word.</p>
 
 
   <div class='pre p1 fill-light mt0'>string.tokenize</div>
@@ -2582,8 +2589,26 @@ not touch apostrophe used to indicate possession.</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>str</span> <code class='quiet'>(<a href="#string">string</a>)</code>
+            <span class='code bold'>sentence</span> <code class='quiet'>(<a href="#string">string</a>)</code>
 	    — the input string.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>detailed</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>
+            = <code>false</code>)</code>
+	    — if true, each token is a object cotaining
+
+<code>value</code>
+ and 
+<code>tag</code>
+ of each token; otherwise each token is a string. It's default
+value of 
+<strong>false</strong>
+ ensures compatibility with previous version.
 
           </div>
           
@@ -2597,8 +2622,11 @@ not touch apostrophe used to indicate possession.</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>></code>:
-        of tokens.
+      <code>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>>)</code>:
+        an array of strings if 
+<code>detailed</code>
+ is false otherwise
+an array of objects.
 
       
     
@@ -2611,8 +2639,20 @@ not touch apostrophe used to indicate possession.</p>
     
       
       <pre class='p1 overflow-auto round fill-light'>tokenize( <span class="hljs-string">"someone's wallet, isn't it? I'll return!"</span> );
-<span class="hljs-comment">// -&gt; [ 'someone\'s', 'wallet', ',', 'is', 'not', 'it',</span>
-<span class="hljs-comment">//      '?', 'i', '\'ll', 'return', '!' ]</span></pre>
+<span class="hljs-comment">// -&gt; [ 'someone', '\'s', 'wallet', ',', 'is', 'n\'t', 'it', '?',</span>
+<span class="hljs-comment">//      'I', '\'ll', 'return', '!' ]</span>
+
+tokenize( <span class="hljs-string">'For details on wink, check out http://winkjs.org/ URL!'</span>, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// -&gt; [ { value: 'For', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'details', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'on', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'wink', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: ',', tag: 'punctuation' },</span>
+<span class="hljs-comment">//      { value: 'check', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'out', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'http://winkjs.org/', tag: 'url' },</span>
+<span class="hljs-comment">//      { value: 'URL', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: '!', tag: 'punctuation' } ]</span></pre>
     
   
 

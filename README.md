@@ -47,6 +47,20 @@ console.log( nlp.string.sentences( para ) );
 //      'I work for AI Inc.',
 //      'My mail is r2d2@yahoo.com' ]
 
+// Tokenize a sentence.
+var s = 'For details on wink, check out http://winkjs.org/ URL!';
+console.log( nlp.string.tokenize( s, true ) );
+// -> [ { value: 'For', tag: 'word' },
+//      { value: 'details', tag: 'word' },
+//      { value: 'on', tag: 'word' },
+//      { value: 'wink', tag: 'word' },
+//      { value: ',', tag: 'punctuation' },
+//      { value: 'check', tag: 'word' },
+//      { value: 'out', tag: 'word' },
+//      { value: 'http://winkjs.org/', tag: 'url' },
+//      { value: 'URL', tag: 'word' },
+//      { value: '!', tag: 'punctuation' } ]
+
 // Remove stop words:
 var t = nlp.tokens.removeWords( [ 'mary', 'had', 'a', 'little', 'lamb' ] );
 console.log( t );

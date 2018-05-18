@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "wink-helpers": "^1.4.0",
-    "wink-porter2-stemmer": "^1.0.8"
+    "wink-porter2-stemmer": "^1.0.8",
+    "wink-tokenizer": "^4.0.0"
   }
 }

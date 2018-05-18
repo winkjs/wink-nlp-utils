@@ -22,62 +22,52 @@
 //     If not, see <http://www.gnu.org/licenses/>.
 
 //
-var splitElisions = require( './string-split-elisions.js' );
-var amplifyNotElision = require( './string-amplify-not-elision.js' );
-var rgx = require( './util_regexes.js' );
+var winkTokenize = require( 'wink-tokenizer' )().tokenize;
 
 // ## string
 
 // ### tokenize
 /**
  *
- * The function uses the following set of rules to tokenize:
- *
- * 1. Single quotes are processed first as they may be part of elisions; and
- * `...` are converted to ellipses.
- * 2. `Not` elisions are amplified and then split on elisions. Thus words with elisions get tokenized.
- * 3. The word `cannot` is split in to `can not`.
- * 4. `. , -` punctuations that commonly embedded in numbers are left intact,
- * 5. All other punctuations are tokenized.
- * 6. The currency symbols are padded by space i.e. become separate tokens.
- * 7. Underscore (`_`) embedded in the word is preserved.
- * 8. Spacial characters are left untouched and may/may not become separate token.
- * 9. Finally after removing extra/leading/trailing spaces, split on space to tokenize.
+ * Tokenizes the input `sentence` according to the value of `detailed` flag.
+ * Any occurance of `...` in the `sentence` is
+ * converted to ellipses. In `detailed = true` mode, it
+ * tags every token with its type; the supported tags are currency, email,
+ * emoji, emoticon, hashtag, number, ordinal, punctuation, quoted_phrase, symbol,
+ * time, mention, url, and word.
  *
  * @name string.tokenize
- * @param {string} str — the input string.
- * @return {string[]} of tokens.
+ * @param {string} sentence — the input string.
+ * @param {boolean} [detailed=false] — if true, each token is a object cotaining
+ * `value` and `tag` of each token; otherwise each token is a string. It's default
+ * value of **false** ensures compatibility with previous version.
+ * @return {(string[]|object[])} an array of strings if `detailed` is false otherwise
+ * an array of objects.
  * @example
  * tokenize( "someone's wallet, isn't it? I'll return!" );
- * // -> [ 'someone\'s', 'wallet', ',', 'is', 'not', 'it',
- * //      '?', 'i', '\'ll', 'return', '!' ]
+ * // -> [ 'someone', '\'s', 'wallet', ',', 'is', 'n\'t', 'it', '?',
+ * //      'I', '\'ll', 'return', '!' ]
+ *
+ * tokenize( 'For details on wink, check out http://winkjs.org/ URL!', true );
+ * // -> [ { value: 'For', tag: 'word' },
+ * //      { value: 'details', tag: 'word' },
+ * //      { value: 'on', tag: 'word' },
+ * //      { value: 'wink', tag: 'word' },
+ * //      { value: ',', tag: 'punctuation' },
+ * //      { value: 'check', tag: 'word' },
+ * //      { value: 'out', tag: 'word' },
+ * //      { value: 'http://winkjs.org/', tag: 'url' },
+ * //      { value: 'URL', tag: 'word' },
+ * //      { value: '!', tag: 'punctuation' } ]
  */
-var tokenize = function ( str ) {
-  // Handle single quotes first & ellipses.
-  var su = str
-            // > TODO: promote to regex utils after adding more test cases
-            .replace( /(^|[^a-z0-9])(\’|\')/gi, '$1 $2 ')
-            .replace( /([a-z0-9])(\’|\')(\W)/gi, '$1 $2 $3')
-            .replace( '...', '…' )
-            .replace( '…', ' … ' );
-  var tokens = splitElisions( amplifyNotElision( su ) )
-            // Handle cannot.
-            .replace( rgx.cannot, '$1 $2' )
-            // Separate out punctuations that are not part of a number.
-            .replace( rgx.nonNumPunctuations, ' $& ' )
-            // Separate out all other punctuations.
-            .replace( /[\‘\’\`\“\”\"\[\]\(\)\{\}\…\!\;\?\/\:]/ig, ' $& ' )
-            // Separate out currency symbol; all separated stuff becomes a token.
-            .replace( rgx.currency, ' $& ')
-            .replace( rgx.spaces, ' ' )
-            .trim()
-            // Handle period sign in the end specially.
-            .replace( /\.$/, ' .' )
-            // Now tokenize on space!
-            .split( ' ' );
-  // Splitting an empty string on space leaves an empty string in the array,
-  // get rid of it.
-  return ( ( tokens.length === 1 && tokens[ 0 ] === '' ) ? [] : tokens );
+var tokenize = function ( sentence, detailed ) {
+  var tokens = winkTokenize( sentence.replace( '...', '…' ) );
+  var i;
+  if ( !detailed ) {
+    for ( i = 0; i < tokens.length; i += 1 ) tokens[ i ] = tokens[ i ].value;
+  }
+
+  return tokens;
 }; // tokenize()
 
 module.exports = tokenize;

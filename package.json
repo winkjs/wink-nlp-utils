@@ -36,17 +36,17 @@
   "homepage": "http://winkjs.org/",
   "devDependencies": {
     "chai": "^4.1.2",
-    "coveralls": "^3.0.0",
+    "coveralls": "^3.0.1",
     "docker": "^1.0.0",
-    "documentation": "^6.1.0",
+    "documentation": "^6.3.3",
     "eslint": "^4.19.1",
     "istanbul": "^0.4.5",
     "jshint": "^2.9.5",
-    "mocha": "^5.0.5",
+    "mocha": "^5.1.1",
     "mocha-lcov-reporter": "^1.3.0"
   },
   "dependencies": {
-    "wink-helpers": "^1.3.0",
+    "wink-helpers": "^1.4.0",
     "wink-porter2-stemmer": "^1.0.8"
   }
 }

@@ -375,9 +375,9 @@
               
                 
                 <li><a
-                  href='#tokenssoundex'
+                  href='#tokenssetofwords'
                   class="">
-                  tokens.soundex
+                  tokens.setOfWords
                   
                 </a>
                 
@@ -385,9 +385,9 @@
               
                 
                 <li><a
-                  href='#tokenssow'
+                  href='#tokenssoundex'
                   class="">
-                  tokens.sow
+                  tokens.soundex
                   
                 </a>
                 
@@ -3479,94 +3479,18 @@ Custom stop words can be created using
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='tokenssoundex'>
-      tokens.soundex
+    <h3 class='fl m0' id='tokenssetofwords'>
+      tokens.setOfWords
     </h3>
     
     
   </div>
   
 
-  <p>Generates the soundex coded tokens from the input tokens.</p>
+  <p>Generates the set of words from the input string. It also has an alias <strong><code>setOfWords()</code></strong>.</p>
 
 
-  <div class='pre p1 fill-light mt0'>tokens.soundex</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>tokens</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>>)</code>
-	    — the input tokens.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>></code>:
-        soundex coded tokens.
-
-      
-    
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>soundex( [ <span class="hljs-string">'he'</span>, <span class="hljs-string">'acted'</span>, <span class="hljs-string">'decisively'</span>, <span class="hljs-string">'today'</span> ] );
-<span class="hljs-comment">// -&gt; [ 'H000', 'A233', 'D221', 'T300' ]</span></pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-          
-        
-          
-            <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='tokenssow'>
-      tokens.sow
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Generates the <strong>s</strong>et <strong>o</strong>f <strong>w</strong>ords from the input string.</p>
-
-
-  <div class='pre p1 fill-light mt0'>tokens.sow</div>
+  <div class='pre p1 fill-light mt0'>tokens.setOfWords</div>
   
   
 
@@ -3649,8 +3573,84 @@ function.
     <div class='py1 quiet mt1 prose-big'>Example</div>
     
       
-      <pre class='p1 overflow-auto round fill-light'>sow( [ <span class="hljs-string">'rain'</span>, <span class="hljs-string">'rain'</span>, <span class="hljs-string">'go'</span>, <span class="hljs-string">'away'</span> ] );
+      <pre class='p1 overflow-auto round fill-light'>setOfWords( [ <span class="hljs-string">'rain'</span>, <span class="hljs-string">'rain'</span>, <span class="hljs-string">'go'</span>, <span class="hljs-string">'away'</span> ] );
 <span class="hljs-comment">// -&gt; Set { 'rain', 'go', 'away' }</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='tokenssoundex'>
+      tokens.soundex
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Generates the soundex coded tokens from the input tokens.</p>
+
+
+  <div class='pre p1 fill-light mt0'>tokens.soundex</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>tokens</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>>)</code>
+	    — the input tokens.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>></code>:
+        soundex coded tokens.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>soundex( [ <span class="hljs-string">'he'</span>, <span class="hljs-string">'acted'</span>, <span class="hljs-string">'decisively'</span>, <span class="hljs-string">'today'</span> ] );
+<span class="hljs-comment">// -&gt; [ 'H000', 'A233', 'D221', 'T300' ]</span></pre>
     
   
 

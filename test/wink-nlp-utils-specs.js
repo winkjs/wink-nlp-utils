@@ -846,7 +846,7 @@ describe( 'tokens.sow()', function () {
   it( 'indexer result should return an index', function () {
     var sowIndex = prepare.helper.index();
     prepare.tokens.sow( [ 'apple', 'is', 'a', 'company' ], sowIndex.build, 0 );
-    prepare.tokens.sow( [ 'apple', 'is', 'a', 'fruit' ], sowIndex.build, 1 );
+    prepare.tokens.setOfWords( [ 'apple', 'is', 'a', 'fruit' ], sowIndex.build, 1 );
     var result = sowIndex.result();
     expect( result ).to.deep.equal( { a: [ 0, 1 ], apple: [ 0, 1 ], is: [ 0, 1 ], company: [ 0 ], fruit: [ 1 ] } );
   } );

@@ -35,8 +35,8 @@ toc:
   - tokens.phonetize
   - tokens.propagateNegations
   - tokens.removeWords
+  - tokens.setOfWords
   - tokens.soundex
-  - tokens.sow
   - tokens.stem
   - name: helper
   - helper.returnIndexer

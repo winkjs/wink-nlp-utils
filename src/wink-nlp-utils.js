@@ -125,6 +125,7 @@ prepare.tokens.bow = require( './tokens-bow.js' );
 prepare.tokens.bagOfWords = require( './tokens-bow.js' );
 // SOW
 prepare.tokens.sow = require( './tokens-sow.js' );
+prepare.tokens.setOfWords = require( './tokens-sow.js' );
 // Propagate Negations
 prepare.tokens.propagateNegations = require( './tokens-propagate-negations.js' );
 // Bigrams

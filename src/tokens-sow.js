@@ -28,9 +28,9 @@
 // ### bow
 /**
  *
- * Generates the **s**et **o**f **w**ords from the input string.
+ * Generates the set of words from the input string. It also has an alias **`setOfWords()`**.
  *
- * @name tokens.sow
+ * @name tokens.setOfWords
  * @param {string[]} tokens — the input tokens.
  * @param {function} [ifn=undefined] — a function to build index; it is called for
  * every **member word of the set **; and it receives the word and the `idx`
@@ -40,7 +40,7 @@
  * function.
  * @return {set} of words from tokens.
  * @example
- * sow( [ 'rain', 'rain', 'go', 'away' ] );
+ * setOfWords( [ 'rain', 'rain', 'go', 'away' ] );
  * // -> Set { 'rain', 'go', 'away' }
  */
 var sow = function ( tokens, ifn, idx ) {

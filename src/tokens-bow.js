@@ -28,11 +28,11 @@
 // ### bow
 /**
  *
- * Generates the **b**ag **o**f **w**ords from the input string. By default it
+ * Generates the bag of words from the input string. By default it
  * uses `word count` as it's frequency; but if `logCounts` parameter is set to true then
- * it will use `log2( word counts + 1 )` as it's frequency.
+ * it will use `log2( word counts + 1 )` as it's frequency. It also has an alias **`bow()`**.
  *
- * @name tokens.bow
+ * @name tokens.bagOfWords
  * @param {string[]} tokens — the input tokens.
  * @param {number} [logCounts=false] — a true value flags the use of `log2( word count + 1 )`
  * instead of just `word count` as frequency.
@@ -44,7 +44,7 @@
  * function.
  * @return {object} bag of words from tokens.
  * @example
- * bow( [ 'rain', 'rain', 'go', 'away' ] );
+ * bagOfWords( [ 'rain', 'rain', 'go', 'away' ] );
  * // -> { rain: 2, go: 1, away: 1 }
  * bow( [ 'rain', 'rain', 'go', 'away' ], true );
  * // -> { rain: 1.584962500721156, go: 1, away: 1 }

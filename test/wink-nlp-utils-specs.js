@@ -818,7 +818,7 @@ describe( 'prepare.tokens.bow()', function () {
   it( 'indexer result should return an index of 2-grams of rachna & archna', function () {
     var bowIndex = prepare.helper.index();
     prepare.tokens.bow( [ 'mary', 'had', 'a', 'lamb' ], false, bowIndex.build, 0 );
-    prepare.tokens.bow( [ 'blue', 'lamb', 'white', 'lamb' ], false, bowIndex.build, 1 );
+    prepare.tokens.bagOfWords( [ 'blue', 'lamb', 'white', 'lamb' ], false, bowIndex.build, 1 );
     var result = bowIndex.result();
     expect( result ).to.deep.equal( { blue: [ 1 ], mary: [ 0 ], lamb: [ 0, 1 ], a: [ 0 ], had: [ 0 ], white: [ 1 ] } );
   } );

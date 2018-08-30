@@ -122,6 +122,7 @@ prepare.tokens.soundex = require( './tokens-soundex.js' );
 prepare.tokens.removeWords = require( './tokens-remove-words.js' );
 // BOW
 prepare.tokens.bow = require( './tokens-bow.js' );
+prepare.tokens.bagOfWords = require( './tokens-bow.js' );
 // SOW
 prepare.tokens.sow = require( './tokens-sow.js' );
 // Propagate Negations

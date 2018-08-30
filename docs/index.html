@@ -325,9 +325,9 @@
               
                 
                 <li><a
-                  href='#tokensbigrams'
+                  href='#tokensbagofwords'
                   class="">
-                  tokens.bigrams
+                  tokens.bagOfWords
                   
                 </a>
                 
@@ -335,9 +335,9 @@
               
                 
                 <li><a
-                  href='#tokensbow'
+                  href='#tokensbigrams'
                   class="">
-                  tokens.bow
+                  tokens.bigrams
                   
                 </a>
                 
@@ -3001,98 +3001,20 @@ however negations are retained and amplified.</p>
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='tokensbigrams'>
-      tokens.bigrams
+    <h3 class='fl m0' id='tokensbagofwords'>
+      tokens.bagOfWords
     </h3>
     
     
   </div>
   
 
-  <p>Generates bigrams from the input tokens.</p>
-
-
-  <div class='pre p1 fill-light mt0'>tokens.bigrams</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>tokens</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>>)</code>
-	    — the input tokens.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>></code>:
-        the bigrams.
-
-      
-    
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>bigrams( [ <span class="hljs-string">'he'</span>, <span class="hljs-string">'acted'</span>, <span class="hljs-string">'decisively'</span>, <span class="hljs-string">'today'</span> ] );
-<span class="hljs-comment">// -&gt; [ [ 'he', 'acted' ],</span>
-<span class="hljs-comment">//      [ 'acted', 'decisively' ],</span>
-<span class="hljs-comment">//      [ 'decisively', 'today' ] ]</span></pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-          
-        
-          
-            <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='tokensbow'>
-      tokens.bow
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Generates the <strong>b</strong>ag <strong>o</strong>f <strong>w</strong>ords from the input string. By default it
+  <p>Generates the bag of words from the input string. By default it
 uses <code>word count</code> as it's frequency; but if <code>logCounts</code> parameter is set to true then
-it will use <code>log2( word counts + 1 )</code> as it's frequency.</p>
+it will use <code>log2( word counts + 1 )</code> as it's frequency. It also has an alias <strong><code>bow()</code></strong>.</p>
 
 
-  <div class='pre p1 fill-light mt0'>tokens.bow</div>
+  <div class='pre p1 fill-light mt0'>tokens.bagOfWords</div>
   
   
 
@@ -3192,10 +3114,88 @@ function.
     <div class='py1 quiet mt1 prose-big'>Example</div>
     
       
-      <pre class='p1 overflow-auto round fill-light'>bow( [ <span class="hljs-string">'rain'</span>, <span class="hljs-string">'rain'</span>, <span class="hljs-string">'go'</span>, <span class="hljs-string">'away'</span> ] );
+      <pre class='p1 overflow-auto round fill-light'>bagOfWords( [ <span class="hljs-string">'rain'</span>, <span class="hljs-string">'rain'</span>, <span class="hljs-string">'go'</span>, <span class="hljs-string">'away'</span> ] );
 <span class="hljs-comment">// -&gt; { rain: 2, go: 1, away: 1 }</span>
 bow( [ <span class="hljs-string">'rain'</span>, <span class="hljs-string">'rain'</span>, <span class="hljs-string">'go'</span>, <span class="hljs-string">'away'</span> ], <span class="hljs-literal">true</span> );
 <span class="hljs-comment">// -&gt; { rain: 1.584962500721156, go: 1, away: 1 }</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='tokensbigrams'>
+      tokens.bigrams
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Generates bigrams from the input tokens.</p>
+
+
+  <div class='pre p1 fill-light mt0'>tokens.bigrams</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>tokens</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>>)</code>
+	    — the input tokens.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#string">string</a>></code>:
+        the bigrams.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>bigrams( [ <span class="hljs-string">'he'</span>, <span class="hljs-string">'acted'</span>, <span class="hljs-string">'decisively'</span>, <span class="hljs-string">'today'</span> ] );
+<span class="hljs-comment">// -&gt; [ [ 'he', 'acted' ],</span>
+<span class="hljs-comment">//      [ 'acted', 'decisively' ],</span>
+<span class="hljs-comment">//      [ 'decisively', 'today' ] ]</span></pre>
     
   
 

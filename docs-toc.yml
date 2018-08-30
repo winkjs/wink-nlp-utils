@@ -30,8 +30,8 @@ toc:
   - string.upperCase
   - name: tokens
   - tokens.appendBigrams
+  - tokens.bagOfWords
   - tokens.bigrams
-  - tokens.bow
   - tokens.phonetize
   - tokens.propagateNegations
   - tokens.removeWords

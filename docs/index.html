@@ -55,9 +55,9 @@
               
                 
                 <li><a
-                  href='#stringbong'
+                  href='#stringbagofngrams'
                   class="">
-                  string.bong
+                  string.bagOfNGrams
                   
                 </a>
                 
@@ -492,7 +492,7 @@
   
     <h1>wink-nlp-utils</h1>
 <p>NLP Functions for amplifying negations, managing elisions, creating ngrams, stems, phonetic codes to tokens and more.</p>
-<h3><a href="https://travis-ci.org/winkjs/wink-nlp-utils"><img src="https://api.travis-ci.org/winkjs/wink-nlp-utils.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/winkjs/wink-nlp-utils?branch=master"><img src="https://coveralls.io/repos/github/winkjs/wink-nlp-utils/badge.svg?branch=master" alt="Coverage Status"></a> <a href="http://inch-ci.org/github/winkjs/wink-nlp-utils"><img src="http://inch-ci.org/github/winkjs/wink-nlp-utils.svg?branch=master" alt="Inline docs"></a> <a href="https://david-dm.org/winkjs/wink-nlp-utils"><img src="https://david-dm.org/winkjs/wink-nlp-utils/status.svg" alt="dependencies Status"></a> <a href="https://david-dm.org/winkjs/wink-nlp-utils?type=dev"><img src="https://david-dm.org/winkjs/wink-nlp-utils/dev-status.svg" alt="devDependencies Status"></a></h3>
+<h3><a href="https://travis-ci.org/winkjs/wink-nlp-utils"><img src="https://api.travis-ci.org/winkjs/wink-nlp-utils.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/winkjs/wink-nlp-utils?branch=master"><img src="https://coveralls.io/repos/github/winkjs/wink-nlp-utils/badge.svg?branch=master" alt="Coverage Status"></a> <a href="http://inch-ci.org/github/winkjs/wink-nlp-utils"><img src="http://inch-ci.org/github/winkjs/wink-nlp-utils.svg?branch=master" alt="Inline docs"></a> <a href="https://david-dm.org/winkjs/wink-nlp-utils"><img src="https://david-dm.org/winkjs/wink-nlp-utils/status.svg" alt="dependencies Status"></a> <a href="https://david-dm.org/winkjs/wink-nlp-utils?type=dev"><img src="https://david-dm.org/winkjs/wink-nlp-utils/dev-status.svg" alt="devDependencies Status"></a> <a href="https://gitter.im/winkjs/Lobby"><img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" alt="Gitter"></a></h3>
 <p><a href="http://wink.org.in/"><img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" ></a></p>
 <p>Prepare raw text for Natural Language Processing (NLP) using <strong><code>wink-nlp-utils</code></strong>.It is a part of <a href="http://wink.org.in/">wink</a> — a growing family of high quality packages for Statistical Analysis, Natural Language Processing and Machine Learning in NodeJS.</p>
 <p>It offers a set of <a href="http://wink.org.in/wink-nlp-utils/">APIs</a> to work on <a href="http://wink.org.in/wink-nlp-utils/#string">strings</a> such as names, sentences, paragraphs and <a href="http://wink.org.in/wink-nlp-utils/#tokens">tokens</a> represented as an array of strings/words. They perform the required pre-processing for many ML tasks such as <a href="https://www.npmjs.com/package/wink-bm25-text-search">semantic search</a>, and <a href="https://www.npmjs.com/package/wink-naive-bayes-text-classifier">classification</a>.</p>
@@ -654,19 +654,20 @@ becomes <code>is not</code>.</p>
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='stringbong'>
-      string.bong
+    <h3 class='fl m0' id='stringbagofngrams'>
+      string.bagOfNGrams
     </h3>
     
     
   </div>
   
 
-  <p>Generates the <strong>b</strong>ag <strong>o</strong>f <strong>ng</strong>rams of <code>size</code> from the input string. The
-default size is 2, which means it will generate bag of bigrams by default.</p>
+  <p>Generates the bag of ngrams of <code>size</code> from the input string. The
+default size is 2, which means it will generate bag of bigrams by default. It
+also has an alias <strong><code>bong()</code></strong>.</p>
 
 
-  <div class='pre p1 fill-light mt0'>string.bong</div>
+  <div class='pre p1 fill-light mt0'>string.bagOfNGrams</div>
   
   
 
@@ -765,7 +766,7 @@ function.
     <div class='py1 quiet mt1 prose-big'>Example</div>
     
       
-      <pre class='p1 overflow-auto round fill-light'>bong( <span class="hljs-string">'mama'</span> );
+      <pre class='p1 overflow-auto round fill-light'>bagOfNGrams( <span class="hljs-string">'mama'</span> );
 <span class="hljs-comment">// -&gt; { ma: 2, am: 1 }</span>
 bong( <span class="hljs-string">'mamma'</span> );
 <span class="hljs-comment">// -&gt; { ma: 2, am: 1, mm: 1 }</span></pre>

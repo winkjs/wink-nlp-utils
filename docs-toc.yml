@@ -3,7 +3,7 @@ toc:
     file: README.md
   - name: string
   - string.amplifyNotElision
-  - string.bong
+  - string.bagOfNGrams
   - string.composeCorpus
   - string.edgeNGrams
   - string.extractPersonsName

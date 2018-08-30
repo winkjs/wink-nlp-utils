@@ -87,6 +87,7 @@ prepare.string.ngrams = require( './string-ngram.js' );
 prepare.string.edgeNGrams = require( './string-edge-ngrams.js' );
 // BONG
 prepare.string.bong = require( './string-bong.js' );
+prepare.string.bagOfNGrams = require( './string-bong.js' );
 // SONG
 prepare.string.song = require( './string-song.js' );
 // Sentences

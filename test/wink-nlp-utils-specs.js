@@ -473,7 +473,7 @@ describe( 'string.bong()', function () {
   it( 'indexer result should return an index of 2-grams of rachna & archna', function () {
     var bongIndex = prepare.helper.index();
     prepare.string.bong( 'mamma', 2, bongIndex.build, 0 );
-    prepare.string.bong( 'mama', 2, bongIndex.build, 1 );
+    prepare.string.bagOfNGrams( 'mama', 2, bongIndex.build, 1 );
     var result = bongIndex.result();
     expect( result ).to.deep.equal( { ma: [ 0, 1 ], am: [ 0, 1 ], mm: [ 0 ] } );
   } );

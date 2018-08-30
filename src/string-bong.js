@@ -28,10 +28,11 @@
 // ### bong
 /**
  *
- * Generates the **b**ag **o**f **ng**rams of `size` from the input string. The
- * default size is 2, which means it will generate bag of bigrams by default.
+ * Generates the bag of ngrams of `size` from the input string. The
+ * default size is 2, which means it will generate bag of bigrams by default. It
+ * also has an alias **`bong()`**.
  *
- * @name string.bong
+ * @name string.bagOfNGrams
  * @param {string} str — the input string.
  * @param {number} [size=2] — ngram size.
  * @param {function} [ifn=undefined] — a function to build index; it is called for
@@ -42,7 +43,7 @@
  * function.
  * @return {object} bag of ngrams of `size` from `str`.
  * @example
- * bong( 'mama' );
+ * bagOfNGrams( 'mama' );
  * // -> { ma: 2, am: 1 }
  * bong( 'mamma' );
  * // -> { ma: 2, am: 1, mm: 1 }

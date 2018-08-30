@@ -8,6 +8,7 @@
   <link href='assets/style.css' type='text/css' rel='stylesheet' />
   <link href='assets/github.css' type='text/css' rel='stylesheet' />
   <link href='assets/split.css' type='text/css' rel='stylesheet' />
+  <meta name='description' content='NLP Functions for amplifying negations, managing elisions, creating ngrams, stems, phonetic codes to tokens and more.'>
 </head>
 <body class='documentation m0'>
     <div class='flex'>
@@ -483,14 +484,15 @@
       <div id='split-right' class='relative overflow-auto height-viewport-100'>
         
           
-            <div class='keyline-top-not py2'><section class='py2 clearfix'>
+            <div class='keyline-top-not py2'>
+  <section class='py2 clearfix'>
 
-  <h2 id='introduction' class='mt0'>
-    Introduction
-  </h2>
+    <h2 id='introduction' class='mt0'>
+      Introduction
+    </h2>
 
-  
-    <h1>wink-nlp-utils</h1>
+    
+      <h1>wink-nlp-utils</h1>
 <p>NLP Functions for amplifying negations, managing elisions, creating ngrams, stems, phonetic codes to tokens and more.</p>
 <h3><a href="https://travis-ci.org/winkjs/wink-nlp-utils"><img src="https://api.travis-ci.org/winkjs/wink-nlp-utils.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/winkjs/wink-nlp-utils?branch=master"><img src="https://coveralls.io/repos/github/winkjs/wink-nlp-utils/badge.svg?branch=master" alt="Coverage Status"></a> <a href="http://inch-ci.org/github/winkjs/wink-nlp-utils"><img src="http://inch-ci.org/github/winkjs/wink-nlp-utils.svg?branch=master" alt="Inline docs"></a> <a href="https://david-dm.org/winkjs/wink-nlp-utils"><img src="https://david-dm.org/winkjs/wink-nlp-utils/status.svg" alt="dependencies Status"></a> <a href="https://david-dm.org/winkjs/wink-nlp-utils?type=dev"><img src="https://david-dm.org/winkjs/wink-nlp-utils/dev-status.svg" alt="devDependencies Status"></a> <a href="https://gitter.im/winkjs/Lobby"><img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" alt="Gitter"></a></h3>
 <p><a href="http://wink.org.in/"><img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" ></a></p>
@@ -551,28 +553,176 @@
 <p>It is licensed under the under the terms of the GNU Affero General Public License as published by the Free
 Software Foundation, version 3 of the License.</p>
 
-  
-</section>
-</div>
-          
-        
-          
-            <div class='keyline-top-not py2'><section class='py2 clearfix'>
-
-  <h2 id='string' class='mt0'>
-    string
-  </h2>
-
-  
     
+  </section>
+</div>
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='introduction'>
+      Introduction
+    </h3>
+    
+    
+  </div>
+  
+
+  <h1>wink-nlp-utils</h1>
+<p>NLP Functions for amplifying negations, managing elisions, creating ngrams, stems, phonetic codes to tokens and more.</p>
+<h3><a href="https://travis-ci.org/winkjs/wink-nlp-utils"><img src="https://api.travis-ci.org/winkjs/wink-nlp-utils.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/winkjs/wink-nlp-utils?branch=master"><img src="https://coveralls.io/repos/github/winkjs/wink-nlp-utils/badge.svg?branch=master" alt="Coverage Status"></a> <a href="http://inch-ci.org/github/winkjs/wink-nlp-utils"><img src="http://inch-ci.org/github/winkjs/wink-nlp-utils.svg?branch=master" alt="Inline docs"></a> <a href="https://david-dm.org/winkjs/wink-nlp-utils"><img src="https://david-dm.org/winkjs/wink-nlp-utils/status.svg" alt="dependencies Status"></a> <a href="https://david-dm.org/winkjs/wink-nlp-utils?type=dev"><img src="https://david-dm.org/winkjs/wink-nlp-utils/dev-status.svg" alt="devDependencies Status"></a> <a href="https://gitter.im/winkjs/Lobby"><img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" alt="Gitter"></a></h3>
+<p><a href="http://wink.org.in/"><img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" ></a></p>
+<p>Prepare raw text for Natural Language Processing (NLP) using <strong><code>wink-nlp-utils</code></strong>. It is a part of <a href="http://wink.org.in/">wink</a> — a growing family of high quality packages for Statistical Analysis, Natural Language Processing and Machine Learning in NodeJS.</p>
+<p>It offers a set of <a href="http://wink.org.in/wink-nlp-utils/">APIs</a> to work on <a href="http://wink.org.in/wink-nlp-utils/#string">strings</a> such as names, sentences, paragraphs and <a href="http://wink.org.in/wink-nlp-utils/#tokens">tokens</a> represented as an array of strings/words. They perform the required pre-processing for many ML tasks such as <a href="https://www.npmjs.com/package/wink-bm25-text-search">semantic search</a>, and <a href="https://www.npmjs.com/package/wink-naive-bayes-text-classifier">classification</a>.</p>
+<h2>Installation</h2>
+<p>Use <a href="https://www.npmjs.com/package/wink-nlp-utils">npm</a> to install:</p>
+<pre><code>npm install wink-nlp-utils --save
+</code></pre>
+<h2>Getting Started</h2>
+<pre class='hljs'><span class="hljs-comment">// Load wink-nlp-utils</span>
+<span class="hljs-keyword">var</span> nlp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'wink-nlp-utils'</span> );
+
+<span class="hljs-comment">// Extract person's name from a string:</span>
+<span class="hljs-keyword">var</span> name = nlp.string.extractPersonsName( <span class="hljs-string">'Dr. Sarah Connor M. Tech., PhD. - AI'</span> );
+<span class="hljs-built_in">console</span>.log( name );
+<span class="hljs-comment">// -&gt; 'Sarah Connor'</span>
+
+<span class="hljs-comment">// Compose all possible sentences from a string:</span>
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'[I] [am having|have] [a] [problem|question]'</span>;
+<span class="hljs-built_in">console</span>.log( nlp.string.composeCorpus( str ) );
+<span class="hljs-comment">// -&gt; [ 'I am having a problem',</span>
+<span class="hljs-comment">// -&gt;   'I am having a question',</span>
+<span class="hljs-comment">// -&gt;   'I have a problem',</span>
+<span class="hljs-comment">// -&gt;   'I have a question' ]</span>
+
+<span class="hljs-comment">// Sentence Boundary Detection.</span>
+<span class="hljs-keyword">var</span> para = <span class="hljs-string">'AI Inc. is focussing on AI. I work for AI Inc. My mail is r2d2@yahoo.com'</span>;
+<span class="hljs-built_in">console</span>.log( nlp.string.sentences( para ) );
+<span class="hljs-comment">// -&gt; [ 'AI Inc. is focussing on AI.',</span>
+<span class="hljs-comment">//      'I work for AI Inc.',</span>
+<span class="hljs-comment">//      'My mail is r2d2@yahoo.com' ]</span>
+
+<span class="hljs-comment">// Tokenize a sentence.</span>
+<span class="hljs-keyword">var</span> s = <span class="hljs-string">'For details on wink, check out http://winkjs.org/ URL!'</span>;
+<span class="hljs-built_in">console</span>.log( nlp.string.tokenize( s, <span class="hljs-literal">true</span> ) );
+<span class="hljs-comment">// -&gt; [ { value: 'For', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'details', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'on', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'wink', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: ',', tag: 'punctuation' },</span>
+<span class="hljs-comment">//      { value: 'check', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'out', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: 'http://winkjs.org/', tag: 'url' },</span>
+<span class="hljs-comment">//      { value: 'URL', tag: 'word' },</span>
+<span class="hljs-comment">//      { value: '!', tag: 'punctuation' } ]</span>
+
+<span class="hljs-comment">// Remove stop words:</span>
+<span class="hljs-keyword">var</span> t = nlp.tokens.removeWords( [ <span class="hljs-string">'mary'</span>, <span class="hljs-string">'had'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'little'</span>, <span class="hljs-string">'lamb'</span> ] );
+<span class="hljs-built_in">console</span>.log( t );
+<span class="hljs-comment">// -&gt; [ 'mary', 'little', 'lamb' ]</span></pre>
+<h3>Documentation</h3>
+<p>Check out the <a href="http://wink.org.in/wink-nlp-utils/">wink NLP utilities API</a> documentation to learn more.</p>
+<h2>Need Help?</h2>
+<p>If you spot a bug and the same has not yet been reported, raise a new <a href="https://github.com/winkjs/wink-nlp-utils/issues">issue</a> or consider fixing it and sending a pull request.</p>
+<h2>Copyright &#x26; License</h2>
+<p><strong>wink-nlp-utils</strong> is copyright 2017-18 <a href="http://graype.in/">GRAYPE Systems Private Limited</a>.</p>
+<p>It is licensed under the under the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, version 3 of the License.</p>
+
+ 
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 </section>
-</div>
-          
+
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+            <div class='keyline-top-not py2'>
+  <section class='py2 clearfix'>
+
+    <h2 id='string' class='mt0'>
+      string
+    </h2>
+
+    
+      
+
+    
+  </section>
+</div>
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='string'>
+      string
+    </h3>
+    
+    
+  </div>
+  
+
+  
+
+ 
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -588,8 +738,10 @@ Software Foundation, version 3 of the License.</p>
   <p>Amplifies the not elision by converting it into not; for example <code>isn't</code>
 becomes <code>is not</code>.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.amplifyNotElision</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.amplifyNotElision</div>
+   
   
   
 
@@ -646,10 +798,9 @@ becomes <code>is not</code>.</p>
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -666,8 +817,10 @@ becomes <code>is not</code>.</p>
 default size is 2, which means it will generate bag of bigrams by default. It
 also has an alias <strong><code>bong()</code></strong>.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.bagOfNGrams</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.bagOfNGrams</div>
+   
   
   
 
@@ -780,10 +933,9 @@ bong( <span class="hljs-string">'mamma'</span> );
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -804,8 +956,10 @@ example below:<br/>
 (if any) must be separated by a <code>|</code> character. The corpus is composed by
 computing the cartesian product of all the phrases.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.composeCorpus</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.composeCorpus</div>
+   
   
   
 
@@ -865,10 +1019,9 @@ computing the cartesian product of all the phrases.</p>
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -883,8 +1036,10 @@ computing the cartesian product of all the phrases.</p>
 
   <p>Generates the edge ngrams from the input string.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.edgeNGrams</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.edgeNGrams</div>
+   
   
   
 
@@ -1011,10 +1166,9 @@ edgeNGrams( <span class="hljs-string">'decisively'</span>, <span class="hljs-num
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -1032,8 +1186,10 @@ It assmues the following name format:<br/>
 <code>[&#x3C;salutations>] &#x3C;name part as FN [MN] [LN]> [&#x3C;degrees>]</code><br/>
 Entities in square brackets are optional.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.extractPersonsName</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.extractPersonsName</div>
+   
   
   
 
@@ -1090,10 +1246,9 @@ Entities in square brackets are optional.</p>
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -1109,8 +1264,10 @@ Entities in square brackets are optional.</p>
   <p>Extracts the array of text appearing as Title Case or in ALL CAPS from the
 input string.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.extractRunOfCapitalWords</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.extractRunOfCapitalWords</div>
+   
   
   
 
@@ -1170,10 +1327,9 @@ text is found then
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -1188,8 +1344,10 @@ text is found then
 
   <p>Converts the input string to lower case.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.lowerCase</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.lowerCase</div>
+   
   
   
 
@@ -1246,10 +1404,9 @@ text is found then
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -1267,8 +1424,10 @@ and joined back as a string again. Marker is a quick and aggressive way
 to detect similarity between short strings. Its aggression may lead to more
 false positives such as <code>Meter</code> and <code>Metre</code> or <code>no melon</code> and <code>no lemon</code>.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.marker</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.marker</div>
+   
   
   
 
@@ -1325,10 +1484,9 @@ false positives such as <code>Meter</code> and <code>Metre</code> or <code>no me
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -1344,8 +1502,10 @@ false positives such as <code>Meter</code> and <code>Metre</code> or <code>no me
   <p>Generates an array of ngrams of a specified size from the input string. The
 default size is 2, which means it will generate bigrams by default.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.ngram</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.ngram</div>
+   
   
   
 
@@ -1420,10 +1580,9 @@ ngram( <span class="hljs-string">'FRANCE'</span>, <span class="hljs-number">3</s
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -1439,8 +1598,10 @@ ngram( <span class="hljs-string">'FRANCE'</span>, <span class="hljs-number">3</s
   <p>Phonetizes the input string using an algorithmic adaptation of Metaphone; It
 is not an exact implementation of Metaphone.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.phonetize</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.phonetize</div>
+   
   
   
 
@@ -1501,10 +1662,9 @@ phonetize( <span class="hljs-string">'phenomenon'</span> );
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -1521,8 +1681,10 @@ phonetize( <span class="hljs-string">'phenomenon'</span> );
 are <code>it's, let's, where's, I'd, I'm, I'll, I've, and Isn't</code> etc. Note it retains
 apostrophe used to indicate possession.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.removeElisions</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.removeElisions</div>
+   
   
   
 
@@ -1579,10 +1741,9 @@ apostrophe used to indicate possession.</p>
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -1598,8 +1759,10 @@ apostrophe used to indicate possession.</p>
   <p>Removes leading, trailing and any extra in-between whitespaces from the input
 string.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.removeExtraSpaces</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.removeExtraSpaces</div>
+   
   
   
 
@@ -1657,10 +1820,9 @@ whitespaces.
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -1677,8 +1839,10 @@ whitespaces.
 <p>Extra spaces, if required, may be removed using <a href="#stringremoveextraspaces">string.removeExtraSpaces</a>
 function.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.removeHTMLTags</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.removeHTMLTags</div>
+   
   
   
 
@@ -1735,10 +1899,9 @@ function.</p>
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -1756,8 +1919,10 @@ the following punctuations — <code>.,;!?:"!'... - () [] {}</code>.</p>
 <p>Extra spaces, if required, may be removed using <a href="#stringremoveextraspaces">string.removeExtraSpaces</a>
 function.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.removePunctuations</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.removePunctuations</div>
+   
   
   
 
@@ -1814,10 +1979,9 @@ function.</p>
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -1835,8 +1999,10 @@ the following special characters — <code>~@#%^*+=</code>.</p>
 <p>Extra spaces, if required, may be removed using <a href="#stringremoveextraspaces">string.removeExtraSpaces</a>
 function.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.removeSplChars</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.removeSplChars</div>
+   
   
   
 
@@ -1893,10 +2059,9 @@ function.</p>
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -1913,8 +2078,10 @@ function.</p>
 the input string, including leading, trailing and extra in-between
 whitespaces.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.retainAlphaNums</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.retainAlphaNums</div>
+   
   
   
 
@@ -1972,10 +2139,9 @@ leading, trailing and extra whitespaces.
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -1991,8 +2157,10 @@ leading, trailing and extra whitespaces.
   <p>Detects the sentence boundaries in the input <code>paragraph</code> and splits it into
 an array of sentence(s).</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.sentences</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.sentences</div>
+   
   
   
 
@@ -2056,10 +2224,9 @@ sentences( <span class="hljs-string">'U.S.A is my birth place. I was born on 06.
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -2076,8 +2243,10 @@ sentences( <span class="hljs-string">'U.S.A is my birth place. I was born on 06.
 in even more aggressive string matching using Jaccard or Tversky compared to
 <code>marker()</code>. It also has an alias <strong><code>soc()</code></strong>.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.setOfChars</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.setOfChars</div>
+   
   
   
 
@@ -2172,10 +2341,9 @@ function.
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -2192,8 +2360,10 @@ function.
 default size is 2, which means it will generate set of bigrams by default.
 It also has an alias <strong><code>song()</code></strong>.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.setOfNGrams</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.setOfNGrams</div>
+   
   
   
 
@@ -2306,10 +2476,9 @@ song( <span class="hljs-string">'mamma'</span> );
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -2324,8 +2493,10 @@ song( <span class="hljs-string">'mamma'</span> );
 
   <p>Produces the soundex code from the input <code>word</code>.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.soundex</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.soundex</div>
+   
   
   
 
@@ -2396,10 +2567,9 @@ soundex( <span class="hljs-string">'Burrows'</span> );
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -2416,8 +2586,10 @@ soundex( <span class="hljs-string">'Burrows'</span> );
 are <code>it's, let's, where's, I'd, I'm, I'll, I've, and Isn't</code> etc. Note it does
 not touch apostrophe used to indicate possession.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.splitElisions</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.splitElisions</div>
+   
   
   
 
@@ -2474,10 +2646,9 @@ not touch apostrophe used to indicate possession.</p>
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -2492,8 +2663,10 @@ not touch apostrophe used to indicate possession.</p>
 
   <p>Stems an inflected word using Porter2 stemming algorithm.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.stem</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.stem</div>
+   
   
   
 
@@ -2550,10 +2723,9 @@ not touch apostrophe used to indicate possession.</p>
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -2573,8 +2745,10 @@ tags every token with its type; the supported tags are currency, email,
 emoji, emoticon, hashtag, number, ordinal, punctuation, quoted_phrase, symbol,
 time, mention, url, and word.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.tokenize</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.tokenize</div>
+   
   
   
 
@@ -2665,10 +2839,9 @@ tokenize( <span class="hljs-string">'For details on wink, check out http://winkj
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -2686,8 +2859,10 @@ consists of only alphas, numerals and underscores; all other characters will
 be stripped as they are treated as separators. It also removes all elisions;
 however negations are retained and amplified.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.tokenize0</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.tokenize0</div>
+   
   
   
 
@@ -2744,10 +2919,9 @@ however negations are retained and amplified.</p>
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -2762,8 +2936,10 @@ however negations are retained and amplified.</p>
 
   <p>Trims leading and trailing whitespaces from the input string.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.trim</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.trim</div>
+   
   
   
 
@@ -2820,10 +2996,9 @@ however negations are retained and amplified.</p>
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -2838,8 +3013,10 @@ however negations are retained and amplified.</p>
 
   <p>Converts the input string to upper case.</p>
 
-
-  <div class='pre p1 fill-light mt0'>string.upperCase</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>string.upperCase</div>
+   
   
   
 
@@ -2896,25 +3073,69 @@ however negations are retained and amplified.</p>
   
 </section>
 
-          
         
           
-            <div class='keyline-top-not py2'><section class='py2 clearfix'>
+            <div class='keyline-top-not py2'>
+  <section class='py2 clearfix'>
 
-  <h2 id='tokens' class='mt0'>
-    tokens
-  </h2>
+    <h2 id='tokens' class='mt0'>
+      tokens
+    </h2>
+
+    
+      
+
+    
+  </section>
+</div>
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
+  <div class='clearfix'>
     
+    <h3 class='fl m0' id='tokens'>
+      tokens
+    </h3>
+    
+    
+  </div>
+  
+
+  
+
+ 
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 </section>
-</div>
-          
+
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -2929,8 +3150,10 @@ however negations are retained and amplified.</p>
 
   <p>Generates bigrams from the input tokens and appends them to the input tokens.</p>
 
-
-  <div class='pre p1 fill-light mt0'>tokens.appendBigrams</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>tokens.appendBigrams</div>
+   
   
   
 
@@ -2993,10 +3216,9 @@ however negations are retained and amplified.</p>
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -3013,8 +3235,10 @@ however negations are retained and amplified.</p>
 uses <code>word count</code> as it's frequency; but if <code>logCounts</code> parameter is set to true then
 it will use <code>log2( word counts + 1 )</code> as it's frequency. It also has an alias <strong><code>bow()</code></strong>.</p>
 
-
-  <div class='pre p1 fill-light mt0'>tokens.bagOfWords</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>tokens.bagOfWords</div>
+   
   
   
 
@@ -3128,10 +3352,9 @@ bow( [ <span class="hljs-string">'rain'</span>, <span class="hljs-string">'rain'
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -3146,8 +3369,10 @@ bow( [ <span class="hljs-string">'rain'</span>, <span class="hljs-string">'rain'
 
   <p>Generates bigrams from the input tokens.</p>
 
-
-  <div class='pre p1 fill-light mt0'>tokens.bigrams</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>tokens.bigrams</div>
+   
   
   
 
@@ -3206,10 +3431,9 @@ bow( [ <span class="hljs-string">'rain'</span>, <span class="hljs-string">'rain'
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -3224,8 +3448,10 @@ bow( [ <span class="hljs-string">'rain'</span>, <span class="hljs-string">'rain'
 
   <p>Phonetizes input tokens using using an algorithmic adaptation of Metaphone.</p>
 
-
-  <div class='pre p1 fill-light mt0'>tokens.phonetize</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>tokens.phonetize</div>
+   
   
   
 
@@ -3282,10 +3508,9 @@ bow( [ <span class="hljs-string">'rain'</span>, <span class="hljs-string">'rain'
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -3303,8 +3528,10 @@ negation to subsequent <code>upto</code> tokens by prefixing them by a <code>!</
 in handling text containing negations during tasks like similarity detection,
 classification or search.</p>
 
-
-  <div class='pre p1 fill-light mt0'>tokens.propagateNegations</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>tokens.propagateNegations</div>
+   
   
   
 
@@ -3377,10 +3604,9 @@ preceeding the
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -3395,8 +3621,10 @@ preceeding the
 
   <p>Removes the stop words from the input array of tokens.</p>
 
-
-  <div class='pre p1 fill-light mt0'>tokens.removeWords</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>tokens.removeWords</div>
+   
   
   
 
@@ -3471,10 +3699,9 @@ Custom stop words can be created using
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -3489,8 +3716,10 @@ Custom stop words can be created using
 
   <p>Generates the set of words from the input string. It also has an alias <strong><code>setOfWords()</code></strong>.</p>
 
-
-  <div class='pre p1 fill-light mt0'>tokens.setOfWords</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>tokens.setOfWords</div>
+   
   
   
 
@@ -3585,10 +3814,9 @@ function.
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -3603,8 +3831,10 @@ function.
 
   <p>Generates the soundex coded tokens from the input tokens.</p>
 
-
-  <div class='pre p1 fill-light mt0'>tokens.soundex</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>tokens.soundex</div>
+   
   
   
 
@@ -3661,10 +3891,9 @@ function.
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -3679,8 +3908,10 @@ function.
 
   <p>Stems input tokens using Porter Stemming Algorithm Version 2.</p>
 
-
-  <div class='pre p1 fill-light mt0'>tokens.stem</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>tokens.stem</div>
+   
   
   
 
@@ -3737,25 +3968,69 @@ function.
   
 </section>
 
-          
         
           
-            <div class='keyline-top-not py2'><section class='py2 clearfix'>
+            <div class='keyline-top-not py2'>
+  <section class='py2 clearfix'>
 
-  <h2 id='helper' class='mt0'>
-    helper
-  </h2>
+    <h2 id='helper' class='mt0'>
+      helper
+    </h2>
+
+    
+      
+
+    
+  </section>
+</div>
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
+  <div class='clearfix'>
     
+    <h3 class='fl m0' id='helper'>
+      helper
+    </h3>
+    
+    
+  </div>
+  
+
+  
+
+ 
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 </section>
-</div>
-          
+
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -3774,8 +4049,10 @@ parameters to it. The second function — <code>result()</code> allows accessing
 <p>It is typically used with <a href="#stringsoc">string.soc</a>, <a href="#stringbong">string.bong</a>,
 <a href="#stringsong">string.song</a>, and <a href="#tokenssow">tokens.sow</a>.</p>
 
-
-  <div class='pre p1 fill-light mt0'>helper.returnIndexer</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>helper.returnIndexer</div>
+   
   
   
 
@@ -3818,10 +4095,9 @@ parameters to it. The second function — <code>result()</code> allows accessing
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -3838,8 +4114,10 @@ parameters to it. The second function — <code>result()</code> allows accessing
 between the <code>lq</code> and the <code>rq</code> characters from its argument. This argument
 must be of type string.</p>
 
-
-  <div class='pre p1 fill-light mt0'>helper.returnQuotedTextExtractor</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>helper.returnQuotedTextExtractor</div>
+   
   
   
 
@@ -3913,10 +4191,9 @@ extractQuotedText( <span class="hljs-string">'Raise 2 issues - "fix a bug" &amp;
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -3939,8 +4216,10 @@ Examples of mapper functions are typically <strong>string</strong> functionss of
 such as <code>string.lowerCase()</code>, <code>string.stem()</code> and
 <code>string.soundex()</code>.</p>
 
-
-  <div class='pre p1 fill-light mt0'>helper.returnWordsFilter</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>helper.returnWordsFilter</div>
+   
   
   
 
@@ -4016,25 +4295,69 @@ the wordsFilter.
   
 </section>
 
-          
         
           
-            <div class='keyline-top-not py2'><section class='py2 clearfix'>
+            <div class='keyline-top-not py2'>
+  <section class='py2 clearfix'>
 
-  <h2 id='type-defs' class='mt0'>
-    type-defs
-  </h2>
+    <h2 id='type-defs' class='mt0'>
+      type-defs
+    </h2>
+
+    
+      
+
+    
+  </section>
+</div>
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
+  <div class='clearfix'>
     
+    <h3 class='fl m0' id='type-defs'>
+      type-defs
+    </h3>
+    
+    
+  </div>
+  
+
+  
+
+ 
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 </section>
-</div>
-          
+
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -4048,8 +4371,10 @@ the wordsFilter.
   
 
   
-
-  <div class='pre p1 fill-light mt0'>indexer</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>indexer</div>
+   
   
     <p>
       Type:
@@ -4115,10 +4440,9 @@ are nothing but each
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -4132,8 +4456,10 @@ are nothing but each
   
 
   
-
-  <div class='pre p1 fill-light mt0'>wordsFilter</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>wordsFilter</div>
+   
   
     <p>
       Type:
@@ -4194,7 +4520,6 @@ the
   
 </section>
 
-          
         
       </div>
     </div>

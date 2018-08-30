@@ -53,7 +53,7 @@ var propagateNegations = function ( tokens, upto ) {
       for ( j = i + 1, jmax = Math.min( imax, i + limit + 1 ); j < jmax; j += 1 ) {
         // Hit a punctuation mark, break out of the loop otherwise go *upto the limit*.
         // > TODO: promote to utilities regex, after test cases have been added.
-        if ( /[\,\.\;\:\!\?]/.test( tkns[ j ] ) ) break;
+        if ( ( /[\,\.\;\:\!\?]/ ).test( tkns[ j ] ) ) break;
         // Propoage negation: invert the token by prefixing a `!` to it.
         tkns[ j ] = '!' + tkns[ j ];
       }

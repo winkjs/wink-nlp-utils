@@ -500,7 +500,7 @@ describe( 'string.song()', function () {
   it( 'indexer result should return an index of a and b', function () {
     var songIndex = prepare.helper.index();
     prepare.string.song( 'mamma', 2, songIndex.build, 0 );
-    prepare.string.song( 'mama', 0, songIndex.build, 1 );
+    prepare.string.setOfNGrams( 'mama', 0, songIndex.build, 1 );
     var result = songIndex.result();
     expect( result ).to.deep.equal( { ma: [ 0, 1 ], am: [ 0, 1 ], mm: [ 0 ] } );
   } );

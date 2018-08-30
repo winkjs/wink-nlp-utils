@@ -225,9 +225,9 @@
               
                 
                 <li><a
-                  href='#stringsong'
+                  href='#stringsetofngrams'
                   class="">
-                  string.song
+                  string.setOfNGrams
                   
                 </a>
                 
@@ -2180,19 +2180,20 @@ function.
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='stringsong'>
-      string.song
+    <h3 class='fl m0' id='stringsetofngrams'>
+      string.setOfNGrams
     </h3>
     
     
   </div>
   
 
-  <p>Generates the <strong>s</strong>et <strong>o</strong>f <strong>ng</strong>rams of <code>size</code> from the input string. The
-default size is 2, which means it will generate set of bigrams by default.</p>
+  <p>Generates the set of ngrams of <code>size</code> from the input string. The
+default size is 2, which means it will generate set of bigrams by default.
+It also has an alias <strong><code>song()</code></strong>.</p>
 
 
-  <div class='pre p1 fill-light mt0'>string.song</div>
+  <div class='pre p1 fill-light mt0'>string.setOfNGrams</div>
   
   
 
@@ -2291,7 +2292,7 @@ function.
     <div class='py1 quiet mt1 prose-big'>Example</div>
     
       
-      <pre class='p1 overflow-auto round fill-light'>song( <span class="hljs-string">'mama'</span> );
+      <pre class='p1 overflow-auto round fill-light'>setOfNGrams( <span class="hljs-string">'mama'</span> );
 <span class="hljs-comment">// -&gt; Set { 'ma', 'am' }</span>
 song( <span class="hljs-string">'mamma'</span> );
 <span class="hljs-comment">// -&gt; Set { 'ma', 'am', 'mm' }</span></pre>

@@ -28,10 +28,11 @@
 // ### song
 /**
  *
- * Generates the **s**et **o**f **ng**rams of `size` from the input string. The
+ * Generates the set of ngrams of `size` from the input string. The
  * default size is 2, which means it will generate set of bigrams by default.
+ * It also has an alias **`song()`**.
  *
- * @name string.song
+ * @name string.setOfNGrams
  * @param {string} str — the input string.
  * @param {number} [size=2] — ngram size.
  * @param {function} [ifn=undefined] — a function to build index; it is called for
@@ -42,7 +43,7 @@
  * function.
  * @return {set} of ngrams of `size` of `str`.
  * @example
- * song( 'mama' );
+ * setOfNGrams( 'mama' );
  * // -> Set { 'ma', 'am' }
  * song( 'mamma' );
  * // -> Set { 'ma', 'am', 'mm' }

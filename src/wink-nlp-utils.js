@@ -91,6 +91,7 @@ prepare.string.bong = require( './string-bong.js' );
 prepare.string.bagOfNGrams = require( './string-bong.js' );
 // SONG
 prepare.string.song = require( './string-song.js' );
+prepare.string.setOfNGrams = require( './string-song.js' );
 // Sentences
 prepare.string.sentences = require( './string-sentences.js' );
 // Compose Corpus

@@ -20,7 +20,7 @@ toc:
   - string.retainAlphaNums
   - string.sentences
   - string.setOfChars
-  - string.song
+  - string.setOfNGrams
   - string.soundex
   - string.splitElisions
   - string.stem

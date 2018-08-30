@@ -7,7 +7,7 @@ NLP Functions for amplifying negations, managing elisions, creating ngrams, stem
 
 [<img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" >](http://wink.org.in/)
 
-Prepare raw text for Natural Language Processing (NLP) using **`wink-nlp-utils`**.It is a part of [wink](http://wink.org.in/) — a growing family of high quality packages for Statistical Analysis, Natural Language Processing and Machine Learning in NodeJS.
+Prepare raw text for Natural Language Processing (NLP) using **`wink-nlp-utils`**. It is a part of [wink](http://wink.org.in/) — a growing family of high quality packages for Statistical Analysis, Natural Language Processing and Machine Learning in NodeJS.
 
 It offers a set of [APIs](http://wink.org.in/wink-nlp-utils/) to work on [strings](http://wink.org.in/wink-nlp-utils/#string) such as names, sentences, paragraphs and [tokens](http://wink.org.in/wink-nlp-utils/#tokens) represented as an array of strings/words. They perform the required pre-processing for many ML tasks such as [semantic search](https://www.npmjs.com/package/wink-bm25-text-search), and [classification](https://www.npmjs.com/package/wink-naive-bayes-text-classifier).
 

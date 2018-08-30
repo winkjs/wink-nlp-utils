@@ -81,6 +81,7 @@ prepare.string.amplifyNotElision = require( './string-amplify-not-elision' );
 prepare.string.marker = require( './string-marker.js' );
 // SOC
 prepare.string.soc = require( './string-soc.js' );
+prepare.string.setOfChars = require( './string-soc.js' );
 // NGrams
 prepare.string.ngrams = require( './string-ngram.js' );
 // Edge NGrams

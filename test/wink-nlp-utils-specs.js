@@ -402,7 +402,7 @@ describe( 'string.soc()', function () {
     prepare.string.soc( 'blackberry', socIndex.build, 2 );
     prepare.string.soc( 'apricot', socIndex.build, 3 );
     prepare.string.soc( 'avocado', socIndex.build, 4 );
-    prepare.string.soc( 'blueberry', socIndex.build, 5 );
+    prepare.string.setOfChars( 'blueberry', socIndex.build, 5 );
     var result = socIndex.result();
     expect( result ).to.deep.equal( { a: [ 0, 3, 4 ], b: [ 1, 2, 5 ] } );
   } );

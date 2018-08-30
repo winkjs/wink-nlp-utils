@@ -19,7 +19,7 @@ toc:
   - string.removeSplChars
   - string.retainAlphaNums
   - string.sentences
-  - string.soc
+  - string.setOfChars
   - string.song
   - string.soundex
   - string.splitElisions

@@ -28,11 +28,11 @@
 // ### soc
 /**
  *
- * Creates a **s**et **o**f **c**hars from the input string `s`. This is useful
+ * Creates a set of chars from the input string `s`. This is useful
  * in even more aggressive string matching using Jaccard or Tversky compared to
- * `marker()`.
+ * `marker()`. It also has an alias **`soc()`**.
  *
- * @name string.soc
+ * @name string.setOfChars
  * @param {string} str — the input string.
  * @param {function} [ifn=undefined] — a function to build index; it receives the first
  * character of `str` and the `idx` as input arguments. The `build()` function of
@@ -42,7 +42,7 @@
  * function.
  * @return {string} the soc.
  * @example
- * soc( 'the quick brown fox jumps over the lazy dog' );
+ * setOfChars( 'the quick brown fox jumps over the lazy dog' );
  * // -> ' abcdefghijklmnopqrstuvwxyz'
  */
 var soc = function ( str, ifn, idx ) {

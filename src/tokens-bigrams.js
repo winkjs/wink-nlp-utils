@@ -30,8 +30,8 @@
  *
  * Generates bigrams from the input tokens.
  *
- * @name tokens.bigrams
- * @param {string[]} tokens — the input tokens.
+ * @memberof tokens
+ * @param {string[]} tokens the input tokens.
  * @return {string[]} the bigrams.
  * @example
  * bigrams( [ 'he', 'acted', 'decisively', 'today' ] );

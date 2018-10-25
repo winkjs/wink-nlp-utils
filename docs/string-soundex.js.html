@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>string-soundex.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="http://winkjs.org" target="_blank" >Wink JS</a></h2><h2><a href="https://github.com/winkjs/wink-nlp-utils" target="_blank" >Github</a></h2><h3>Namespaces</h3><ul><li><a href="helper.html">helper</a><ul class='methods'><li data-type='method'><a href="helper.html#.returnIndexer">returnIndexer</a></li><li data-type='method'><a href="helper.html#.returnQuotedTextExtractor">returnQuotedTextExtractor</a></li><li data-type='method'><a href="helper.html#.returnWordsFilter">returnWordsFilter</a></li></ul></li><li><a href="string.html">string</a><ul class='methods'><li data-type='method'><a href="string.html#.amplifyNotElision">amplifyNotElision</a></li><li data-type='method'><a href="string.html#.bong">bong</a></li><li data-type='method'><a href="string.html#.composeCorpus">composeCorpus</a></li><li data-type='method'><a href="string.html#.edgeNGrams">edgeNGrams</a></li><li data-type='method'><a href="string.html#.extractPersonsName">extractPersonsName</a></li><li data-type='method'><a href="string.html#.extractRunOfCapitalWords">extractRunOfCapitalWords</a></li><li data-type='method'><a href="string.html#.lowerCase">lowerCase</a></li><li data-type='method'><a href="string.html#.marker">marker</a></li><li data-type='method'><a href="string.html#.ngram">ngram</a></li><li data-type='method'><a href="string.html#.phonetize">phonetize</a></li><li data-type='method'><a href="string.html#.punkt">punkt</a></li><li data-type='method'><a href="string.html#.removeElisions">removeElisions</a></li><li data-type='method'><a href="string.html#.removeExtraSpaces">removeExtraSpaces</a></li><li data-type='method'><a href="string.html#.removeHTMLTags">removeHTMLTags</a></li><li data-type='method'><a href="string.html#.removePunctuations">removePunctuations</a></li><li data-type='method'><a href="string.html#.removeSplChars">removeSplChars</a></li><li data-type='method'><a href="string.html#.retainAlphaNums">retainAlphaNums</a></li><li data-type='method'><a href="string.html#.soc">soc</a></li><li data-type='method'><a href="string.html#.song">song</a></li><li data-type='method'><a href="string.html#.soundex">soundex</a></li><li data-type='method'><a href="string.html#.splitElisions">splitElisions</a></li><li data-type='method'><a href="string.html#.stem">stem</a></li><li data-type='method'><a href="string.html#.tokenize">tokenize</a></li><li data-type='method'><a href="string.html#.tokenize0">tokenize0</a></li><li data-type='method'><a href="string.html#.trim">trim</a></li><li data-type='method'><a href="string.html#.upperCase">upperCase</a></li></ul></li><li><a href="tokens.html">tokens</a><ul class='methods'><li data-type='method'><a href="tokens.html#.appendBigrams">appendBigrams</a></li><li data-type='method'><a href="tokens.html#.bigrams">bigrams</a></li><li data-type='method'><a href="tokens.html#.bow">bow</a></li><li data-type='method'><a href="tokens.html#.phonetize">phonetize</a></li><li data-type='method'><a href="tokens.html#.propagateNegations">propagateNegations</a></li><li data-type='method'><a href="tokens.html#.removeWords">removeWords</a></li><li data-type='method'><a href="tokens.html#.soundex">soundex</a></li><li data-type='method'><a href="tokens.html#.sow">sow</a></li><li data-type='method'><a href="tokens.html#.stem">stem</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">string-soundex.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//     wink-nlp-utils
+//     NLP Functions for amplifying negations, managing elisions,
+//     creating ngrams, stems, phonetic codes to tokens and more.
+//
+//     Copyright (C) 2017-18  GRAYPE Systems Private Limited
+//
+//     This file is part of “wink-nlp-utils”.
+//
+//     “wink-nlp-utils” is free software: you can redistribute it
+//     and/or modify it under the terms of the GNU Affero
+//     General Public License as published by the Free
+//     Software Foundation, version 3 of the License.
+//
+//     “wink-nlp-utils” is distributed in the hope that it will
+//     be useful, but WITHOUT ANY WARRANTY; without even
+//     the implied warranty of MERCHANTABILITY or FITNESS
+//     FOR A PARTICULAR PURPOSE.  See the GNU Affero General
+//     Public License for more details.
+//
+//     You should have received a copy of the GNU Affero
+//     General Public License along with “wink-nlp-utils”.
+//     If not, see &lt;http://www.gnu.org/licenses/>.
+
+//
+// Soundex Code for alphabets.
+/* eslint-disable object-property-newline */
+var soundexMap = {
+  A: 0, E: 0, I: 0, O: 0, U: 0, Y: 0,
+  B: 1, F: 1, P: 1, V: 1,
+  C: 2, G: 2, J: 2, K: 2, Q: 2, S: 2, X: 2, Z: 2,
+  D: 3, T: 3,
+  L: 4,
+  M: 5, N: 5,
+  R: 6
+};
+
+// ## string
+
+// ### soundex
+/**
+ *
+ * Produces the soundex code from the input `word`.
+ *
+ * @memberof string
+ * @param {string} word the input word.
+ * @param {number} [maxLength=4] of soundex code to be returned.
+ * @return {string} soundex code of `word`.
+ * @example
+ * soundex( 'Burroughs' );
+ * // -> 'B620'
+ * soundex( 'Burrows' );
+ * // -> 'B620'
+ */
+var soundex = function ( word, maxLength ) {
+  // Upper case right in the begining.
+  var s = ( word.length ) ? word.toUpperCase() : '?';
+  var i,
+      imax = s.length;
+  // Soundex code builds here.
+  var sound = [];
+  // Helpers - `ch` is a char from `s` and `code/prevCode` are sondex codes
+  // for consonants.
+  var ch, code,
+      prevCode = 9;
+  // Use default of 4.
+  var maxLen = maxLength || 4;
+  // Iterate through every character.
+  for ( i = 0; i &lt; imax; i += 1 ) {
+    ch = s[ i ];
+    code = soundexMap[ ch ];
+    if ( i ) {
+      // Means i is > 0.
+      // `code` is either (a) `undefined` if an unknown character is
+      // encountered including `h &amp; w`, or (b) `0` if it is vowel, or
+      // (c) the soundex code for a consonant.
+      if ( code &amp;&amp; code !== prevCode ) {
+        // Consonant and not adjecant duplicates!
+        sound.push( code );
+      } else if ( code !== 0 ) {
+        // Means `h or w` or an unknown character: ensure `prevCode` is
+        // remembered so that adjecant duplicates can be handled!
+        code = prevCode;
+      }
+    } else {
+      // Retain the first letter
+      sound.push( ch );
+    }
+    prevCode = code;
+  }
+  s = sound.join( '' );
+  // Always ensure minimum length of 4 characters for maxLength > 4.
+  if ( s.length &lt; 4 ) s += '000';
+  // Return the required length.
+  return s.substr( 0, maxLen );
+}; // soundex()
+
+module.exports = soundex;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Oct 25 2018 12:44:51 GMT+0530 (IST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+
+
+</body>
+</html>

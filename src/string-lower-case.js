@@ -30,8 +30,8 @@
  *
  * Converts the input string to lower case.
  *
- * @name string.lowerCase
- * @param {string} str — the input string.
+ * @memberof string
+ * @param {string} str the input string.
  * @return {string} input string in lower case.
  * @example
  * lowerCase( 'Lower Case' );

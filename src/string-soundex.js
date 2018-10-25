@@ -41,9 +41,9 @@ var soundexMap = {
  *
  * Produces the soundex code from the input `word`.
  *
- * @name string.soundex
- * @param {string} word — the input word.
- * @param {number} [maxLength=4] — of soundex code to be returned.
+ * @memberof string
+ * @param {string} word the input word.
+ * @param {number} [maxLength=4] of soundex code to be returned.
  * @return {string} soundex code of `word`.
  * @example
  * soundex( 'Burroughs' );

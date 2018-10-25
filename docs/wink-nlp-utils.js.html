@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>wink-nlp-utils.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="http://winkjs.org" target="_blank" >Wink JS</a></h2><h2><a href="https://github.com/winkjs/wink-nlp-utils" target="_blank" >Github</a></h2><h3>Namespaces</h3><ul><li><a href="helper.html">helper</a><ul class='methods'><li data-type='method'><a href="helper.html#.returnIndexer">returnIndexer</a></li><li data-type='method'><a href="helper.html#.returnQuotedTextExtractor">returnQuotedTextExtractor</a></li><li data-type='method'><a href="helper.html#.returnWordsFilter">returnWordsFilter</a></li></ul></li><li><a href="string.html">string</a><ul class='methods'><li data-type='method'><a href="string.html#.amplifyNotElision">amplifyNotElision</a></li><li data-type='method'><a href="string.html#.bong">bong</a></li><li data-type='method'><a href="string.html#.composeCorpus">composeCorpus</a></li><li data-type='method'><a href="string.html#.edgeNGrams">edgeNGrams</a></li><li data-type='method'><a href="string.html#.extractPersonsName">extractPersonsName</a></li><li data-type='method'><a href="string.html#.extractRunOfCapitalWords">extractRunOfCapitalWords</a></li><li data-type='method'><a href="string.html#.lowerCase">lowerCase</a></li><li data-type='method'><a href="string.html#.marker">marker</a></li><li data-type='method'><a href="string.html#.ngram">ngram</a></li><li data-type='method'><a href="string.html#.phonetize">phonetize</a></li><li data-type='method'><a href="string.html#.punkt">punkt</a></li><li data-type='method'><a href="string.html#.removeElisions">removeElisions</a></li><li data-type='method'><a href="string.html#.removeExtraSpaces">removeExtraSpaces</a></li><li data-type='method'><a href="string.html#.removeHTMLTags">removeHTMLTags</a></li><li data-type='method'><a href="string.html#.removePunctuations">removePunctuations</a></li><li data-type='method'><a href="string.html#.removeSplChars">removeSplChars</a></li><li data-type='method'><a href="string.html#.retainAlphaNums">retainAlphaNums</a></li><li data-type='method'><a href="string.html#.soc">soc</a></li><li data-type='method'><a href="string.html#.song">song</a></li><li data-type='method'><a href="string.html#.soundex">soundex</a></li><li data-type='method'><a href="string.html#.splitElisions">splitElisions</a></li><li data-type='method'><a href="string.html#.stem">stem</a></li><li data-type='method'><a href="string.html#.tokenize">tokenize</a></li><li data-type='method'><a href="string.html#.tokenize0">tokenize0</a></li><li data-type='method'><a href="string.html#.trim">trim</a></li><li data-type='method'><a href="string.html#.upperCase">upperCase</a></li></ul></li><li><a href="tokens.html">tokens</a><ul class='methods'><li data-type='method'><a href="tokens.html#.appendBigrams">appendBigrams</a></li><li data-type='method'><a href="tokens.html#.bigrams">bigrams</a></li><li data-type='method'><a href="tokens.html#.bow">bow</a></li><li data-type='method'><a href="tokens.html#.phonetize">phonetize</a></li><li data-type='method'><a href="tokens.html#.propagateNegations">propagateNegations</a></li><li data-type='method'><a href="tokens.html#.removeWords">removeWords</a></li><li data-type='method'><a href="tokens.html#.soundex">soundex</a></li><li data-type='method'><a href="tokens.html#.sow">sow</a></li><li data-type='method'><a href="tokens.html#.stem">stem</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">wink-nlp-utils.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//     wink-nlp-utils
+//     NLP Functions for amplifying negations, managing elisions,
+//     creating ngrams, stems, phonetic codes to tokens and more.
+//
+//     Copyright (C) 2017-18  GRAYPE Systems Private Limited
+//
+//     This file is part of “wink-nlp-utils”.
+//
+//     “wink-nlp-utils” is free software: you can redistribute it
+//     and/or modify it under the terms of the GNU Affero
+//     General Public License as published by the Free
+//     Software Foundation, version 3 of the License.
+//
+//     “wink-nlp-utils” is distributed in the hope that it will
+//     be useful, but WITHOUT ANY WARRANTY; without even
+//     the implied warranty of MERCHANTABILITY or FITNESS
+//     FOR A PARTICULAR PURPOSE.  See the GNU Affero General
+//     Public License for more details.
+//
+//     You should have received a copy of the GNU Affero
+//     General Public License along with “wink-nlp-utils”.
+//     If not, see &lt;http://www.gnu.org/licenses/>.
+
+//
+var porter2Stemmer = require( 'wink-porter2-stemmer' );
+
+// ### Prepare Name Space
+
+// Create prepare name space.
+var prepare = Object.create( null );
+
+/**
+ * Helper
+ * @namespace helper
+ */
+prepare.helper = Object.create( null );
+
+// Words
+prepare.helper.returnWordsFilter = require( './helper-return-words-filter.js' );
+prepare.helper.words = prepare.helper.returnWordsFilter;
+// Make better **alias** name for the `word()` function.
+
+// Index
+prepare.helper.index = require( './helper-return-indexer.js' );
+// Make better **alias** name for the `index()` function.
+prepare.helper.returnIndexer = prepare.helper.index;
+
+// Return Quoted Text Extractor
+prepare.helper.returnQuotedTextExtractor = require( './helper-return-quoted-text-extractor.js' );
+
+/**
+ * String
+ * @namespace string
+ */
+prepare.string = Object.create( null );
+
+// Lower Case
+prepare.string.lowerCase = require( './string-lower-case.js' );
+// Upper Case
+prepare.string.upperCase = require( './string-upper-case.js' );
+// Trim
+prepare.string.trim = require( './string-trim.js' );
+// Remove Extra Spaces
+prepare.string.removeExtraSpaces = require( './string-remove-extra-spaces.js' );
+// Retain Alpha-numerics
+prepare.string.retainAlphaNums = require( './string-retain-alpha-nums.js' );
+// Extract Person's Name
+prepare.string.extractPersonsName = require( './string-extract-persons-name.js' );
+// Extract Run of Capital Words
+prepare.string.extractRunOfCapitalWords = require( './string-extract-run-of-capital-words.js' );
+// Remove Punctuations
+prepare.string.removePunctuations = require( './string-remove-punctuations.js' );
+// Remove Special Chars
+prepare.string.removeSplChars = require( './string-remove-spl-chars.js' );
+// Remove HTML Tags
+prepare.string.removeHTMLTags = require( './string-remove-html-tags.js' );
+// Remove Elisions
+prepare.string.removeElisions = require( './string-remove-elisions.js' );
+// Split Elisions
+prepare.string.splitElisions = require( './string-split-elisions.js' );
+// Amplify Not Elision
+prepare.string.amplifyNotElision = require( './string-amplify-not-elision' );
+// Marker
+prepare.string.marker = require( './string-marker.js' );
+// SOC
+prepare.string.soc = require( './string-soc.js' );
+prepare.string.setOfChars = require( './string-soc.js' );
+// NGrams
+prepare.string.ngrams = require( './string-ngram.js' );
+// Edge NGrams
+prepare.string.edgeNGrams = require( './string-edge-ngrams.js' );
+// BONG
+prepare.string.bong = require( './string-bong.js' );
+prepare.string.bagOfNGrams = require( './string-bong.js' );
+// SONG
+prepare.string.song = require( './string-song.js' );
+prepare.string.setOfNGrams = require( './string-song.js' );
+// Sentences
+prepare.string.sentences = require( './string-sentences.js' );
+// Compose Corpus
+prepare.string.composeCorpus = require( './string-compose-corpus.js' );
+// Tokenize0
+prepare.string.tokenize0 = require( './string-tokenize0.js' );
+// Tokenize
+prepare.string.tokenize = require( './string-tokenize.js' );
+// #### Stem
+prepare.string.stem = porter2Stemmer;
+// Phonetize
+prepare.string.phonetize = require( './string-phonetize.js' );
+// Soundex
+prepare.string.soundex = require( './string-soundex.js' );
+
+/**
+ * Tokens
+ * @namespace tokens
+ */
+prepare.tokens = Object.create( null );
+
+// Stem
+prepare.tokens.stem = require( './tokens-stem.js' );
+// Phonetize
+prepare.tokens.phonetize = require( './tokens-phonetize.js' );
+// Soundex
+prepare.tokens.soundex = require( './tokens-soundex.js' );
+// Remove Words
+prepare.tokens.removeWords = require( './tokens-remove-words.js' );
+// BOW
+prepare.tokens.bow = require( './tokens-bow.js' );
+prepare.tokens.bagOfWords = require( './tokens-bow.js' );
+// SOW
+prepare.tokens.sow = require( './tokens-sow.js' );
+prepare.tokens.setOfWords = require( './tokens-sow.js' );
+// Propagate Negations
+prepare.tokens.propagateNegations = require( './tokens-propagate-negations.js' );
+// Bigrams
+prepare.tokens.bigrams = require( './tokens-bigrams.js' );
+// Append Bigrams
+prepare.tokens.appendBigrams = require( './tokens-append-bigrams.js' );
+
+// Export prepare.
+module.exports = prepare;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Oct 25 2018 12:44:51 GMT+0530 (IST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+
+
+</body>
+</html>

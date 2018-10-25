@@ -33,8 +33,8 @@ var rgx = require( './util_regexes.js' );
  * are `it's, let's, where's, I'd, I'm, I'll, I've, and Isn't` etc. Note it retains
  * apostrophe used to indicate possession.
  *
- * @name string.removeElisions
- * @param {string} str — the input string.
+ * @memberof string
+ * @param {string} str the input string.
  * @return {string} input string after removal of elisions.
  * @example
  * removeElisions( "someone's wallet, isn't it?" );

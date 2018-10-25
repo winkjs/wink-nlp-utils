@@ -31,8 +31,8 @@ var stringPhonetize = require( './string-phonetize.js' );
  *
  * Phonetizes input tokens using using an algorithmic adaptation of Metaphone.
  *
- * @name tokens.phonetize
- * @param {string[]} tokens — the input tokens.
+ * @memberof tokens
+ * @param {string[]} tokens the input tokens.
  * @return {string[]} phonetized tokens.
  * @example
  * phonetize( [ 'he', 'acted', 'decisively', 'today' ] );

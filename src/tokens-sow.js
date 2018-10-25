@@ -30,13 +30,13 @@
  *
  * Generates the set of words from the input string. It also has an alias **`setOfWords()`**.
  *
- * @name tokens.setOfWords
- * @param {string[]} tokens — the input tokens.
- * @param {function} [ifn=undefined] — a function to build index; it is called for
+ * @memberof tokens
+ * @param {string[]} tokens the input tokens.
+ * @param {function} [ifn=undefined] a function to build index; it is called for
  * every **member word of the set **; and it receives the word and the `idx`
  * as input arguments. The `build()` function of [helper.returnIndexer](#helperreturnindexer)
  * may be used as `ifn`. If `undefined` then index is not built.
- * @param {number} [idx=undefined] — the index; passed as the second argument to the `ifn`
+ * @param {number} [idx=undefined] the index; passed as the second argument to the `ifn`
  * function.
  * @return {set} of words from tokens.
  * @example

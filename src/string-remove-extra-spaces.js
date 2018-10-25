@@ -32,8 +32,8 @@ var rgx = require( './util_regexes.js' );
  * Removes leading, trailing and any extra in-between whitespaces from the input
  * string.
  *
- * @name string.removeExtraSpaces
- * @param {string} str — the input string.
+ * @memberof string
+ * @param {string} str the input string.
  * @return {string} input string after removal of leading, trailing and extra
  * whitespaces.
  * @example

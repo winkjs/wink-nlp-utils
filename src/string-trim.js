@@ -30,8 +30,8 @@
  *
  * Trims leading and trailing whitespaces from the input string.
  *
- * @name string.trim
- * @param {string} str — the input string.
+ * @memberof string
+ * @param {string} str the input string.
  * @return {string} input string with leading & trailing whitespaces removed.
  * @example
  * trim( '  Padded   ' );

@@ -31,8 +31,8 @@ var porter2Stemmer = require( 'wink-porter2-stemmer' );
  *
  * Stems an inflected word using Porter2 stemming algorithm.
  *
- * @name string.stem
- * @param {string} word — to be stemmed.
+ * @memberof string
+ * @param {string} word to be stemmed.
  * @return {string} the stemmed word.
  *
  * @example

@@ -33,8 +33,8 @@
  * to detect similarity between short strings. Its aggression may lead to more
  * false positives such as `Meter` and `Metre` or `no melon` and `no lemon`.
  *
- * @name string.marker
- * @param {string} str — the input string.
+ * @memberof string
+ * @param {string} str the input string.
  * @return {string} the marker.
  * @example
  * marker( 'the quick brown fox jumps over the lazy dog' );

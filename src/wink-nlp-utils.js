@@ -29,15 +29,17 @@ var porter2Stemmer = require( 'wink-porter2-stemmer' );
 // Create prepare name space.
 var prepare = Object.create( null );
 
-// ### Prepare.Helper name space
-
-// Create prepare.helper name space.
+/**
+ * Helper
+ * @namespace helper
+ */
 prepare.helper = Object.create( null );
 
 // Words
-prepare.helper.words = require( './helper-return-words-filter.js' );
+prepare.helper.returnWordsFilter = require( './helper-return-words-filter.js' );
+prepare.helper.words = prepare.helper.returnWordsFilter;
 // Make better **alias** name for the `word()` function.
-prepare.helper.returnWordsFilter = prepare.helper.words;
+
 // Index
 prepare.helper.index = require( './helper-return-indexer.js' );
 // Make better **alias** name for the `index()` function.
@@ -46,9 +48,10 @@ prepare.helper.returnIndexer = prepare.helper.index;
 // Return Quoted Text Extractor
 prepare.helper.returnQuotedTextExtractor = require( './helper-return-quoted-text-extractor.js' );
 
-// ### Prepare.String Name Space
-
-// Create prepare.string name space.
+/**
+ * String
+ * @namespace string
+ */
 prepare.string = Object.create( null );
 
 // Lower Case
@@ -107,9 +110,10 @@ prepare.string.phonetize = require( './string-phonetize.js' );
 // Soundex
 prepare.string.soundex = require( './string-soundex.js' );
 
-// ### Prepare.Tokens Name Space
-
-// Create prepare.tokens name space.
+/**
+ * Tokens
+ * @namespace tokens
+ */
 prepare.tokens = Object.create( null );
 
 // Stem

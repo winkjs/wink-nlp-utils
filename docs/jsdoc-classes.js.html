@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>tokens-append-bigrams.js - Documentation</title>
+    <title>jsdoc-classes.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -31,7 +31,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">tokens-append-bigrams.js</h1>
+    <h1 class="page-title">jsdoc-classes.js</h1>
     
 
     
@@ -41,60 +41,48 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>//     wink-nlp-utils
-//     NLP Functions for amplifying negations, managing elisions,
-//     creating ngrams, stems, phonetic codes to tokens and more.
-//
-//     Copyright (C) 2017-18  GRAYPE SyappendBigramss Private Limited
-//
-//     This file is part of “wink-nlp-utils”.
-//
-//     “wink-nlp-utils” is free software: you can redistribute it
-//     and/or modify it under the terms of the GNU Affero
-//     General Public License as published by the Free
-//     Software Foundation, version 3 of the License.
-//
-//     “wink-nlp-utils” is distributed in the hope that it will
-//     be useful, but WITHOUT ANY WARRANTY; without even
-//     the implied warranty of MERCHANTABILITY or FITNESS
-//     FOR A PARTICULAR PURPOSE.  See the GNU Affero General
-//     Public License for more details.
-//
-//     You should have received a copy of the GNU Affero
-//     General Public License along with “wink-nlp-utils”.
-//     If not, see &lt;http://www.gnu.org/licenses/>.
-
-//
-
-// ## tokens
-
-// ### appendBigrams
-/**
- *
- * Generates bigrams from the input tokens and appends them to the input tokens.
- *
- * @memberof tokens
- * @param {string[]} tokens the input tokens.
- * @return {string[]} the input tokens appended with their bigrams.
- * @example
- * appendBigrams( [ 'he', 'acted', 'decisively', 'today' ] );
- * // -> [ 'he',
- * //      'acted',
- * //      'decisively',
- * //      'today',
- * //      'he_acted',
- * //      'acted_decisively',
- * //      'decisively_today' ]
+            <pre class="prettyprint source linenums"><code>/**
+ * @classdesc Indexer object
+ * @class Indexer
+ * @hideconstructor
  */
-var appendBigrams = function ( tokens ) {
-  var i, imax;
-  for ( i = 0, imax = tokens.length - 1; i &lt; imax; i += 1 ) {
-    tokens.push( tokens[ i ] + '_' + tokens[ i + 1 ] );
-  }
-  return tokens;
-}; // appendBigrams()
 
-module.exports = appendBigrams;
+/**
+ * Incrementally builds index for each `element/itsIndex` combination passed.
+ *
+ * @method Indexer#build
+ * @param elements
+ * @param itsIndex
+ */
+
+ /**
+  * Used to access the index. This index is in a form of an object that contains
+  * each element as key. The value of each key is an array
+  * containing all index positions to the element in question. Note these index positions
+  * are nothing but each `itsIndex` value passed for the `element`.
+  *
+  * @method Indexer#result
+  * @returns {Object}
+  */
+
+/**
+ * @classdesc WordsFilter
+ * @class WordsFilter
+ * @hideconstructor
+ */
+
+ /**
+  * Contains the set created from the array `words`.
+  *
+  * @method WordsFilter#set
+  */
+
+  /**
+   * Used with the array's filter method to exclude the `words` or mapped
+   * `words` if `givenMappers` are defined.
+   *
+   * @method WordsFilter#exclude
+   */
 </code></pre>
         </article>
     </section>

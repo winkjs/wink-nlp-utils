@@ -25,7 +25,7 @@
 
 // ## string
 
-// ### bow
+// ### bagOfWords
 /**
  *
  * Generates the bag of words from the input string. By default it
@@ -49,7 +49,7 @@
  * bow( [ 'rain', 'rain', 'go', 'away' ], true );
  * // -> { rain: 1.584962500721156, go: 1, away: 1 }
  */
-var bow = function ( tokens, logCounts, ifn, idx ) {
+var bagOfWords = function ( tokens, logCounts, ifn, idx ) {
   var bow1 = Object.create( null ),
       i, imax,
       token,
@@ -70,4 +70,4 @@ var bow = function ( tokens, logCounts, ifn, idx ) {
   return ( bow1 );
 }; // bow()
 
-module.exports = bow;
+module.exports = bagOfWords;

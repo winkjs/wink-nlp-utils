@@ -25,7 +25,7 @@
 
 // ## string
 
-// ### song
+// ### setOfNGrams
 /**
  *
  * Generates the set of ngrams of `size` from the input string. The
@@ -48,7 +48,7 @@
  * song( 'mamma' );
  * // -> Set { 'ma', 'am', 'mm' }
  */
-var song = function ( str, size, ifn, idx ) {
+var setOfNGrams = function ( str, size, ifn, idx ) {
   var ng = ( size || 2 ),
       ngSet = new Set(),
       tg;
@@ -64,4 +64,4 @@ var song = function ( str, size, ifn, idx ) {
   return ( ngSet );
 }; // song()
 
-module.exports = song;
+module.exports = setOfNGrams;

@@ -25,7 +25,7 @@
 
 // ## string
 
-// ### bong
+// ### bagOfNGrams
 /**
  *
  * Generates the bag of ngrams of `size` from the input string. The
@@ -48,7 +48,7 @@
  * bong( 'mamma' );
  * // -> { ma: 2, am: 1, mm: 1 }
  */
-var bong = function ( str, size, ifn, idx ) {
+var bagOfNGrams = function ( str, size, ifn, idx ) {
   var ng = ( size || 2 ),
       ngBOW = Object.create( null ),
       tg;
@@ -68,4 +68,4 @@ var bong = function ( str, size, ifn, idx ) {
   return ( ngBOW );
 }; // bong()
 
-module.exports = bong;
+module.exports = bagOfNGrams;

@@ -25,10 +25,10 @@
 
 // ## string
 
-// ### bow
+// ### setOfWords
 /**
  *
- * Generates the set of words from the input string. It also has an alias **`setOfWords()`**.
+ * Generates the set of words from the input string. It also has an alias **`sow()`**.
  *
  * @memberof tokens
  * @param {string[]} tokens the input tokens.
@@ -43,7 +43,7 @@
  * setOfWords( [ 'rain', 'rain', 'go', 'away' ] );
  * // -> Set { 'rain', 'go', 'away' }
  */
-var sow = function ( tokens, ifn, idx ) {
+var setOfWords = function ( tokens, ifn, idx ) {
   var tset = new Set( tokens );
   if ( typeof ifn === 'function' ) {
     tset.forEach( function ( m ) {
@@ -53,4 +53,4 @@ var sow = function ( tokens, ifn, idx ) {
   return ( tset );
 }; // bow()
 
-module.exports = sow;
+module.exports = setOfWords;

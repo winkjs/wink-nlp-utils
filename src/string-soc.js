@@ -25,7 +25,7 @@
 
 // ## string
 
-// ### soc
+// ### setOfChars
 /**
  *
  * Creates a set of chars from the input string `s`. This is useful
@@ -45,7 +45,7 @@
  * setOfChars( 'the quick brown fox jumps over the lazy dog' );
  * // -> ' abcdefghijklmnopqrstuvwxyz'
  */
-var soc = function ( str, ifn, idx ) {
+var setOfChars = function ( str, ifn, idx ) {
   var cset = new Set( str );
   if ( typeof ifn === 'function' ) {
       ifn( str[ 0 ], idx );
@@ -53,4 +53,4 @@ var soc = function ( str, ifn, idx ) {
   return ( cset );
 }; // soc()
 
-module.exports = soc;
+module.exports = setOfChars;

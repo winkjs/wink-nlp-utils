@@ -32,14 +32,14 @@
  * default size is 2, which means it will generate set of bigrams by default.
  * It also has an alias **`song()`**.
  *
- * @name string.setOfNGrams
- * @param {string} str — the input string.
- * @param {number} [size=2] — ngram size.
- * @param {function} [ifn=undefined] — a function to build index; it is called for
+ * @memberof string
+ * @param {string} str the input string.
+ * @param {number} [size=2] ngram size.
+ * @param {function} [ifn=undefined] a function to build index; it is called for
  * every **unique occurrence of ngram** of `str`; and it receives the ngram and the `idx`
  * as input arguments. The `build()` function of [helper.returnIndexer](#helperreturnindexer)
  * may be used as `ifn`. If `undefined` then index is not built.
- * @param {number} [idx=undefined] — the index; passed as the second argument to the `ifn`
+ * @param {number} [idx=undefined] the index; passed as the second argument to the `ifn`
  * function.
  * @return {set} of ngrams of `size` of `str`.
  * @example

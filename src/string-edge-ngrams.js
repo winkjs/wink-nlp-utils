@@ -30,16 +30,16 @@
  *
  * Generates the edge ngrams from the input string.
  *
- * @name string.edgeNGrams
- * @param {string} str — the input string.
- * @param {number} [min=2] — size of ngram generated.
- * @param {number} [max=8] — size of ngram is generated.
- * @param {number} [delta=2] — edge ngrams are generated in increments of this value.
- * @param {function} [ifn=undefined] — a function to build index; it is called for
+ * @memberof string
+ * @param {string} str the input string.
+ * @param {number} [min=2] size of ngram generated.
+ * @param {number} [max=8] size of ngram is generated.
+ * @param {number} [delta=2] edge ngrams are generated in increments of this value.
+ * @param {function} [ifn=undefined] a function to build index; it is called for
  * every edge ngram of `str`; and it receives the edge ngram and the `idx`
  * as input arguments. The `build()` function of [helper.returnIndexer](#helperreturnindexer)
  * may be used as `ifn`. If `undefined` then index is not built.
- * @param {number} [idx=undefined] — the index; passed as the second argument to the `ifn`
+ * @param {number} [idx=undefined] the index; passed as the second argument to the `ifn`
  * function.
  * @return {string[]} of edge ngrams.
  * @example

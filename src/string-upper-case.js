@@ -30,8 +30,8 @@
  *
  * Converts the input string to upper case.
  *
- * @name string.upperCase
- * @param {string} str — the input string.
+ * @memberof string
+ * @param {string} str the input string.
  * @return {string} input string in upper case.
  * @example
  * upperCase( 'Upper Case' );

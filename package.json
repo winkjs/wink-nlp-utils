@@ -20,7 +20,7 @@
     "test": "istanbul cover _mocha ./test/",
     "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
     "sourcedocs": "docker -i src -o ./sourcedocs --sidebar no",
-    "docs": "documentation build src/** -f html -o docs -c docs-toc.yml",
+    "docs": "jsdoc src/*.js -c .jsdoc.json",
     "hint": "jshint ./src/*.js ./test/*.js ./runkit/*.js",
     "lint": "eslint ./src/*.js ./test/*.js ./runkit/*.js"
   },
@@ -37,10 +37,11 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "coveralls": "^3.0.2",
+    "docdash": "^1.0.0",
     "docker": "^1.0.0",
-    "documentation": "^8.1.2",
     "eslint": "^5.4.0",
     "istanbul": "^0.4.5",
+    "jsdoc": "^3.5.5",
     "jshint": "^2.9.6",
     "mocha": "^5.2.0",
     "mocha-lcov-reporter": "^1.3.0"

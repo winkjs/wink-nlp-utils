@@ -1,0 +1,1946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>tokens - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="http://winkjs.org" target="_blank" >Wink JS</a></h2><h2><a href="https://github.com/winkjs/wink-nlp-utils" target="_blank" >Github</a></h2><h3>Namespaces</h3><ul><li><a href="helper.html">helper</a><ul class='methods'><li data-type='method'><a href="helper.html#.returnIndexer">returnIndexer</a></li><li data-type='method'><a href="helper.html#.returnQuotedTextExtractor">returnQuotedTextExtractor</a></li><li data-type='method'><a href="helper.html#.returnWordsFilter">returnWordsFilter</a></li></ul></li><li><a href="string.html">string</a><ul class='methods'><li data-type='method'><a href="string.html#.amplifyNotElision">amplifyNotElision</a></li><li data-type='method'><a href="string.html#.bong">bong</a></li><li data-type='method'><a href="string.html#.composeCorpus">composeCorpus</a></li><li data-type='method'><a href="string.html#.edgeNGrams">edgeNGrams</a></li><li data-type='method'><a href="string.html#.extractPersonsName">extractPersonsName</a></li><li data-type='method'><a href="string.html#.extractRunOfCapitalWords">extractRunOfCapitalWords</a></li><li data-type='method'><a href="string.html#.lowerCase">lowerCase</a></li><li data-type='method'><a href="string.html#.marker">marker</a></li><li data-type='method'><a href="string.html#.ngram">ngram</a></li><li data-type='method'><a href="string.html#.phonetize">phonetize</a></li><li data-type='method'><a href="string.html#.punkt">punkt</a></li><li data-type='method'><a href="string.html#.removeElisions">removeElisions</a></li><li data-type='method'><a href="string.html#.removeExtraSpaces">removeExtraSpaces</a></li><li data-type='method'><a href="string.html#.removeHTMLTags">removeHTMLTags</a></li><li data-type='method'><a href="string.html#.removePunctuations">removePunctuations</a></li><li data-type='method'><a href="string.html#.removeSplChars">removeSplChars</a></li><li data-type='method'><a href="string.html#.retainAlphaNums">retainAlphaNums</a></li><li data-type='method'><a href="string.html#.soc">soc</a></li><li data-type='method'><a href="string.html#.song">song</a></li><li data-type='method'><a href="string.html#.soundex">soundex</a></li><li data-type='method'><a href="string.html#.splitElisions">splitElisions</a></li><li data-type='method'><a href="string.html#.stem">stem</a></li><li data-type='method'><a href="string.html#.tokenize">tokenize</a></li><li data-type='method'><a href="string.html#.tokenize0">tokenize0</a></li><li data-type='method'><a href="string.html#.trim">trim</a></li><li data-type='method'><a href="string.html#.upperCase">upperCase</a></li></ul></li><li><a href="tokens.html">tokens</a><ul class='methods'><li data-type='method'><a href="tokens.html#.appendBigrams">appendBigrams</a></li><li data-type='method'><a href="tokens.html#.bigrams">bigrams</a></li><li data-type='method'><a href="tokens.html#.bow">bow</a></li><li data-type='method'><a href="tokens.html#.phonetize">phonetize</a></li><li data-type='method'><a href="tokens.html#.propagateNegations">propagateNegations</a></li><li data-type='method'><a href="tokens.html#.removeWords">removeWords</a></li><li data-type='method'><a href="tokens.html#.soundex">soundex</a></li><li data-type='method'><a href="tokens.html#.sow">sow</a></li><li data-type='method'><a href="tokens.html#.stem">stem</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">tokens</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        tokens
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="wink-nlp-utils.js.html">wink-nlp-utils.js</a>, <a href="wink-nlp-utils.js.html#line113">line 113</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description"><p>Tokens</p></div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".appendBigrams"><span class="type-signature">(static) </span>appendBigrams<span class="signature">(tokens)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tokens-append-bigrams.js.html">tokens-append-bigrams.js</a>, <a href="tokens-append-bigrams.js.html#line46">line 46</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Generates bigrams from the input tokens and appends them to the input tokens.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>appendBigrams( [ 'he', 'acted', 'decisively', 'today' ] );
+// -> [ 'he',
+//      'acted',
+//      'decisively',
+//      'today',
+//      'he_acted',
+//      'acted_decisively',
+//      'decisively_today' ]</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>tokens</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the input tokens.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the input tokens appended with their bigrams.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".bigrams"><span class="type-signature">(static) </span>bigrams<span class="signature">(tokens)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tokens-bigrams.js.html">tokens-bigrams.js</a>, <a href="tokens-bigrams.js.html#line42">line 42</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Generates bigrams from the input tokens.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>bigrams( [ 'he', 'acted', 'decisively', 'today' ] );
+// -> [ [ 'he', 'acted' ],
+//      [ 'acted', 'decisively' ],
+//      [ 'decisively', 'today' ] ]</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>tokens</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the input tokens.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the bigrams.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".bow"><span class="type-signature">(static) </span>bow<span class="signature">(tokens, logCounts<span class="signature-attributes">opt</span>, ifn<span class="signature-attributes">opt</span>, idx<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {object}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tokens-bow.js.html">tokens-bow.js</a>, <a href="tokens-bow.js.html#line52">line 52</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Generates the bag of words from the input string. By default it
+uses <code>word count</code> as it's frequency; but if <code>logCounts</code> parameter is set to true then
+it will use <code>log2( word counts + 1 )</code> as it's frequency. It also has an alias <strong><code>bow()</code></strong>.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>bagOfWords( [ 'rain', 'rain', 'go', 'away' ] );
+// -> { rain: 2, go: 1, away: 1 }
+bow( [ 'rain', 'rain', 'go', 'away' ], true );
+// -> { rain: 1.584962500721156, go: 1, away: 1 }</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>tokens</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>the input tokens.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>logCounts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>a true value flags the use of <code>log2( word count + 1 )</code>
+instead of just <code>word count</code> as frequency.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ifn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>a function to build index; it is called for
+every <strong>unique occurrence of word</strong> in <code>tokens</code>; and it receives the word and the <code>idx</code>
+as input arguments. The <code>build()</code> function of <a href="#helperreturnindexer">helper.returnIndexer</a>
+may be used as <code>ifn</code>. If <code>undefined</code> then index is not built.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>idx</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>the index; passed as the second argument to the <code>ifn</code>
+function.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>bag of words from tokens.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".phonetize"><span class="type-signature">(static) </span>phonetize<span class="signature">(tokens)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tokens-phonetize.js.html">tokens-phonetize.js</a>, <a href="tokens-phonetize.js.html#line41">line 41</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Phonetizes input tokens using using an algorithmic adaptation of Metaphone.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>phonetize( [ 'he', 'acted', 'decisively', 'today' ] );
+// -> [ 'h', 'aktd', 'dssvl', 'td' ]</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>tokens</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the input tokens.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>phonetized tokens.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".propagateNegations"><span class="type-signature">(static) </span>propagateNegations<span class="signature">(tokens, upto<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tokens-propagate-negations.js.html">tokens-propagate-negations.js</a>, <a href="tokens-propagate-negations.js.html#line47">line 47</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>It looks for negation tokens in the input array of tokens and propagates
+negation to subsequent <code>upto</code> tokens by prefixing them by a <code>!</code>. It is useful
+in handling text containing negations during tasks like similarity detection,
+classification or search.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>propagateNegations( [ 'mary', 'is', 'not', 'feeling', 'good', 'today' ] );
+// -> [ 'mary', 'is', 'not', '!feeling', '!good', 'today' ]</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>tokens</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>the input tokens.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>upto</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>2</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>number of tokens to be negated after the negation
+token. Note, tokens are only negated either <code>upto</code> tokens or up to the token
+preceeding the <strong><code>, . ; : ! ?</code></strong> punctuations.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>tokens with negation propagated.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".removeWords"><span class="type-signature">(static) </span>removeWords<span class="signature">(tokens, stopWords<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tokens-remove-words.js.html">tokens-remove-words.js</a>, <a href="tokens-remove-words.js.html#line47">line 47</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Removes the stop words from the input array of tokens.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>removeWords( [ 'this', 'is', 'a', 'cat' ] );
+// -> [ 'cat' ]</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>tokens</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>the input tokens.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>stopWords</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#wordsFilter">wordsFilter</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>defaultStopWords</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>default stop words are
+loaded from <code>stop_words.json</code> located under the <code>src/dictionaries/</code> directory.
+Custom stop words can be created using <a href="#helperreturnwordsfilter">helper.returnWordsFilter </a>.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>balance tokens.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".soundex"><span class="type-signature">(static) </span>soundex<span class="signature">(tokens)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tokens-soundex.js.html">tokens-soundex.js</a>, <a href="tokens-soundex.js.html#line41">line 41</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Generates the soundex coded tokens from the input tokens.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>soundex( [ 'he', 'acted', 'decisively', 'today' ] );
+// -> [ 'H000', 'A233', 'D221', 'T300' ]</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>tokens</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the input tokens.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>soundex coded tokens.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".sow"><span class="type-signature">(static) </span>sow<span class="signature">(tokens, ifn<span class="signature-attributes">opt</span>, idx<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {set}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tokens-sow.js.html">tokens-sow.js</a>, <a href="tokens-sow.js.html#line46">line 46</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Generates the set of words from the input string. It also has an alias <strong><code>setOfWords()</code></strong>.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>setOfWords( [ 'rain', 'rain', 'go', 'away' ] );
+// -> Set { 'rain', 'go', 'away' }</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>tokens</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the input tokens.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ifn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>a function to build index; it is called for
+every <strong>member word of the set </strong>; and it receives the word and the <code>idx</code>
+as input arguments. The <code>build()</code> function of <a href="#helperreturnindexer">helper.returnIndexer</a>
+may be used as <code>ifn</code>. If <code>undefined</code> then index is not built.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>idx</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the index; passed as the second argument to the <code>ifn</code>
+function.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>of words from tokens.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">set</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".stem"><span class="type-signature">(static) </span>stem<span class="signature">(tokens)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tokens-stem.js.html">tokens-stem.js</a>, <a href="tokens-stem.js.html#line41">line 41</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Stems input tokens using Porter Stemming Algorithm Version 2.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>stem( [ 'he', 'acted', 'decisively', 'today' ] );
+// -> [ 'he', 'act', 'decis', 'today' ]</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>tokens</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the input tokens.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>stemmed tokens.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Oct 25 2018 12:44:51 GMT+0530 (IST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+
+
+</body>
+</html>

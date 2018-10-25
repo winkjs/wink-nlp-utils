@@ -30,8 +30,8 @@
  *
  * Generates bigrams from the input tokens and appends them to the input tokens.
  *
- * @name tokens.appendBigrams
- * @param {string[]} tokens — the input tokens.
+ * @memberof tokens
+ * @param {string[]} tokens the input tokens.
  * @return {string[]} the input tokens appended with their bigrams.
  * @example
  * appendBigrams( [ 'he', 'acted', 'decisively', 'today' ] );

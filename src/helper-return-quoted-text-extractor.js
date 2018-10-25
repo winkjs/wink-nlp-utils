@@ -33,9 +33,9 @@
  * between the `lq` and the `rq` characters from its argument. This argument
  * must be of type string.
  *
- * @name helper.returnQuotedTextExtractor
- * @param {string} [lq='"'] — the left quote character.
- * @param {string} [rq='"'] — the right quote character.
+ * @memberof helper
+ * @param {string} [lq='"'] the left quote character.
+ * @param {string} [rq='"'] the right quote character.
  * @return {function} that will accept an input string argument and return an
  * array of all substrings that are quoted between `lq` and `rq`.
  * @example

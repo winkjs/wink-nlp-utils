@@ -39,8 +39,8 @@ var extractQuotedText = returnQuotedTextExtractor( '[', ']' );
  * (if any) must be separated by a `|` character. The corpus is composed by
  * computing the cartesian product of all the phrases.
  *
- * @name string.composeCorpus
- * @param {string} str — the input string.
+ * @memberof string
+ * @param {string} str the input string.
  * @return {string[]} of all possible sentences.
  * @example
  * composeCorpus( '[I] [am having|have] [a] [problem|question]' );

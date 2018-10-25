@@ -32,13 +32,13 @@
  * in even more aggressive string matching using Jaccard or Tversky compared to
  * `marker()`. It also has an alias **`soc()`**.
  *
- * @name string.setOfChars
- * @param {string} str — the input string.
- * @param {function} [ifn=undefined] — a function to build index; it receives the first
+ * @memberof string
+ * @param {string} str the input string.
+ * @param {function} [ifn=undefined] a function to build index; it receives the first
  * character of `str` and the `idx` as input arguments. The `build()` function of
  * [helper.returnIndexer](#helperreturnindexer) may be used as `ifn`. If `undefined`
  * then index is not built.
- * @param {number} [idx=undefined] — the index; passed as the second argument to the `ifn`
+ * @param {number} [idx=undefined] the index; passed as the second argument to the `ifn`
  * function.
  * @return {string} the soc.
  * @example

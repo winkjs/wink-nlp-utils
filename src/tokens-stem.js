@@ -31,8 +31,8 @@ var porter2Stemmer = require( 'wink-porter2-stemmer' );
  *
  * Stems input tokens using Porter Stemming Algorithm Version 2.
  *
- * @name tokens.stem
- * @param {string[]} tokens — the input tokens.
+ * @memberof tokens
+ * @param {string[]} tokens the input tokens.
  * @return {string[]} stemmed tokens.
  * @example
  * stem( [ 'he', 'acted', 'decisively', 'today' ] );

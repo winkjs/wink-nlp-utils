@@ -32,15 +32,15 @@
  * uses `word count` as it's frequency; but if `logCounts` parameter is set to true then
  * it will use `log2( word counts + 1 )` as it's frequency. It also has an alias **`bow()`**.
  *
- * @name tokens.bagOfWords
- * @param {string[]} tokens — the input tokens.
- * @param {number} [logCounts=false] — a true value flags the use of `log2( word count + 1 )`
+ * @memberof tokens
+ * @param {string[]} tokens the input tokens.
+ * @param {number} [logCounts=false] a true value flags the use of `log2( word count + 1 )`
  * instead of just `word count` as frequency.
- * @param {function} [ifn=undefined] — a function to build index; it is called for
+ * @param {function} [ifn=undefined] a function to build index; it is called for
  * every **unique occurrence of word** in `tokens`; and it receives the word and the `idx`
  * as input arguments. The `build()` function of [helper.returnIndexer](#helperreturnindexer)
  * may be used as `ifn`. If `undefined` then index is not built.
- * @param {number} [idx=undefined] — the index; passed as the second argument to the `ifn`
+ * @param {number} [idx=undefined] the index; passed as the second argument to the `ifn`
  * function.
  * @return {object} bag of words from tokens.
  * @example

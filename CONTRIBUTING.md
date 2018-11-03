@@ -33,7 +33,7 @@ Like artisans, we too need a toolset and process to create beautiful software. T
 
 
 ### Linting
-Well defined linting rules helps us in making code more consistent and avoid bugs. [ESLint](https://eslint.org) and [JSHint](http://jshint.com/) enforces these rules via their configuration files. These files are in the root of each repository.
+Well defined linting rules helps us in making code more consistent and avoid bugs. [ESLint](https://eslint.org) enforces these rules via its configuration file. This file is located in the root of each repository.
 
 
 ### Documenting

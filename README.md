@@ -10,14 +10,14 @@ NLP Functions for amplifying negations, managing elisions, creating ngrams, stem
 Prepare raw text for Natural Language Processing (NLP) using **`wink-nlp-utils`**. It offers a set of [APIs](http://wink.org.in/wink-nlp-utils/) to work on [strings](http://wink.org.in/wink-nlp-utils/#string) such as names, sentences, paragraphs and [tokens](http://wink.org.in/wink-nlp-utils/#tokens) represented as an array of strings/words. They perform the required pre-processing for many ML tasks such as [semantic search](https://www.npmjs.com/package/wink-bm25-text-search), and [classification](https://www.npmjs.com/package/wink-naive-bayes-text-classifier).
 
 
-## Installation
+### Installation
 Use [npm](https://www.npmjs.com/package/wink-nlp-utils) to install:
 ```
 npm install wink-nlp-utils --save
 ```
 
 
-## Getting Started
+### Getting Started
 
 
 ```javascript
@@ -67,16 +67,16 @@ console.log( t );
 ```
 
 ### Documentation
-Check out the [wink NLP utilities API](http://wink.org.in/wink-nlp-utils/) documentation to learn more.
+Check out the [wink NLP utilities API](http://winkjs.org/wink-nlp-utils/) documentation to learn more.
 
-## Need Help?
+### Need Help?
 If you spot a bug and the same has not yet been reported, raise a new [issue](https://github.com/winkjs/wink-nlp-utils/issues) or consider fixing it and sending a pull request.
 
 ### About wink
 [Wink](http://winkjs.org/) is a family of open source packages for **Statistical Analysis**, **Natural Language Processing** and **Machine Learning** in NodeJS. The code is **thoroughly documented** for easy human comprehension and has a **test coverage of ~100%** for reliability to build production grade solutions.
 
 
-## Copyright & License
+### Copyright & License
 **wink-nlp-utils** is copyright 2017-18 [GRAYPE Systems Private Limited](http://graype.in/).
 
 It is licensed under the terms of the MIT License.

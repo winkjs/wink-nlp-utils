@@ -68,7 +68,7 @@ const rgxAlphaAt0 = /^[^a-z]/i;
  * Detects the sentence boundaries in the input `paragraph` and splits it into
  * an array of sentence(s).
  *
- * @memberof string
+ * @alias string#sentences
  * @param {string} paragraph the input string.
  * @return {string[]} of sentences.
  * @example

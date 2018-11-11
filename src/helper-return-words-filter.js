@@ -43,7 +43,7 @@
  * such as `string.lowerCase()`, `string.stem()` and
  * `string.soundex()`.
  *
- * @memberof helper
+ * @alias helper#returnWordsFilter
  * @param {string[]} words that can be filtered using the returned wordsFilter.
  * @param {function[]} [mappers=undefined] optionally used to map each word before creating
  * the wordsFilter.

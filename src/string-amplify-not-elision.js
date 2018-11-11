@@ -35,7 +35,7 @@ var rgx = require( './util_regexes.js' );
  * Amplifies the not elision by converting it into not; for example `isn't`
  * becomes `is not`.
  *
- * @memberof string
+ * @alias string#amplifyNotElision
  * @param {string} str the input string.
  * @return {string} input string after not elision amplification.
  * @example

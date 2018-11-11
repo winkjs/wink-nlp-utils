@@ -35,7 +35,7 @@
  * uses `word count` as it's frequency; but if `logCounts` parameter is set to true then
  * it will use `log2( word counts + 1 )` as it's frequency. It also has an alias **`bow()`**.
  *
- * @memberof tokens
+ * @alias tokens#bagOfWords
  * @param {string[]} tokens the input tokens.
  * @param {number} [logCounts=false] a true value flags the use of `log2( word count + 1 )`
  * instead of just `word count` as frequency.

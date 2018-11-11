@@ -37,7 +37,7 @@ var rgx = require( './util_regexes.js' );
  * Extra spaces, if required, may be removed using [string.removeExtraSpaces](#stringremoveextraspaces)
  * function.
  *
- * @memberof string
+ * @alias string#removeHTMLTags
  * @param {string} str the input string.
  * @return {string} input string after removal of HTML tags.
  * @example

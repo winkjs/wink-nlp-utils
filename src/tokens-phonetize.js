@@ -34,7 +34,7 @@ var stringPhonetize = require( './string-phonetize.js' );
  *
  * Phonetizes input tokens using using an algorithmic adaptation of Metaphone.
  *
- * @memberof tokens
+ * @alias tokens#phonetize
  * @param {string[]} tokens the input tokens.
  * @return {string[]} phonetized tokens.
  * @example

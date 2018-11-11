@@ -38,7 +38,7 @@ var ncrgx = require( './name_cleaner_regexes.js' );
  * `[<salutations>] <name part as FN [MN] [LN]> [<degrees>]`<br/>
  * Entities in square brackets are optional.
  *
- * @memberof string
+ * @alias string#extractPersonsName
  * @param {string} str the input string.
  * @return {string} extracted name.
  * @example

@@ -33,7 +33,7 @@
  *
  * Converts the input string to lower case.
  *
- * @memberof string
+ * @alias string#lowerCase
  * @param {string} str the input string.
  * @return {string} input string in lower case.
  * @example

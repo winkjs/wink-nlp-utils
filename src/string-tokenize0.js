@@ -39,7 +39,7 @@ var rgx = require( './util_regexes.js' );
  * be stripped as they are treated as separators. It also removes all elisions;
  * however negations are retained and amplified.
  *
- * @memberof string
+ * @alias string#tokenize0
  * @param {string} str the input string.
  * @return {string[]} of tokens.
  * @example

@@ -34,7 +34,7 @@
  * Generates an array of ngrams of a specified size from the input string. The
  * default size is 2, which means it will generate bigrams by default.
  *
- * @memberof string
+ * @alias string#ngram
  * @param {string} str the input string.
  * @param {number} [size=2] ngram's size.
  * @return {string[]} ngrams of `size` from `str`.

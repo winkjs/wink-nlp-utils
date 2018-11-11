@@ -36,7 +36,7 @@ var phnrgx = require( './phonetize_regexes.js' );
  * Phonetizes the input string using an algorithmic adaptation of Metaphone; It
  * is not an exact implementation of Metaphone.
  *
- * @memberof string
+ * @alias string#phonetize
  * @param {string} word the input word.
  * @return {string} phonetic code of `word`.
  * @example

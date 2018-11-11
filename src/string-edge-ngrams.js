@@ -33,7 +33,7 @@
  *
  * Generates the edge ngrams from the input string.
  *
- * @memberof string
+ * @alias string#edgeNGrams
  * @param {string} str the input string.
  * @param {number} [min=2] size of ngram generated.
  * @param {number} [max=8] size of ngram is generated.

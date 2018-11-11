@@ -33,7 +33,7 @@
  *
  * Generates the set of words from the input string. It also has an alias **`sow()`**.
  *
- * @memberof tokens
+ * @alias tokens#setOfWords
  * @param {string[]} tokens the input tokens.
  * @param {function} [ifn=undefined] a function to build index; it is called for
  * every **member word of the set **; and it receives the word and the `idx`

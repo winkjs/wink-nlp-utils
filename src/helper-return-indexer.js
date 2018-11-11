@@ -39,7 +39,7 @@
  * It is typically used with [string.soc](#stringsoc), [string.bong](#stringbong),
  * [string.song](#stringsong), and [tokens.sow](#tokenssow).
  *
- * @memberof helper
+ * @alias helper#returnIndexer
  * @return {indexer} used to build and access the index.
  * @example
  * var indexer = returnIndexer();

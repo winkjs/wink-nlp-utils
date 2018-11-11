@@ -36,7 +36,7 @@
  * to detect similarity between short strings. Its aggression may lead to more
  * false positives such as `Meter` and `Metre` or `no melon` and `no lemon`.
  *
- * @memberof string
+ * @alias string#marker
  * @param {string} str the input string.
  * @return {string} the marker.
  * @example

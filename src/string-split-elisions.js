@@ -36,7 +36,7 @@ var rgx = require( './util_regexes.js' );
  * are `it's, let's, where's, I'd, I'm, I'll, I've, and Isn't` etc. Note it does
  * not touch apostrophe used to indicate possession.
  *
- * @memberof string
+ * @alias string#splitElisions
  * @param {string} str the input string.
  * @return {string} input string after splitting of elisions.
  * @example

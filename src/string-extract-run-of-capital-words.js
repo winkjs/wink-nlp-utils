@@ -35,7 +35,7 @@ var trim = require( './string-trim.js' );
  * Extracts the array of text appearing as Title Case or in ALL CAPS from the
  * input string.
  *
- * @memberof string
+ * @alias string#extractRunOfCapitalWords
  * @param {string} str the input string.
  * @return {string[]} of text appearing in Title Case or in ALL CAPS; if no such
  * text is found then `null` is returned.

@@ -36,7 +36,7 @@
  * between the `lq` and the `rq` characters from its argument. This argument
  * must be of type string.
  *
- * @memberof helper
+ * @alias helper#returnQuotedTextExtractor
  * @param {string} [lq='"'] the left quote character.
  * @param {string} [rq='"'] the right quote character.
  * @return {function} that will accept an input string argument and return an

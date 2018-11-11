@@ -33,7 +33,7 @@
  *
  * Converts the input string to upper case.
  *
- * @memberof string
+ * @alias string#upperCase
  * @param {string} str the input string.
  * @return {string} input string in upper case.
  * @example

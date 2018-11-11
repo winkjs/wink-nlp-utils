@@ -33,7 +33,7 @@
  *
  * Generates bigrams from the input tokens.
  *
- * @memberof tokens
+ * @alias tokens#bigrams
  * @param {string[]} tokens the input tokens.
  * @return {string[]} the bigrams.
  * @example

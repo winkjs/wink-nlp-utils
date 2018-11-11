@@ -34,7 +34,7 @@ var stringSoundex = require( './string-soundex.js' );
  *
  * Generates the soundex coded tokens from the input tokens.
  *
- * @memberof tokens
+ * @alias tokens#soundex
  * @param {string[]} tokens the input tokens.
  * @return {string[]} soundex coded tokens.
  * @example

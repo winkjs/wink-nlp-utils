@@ -37,7 +37,7 @@ var rgx = require( './util_regexes.js' );
  * in handling text containing negations during tasks like similarity detection,
  * classification or search.
  *
- * @memberof tokens
+ * @alias tokens#propagateNegations
  * @param {string[]} tokens the input tokens.
  * @param {number} [upto=2] number of tokens to be negated after the negation
  * token. Note, tokens are only negated either `upto` tokens or up to the token

@@ -37,7 +37,7 @@ defaultStopWords = words( defaultStopWords );
  *
  * Removes the stop words from the input array of tokens.
  *
- * @memberof tokens
+ * @alias tokens#removeWords
  * @param {string[]} tokens the input tokens.
  * @param {wordsFilter} [stopWords=defaultStopWords] default stop words are
  * loaded from `stop_words.json` located under the `src/dictionaries/` directory.

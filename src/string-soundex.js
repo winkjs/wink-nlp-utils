@@ -34,7 +34,7 @@ var sndx = require( 'wink-distance/src/soundex.js' );
  *
  * Produces the soundex code from the input `word`.
  *
- * @memberof string
+ * @alias string#soundex
  * @param {string} word the input word.
  * @param {number} [maxLength=4] of soundex code to be returned.
  * @return {string} soundex code of `word`.

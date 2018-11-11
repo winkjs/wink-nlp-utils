@@ -35,7 +35,7 @@
  * in even more aggressive string matching using Jaccard or Tversky compared to
  * `marker()`. It also has an alias **`soc()`**.
  *
- * @memberof string
+ * @alias string#setOfChars
  * @param {string} str the input string.
  * @param {function} [ifn=undefined] a function to build index; it receives the first
  * character of `str` and the `idx` as input arguments. The `build()` function of

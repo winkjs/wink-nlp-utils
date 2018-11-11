@@ -39,7 +39,7 @@ var winkTokenize = require( 'wink-tokenizer' )().tokenize;
  * emoji, emoticon, hashtag, number, ordinal, punctuation, quoted_phrase, symbol,
  * time, mention, url, and word.
  *
- * @memberof string
+ * @alias string#tokenize
  * @param {string} sentence the input string.
  * @param {boolean} [detailed=false] if true, each token is a object cotaining
  * `value` and `tag` of each token; otherwise each token is a string. It's default

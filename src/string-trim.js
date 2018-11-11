@@ -33,7 +33,7 @@
  *
  * Trims leading and trailing whitespaces from the input string.
  *
- * @memberof string
+ * @alias string#trim
  * @param {string} str the input string.
  * @return {string} input string with leading & trailing whitespaces removed.
  * @example

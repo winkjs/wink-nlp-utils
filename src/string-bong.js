@@ -35,7 +35,7 @@
  * default size is 2, which means it will generate bag of bigrams by default. It
  * also has an alias **`bong()`**.
  *
- * @memberof string
+ * @alias string#bagOfNGrams
  * @param {string} str the input string.
  * @param {number} [size=2] ngram size.
  * @param {function} [ifn=undefined] a function to build index; it is called for

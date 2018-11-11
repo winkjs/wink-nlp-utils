@@ -36,7 +36,7 @@ var rgx = require( './util_regexes.js' );
  * the input string, including leading, trailing and extra in-between
  * whitespaces.
  *
- * @memberof string
+ * @alias string#retainAlphaNums
  * @param {string} str the input string.
  * @return {string} input string after removal of non-alphanumeric characters,
  * leading, trailing and extra whitespaces.

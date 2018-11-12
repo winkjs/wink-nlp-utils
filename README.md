@@ -18,8 +18,8 @@ npm install wink-nlp-utils --save
 
 
 ### Getting Started
-
-
+The `wink-nlp-utils` provides a range of rich Natural Language Processing utilities such as extracting person's name from a string, compose training
+corpus for a chat bot, sentence boundary detection, tokenization and stop words removal:
 ```javascript
 
 // Load wink-nlp-utils
@@ -65,6 +65,8 @@ console.log( t );
 // -> [ 'mary', 'little', 'lamb' ]
 
 ```
+
+Try [experimenting with these examples on Runkit](https://npm.runkit.com/wink-nlp-utils) in the browser.
 
 ### Documentation
 Check out the [wink NLP utilities API](http://winkjs.org/wink-nlp-utils/) documentation to learn more.

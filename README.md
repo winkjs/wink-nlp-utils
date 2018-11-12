@@ -18,8 +18,7 @@ npm install wink-nlp-utils --save
 
 
 ### Getting Started
-The `wink-nlp-utils` provides a range of rich Natural Language Processing utilities such as extracting person's name from a string, compose training
-corpus for a chat bot, sentence boundary detection, tokenization and stop words removal:
+The `wink-nlp-utils` provides over **36 utility functions** for Natural Language Processing tasks. Some representative examples are extracting person's name from a string, compose training corpus for a chat bot, sentence boundary detection, tokenization and stop words removal:
 ```javascript
 
 // Load wink-nlp-utils

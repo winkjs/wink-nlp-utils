@@ -39,7 +39,7 @@
     "coveralls": "^3.0.2",
     "docdash": "^1.0.0",
     "docker": "^1.0.0",
-    "eslint": "^5.8.0",
+    "eslint": "^5.9.0",
     "istanbul": "^0.4.5",
     "jsdoc": "^3.5.5",
     "mocha": "^5.2.0",
@@ -50,5 +50,6 @@
     "wink-helpers": "^2.0.0",
     "wink-porter2-stemmer": "^2.0.0",
     "wink-tokenizer": "^5.0.0"
-  }
+  },
+  "runkitExampleFilename": "./runkit/example.js"
 }

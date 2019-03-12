@@ -8,10 +8,6 @@
   "plugins": ["plugins/markdown"],
   "docdash": {
     "menu":{
-            "Wink JS":{
-                "href":"http://winkjs.org",
-                "target":"_blank"
-            },
             "Github":{
                 "href":"https://github.com/winkjs/wink-nlp-utils",
                 "target":"_blank"

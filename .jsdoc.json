@@ -7,6 +7,9 @@
   },
   "plugins": ["plugins/markdown"],
   "docdash": {
+    "meta": {
+      "title": "wink-nlp-utils - Wink JS"
+    },
     "menu":{
             "Github":{
                 "href":"https://github.com/winkjs/wink-nlp-utils",

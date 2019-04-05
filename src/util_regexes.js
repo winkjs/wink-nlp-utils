@@ -62,7 +62,7 @@ rgx.notAlphaNumeric = /[^a-z0-9]/ig;
 // Matches one or more non-words characters.
 rgx.nonWords = /\W+/ig;
 // Matches complete negation token
-rgx.negations = /^(never|none|not|no)$/ig;
+rgx.negations = /^(never|none|not|no)$/i;
 
 // Matches run of capital words in a text.
 rgx.rocWords = /(?:\b[A-Z][A-Za-z]*\s*){2,}/g;

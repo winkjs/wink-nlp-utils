@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>wink-nlp-utils - Wink JS - tokens-bow.js</title>
+    <title>tokens-bow.js - wink-nlp-utils - Wink JS</title>
     
     
     
@@ -20,139 +20,6 @@
 </head>
 <body>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-47082559-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-47082559-2');
-</script>
-<script src="https://use.typekit.net/cwc1qce.js"></script>
-<script>
-  ((window.gitter = {}).chat = {}).options = {
-    room: 'winkjs/Lobby'
-  };
-</script>
-<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
-<script>try{Typekit.load({ async: true });}catch(e){}</script>
-
-<style media="screen">
-body {
-  font-family: 'ff-tisa-sans-web-pro', serif;
-}
-.navbar {
-  border-top: 4px solid #6C307D;
-  box-sizing: border-box;
-  height: 64px;
-  background-color: #222;
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1030;
-  display: flex;
-  justify-content: space-between;
-}
-
-.navbar-header {
-  font-weight: bold;
-  font-size: 30px;
-}
-
-.navbar-header a img {
-  height: 24px;
-}
-
-.navbar a {
-  color: #fff;
-  line-height: 60px;
-  margin-left: 20px;
-}
-
-.navbar-right {
-  margin: 0;
-  line-height: 50px;
-  list-style: none;
-}
-
-.navbar-right li {
-  float: left;
-  margin-right: 20px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding-left: 20px;
-  font-size: 14px;
-}
-
-/* Override docdash */
-nav {
-  top: 80px;
-}
-
-#main {
-  margin-top: 30px;
-}
-
-/* Gitter */
-.gitter-open-chat-button {
-  background: #6C307D;
-}
-
-.gitter-open-chat-button:hover {
-  opacity: 0.8;
-  background: #6C307D;
-}
-
-.gitter-chat-embed {
-  top: 64px;
-}
-</style>
-
-<script type="text/javascript">
-window.addEventListener('DOMContentLoaded', function () {
-  if ( window.location.hash ) {
-    openMember();
-    window.setTimeout( function () {
-      window.scrollTo( 0, (window.pageYOffset || document.documentElement.scrollTop) - 72);
-    }, 0)
-  }
-});
-
-window.addEventListener( 'hashchange', function (e) {
-  e.stopPropagation();
-  openMember();
-} );
-
-function openMember() {
-  var id = window.location.hash.substr(1),
-  toggler = document.getElementById( id ),
-  offset = toggler.getBoundingClientRect().top,
-  y = window.scrollY + offset - 62 - 10;
-  window.scrollTo(0, y);
-}
-</script>
-
-<header>
-  <div class="navbar">
-      <div class="navbar-header">
-        <a href="https://winkjs.org/" title="wink" class="navbar-brand">
-          <img src="https://winkjs.org/images/logo.svg">
-          wink
-        </a>
-      </div>
-      <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id="main-nav">
-        <li><a href="https://winkjs.org/packages.html" class="">Packages</a></li>
-        <li><a href="https://winkjs.org/blog.html" class="">Blog</a></li>
-        <li><a href="http://github.com/winkjs">Github</a></li>
-        <li><a href="https://twitter.com/winkjs_org">Twitter</a></li>
-        <li><a href="https://winkjs.org/about.html" class="">About</a></li>
-      </ul>
-    </div>
-</header>
-
-
 <input type="checkbox" id="nav-trigger" class="nav-trigger" />
 <label for="nav-trigger" class="navicon-button x">
   <div class="navicon"></div>
@@ -160,9 +27,9 @@ function openMember() {
 
 <label for="nav-trigger" class="overlay"></label>
 
-<nav >
+<nav>
     
-    <h2><a href="index.html">Summary</a></h2><h2><a href="https://github.com/winkjs/wink-nlp-utils" target="_blank" >Github</a></h2><h3>Classes</h3><ul><li><a href="Indexer.html">Indexer</a><ul class='methods'><li data-type='method'><a href="Indexer.html#build">build</a></li><li data-type='method'><a href="Indexer.html#result">result</a></li></ul></li><li><a href="WordsFilter.html">WordsFilter</a><ul class='methods'><li data-type='method'><a href="WordsFilter.html#exclude">exclude</a></li><li data-type='method'><a href="WordsFilter.html#set">set</a></li></ul></li></ul><h3>Namespaces</h3><ul><li><a href="helper.html">helper</a><ul class='methods'><li data-type='method'><a href="helper.html#returnIndexer">returnIndexer</a></li><li data-type='method'><a href="helper.html#returnQuotedTextExtractor">returnQuotedTextExtractor</a></li><li data-type='method'><a href="helper.html#returnWordsFilter">returnWordsFilter</a></li></ul></li><li><a href="string.html">string</a><ul class='methods'><li data-type='method'><a href="string.html#amplifyNotElision">amplifyNotElision</a></li><li data-type='method'><a href="string.html#bagOfNGrams">bagOfNGrams</a></li><li data-type='method'><a href="string.html#composeCorpus">composeCorpus</a></li><li data-type='method'><a href="string.html#edgeNGrams">edgeNGrams</a></li><li data-type='method'><a href="string.html#extractPersonsName">extractPersonsName</a></li><li data-type='method'><a href="string.html#extractRunOfCapitalWords">extractRunOfCapitalWords</a></li><li data-type='method'><a href="string.html#lowerCase">lowerCase</a></li><li data-type='method'><a href="string.html#marker">marker</a></li><li data-type='method'><a href="string.html#ngram">ngram</a></li><li data-type='method'><a href="string.html#phonetize">phonetize</a></li><li data-type='method'><a href="string.html#removeElisions">removeElisions</a></li><li data-type='method'><a href="string.html#removeExtraSpaces">removeExtraSpaces</a></li><li data-type='method'><a href="string.html#removeHTMLTags">removeHTMLTags</a></li><li data-type='method'><a href="string.html#removePunctuations">removePunctuations</a></li><li data-type='method'><a href="string.html#removeSplChars">removeSplChars</a></li><li data-type='method'><a href="string.html#retainAlphaNums">retainAlphaNums</a></li><li data-type='method'><a href="string.html#sentences">sentences</a></li><li data-type='method'><a href="string.html#setOfChars">setOfChars</a></li><li data-type='method'><a href="string.html#setOfNGrams">setOfNGrams</a></li><li data-type='method'><a href="string.html#soundex">soundex</a></li><li data-type='method'><a href="string.html#splitElisions">splitElisions</a></li><li data-type='method'><a href="string.html#stem">stem</a></li><li data-type='method'><a href="string.html#tokenize">tokenize</a></li><li data-type='method'><a href="string.html#tokenize0">tokenize0</a></li><li data-type='method'><a href="string.html#trim">trim</a></li><li data-type='method'><a href="string.html#upperCase">upperCase</a></li></ul></li><li><a href="tokens.html">tokens</a><ul class='methods'><li data-type='method'><a href="tokens.html#appendBigrams">appendBigrams</a></li><li data-type='method'><a href="tokens.html#bagOfWords">bagOfWords</a></li><li data-type='method'><a href="tokens.html#bigrams">bigrams</a></li><li data-type='method'><a href="tokens.html#phonetize">phonetize</a></li><li data-type='method'><a href="tokens.html#propagateNegations">propagateNegations</a></li><li data-type='method'><a href="tokens.html#removeWords">removeWords</a></li><li data-type='method'><a href="tokens.html#setOfWords">setOfWords</a></li><li data-type='method'><a href="tokens.html#soundex">soundex</a></li><li data-type='method'><a href="tokens.html#stem">stem</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/winkjs/wink-nlp-utils" target="_blank" >Github</a></h2><h3>Classes</h3><ul><li><a href="Indexer.html">Indexer</a><ul class='methods'><li data-type='method'><a href="Indexer.html#build">build</a></li><li data-type='method'><a href="Indexer.html#result">result</a></li></ul></li><li><a href="WordsFilter.html">WordsFilter</a><ul class='methods'><li data-type='method'><a href="WordsFilter.html#exclude">exclude</a></li><li data-type='method'><a href="WordsFilter.html#set">set</a></li></ul></li></ul><h3>Namespaces</h3><ul><li><a href="helper.html">helper</a><ul class='methods'><li data-type='method'><a href="helper.html#returnIndexer">returnIndexer</a></li><li data-type='method'><a href="helper.html#returnQuotedTextExtractor">returnQuotedTextExtractor</a></li><li data-type='method'><a href="helper.html#returnWordsFilter">returnWordsFilter</a></li></ul></li><li><a href="string.html">string</a><ul class='methods'><li data-type='method'><a href="string.html#amplifyNotElision">amplifyNotElision</a></li><li data-type='method'><a href="string.html#bagOfNGrams">bagOfNGrams</a></li><li data-type='method'><a href="string.html#composeCorpus">composeCorpus</a></li><li data-type='method'><a href="string.html#edgeNGrams">edgeNGrams</a></li><li data-type='method'><a href="string.html#extractPersonsName">extractPersonsName</a></li><li data-type='method'><a href="string.html#extractRunOfCapitalWords">extractRunOfCapitalWords</a></li><li data-type='method'><a href="string.html#lowerCase">lowerCase</a></li><li data-type='method'><a href="string.html#marker">marker</a></li><li data-type='method'><a href="string.html#ngram">ngram</a></li><li data-type='method'><a href="string.html#phonetize">phonetize</a></li><li data-type='method'><a href="string.html#removeElisions">removeElisions</a></li><li data-type='method'><a href="string.html#removeExtraSpaces">removeExtraSpaces</a></li><li data-type='method'><a href="string.html#removeHTMLTags">removeHTMLTags</a></li><li data-type='method'><a href="string.html#removePunctuations">removePunctuations</a></li><li data-type='method'><a href="string.html#removeSplChars">removeSplChars</a></li><li data-type='method'><a href="string.html#retainAlphaNums">retainAlphaNums</a></li><li data-type='method'><a href="string.html#sentences">sentences</a></li><li data-type='method'><a href="string.html#setOfChars">setOfChars</a></li><li data-type='method'><a href="string.html#setOfNGrams">setOfNGrams</a></li><li data-type='method'><a href="string.html#soundex">soundex</a></li><li data-type='method'><a href="string.html#splitElisions">splitElisions</a></li><li data-type='method'><a href="string.html#stem">stem</a></li><li data-type='method'><a href="string.html#tokenize">tokenize</a></li><li data-type='method'><a href="string.html#tokenize0">tokenize0</a></li><li data-type='method'><a href="string.html#trim">trim</a></li><li data-type='method'><a href="string.html#upperCase">upperCase</a></li></ul></li><li><a href="tokens.html">tokens</a><ul class='methods'><li data-type='method'><a href="tokens.html#appendBigrams">appendBigrams</a></li><li data-type='method'><a href="tokens.html#bagOfWords">bagOfWords</a></li><li data-type='method'><a href="tokens.html#bigrams">bigrams</a></li><li data-type='method'><a href="tokens.html#phonetize">phonetize</a></li><li data-type='method'><a href="tokens.html#propagateNegations">propagateNegations</a></li><li data-type='method'><a href="tokens.html#removeWords">removeWords</a></li><li data-type='method'><a href="tokens.html#setOfWords">setOfWords</a></li><li data-type='method'><a href="tokens.html#soundex">soundex</a></li><li data-type='method'><a href="tokens.html#stem">stem</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -260,14 +127,14 @@ module.exports = bagOfWords;
 
 
 
-
+    
     
 </div>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Mar 21 2019 09:13:36 GMT+0530 (IST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Apr 05 2019 15:26:06 GMT+0530 (India Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

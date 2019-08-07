@@ -34,6 +34,10 @@
   ((window.gitter = {}).chat = {}).options = {
     room: 'winkjs/Lobby'
   };
+  window.onload = function () {
+      document.querySelector('.gitter-open-chat-button').innerText = 'Need help?'
+      document.querySelector('.gitter-open-chat-button').style.display = 'block';
+  }
 </script>
 <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
@@ -68,7 +72,13 @@ body {
 .navbar a {
   color: #fff;
   line-height: 60px;
+  margin-left: 0;
+}
+
+.navbar a.navbar-brand {
   margin-left: 20px;
+  display: block;
+  min-width: 40px;
 }
 
 .navbar-right {
@@ -87,10 +97,6 @@ body {
 }
 
 /* Override docdash */
-nav {
-  top: 80px;
-}
-
 #main {
   margin-top: 30px;
 }
@@ -98,6 +104,7 @@ nav {
 /* Gitter */
 .gitter-open-chat-button {
   background: #6C307D;
+  display: none;
 }
 
 .gitter-open-chat-button:hover {
@@ -118,6 +125,16 @@ window.addEventListener('DOMContentLoaded', function () {
       window.scrollTo( 0, (window.pageYOffset || document.documentElement.scrollTop) - 72);
     }, 0)
   }
+
+  document.getElementById('toc-button').addEventListener('click', function () {
+      if (document.getElementById('side-nav').className === '') {
+        document.getElementById('side-nav').className = 'is-open';
+        document.getElementById('toc-button-img').setAttribute('src','./close.svg');
+      } else {
+        document.getElementById('side-nav').className = '';
+        document.getElementById('toc-button-img').setAttribute('src','./menu.svg');
+      }
+  })
 });
 
 window.addEventListener( 'hashchange', function (e) {
@@ -139,38 +156,34 @@ function openMember() {
       <div class="navbar-header">
         <a href="https://winkjs.org/" title="wink" class="navbar-brand">
           <img src="https://winkjs.org/images/logo.svg">
-          wink
+          <span>wink</span>
         </a>
       </div>
-      <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id="main-nav">
-        <li><a href="https://winkjs.org/packages.html" class="">Packages</a></li>
-        <li><a href="https://winkjs.org/blog.html" class="">Blog</a></li>
-        <li><a href="http://github.com/winkjs">Github</a></li>
-        <li><a href="https://twitter.com/winkjs_org">Twitter</a></li>
-        <li><a href="https://winkjs.org/about.html" class="">About</a></li>
-      </ul>
+      <div class="sausage-links">
+        <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id="main-nav">
+          <li><a href="https://winkjs.org/packages.html" class="">Packages</a></li>
+          <li><a href="https://winkjs.org/showcase.html" class="">Showcase</a></li>
+          <li><a href="https://winkjs.org/blog.html" class="">Blog</a></li>
+          <li><a href="http://github.com/winkjs">Github</a></li>
+          <li><a href="https://winkjs.org/about.html" class="">About</a></li>
+        </div>
+      </nav>
     </div>
 </header>
 
+<div id="toc-button">
+  <img src="./menu.svg" alt="" id="toc-button-img">
+</div>
 
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
 
-<label for="nav-trigger" class="overlay"></label>
+<div class="content-container">
+  <div class="main-container">
+    <div id="main">
+        
+        <h1 class="page-title">tokens</h1>
+        
 
-<nav >
-    
-    <h2><a href="index.html">Summary</a></h2><h2><a href="https://github.com/winkjs/wink-nlp-utils" target="_blank" >Github</a></h2><h3>Classes</h3><ul><li><a href="Indexer.html">Indexer</a><ul class='methods'><li data-type='method'><a href="Indexer.html#build">build</a></li><li data-type='method'><a href="Indexer.html#result">result</a></li></ul></li><li><a href="WordsFilter.html">WordsFilter</a><ul class='methods'><li data-type='method'><a href="WordsFilter.html#exclude">exclude</a></li><li data-type='method'><a href="WordsFilter.html#set">set</a></li></ul></li></ul><h3>Namespaces</h3><ul><li><a href="helper.html">helper</a><ul class='methods'><li data-type='method'><a href="helper.html#returnIndexer">returnIndexer</a></li><li data-type='method'><a href="helper.html#returnQuotedTextExtractor">returnQuotedTextExtractor</a></li><li data-type='method'><a href="helper.html#returnWordsFilter">returnWordsFilter</a></li></ul></li><li><a href="string.html">string</a><ul class='methods'><li data-type='method'><a href="string.html#amplifyNotElision">amplifyNotElision</a></li><li data-type='method'><a href="string.html#bagOfNGrams">bagOfNGrams</a></li><li data-type='method'><a href="string.html#composeCorpus">composeCorpus</a></li><li data-type='method'><a href="string.html#edgeNGrams">edgeNGrams</a></li><li data-type='method'><a href="string.html#extractPersonsName">extractPersonsName</a></li><li data-type='method'><a href="string.html#extractRunOfCapitalWords">extractRunOfCapitalWords</a></li><li data-type='method'><a href="string.html#lowerCase">lowerCase</a></li><li data-type='method'><a href="string.html#marker">marker</a></li><li data-type='method'><a href="string.html#ngram">ngram</a></li><li data-type='method'><a href="string.html#phonetize">phonetize</a></li><li data-type='method'><a href="string.html#removeElisions">removeElisions</a></li><li data-type='method'><a href="string.html#removeExtraSpaces">removeExtraSpaces</a></li><li data-type='method'><a href="string.html#removeHTMLTags">removeHTMLTags</a></li><li data-type='method'><a href="string.html#removePunctuations">removePunctuations</a></li><li data-type='method'><a href="string.html#removeSplChars">removeSplChars</a></li><li data-type='method'><a href="string.html#retainAlphaNums">retainAlphaNums</a></li><li data-type='method'><a href="string.html#sentences">sentences</a></li><li data-type='method'><a href="string.html#setOfChars">setOfChars</a></li><li data-type='method'><a href="string.html#setOfNGrams">setOfNGrams</a></li><li data-type='method'><a href="string.html#soundex">soundex</a></li><li data-type='method'><a href="string.html#splitElisions">splitElisions</a></li><li data-type='method'><a href="string.html#stem">stem</a></li><li data-type='method'><a href="string.html#tokenize">tokenize</a></li><li data-type='method'><a href="string.html#tokenize0">tokenize0</a></li><li data-type='method'><a href="string.html#trim">trim</a></li><li data-type='method'><a href="string.html#upperCase">upperCase</a></li></ul></li><li><a href="tokens.html">tokens</a><ul class='methods'><li data-type='method'><a href="tokens.html#appendBigrams">appendBigrams</a></li><li data-type='method'><a href="tokens.html#bagOfWords">bagOfWords</a></li><li data-type='method'><a href="tokens.html#bigrams">bigrams</a></li><li data-type='method'><a href="tokens.html#phonetize">phonetize</a></li><li data-type='method'><a href="tokens.html#propagateNegations">propagateNegations</a></li><li data-type='method'><a href="tokens.html#removeWords">removeWords</a></li><li data-type='method'><a href="tokens.html#setOfWords">setOfWords</a></li><li data-type='method'><a href="tokens.html#soundex">soundex</a></li><li data-type='method'><a href="tokens.html#stem">stem</a></li></ul></li></ul>
-</nav>
-
-<div id="main">
-    
-    <h1 class="page-title">tokens</h1>
-    
-
-    
+        
 
 
 
@@ -179,9 +192,9 @@ function openMember() {
 
 <header>
     
-        <h2>
+        <!--<h2>
         tokens
-        </h2>
+        </h2>-->
         
     
 </header>
@@ -194,12 +207,12 @@ function openMember() {
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="wink-nlp-utils.js.html">wink-nlp-utils.js</a>, <a href="wink-nlp-utils.js.html#line116">line 116</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -249,7 +262,7 @@ function openMember() {
     
 
     
-    
+
     
 
      
@@ -266,7 +279,10 @@ function openMember() {
 
     
 
-    <h4 class="name" id="appendBigrams"><span class="type-signature"></span>appendBigrams<span class="signature">(tokens)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></h4>
+    <h4 class="name" id="appendBigrams">
+      appendBigrams
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>appendBigrams<span class="signature">(tokens)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></div
 
     
 
@@ -275,12 +291,12 @@ function openMember() {
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="tokens-append-bigrams.js.html">tokens-append-bigrams.js</a>, <a href="tokens-append-bigrams.js.html#line49">line 49</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -343,7 +359,7 @@ function openMember() {
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -368,13 +384,14 @@ function openMember() {
 
         <tr>
             
-                <td class="name"><code>tokens</code></td>
+                <td class="name">tokens</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
 
 
             
@@ -406,7 +423,7 @@ function openMember() {
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -424,6 +441,7 @@ function openMember() {
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
 
 
+
     </dd>
 </dl>
 
@@ -431,12 +449,17 @@ function openMember() {
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="bagOfWords"><span class="type-signature"></span>bagOfWords<span class="signature">(tokens, logCounts<span class="signature-attributes">opt</span>, ifn<span class="signature-attributes">opt</span>, idx<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="bagOfWords">
+      bagOfWords
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>bagOfWords<span class="signature">(tokens, logCounts<span class="signature-attributes">opt</span>, ifn<span class="signature-attributes">opt</span>, idx<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {object}</span></div
 
     
 
@@ -445,12 +468,12 @@ function openMember() {
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="tokens-bow.js.html">tokens-bow.js</a>, <a href="tokens-bow.js.html#line55">line 55</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -511,7 +534,7 @@ bow( [ 'rain', 'rain', 'go', 'away' ], true );
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -540,13 +563,14 @@ bow( [ 'rain', 'rain', 'go', 'away' ], true );
 
         <tr>
             
-                <td class="name"><code>tokens</code></td>
+                <td class="name">tokens</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
 
 
             
@@ -575,13 +599,14 @@ bow( [ 'rain', 'rain', 'go', 'away' ], true );
 
         <tr>
             
-                <td class="name"><code>logCounts</code></td>
+                <td class="name">logCounts</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -602,7 +627,7 @@ bow( [ 'rain', 'rain', 'go', 'away' ], true );
             
                 <td class="default">
                 
-                    <code>false</code>
+                    false
                 
                 </td>
             
@@ -615,13 +640,14 @@ instead of just <code>word count</code> as frequency.</p></td>
 
         <tr>
             
-                <td class="name"><code>ifn</code></td>
+                <td class="name">ifn</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">function</span>
+
 
 
             
@@ -655,13 +681,14 @@ may be used as <code>ifn</code>. If <code>undefined</code> then index is not bui
 
         <tr>
             
-                <td class="name"><code>idx</code></td>
+                <td class="name">idx</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -708,7 +735,7 @@ function.</p></td>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -726,6 +753,7 @@ function.</p></td>
 <span class="param-type">object</span>
 
 
+
     </dd>
 </dl>
 
@@ -733,12 +761,17 @@ function.</p></td>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="bigrams"><span class="type-signature"></span>bigrams<span class="signature">(tokens)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></h4>
+    <h4 class="name" id="bigrams">
+      bigrams
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>bigrams<span class="signature">(tokens)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></div
 
     
 
@@ -747,12 +780,12 @@ function.</p></td>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="tokens-bigrams.js.html">tokens-bigrams.js</a>, <a href="tokens-bigrams.js.html#line45">line 45</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -811,7 +844,7 @@ function.</p></td>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -836,13 +869,14 @@ function.</p></td>
 
         <tr>
             
-                <td class="name"><code>tokens</code></td>
+                <td class="name">tokens</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
 
 
             
@@ -874,7 +908,7 @@ function.</p></td>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -892,6 +926,7 @@ function.</p></td>
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
 
 
+
     </dd>
 </dl>
 
@@ -899,12 +934,17 @@ function.</p></td>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="phonetize"><span class="type-signature"></span>phonetize<span class="signature">(tokens)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></h4>
+    <h4 class="name" id="phonetize">
+      phonetize
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>phonetize<span class="signature">(tokens)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></div
 
     
 
@@ -913,12 +953,12 @@ function.</p></td>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="tokens-phonetize.js.html">tokens-phonetize.js</a>, <a href="tokens-phonetize.js.html#line44">line 44</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -975,7 +1015,7 @@ function.</p></td>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -1000,13 +1040,14 @@ function.</p></td>
 
         <tr>
             
-                <td class="name"><code>tokens</code></td>
+                <td class="name">tokens</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
 
 
             
@@ -1038,7 +1079,7 @@ function.</p></td>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -1056,6 +1097,7 @@ function.</p></td>
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
 
 
+
     </dd>
 </dl>
 
@@ -1063,12 +1105,17 @@ function.</p></td>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="propagateNegations"><span class="type-signature"></span>propagateNegations<span class="signature">(tokens, upto<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></h4>
+    <h4 class="name" id="propagateNegations">
+      propagateNegations
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>propagateNegations<span class="signature">(tokens, upto<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></div
 
     
 
@@ -1077,12 +1124,12 @@ function.</p></td>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="tokens-propagate-negations.js.html">tokens-propagate-negations.js</a>, <a href="tokens-propagate-negations.js.html#line50">line 50</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -1142,7 +1189,7 @@ classification or search.</p>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -1171,13 +1218,14 @@ classification or search.</p>
 
         <tr>
             
-                <td class="name"><code>tokens</code></td>
+                <td class="name">tokens</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
 
 
             
@@ -1206,13 +1254,14 @@ classification or search.</p>
 
         <tr>
             
-                <td class="name"><code>upto</code></td>
+                <td class="name">upto</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -1233,7 +1282,7 @@ classification or search.</p>
             
                 <td class="default">
                 
-                    <code>2</code>
+                    2
                 
                 </td>
             
@@ -1262,7 +1311,7 @@ preceeding the <strong><code>, . ; : ! ?</code></strong> punctuations.</p></td>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -1280,6 +1329,7 @@ preceeding the <strong><code>, . ; : ! ?</code></strong> punctuations.</p></td>
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
 
 
+
     </dd>
 </dl>
 
@@ -1287,12 +1337,17 @@ preceeding the <strong><code>, . ; : ! ?</code></strong> punctuations.</p></td>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="removeWords"><span class="type-signature"></span>removeWords<span class="signature">(tokens, stopWords<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></h4>
+    <h4 class="name" id="removeWords">
+      removeWords
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>removeWords<span class="signature">(tokens, stopWords<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></div
 
     
 
@@ -1301,12 +1356,12 @@ preceeding the <strong><code>, . ; : ! ?</code></strong> punctuations.</p></td>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="tokens-remove-words.js.html">tokens-remove-words.js</a>, <a href="tokens-remove-words.js.html#line50">line 50</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -1363,7 +1418,7 @@ preceeding the <strong><code>, . ; : ! ?</code></strong> punctuations.</p></td>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -1392,13 +1447,14 @@ preceeding the <strong><code>, . ; : ! ?</code></strong> punctuations.</p></td>
 
         <tr>
             
-                <td class="name"><code>tokens</code></td>
+                <td class="name">tokens</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
 
 
             
@@ -1427,13 +1483,14 @@ preceeding the <strong><code>, . ; : ! ?</code></strong> punctuations.</p></td>
 
         <tr>
             
-                <td class="name"><code>stopWords</code></td>
+                <td class="name">stopWords</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">wordsFilter</span>
+
 
 
             
@@ -1454,7 +1511,7 @@ preceeding the <strong><code>, . ; : ! ?</code></strong> punctuations.</p></td>
             
                 <td class="default">
                 
-                    <code>defaultStopWords</code>
+                    defaultStopWords
                 
                 </td>
             
@@ -1483,7 +1540,7 @@ Custom stop words can be created using <a href="#helperreturnwordsfilter">helper
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -1501,6 +1558,7 @@ Custom stop words can be created using <a href="#helperreturnwordsfilter">helper
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
 
 
+
     </dd>
 </dl>
 
@@ -1508,12 +1566,17 @@ Custom stop words can be created using <a href="#helperreturnwordsfilter">helper
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="setOfWords"><span class="type-signature"></span>setOfWords<span class="signature">(tokens, ifn<span class="signature-attributes">opt</span>, idx<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {set}</span></h4>
+    <h4 class="name" id="setOfWords">
+      setOfWords
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>setOfWords<span class="signature">(tokens, ifn<span class="signature-attributes">opt</span>, idx<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {set}</span></div
 
     
 
@@ -1522,12 +1585,12 @@ Custom stop words can be created using <a href="#helperreturnwordsfilter">helper
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="tokens-sow.js.html">tokens-sow.js</a>, <a href="tokens-sow.js.html#line49">line 49</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -1584,7 +1647,7 @@ Custom stop words can be created using <a href="#helperreturnwordsfilter">helper
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -1611,13 +1674,14 @@ Custom stop words can be created using <a href="#helperreturnwordsfilter">helper
 
         <tr>
             
-                <td class="name"><code>tokens</code></td>
+                <td class="name">tokens</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
 
 
             
@@ -1642,13 +1706,14 @@ Custom stop words can be created using <a href="#helperreturnwordsfilter">helper
 
         <tr>
             
-                <td class="name"><code>ifn</code></td>
+                <td class="name">ifn</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">function</span>
+
 
 
             
@@ -1669,7 +1734,7 @@ Custom stop words can be created using <a href="#helperreturnwordsfilter">helper
             
 
             <td class="description last"><p>a function to build index; it is called for
-every <strong>member word of the set </strong>; and it receives the word and the <code>idx</code>
+every **member word of the set **; and it receives the word and the <code>idx</code>
 as input arguments. The <code>build()</code> function of <a href="#helperreturnindexer">helper.returnIndexer</a>
 may be used as <code>ifn</code>. If <code>undefined</code> then index is not built.</p></td>
         </tr>
@@ -1678,13 +1743,14 @@ may be used as <code>ifn</code>. If <code>undefined</code> then index is not bui
 
         <tr>
             
-                <td class="name"><code>idx</code></td>
+                <td class="name">idx</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -1727,7 +1793,7 @@ function.</p></td>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -1745,6 +1811,7 @@ function.</p></td>
 <span class="param-type">set</span>
 
 
+
     </dd>
 </dl>
 
@@ -1752,12 +1819,17 @@ function.</p></td>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="soundex"><span class="type-signature"></span>soundex<span class="signature">(tokens)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></h4>
+    <h4 class="name" id="soundex">
+      soundex
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>soundex<span class="signature">(tokens)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></div
 
     
 
@@ -1766,12 +1838,12 @@ function.</p></td>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="tokens-soundex.js.html">tokens-soundex.js</a>, <a href="tokens-soundex.js.html#line44">line 44</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -1828,7 +1900,7 @@ function.</p></td>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -1853,13 +1925,14 @@ function.</p></td>
 
         <tr>
             
-                <td class="name"><code>tokens</code></td>
+                <td class="name">tokens</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
 
 
             
@@ -1891,7 +1964,7 @@ function.</p></td>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -1909,6 +1982,7 @@ function.</p></td>
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
 
 
+
     </dd>
 </dl>
 
@@ -1916,12 +1990,17 @@ function.</p></td>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="stem"><span class="type-signature"></span>stem<span class="signature">(tokens)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></h4>
+    <h4 class="name" id="stem">
+      stem
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>stem<span class="signature">(tokens)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></div
 
     
 
@@ -1930,12 +2009,12 @@ function.</p></td>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="tokens-stem.js.html">tokens-stem.js</a>, <a href="tokens-stem.js.html#line44">line 44</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -1992,7 +2071,7 @@ function.</p></td>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -2017,13 +2096,14 @@ function.</p></td>
 
         <tr>
             
-                <td class="name"><code>tokens</code></td>
+                <td class="name">tokens</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
+
 
 
             
@@ -2055,7 +2135,7 @@ function.</p></td>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -2073,12 +2153,15 @@ function.</p></td>
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
 
 
+
     </dd>
 </dl>
 
     
 
 
+
+<hr>
 
         
     
@@ -2094,18 +2177,40 @@ function.</p></td>
 
 
 
-    
+        
+    </div>
+  </div>
+
+  <nav  id="side-nav">
+      
+      <h2><a href="index.html">Summary</a></h2><h2><a href="https://github.com/winkjs/wink-nlp-utils" target="_blank" >Github</a></h2><h3>Classes</h3><ul><li><a href="Indexer.html">Indexer</a><ul class='methods'><li data-type='method'><a href="Indexer.html#build">build</a></li><li data-type='method'><a href="Indexer.html#result">result</a></li></ul></li><li><a href="WordsFilter.html">WordsFilter</a><ul class='methods'><li data-type='method'><a href="WordsFilter.html#exclude">exclude</a></li><li data-type='method'><a href="WordsFilter.html#set">set</a></li></ul></li></ul><h3>Namespaces</h3><ul><li><a href="helper.html">helper</a><ul class='methods'><li data-type='method'><a href="helper.html#returnIndexer">returnIndexer</a></li><li data-type='method'><a href="helper.html#returnQuotedTextExtractor">returnQuotedTextExtractor</a></li><li data-type='method'><a href="helper.html#returnWordsFilter">returnWordsFilter</a></li></ul></li><li><a href="string.html">string</a><ul class='methods'><li data-type='method'><a href="string.html#amplifyNotElision">amplifyNotElision</a></li><li data-type='method'><a href="string.html#bagOfNGrams">bagOfNGrams</a></li><li data-type='method'><a href="string.html#composeCorpus">composeCorpus</a></li><li data-type='method'><a href="string.html#edgeNGrams">edgeNGrams</a></li><li data-type='method'><a href="string.html#extractPersonsName">extractPersonsName</a></li><li data-type='method'><a href="string.html#extractRunOfCapitalWords">extractRunOfCapitalWords</a></li><li data-type='method'><a href="string.html#lowerCase">lowerCase</a></li><li data-type='method'><a href="string.html#marker">marker</a></li><li data-type='method'><a href="string.html#ngram">ngram</a></li><li data-type='method'><a href="string.html#phonetize">phonetize</a></li><li data-type='method'><a href="string.html#removeElisions">removeElisions</a></li><li data-type='method'><a href="string.html#removeExtraSpaces">removeExtraSpaces</a></li><li data-type='method'><a href="string.html#removeHTMLTags">removeHTMLTags</a></li><li data-type='method'><a href="string.html#removePunctuations">removePunctuations</a></li><li data-type='method'><a href="string.html#removeSplChars">removeSplChars</a></li><li data-type='method'><a href="string.html#retainAlphaNums">retainAlphaNums</a></li><li data-type='method'><a href="string.html#sentences">sentences</a></li><li data-type='method'><a href="string.html#setOfChars">setOfChars</a></li><li data-type='method'><a href="string.html#setOfNGrams">setOfNGrams</a></li><li data-type='method'><a href="string.html#soundex">soundex</a></li><li data-type='method'><a href="string.html#splitElisions">splitElisions</a></li><li data-type='method'><a href="string.html#stem">stem</a></li><li data-type='method'><a href="string.html#tokenize">tokenize</a></li><li data-type='method'><a href="string.html#tokenize0">tokenize0</a></li><li data-type='method'><a href="string.html#trim">trim</a></li><li data-type='method'><a href="string.html#upperCase">upperCase</a></li></ul></li><li><a href="tokens.html">tokens</a><ul class='methods'><li data-type='method'><a href="tokens.html#appendBigrams">appendBigrams</a></li><li data-type='method'><a href="tokens.html#bagOfWords">bagOfWords</a></li><li data-type='method'><a href="tokens.html#bigrams">bigrams</a></li><li data-type='method'><a href="tokens.html#phonetize">phonetize</a></li><li data-type='method'><a href="tokens.html#propagateNegations">propagateNegations</a></li><li data-type='method'><a href="tokens.html#removeWords">removeWords</a></li><li data-type='method'><a href="tokens.html#setOfWords">setOfWords</a></li><li data-type='method'><a href="tokens.html#soundex">soundex</a></li><li data-type='method'><a href="tokens.html#stem">stem</a></li></ul></li></ul>
+  </nav>
 </div>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jun 10 2019 10:58:19 GMT+0530 (IST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Aug 07 2019 17:25:09 GMT+0530 (IST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
 <script src="scripts/linenumber.js"></script>
 
 
+
+<script src="https://embed.runkit.com"></script>
+<script type="text/javascript">
+  var els = document.getElementsByClassName("runkit");
+
+  Array.prototype.forEach.call(els, function(el) {
+    // Do stuff here
+    var source = el.innerHTML;
+    el.innerHTML = '';
+    var n = RunKit.createNotebook( {
+      element: el,
+      source: source
+    } );
+  });
+</script>
 </body>
 </html>

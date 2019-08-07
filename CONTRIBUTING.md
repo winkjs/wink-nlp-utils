@@ -37,10 +37,10 @@ Well defined linting rules helps us in making code more consistent and avoid bug
 
 
 ### Documenting
-We believe that the documentation must not only explain the API but also narrate the story of logic, algorithms and references used. Wink uses the [JSDoc](http://usejsdoc.org/) standard for API documentation and [Literate-Programming Standards](https://en.wikipedia.org/wiki/Literate_programming) for documenting the logic using [docker](http://jbt.github.io/docker/src/docker.js.html). The API documentation quality is measured using [Inch CI](https://inch-ci.org/) and we expect that your contribution will improve or maintain the current levels.
+We believe that the documentation must not only explain the API but also narrate the story of logic, algorithms and references used. Wink uses the [JSDoc](https://jsdoc.app/) standard for API documentation and [Literate-Programming Standards](https://en.wikipedia.org/wiki/Literate_programming) for documenting the logic using [docker](http://jbt.github.io/docker/src/docker.js.html). The API documentation quality is measured using [Inch CI](https://inch-ci.org/) and we expect that your contribution will improve or maintain the current levels.
 
 ### Testing
-Wink requires a test coverage of **atleast > 99.5%** and aims for 100%. Any new contribution must maintain the existing test coverage level. We use [Chai](http://chaijs.com/), [Mocha](https://mochajs.org/) and [Istanbul](https://inch-ci.org/), [Coveralls](https://coveralls.io/) to run tests and determine coverage.
+Wink requires a test coverage of **atleast > 99.5%** and aims for 100%. Any new contribution must maintain the existing test coverage level. We use [Chai](http://chaijs.com/), [Mocha](https://mochajs.org/) and [Istanbul](https://istanbul.js.org/), [Coveralls](https://coveralls.io/) to run tests and determine coverage.
 
 ### Committing
 We follow [commit guidelines](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits) from the Google's [Angular Project](https://angular.io/), whose documentation is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). See important excerpts for quick reference below:

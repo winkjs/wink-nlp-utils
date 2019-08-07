@@ -37,18 +37,18 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "coveralls": "^3.0.3",
-    "docdash": "winkjs/docdash",
+    "docdash": "github:winkjs/docdash",
     "docker": "^1.0.0",
     "eslint": "^5.16.0",
     "istanbul": "^0.4.5",
-    "jsdoc": "^3.5.5",
+    "jsdoc": "^3.6.3",
     "mocha": "^6.1.3",
     "mocha-lcov-reporter": "^1.3.0"
   },
   "dependencies": {
     "wink-distance": "^2.0.0",
     "wink-helpers": "^2.0.0",
-    "wink-porter2-stemmer": "^2.0.0",
+    "wink-porter2-stemmer": "^2.0.1",
     "wink-tokenizer": "^5.2.1"
   },
   "runkitExampleFilename": "./runkit/example.js"

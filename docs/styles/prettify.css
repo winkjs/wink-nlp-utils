@@ -1,36 +1,35 @@
 .pln {
-  color: #abb2bf;
+  color: #ddd;
 }
 
 /* string content */
 .str {
-  color: #98c379;
+  color: #61ce3c;
 }
 
 /* a keyword */
 .kwd {
-  color: #c678dd;
+  color: #fbde2d;
 }
 
 /* a comment */
 .com {
-  color: #5c6370;
-  font-style: italic;
+  color: #aeaeae;
 }
 
 /* a type name */
 .typ {
-  color: #d19a66;
+  color: #8da6ce;
 }
 
 /* a literal value */
 .lit {
-  color: #56b6c2;
+  color: #fbde2d;
 }
 
 /* punctuation */
 .pun {
-  color: #abb2bf;
+  color: #ddd;
 }
 
 /* lisp open bracket */
@@ -45,17 +44,17 @@
 
 /* a markup tag name */
 .tag {
-  color: #c678dd;
+  color: #8da6ce;
 }
 
 /* a markup attribute name */
 .atn {
-  color: #98c379;
+  color: #fbde2d;
 }
 
 /* a markup attribute value */
 .atv {
-  color: #d19a66;
+  color: #ddd;
 }
 
 /* a declaration */
@@ -65,12 +64,12 @@
 
 /* a variable name */
 .var {
-  color: #d19a66;
+  color: #c82829;
 }
 
 /* a function name */
 .fun {
-  color: #e06c75;
+  color: #4271ae;
 }
 
 /* Specify class=linenums on a pre to get line numbering */

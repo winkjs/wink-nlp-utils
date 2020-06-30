@@ -413,7 +413,7 @@ describe( 'string.soc()', function () {
 
 // ### Create ngrams test cases.
 
-describe( 'string.ngrams()', function () {
+describe( 'string.ngram()', function () {
   var tests = [
     { whenInputIs: [ '' ], expectedOutputIs: [] },
     { whenInputIs: [ 'some string', -1 ], expectedOutputIs: [] },
@@ -433,13 +433,13 @@ describe( 'string.ngrams()', function () {
 
   tests.forEach( function ( test ) {
     it( 'should return ' + JSON.stringify( test.expectedOutputIs ) + ' if the input is ' + JSON.stringify( test.whenInputIs ), function () {
-      expect( prepare.string.ngrams.apply( null, test.whenInputIs ) ).to.deep.equal( test.expectedOutputIs );
+      expect( prepare.string.ngram.apply( null, test.whenInputIs ) ).to.deep.equal( test.expectedOutputIs );
     } );
   } );
 
   errors.slice( 0, 2 ).forEach( function ( error ) {
     it( 'should throw ' + error.expectedOutputIs + ' if the input is ' + JSON.stringify( error.whenInputIs ), function () {
-      expect( prepare.string.ngrams.bind( null, error.whenInputIs ) ).to.throw( error.expectedOutputIs );
+      expect( prepare.string.ngram.bind( null, error.whenInputIs ) ).to.throw( error.expectedOutputIs );
     } );
   } );
 } );

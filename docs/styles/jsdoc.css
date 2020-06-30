@@ -13,7 +13,7 @@ body {
   color: #4d4e53;
   background-color: white;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 16px;
 }
@@ -55,47 +55,57 @@ h1, h2, h3, h4, h5, h6 {
 
 h1, h2, h3, h4, h5, h6 {
   color: #000;
-  font-weight: 400;
   margin: 0;
 }
 
 h1 {
-  font-weight: 300;
   font-size: 48px;
-  margin: 1em 0 .5em;
+  margin: 1em 0 0;
 }
 
 h1.page-title {
   font-size: 48px;
-  margin: 1em 30px;
+  margin: 1em 0;
   line-height: 100%;
   word-wrap: break-word;
 }
 
 h2 {
   font-size: 24px;
-  margin: 1.5em 0 .3em;
+  margin: 2em 0 .3em;
 }
 
 h3 {
   font-size: 24px;
-  margin: 1.2em 0 .3em;
+  margin: 1.5em 0 .3em;
 }
 
 h4 {
   font-size: 18px;
-  margin: 1em 0 .2em;
+  margin: 1.3em 0 .2em;
   color: #4d4e53;
 }
 
 h4.name {
-  color: #fff;
-  background: #6d426d;
-  box-shadow: 0 .25em .5em #d3d3d3;
-  border-top: 1px solid #d3d3d3;
-  border-bottom: 1px solid #d3d3d3;
-  margin: 1.5em 0 0.5em;
-  padding: .75em 0 .75em 10px;
+  font-weight: bold;
+  font-size: 2em;
+  color: #000;
+  margin-bottom: 0;
+  word-break: break-all;
+}
+
+.name-signature,
+.name-signature .signature,
+.name-signature .signature-attributes,
+.name-signature .type-signature,
+.name-signature .type-signature:last-child {
+  color: #aaa;
+}
+
+hr {
+  margin: 5rem 0;
+  border: none;
+  border-top: 2px solid #ddd;
 }
 
 h4.name a {
@@ -109,7 +119,7 @@ h4.name a:hover {
 h5, .container-overview .subsection-title {
   font-size: 120%;
   letter-spacing: -0.01em;
-  margin: 8px 0 3px 0;
+  margin: 40px 0 3px 0;
 }
 
 h6 {
@@ -121,8 +131,12 @@ h6 {
 
 tt, code, kbd, samp {
   font-family: Consolas, Monaco, 'Andale Mono', monospace;
-  background: #f4f4f4;
+  background: #fff;
   padding: 1px 5px;
+}
+
+iframe code {
+  background: white;
 }
 
 .class-description {
@@ -136,10 +150,22 @@ tt, code, kbd, samp {
   margin: 0
 }
 
+.content-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  max-width: 960px;
+  margin: 0 auto;
+  margin-top: 64px;
+}
+
+.main-container {
+  width: 100%;
+}
+
 #main {
-  float: right;
   min-width: 360px;
-  width: calc(100% - 240px);
+  max-width: 660px;
 }
 
 header {
@@ -149,7 +175,7 @@ header {
 section {
   display: block;
   background-color: #fff;
-  padding: 0 0 0 30px;
+  padding: 0;
 }
 
 .variation {
@@ -164,13 +190,15 @@ section {
 }
 
 nav {
-  float: left;
   display: block;
-  width: 250px;
+  position: sticky;
+  top: 80px;
+  width: 300px;
   background: #fff;
   overflow: auto;
-  position: fixed;
-  height: 100%;
+  height: calc(100vh - 130px);
+  padding: 20px 0;
+  padding-left: 11px;
 }
 
 nav #nav-search{
@@ -190,12 +218,13 @@ nav.wrap a{
 
 nav h3 {
   margin-top: 12px;
-  font-size: 13px;
+  font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 700;
   line-height: 24px;
-  margin: 15px 0 10px;
+  margin: 0;
+  margin-top: 30px;
   padding: 0;
   color: #000;
 }
@@ -212,10 +241,10 @@ nav ul {
 nav ul a,
 nav ul a:active {
   font-family: 'Montserrat', sans-serif;
-  line-height: 18px;
+  line-height: 22px;
   padding: 0;
   display: block;
-  font-size: 12px;
+  font-size: 15px;
 }
 
 nav a:hover,
@@ -233,8 +262,8 @@ nav > ul > li > a {
 }
 
 nav ul ul a {
-  color: hsl(207, 1%, 60%);
-  border-left: 1px solid hsl(207, 10%, 86%);
+  color: #666;
+  font-size: 14px;
 }
 
 nav ul ul a,
@@ -249,9 +278,23 @@ nav h2 {
 }
 
 nav > h2 > a {
-   margin: 10px 0 -10px;
-   color: #606 !important;
+  font-size: 15px;
+  margin: 10px 0 -10px;
+  color: #606 !important;
+  font-weight: normal;
 }
+
+nav a.btn {
+  display: inline-block;
+  background: #6C307D;
+  color: #fff !important;
+  padding: 3px 11px;
+  margin-left: -11px;
+  margin-top: 0;
+  border-radius: 2px;
+  z-index: 1000;
+}
+
 
 footer {
   color: hsl(0, 0%, 28%);
@@ -348,25 +391,29 @@ footer {
 .prettyprint {
   font-size: 14px;
   overflow: auto;
+  margin-left: -30px;
+  margin-right: -30px;
+  border-radius: 10px;
+  background-color: #0d152a;
 }
 
 .prettyprint.source {
   width: inherit;
-  line-height: 18px;
+  line-height: 24px;
   display: block;
   background-color: #0d152a;
   color: #aeaeae;
 }
 
 .prettyprint code {
-  line-height: 18px;
+  line-height: 24px;
   display: block;
   background-color: #0d152a;
   color: #4D4E53;
 }
 
 .prettyprint > code {
-  padding: 15px;
+  padding: 30px;
 }
 
 .prettyprint .linenums code {
@@ -410,10 +457,7 @@ footer {
 
 table {
   border-spacing: 0;
-  border: 1px solid #ddd;
   border-collapse: collapse;
-  border-radius: 3px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   width: 100%;
   font-size: 14px;
   margin: 1em 0;
@@ -431,10 +475,6 @@ thead tr, thead tr {
    background-color: #fff;
    font-weight: bold;
    border-bottom: 1px solid #ddd;
-}
-
-.params .type {
-  white-space: nowrap;
 }
 
 .params code {
@@ -464,6 +504,20 @@ thead tr, thead tr {
 span.param-type, .params td .param-type, .param-type dd {
    color: #606;
   font-family: Consolas, Monaco, 'Andale Mono', monospace
+}
+
+.params td.name {
+  max-width: 150px;
+  font-weight: bold;
+  color: #000;
+}
+
+.paramas td.type {
+  max-width: 100px
+}
+
+.params td.description {
+  font-family: 'ff-tisa-sans-web-pro', serif;
 }
 
 .param-type dt, .param-type dd {
@@ -612,24 +666,65 @@ html[data-search-mode] .level-hide {
     display: block;
 }
 
+.toc-button {
+  display: none;
+}
+
 
 @media only screen and (min-width: 320px) and (max-width: 680px) {
   body {
     overflow-x: hidden;
   }
 
-  nav {
-    background: #FFF;
-    width: 250px;
-    height: 100%;
+  table {
+    display: block;
+    width: 100%;
+    overflow: auto;
+  }
+
+  code.runkit {
+    display: block;
+    width: 100% !important;
+    overflow: auto;
+  }
+
+  #toc-button {
+    display: block;
     position: fixed;
-    top: 0;
+    bottom: 10px;
+    right: 10px;
+    background: #6C307D;
+    box-shadow: 0 0 10px #000;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    border-radius: 100px;
+    z-index: 4;
+  }
+
+  #toc-button img {
+    margin-top: 18px;
+  }
+
+  nav {
+    background: #fff;
+    width: 100%;
+    height: calc(100vh - 60px);
+    position: fixed;
+    top: 100vh;
     right: 0;
     bottom: 0;
-    left: -250px;
+    left: 0;
     z-index: 3;
-    padding: 0 10px;
-    transition: left 0.2s;
+    opacity: 0;
+    transition: top 0.2s, opacity 0.2s;
+    padding: 20px;
+    padding-bottom: 100px;
+  }
+
+  nav.is-open {
+    opacity: 1;
+    top: 65px;
   }
 
   .navicon-button {
@@ -646,11 +741,72 @@ html[data-search-mode] .level-hide {
   }
 
   #main h1.page-title {
-    margin: 1em 0;
+    margin: 0;
   }
 
   #main section {
     padding: 0;
+  }
+
+  .gitter-open-chat-button {
+    display: none !important;
+  }
+
+  .navbar-header span {
+    display: none;
+  }
+
+  /* Sausage Links Nav Container */
+.sausage-links {
+    position: relative;
+    width: calc(100% - 60px);
+}
+
+/* The left and right "faded" pseudo elements */
+.sausage-links:before, .sausage-links:after {
+    content: '';
+    height: calc(100% - 2em);
+    pointer-events: none;
+    position: absolute;
+    top: 1em;
+    width: 40px;
+    z-index: 2;
+}
+.sausage-links:before {
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, #222 100%);
+    right: 0;
+}
+.sausage-links:after {
+    background: linear-gradient(to left, rgba(255,255,255,0) 0%, #222 100%);
+    left: 0;
+}
+
+/* Basic flexbox to prevent items from breaking lines */
+.sausage-links ul {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-left: 10px;
+}
+
+.sausage-links ul li {
+    white-space: nowrap;
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+.sausage-links ul li a, .sausage-links ul li a:visited {
+    display: inline-block;
+}
+
+  .prettyprint {
+    margin: 0;
+    border-radius: 2px;
+  }
+
+  #main {
+    padding: 0 10px;
   }
 
   footer {

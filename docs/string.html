@@ -34,6 +34,10 @@
   ((window.gitter = {}).chat = {}).options = {
     room: 'winkjs/Lobby'
   };
+  window.onload = function () {
+      document.querySelector('.gitter-open-chat-button').innerText = 'Need help?'
+      document.querySelector('.gitter-open-chat-button').style.display = 'block';
+  }
 </script>
 <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
@@ -68,7 +72,13 @@ body {
 .navbar a {
   color: #fff;
   line-height: 60px;
+  margin-left: 0;
+}
+
+.navbar a.navbar-brand {
   margin-left: 20px;
+  display: block;
+  min-width: 40px;
 }
 
 .navbar-right {
@@ -87,10 +97,6 @@ body {
 }
 
 /* Override docdash */
-nav {
-  top: 80px;
-}
-
 #main {
   margin-top: 30px;
 }
@@ -98,6 +104,7 @@ nav {
 /* Gitter */
 .gitter-open-chat-button {
   background: #6C307D;
+  display: none;
 }
 
 .gitter-open-chat-button:hover {
@@ -118,6 +125,16 @@ window.addEventListener('DOMContentLoaded', function () {
       window.scrollTo( 0, (window.pageYOffset || document.documentElement.scrollTop) - 72);
     }, 0)
   }
+
+  document.getElementById('toc-button').addEventListener('click', function () {
+      if (document.getElementById('side-nav').className === '') {
+        document.getElementById('side-nav').className = 'is-open';
+        document.getElementById('toc-button-img').setAttribute('src','./close.svg');
+      } else {
+        document.getElementById('side-nav').className = '';
+        document.getElementById('toc-button-img').setAttribute('src','./menu.svg');
+      }
+  })
 });
 
 window.addEventListener( 'hashchange', function (e) {
@@ -139,38 +156,34 @@ function openMember() {
       <div class="navbar-header">
         <a href="https://winkjs.org/" title="wink" class="navbar-brand">
           <img src="https://winkjs.org/images/logo.svg">
-          wink
+          <span>wink</span>
         </a>
       </div>
-      <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id="main-nav">
-        <li><a href="https://winkjs.org/packages.html" class="">Packages</a></li>
-        <li><a href="https://winkjs.org/blog.html" class="">Blog</a></li>
-        <li><a href="http://github.com/winkjs">Github</a></li>
-        <li><a href="https://twitter.com/winkjs_org">Twitter</a></li>
-        <li><a href="https://winkjs.org/about.html" class="">About</a></li>
-      </ul>
+      <div class="sausage-links">
+        <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id="main-nav">
+          <li><a href="https://winkjs.org/packages.html" class="">Packages</a></li>
+          <li><a href="https://winkjs.org/showcase.html" class="">Showcase</a></li>
+          <li><a href="https://winkjs.org/blog.html" class="">Blog</a></li>
+          <li><a href="http://github.com/winkjs">Github</a></li>
+          <li><a href="https://winkjs.org/about.html" class="">About</a></li>
+        </div>
+      </nav>
     </div>
 </header>
 
+<div id="toc-button">
+  <img src="./menu.svg" alt="" id="toc-button-img">
+</div>
 
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
 
-<label for="nav-trigger" class="overlay"></label>
+<div class="content-container">
+  <div class="main-container">
+    <div id="main">
+        
+        <h1 class="page-title">string</h1>
+        
 
-<nav >
-    
-    <h2><a href="index.html">Summary</a></h2><h2><a href="https://github.com/winkjs/wink-nlp-utils" target="_blank" >Github</a></h2><h3>Classes</h3><ul><li><a href="Indexer.html">Indexer</a><ul class='methods'><li data-type='method'><a href="Indexer.html#build">build</a></li><li data-type='method'><a href="Indexer.html#result">result</a></li></ul></li><li><a href="WordsFilter.html">WordsFilter</a><ul class='methods'><li data-type='method'><a href="WordsFilter.html#exclude">exclude</a></li><li data-type='method'><a href="WordsFilter.html#set">set</a></li></ul></li></ul><h3>Namespaces</h3><ul><li><a href="helper.html">helper</a><ul class='methods'><li data-type='method'><a href="helper.html#returnIndexer">returnIndexer</a></li><li data-type='method'><a href="helper.html#returnQuotedTextExtractor">returnQuotedTextExtractor</a></li><li data-type='method'><a href="helper.html#returnWordsFilter">returnWordsFilter</a></li></ul></li><li><a href="string.html">string</a><ul class='methods'><li data-type='method'><a href="string.html#amplifyNotElision">amplifyNotElision</a></li><li data-type='method'><a href="string.html#bagOfNGrams">bagOfNGrams</a></li><li data-type='method'><a href="string.html#composeCorpus">composeCorpus</a></li><li data-type='method'><a href="string.html#edgeNGrams">edgeNGrams</a></li><li data-type='method'><a href="string.html#extractPersonsName">extractPersonsName</a></li><li data-type='method'><a href="string.html#extractRunOfCapitalWords">extractRunOfCapitalWords</a></li><li data-type='method'><a href="string.html#lowerCase">lowerCase</a></li><li data-type='method'><a href="string.html#marker">marker</a></li><li data-type='method'><a href="string.html#ngram">ngram</a></li><li data-type='method'><a href="string.html#phonetize">phonetize</a></li><li data-type='method'><a href="string.html#removeElisions">removeElisions</a></li><li data-type='method'><a href="string.html#removeExtraSpaces">removeExtraSpaces</a></li><li data-type='method'><a href="string.html#removeHTMLTags">removeHTMLTags</a></li><li data-type='method'><a href="string.html#removePunctuations">removePunctuations</a></li><li data-type='method'><a href="string.html#removeSplChars">removeSplChars</a></li><li data-type='method'><a href="string.html#retainAlphaNums">retainAlphaNums</a></li><li data-type='method'><a href="string.html#sentences">sentences</a></li><li data-type='method'><a href="string.html#setOfChars">setOfChars</a></li><li data-type='method'><a href="string.html#setOfNGrams">setOfNGrams</a></li><li data-type='method'><a href="string.html#soundex">soundex</a></li><li data-type='method'><a href="string.html#splitElisions">splitElisions</a></li><li data-type='method'><a href="string.html#stem">stem</a></li><li data-type='method'><a href="string.html#tokenize">tokenize</a></li><li data-type='method'><a href="string.html#tokenize0">tokenize0</a></li><li data-type='method'><a href="string.html#trim">trim</a></li><li data-type='method'><a href="string.html#upperCase">upperCase</a></li></ul></li><li><a href="tokens.html">tokens</a><ul class='methods'><li data-type='method'><a href="tokens.html#appendBigrams">appendBigrams</a></li><li data-type='method'><a href="tokens.html#bagOfWords">bagOfWords</a></li><li data-type='method'><a href="tokens.html#bigrams">bigrams</a></li><li data-type='method'><a href="tokens.html#phonetize">phonetize</a></li><li data-type='method'><a href="tokens.html#propagateNegations">propagateNegations</a></li><li data-type='method'><a href="tokens.html#removeWords">removeWords</a></li><li data-type='method'><a href="tokens.html#setOfWords">setOfWords</a></li><li data-type='method'><a href="tokens.html#soundex">soundex</a></li><li data-type='method'><a href="tokens.html#stem">stem</a></li></ul></li></ul>
-</nav>
-
-<div id="main">
-    
-    <h1 class="page-title">string</h1>
-    
-
-    
+        
 
 
 
@@ -179,9 +192,9 @@ function openMember() {
 
 <header>
     
-        <h2>
+        <!--<h2>
         string
-        </h2>
+        </h2>-->
         
     
 </header>
@@ -194,12 +207,12 @@ function openMember() {
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="wink-nlp-utils.js.html">wink-nlp-utils.js</a>, <a href="wink-nlp-utils.js.html#line54">line 54</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -249,7 +262,7 @@ function openMember() {
     
 
     
-    
+
     
 
      
@@ -266,7 +279,10 @@ function openMember() {
 
     
 
-    <h4 class="name" id="amplifyNotElision"><span class="type-signature"></span>amplifyNotElision<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></h4>
+    <h4 class="name" id="amplifyNotElision">
+      amplifyNotElision
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>amplifyNotElision<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></div
 
     
 
@@ -275,12 +291,12 @@ function openMember() {
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-amplify-not-elision.js.html">string-amplify-not-elision.js</a>, <a href="string-amplify-not-elision.js.html#line45">line 45</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -338,7 +354,7 @@ becomes <code>is not</code>.</p>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -363,13 +379,14 @@ becomes <code>is not</code>.</p>
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -401,7 +418,7 @@ becomes <code>is not</code>.</p>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -419,6 +436,7 @@ becomes <code>is not</code>.</p>
 <span class="param-type"><a href="string.html">string</a></span>
 
 
+
     </dd>
 </dl>
 
@@ -426,12 +444,17 @@ becomes <code>is not</code>.</p>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="bagOfNGrams"><span class="type-signature"></span>bagOfNGrams<span class="signature">(str, size<span class="signature-attributes">opt</span>, ifn<span class="signature-attributes">opt</span>, idx<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="bagOfNGrams">
+      bagOfNGrams
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>bagOfNGrams<span class="signature">(str, size<span class="signature-attributes">opt</span>, ifn<span class="signature-attributes">opt</span>, idx<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {object}</span></div
 
     
 
@@ -440,12 +463,12 @@ becomes <code>is not</code>.</p>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-bong.js.html">string-bong.js</a>, <a href="string-bong.js.html#line54">line 54</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -506,7 +529,7 @@ bong( 'mamma' );
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -535,13 +558,14 @@ bong( 'mamma' );
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -570,13 +594,14 @@ bong( 'mamma' );
 
         <tr>
             
-                <td class="name"><code>size</code></td>
+                <td class="name">size</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -597,7 +622,7 @@ bong( 'mamma' );
             
                 <td class="default">
                 
-                    <code>2</code>
+                    2
                 
                 </td>
             
@@ -609,13 +634,14 @@ bong( 'mamma' );
 
         <tr>
             
-                <td class="name"><code>ifn</code></td>
+                <td class="name">ifn</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">function</span>
+
 
 
             
@@ -649,13 +675,14 @@ may be used as <code>ifn</code>. If <code>undefined</code> then index is not bui
 
         <tr>
             
-                <td class="name"><code>idx</code></td>
+                <td class="name">idx</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -702,7 +729,7 @@ function.</p></td>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -720,6 +747,7 @@ function.</p></td>
 <span class="param-type">object</span>
 
 
+
     </dd>
 </dl>
 
@@ -727,12 +755,17 @@ function.</p></td>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="composeCorpus"><span class="type-signature"></span>composeCorpus<span class="signature">(str)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></h4>
+    <h4 class="name" id="composeCorpus">
+      composeCorpus
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>composeCorpus<span class="signature">(str)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></div
 
     
 
@@ -741,12 +774,12 @@ function.</p></td>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-compose-corpus.js.html">string-compose-corpus.js</a>, <a href="string-compose-corpus.js.html#line55">line 55</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -812,7 +845,7 @@ computing the cartesian product of all the phrases.</p>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -837,13 +870,14 @@ computing the cartesian product of all the phrases.</p>
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -875,7 +909,7 @@ computing the cartesian product of all the phrases.</p>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -893,6 +927,7 @@ computing the cartesian product of all the phrases.</p>
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
 
 
+
     </dd>
 </dl>
 
@@ -900,12 +935,17 @@ computing the cartesian product of all the phrases.</p>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="edgeNGrams"><span class="type-signature"></span>edgeNGrams<span class="signature">(str, min<span class="signature-attributes">opt</span>, max<span class="signature-attributes">opt</span>, delta<span class="signature-attributes">opt</span>, ifn<span class="signature-attributes">opt</span>, idx<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></h4>
+    <h4 class="name" id="edgeNGrams">
+      edgeNGrams
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>edgeNGrams<span class="signature">(str, min<span class="signature-attributes">opt</span>, max<span class="signature-attributes">opt</span>, delta<span class="signature-attributes">opt</span>, ifn<span class="signature-attributes">opt</span>, idx<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></div
 
     
 
@@ -914,12 +954,12 @@ computing the cartesian product of all the phrases.</p>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-edge-ngrams.js.html">string-edge-ngrams.js</a>, <a href="string-edge-ngrams.js.html#line54">line 54</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -978,7 +1018,7 @@ edgeNGrams( 'decisively', 8, 10, 1 );
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -1007,13 +1047,14 @@ edgeNGrams( 'decisively', 8, 10, 1 );
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -1042,13 +1083,14 @@ edgeNGrams( 'decisively', 8, 10, 1 );
 
         <tr>
             
-                <td class="name"><code>min</code></td>
+                <td class="name">min</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -1069,7 +1111,7 @@ edgeNGrams( 'decisively', 8, 10, 1 );
             
                 <td class="default">
                 
-                    <code>2</code>
+                    2
                 
                 </td>
             
@@ -1081,13 +1123,14 @@ edgeNGrams( 'decisively', 8, 10, 1 );
 
         <tr>
             
-                <td class="name"><code>max</code></td>
+                <td class="name">max</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -1108,7 +1151,7 @@ edgeNGrams( 'decisively', 8, 10, 1 );
             
                 <td class="default">
                 
-                    <code>8</code>
+                    8
                 
                 </td>
             
@@ -1120,13 +1163,14 @@ edgeNGrams( 'decisively', 8, 10, 1 );
 
         <tr>
             
-                <td class="name"><code>delta</code></td>
+                <td class="name">delta</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -1147,7 +1191,7 @@ edgeNGrams( 'decisively', 8, 10, 1 );
             
                 <td class="default">
                 
-                    <code>2</code>
+                    2
                 
                 </td>
             
@@ -1159,13 +1203,14 @@ edgeNGrams( 'decisively', 8, 10, 1 );
 
         <tr>
             
-                <td class="name"><code>ifn</code></td>
+                <td class="name">ifn</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">function</span>
+
 
 
             
@@ -1199,13 +1244,14 @@ may be used as <code>ifn</code>. If <code>undefined</code> then index is not bui
 
         <tr>
             
-                <td class="name"><code>idx</code></td>
+                <td class="name">idx</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -1252,7 +1298,7 @@ function.</p></td>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -1270,6 +1316,7 @@ function.</p></td>
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
 
 
+
     </dd>
 </dl>
 
@@ -1277,12 +1324,17 @@ function.</p></td>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="extractPersonsName"><span class="type-signature"></span>extractPersonsName<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></h4>
+    <h4 class="name" id="extractPersonsName">
+      extractPersonsName
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>extractPersonsName<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></div
 
     
 
@@ -1291,12 +1343,12 @@ function.</p></td>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-extract-persons-name.js.html">string-extract-persons-name.js</a>, <a href="string-extract-persons-name.js.html#line48">line 48</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -1356,7 +1408,7 @@ Entities in square brackets are optional.</p>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -1381,13 +1433,14 @@ Entities in square brackets are optional.</p>
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -1419,7 +1472,7 @@ Entities in square brackets are optional.</p>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -1437,6 +1490,7 @@ Entities in square brackets are optional.</p>
 <span class="param-type"><a href="string.html">string</a></span>
 
 
+
     </dd>
 </dl>
 
@@ -1444,12 +1498,17 @@ Entities in square brackets are optional.</p>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="extractRunOfCapitalWords"><span class="type-signature"></span>extractRunOfCapitalWords<span class="signature">(str)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></h4>
+    <h4 class="name" id="extractRunOfCapitalWords">
+      extractRunOfCapitalWords
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>extractRunOfCapitalWords<span class="signature">(str)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></div
 
     
 
@@ -1458,12 +1517,12 @@ Entities in square brackets are optional.</p>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-extract-run-of-capital-words.js.html">string-extract-run-of-capital-words.js</a>, <a href="string-extract-run-of-capital-words.js.html#line46">line 46</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -1521,7 +1580,7 @@ input string.</p>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -1546,13 +1605,14 @@ input string.</p>
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -1584,7 +1644,7 @@ input string.</p>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -1603,6 +1663,7 @@ text is found then <code>null</code> is returned.</p>
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
 
 
+
     </dd>
 </dl>
 
@@ -1610,12 +1671,17 @@ text is found then <code>null</code> is returned.</p>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="lowerCase"><span class="type-signature"></span>lowerCase<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></h4>
+    <h4 class="name" id="lowerCase">
+      lowerCase
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>lowerCase<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></div
 
     
 
@@ -1624,12 +1690,12 @@ text is found then <code>null</code> is returned.</p>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-lower-case.js.html">string-lower-case.js</a>, <a href="string-lower-case.js.html#line43">line 43</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -1686,7 +1752,7 @@ text is found then <code>null</code> is returned.</p>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -1711,13 +1777,14 @@ text is found then <code>null</code> is returned.</p>
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -1749,7 +1816,7 @@ text is found then <code>null</code> is returned.</p>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -1767,6 +1834,7 @@ text is found then <code>null</code> is returned.</p>
 <span class="param-type"><a href="string.html">string</a></span>
 
 
+
     </dd>
 </dl>
 
@@ -1774,12 +1842,17 @@ text is found then <code>null</code> is returned.</p>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="marker"><span class="type-signature"></span>marker<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></h4>
+    <h4 class="name" id="marker">
+      marker
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>marker<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></div
 
     
 
@@ -1788,12 +1861,12 @@ text is found then <code>null</code> is returned.</p>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-marker.js.html">string-marker.js</a>, <a href="string-marker.js.html#line46">line 46</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -1853,7 +1926,7 @@ false positives such as <code>Meter</code> and <code>Metre</code> or <code>no me
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -1878,13 +1951,14 @@ false positives such as <code>Meter</code> and <code>Metre</code> or <code>no me
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -1916,7 +1990,7 @@ false positives such as <code>Meter</code> and <code>Metre</code> or <code>no me
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -1934,6 +2008,7 @@ false positives such as <code>Meter</code> and <code>Metre</code> or <code>no me
 <span class="param-type"><a href="string.html">string</a></span>
 
 
+
     </dd>
 </dl>
 
@@ -1941,12 +2016,17 @@ false positives such as <code>Meter</code> and <code>Metre</code> or <code>no me
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="ngram"><span class="type-signature"></span>ngram<span class="signature">(str, size<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></h4>
+    <h4 class="name" id="ngram">
+      ngram
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>ngram<span class="signature">(str, size<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></div
 
     
 
@@ -1955,12 +2035,12 @@ false positives such as <code>Meter</code> and <code>Metre</code> or <code>no me
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-ngram.js.html">string-ngram.js</a>, <a href="string-ngram.js.html#line49">line 49</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -2022,7 +2102,7 @@ ngram( 'FRANCE', 3 );
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -2051,13 +2131,14 @@ ngram( 'FRANCE', 3 );
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -2086,13 +2167,14 @@ ngram( 'FRANCE', 3 );
 
         <tr>
             
-                <td class="name"><code>size</code></td>
+                <td class="name">size</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -2113,7 +2195,7 @@ ngram( 'FRANCE', 3 );
             
                 <td class="default">
                 
-                    <code>2</code>
+                    2
                 
                 </td>
             
@@ -2140,7 +2222,7 @@ ngram( 'FRANCE', 3 );
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -2158,6 +2240,7 @@ ngram( 'FRANCE', 3 );
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
 
 
+
     </dd>
 </dl>
 
@@ -2165,12 +2248,17 @@ ngram( 'FRANCE', 3 );
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="phonetize"><span class="type-signature"></span>phonetize<span class="signature">(word)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></h4>
+    <h4 class="name" id="phonetize">
+      phonetize
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>phonetize<span class="signature">(word)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></div
 
     
 
@@ -2179,12 +2267,12 @@ ngram( 'FRANCE', 3 );
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-phonetize.js.html">string-phonetize.js</a>, <a href="string-phonetize.js.html#line48">line 48</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -2244,7 +2332,7 @@ phonetize( 'phenomenon' );
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -2269,13 +2357,14 @@ phonetize( 'phenomenon' );
 
         <tr>
             
-                <td class="name"><code>word</code></td>
+                <td class="name">word</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -2307,7 +2396,7 @@ phonetize( 'phenomenon' );
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -2325,6 +2414,7 @@ phonetize( 'phenomenon' );
 <span class="param-type"><a href="string.html">string</a></span>
 
 
+
     </dd>
 </dl>
 
@@ -2332,12 +2422,17 @@ phonetize( 'phenomenon' );
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="removeElisions"><span class="type-signature"></span>removeElisions<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></h4>
+    <h4 class="name" id="removeElisions">
+      removeElisions
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>removeElisions<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></div
 
     
 
@@ -2346,12 +2441,12 @@ phonetize( 'phenomenon' );
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-remove-elisions.js.html">string-remove-elisions.js</a>, <a href="string-remove-elisions.js.html#line46">line 46</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -2410,7 +2505,7 @@ apostrophe used to indicate possession.</p>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -2435,13 +2530,14 @@ apostrophe used to indicate possession.</p>
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -2473,7 +2569,7 @@ apostrophe used to indicate possession.</p>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -2491,6 +2587,7 @@ apostrophe used to indicate possession.</p>
 <span class="param-type"><a href="string.html">string</a></span>
 
 
+
     </dd>
 </dl>
 
@@ -2498,12 +2595,17 @@ apostrophe used to indicate possession.</p>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="removeExtraSpaces"><span class="type-signature"></span>removeExtraSpaces<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></h4>
+    <h4 class="name" id="removeExtraSpaces">
+      removeExtraSpaces
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>removeExtraSpaces<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></div
 
     
 
@@ -2512,12 +2614,12 @@ apostrophe used to indicate possession.</p>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-remove-extra-spaces.js.html">string-remove-extra-spaces.js</a>, <a href="string-remove-extra-spaces.js.html#line46">line 46</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -2575,7 +2677,7 @@ string.</p>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -2600,13 +2702,14 @@ string.</p>
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -2638,7 +2741,7 @@ string.</p>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -2657,6 +2760,7 @@ whitespaces.</p>
 <span class="param-type"><a href="string.html">string</a></span>
 
 
+
     </dd>
 </dl>
 
@@ -2664,12 +2768,17 @@ whitespaces.</p>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="removeHTMLTags"><span class="type-signature"></span>removeHTMLTags<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></h4>
+    <h4 class="name" id="removeHTMLTags">
+      removeHTMLTags
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>removeHTMLTags<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></div
 
     
 
@@ -2678,12 +2787,12 @@ whitespaces.</p>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-remove-html-tags.js.html">string-remove-html-tags.js</a>, <a href="string-remove-html-tags.js.html#line47">line 47</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -2742,7 +2851,7 @@ function.</p>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -2767,13 +2876,14 @@ function.</p>
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -2805,7 +2915,7 @@ function.</p>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -2823,6 +2933,7 @@ function.</p>
 <span class="param-type"><a href="string.html">string</a></span>
 
 
+
     </dd>
 </dl>
 
@@ -2830,12 +2941,17 @@ function.</p>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="removePunctuations"><span class="type-signature"></span>removePunctuations<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></h4>
+    <h4 class="name" id="removePunctuations">
+      removePunctuations
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>removePunctuations<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></div
 
     
 
@@ -2844,12 +2960,12 @@ function.</p>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-remove-punctuations.js.html">string-remove-punctuations.js</a>, <a href="string-remove-punctuations.js.html#line48">line 48</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -2909,7 +3025,7 @@ function.</p>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -2934,13 +3050,14 @@ function.</p>
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -2972,7 +3089,7 @@ function.</p>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -2990,6 +3107,7 @@ function.</p>
 <span class="param-type"><a href="string.html">string</a></span>
 
 
+
     </dd>
 </dl>
 
@@ -2997,12 +3115,17 @@ function.</p>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="removeSplChars"><span class="type-signature"></span>removeSplChars<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></h4>
+    <h4 class="name" id="removeSplChars">
+      removeSplChars
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>removeSplChars<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></div
 
     
 
@@ -3011,12 +3134,12 @@ function.</p>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-remove-spl-chars.js.html">string-remove-spl-chars.js</a>, <a href="string-remove-spl-chars.js.html#line48">line 48</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -3076,7 +3199,7 @@ function.</p>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -3101,13 +3224,14 @@ function.</p>
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -3139,7 +3263,7 @@ function.</p>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -3157,6 +3281,7 @@ function.</p>
 <span class="param-type"><a href="string.html">string</a></span>
 
 
+
     </dd>
 </dl>
 
@@ -3164,12 +3289,17 @@ function.</p>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="retainAlphaNums"><span class="type-signature"></span>retainAlphaNums<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></h4>
+    <h4 class="name" id="retainAlphaNums">
+      retainAlphaNums
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>retainAlphaNums<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></div
 
     
 
@@ -3178,12 +3308,12 @@ function.</p>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-retain-alpha-nums.js.html">string-retain-alpha-nums.js</a>, <a href="string-retain-alpha-nums.js.html#line47">line 47</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -3242,7 +3372,7 @@ whitespaces.</p>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -3267,13 +3397,14 @@ whitespaces.</p>
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -3305,7 +3436,7 @@ whitespaces.</p>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -3324,6 +3455,7 @@ leading, trailing and extra whitespaces.</p>
 <span class="param-type"><a href="string.html">string</a></span>
 
 
+
     </dd>
 </dl>
 
@@ -3331,12 +3463,17 @@ leading, trailing and extra whitespaces.</p>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="sentences"><span class="type-signature"></span>sentences<span class="signature">(paragraph)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></h4>
+    <h4 class="name" id="sentences">
+      sentences
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>sentences<span class="signature">(paragraph)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></div
 
     
 
@@ -3345,12 +3482,12 @@ leading, trailing and extra whitespaces.</p>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-sentences.js.html">string-sentences.js</a>, <a href="string-sentences.js.html#line85">line 85</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -3415,7 +3552,7 @@ sentences( 'U.S.A is my birth place. I was born on 06.12.1924. I climbed Mt. Eve
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -3440,13 +3577,14 @@ sentences( 'U.S.A is my birth place. I was born on 06.12.1924. I climbed Mt. Eve
 
         <tr>
             
-                <td class="name"><code>paragraph</code></td>
+                <td class="name">paragraph</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -3478,7 +3616,7 @@ sentences( 'U.S.A is my birth place. I was born on 06.12.1924. I climbed Mt. Eve
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -3496,6 +3634,7 @@ sentences( 'U.S.A is my birth place. I was born on 06.12.1924. I climbed Mt. Eve
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
 
 
+
     </dd>
 </dl>
 
@@ -3503,12 +3642,17 @@ sentences( 'U.S.A is my birth place. I was born on 06.12.1924. I climbed Mt. Eve
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="setOfChars"><span class="type-signature"></span>setOfChars<span class="signature">(str, ifn<span class="signature-attributes">opt</span>, idx<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></h4>
+    <h4 class="name" id="setOfChars">
+      setOfChars
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>setOfChars<span class="signature">(str, ifn<span class="signature-attributes">opt</span>, idx<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></div
 
     
 
@@ -3517,12 +3661,12 @@ sentences( 'U.S.A is my birth place. I was born on 06.12.1924. I climbed Mt. Eve
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-soc.js.html">string-soc.js</a>, <a href="string-soc.js.html#line51">line 51</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -3581,7 +3725,7 @@ in even more aggressive string matching using Jaccard or Tversky compared to
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -3608,13 +3752,14 @@ in even more aggressive string matching using Jaccard or Tversky compared to
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -3639,13 +3784,14 @@ in even more aggressive string matching using Jaccard or Tversky compared to
 
         <tr>
             
-                <td class="name"><code>ifn</code></td>
+                <td class="name">ifn</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">function</span>
+
 
 
             
@@ -3675,13 +3821,14 @@ then index is not built.</p></td>
 
         <tr>
             
-                <td class="name"><code>idx</code></td>
+                <td class="name">idx</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -3724,7 +3871,7 @@ function.</p></td>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -3742,6 +3889,7 @@ function.</p></td>
 <span class="param-type"><a href="string.html">string</a></span>
 
 
+
     </dd>
 </dl>
 
@@ -3749,12 +3897,17 @@ function.</p></td>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="setOfNGrams"><span class="type-signature"></span>setOfNGrams<span class="signature">(str, size<span class="signature-attributes">opt</span>, ifn<span class="signature-attributes">opt</span>, idx<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {set}</span></h4>
+    <h4 class="name" id="setOfNGrams">
+      setOfNGrams
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>setOfNGrams<span class="signature">(str, size<span class="signature-attributes">opt</span>, ifn<span class="signature-attributes">opt</span>, idx<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {set}</span></div
 
     
 
@@ -3763,12 +3916,12 @@ function.</p></td>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-song.js.html">string-song.js</a>, <a href="string-song.js.html#line54">line 54</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -3829,7 +3982,7 @@ song( 'mamma' );
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -3858,13 +4011,14 @@ song( 'mamma' );
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -3893,13 +4047,14 @@ song( 'mamma' );
 
         <tr>
             
-                <td class="name"><code>size</code></td>
+                <td class="name">size</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -3920,7 +4075,7 @@ song( 'mamma' );
             
                 <td class="default">
                 
-                    <code>2</code>
+                    2
                 
                 </td>
             
@@ -3932,13 +4087,14 @@ song( 'mamma' );
 
         <tr>
             
-                <td class="name"><code>ifn</code></td>
+                <td class="name">ifn</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">function</span>
+
 
 
             
@@ -3972,13 +4128,14 @@ may be used as <code>ifn</code>. If <code>undefined</code> then index is not bui
 
         <tr>
             
-                <td class="name"><code>idx</code></td>
+                <td class="name">idx</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -4025,7 +4182,7 @@ function.</p></td>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -4043,6 +4200,7 @@ function.</p></td>
 <span class="param-type">set</span>
 
 
+
     </dd>
 </dl>
 
@@ -4050,12 +4208,17 @@ function.</p></td>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="soundex"><span class="type-signature"></span>soundex<span class="signature">(word, maxLength<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></h4>
+    <h4 class="name" id="soundex">
+      soundex
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>soundex<span class="signature">(word, maxLength<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></div
 
     
 
@@ -4064,12 +4227,12 @@ function.</p></td>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-soundex.js.html">string-soundex.js</a>, <a href="string-soundex.js.html#line47">line 47</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -4128,7 +4291,7 @@ soundex( 'Burrows' );
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -4157,13 +4320,14 @@ soundex( 'Burrows' );
 
         <tr>
             
-                <td class="name"><code>word</code></td>
+                <td class="name">word</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -4192,13 +4356,14 @@ soundex( 'Burrows' );
 
         <tr>
             
-                <td class="name"><code>maxLength</code></td>
+                <td class="name">maxLength</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -4219,7 +4384,7 @@ soundex( 'Burrows' );
             
                 <td class="default">
                 
-                    <code>4</code>
+                    4
                 
                 </td>
             
@@ -4246,7 +4411,7 @@ soundex( 'Burrows' );
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -4264,6 +4429,7 @@ soundex( 'Burrows' );
 <span class="param-type"><a href="string.html">string</a></span>
 
 
+
     </dd>
 </dl>
 
@@ -4271,12 +4437,17 @@ soundex( 'Burrows' );
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="splitElisions"><span class="type-signature"></span>splitElisions<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></h4>
+    <h4 class="name" id="splitElisions">
+      splitElisions
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>splitElisions<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></div
 
     
 
@@ -4285,12 +4456,12 @@ soundex( 'Burrows' );
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-split-elisions.js.html">string-split-elisions.js</a>, <a href="string-split-elisions.js.html#line46">line 46</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -4349,7 +4520,7 @@ not touch apostrophe used to indicate possession.</p>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -4374,13 +4545,14 @@ not touch apostrophe used to indicate possession.</p>
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -4412,7 +4584,7 @@ not touch apostrophe used to indicate possession.</p>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -4430,6 +4602,7 @@ not touch apostrophe used to indicate possession.</p>
 <span class="param-type"><a href="string.html">string</a></span>
 
 
+
     </dd>
 </dl>
 
@@ -4437,12 +4610,17 @@ not touch apostrophe used to indicate possession.</p>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="stem"><span class="type-signature"></span>stem<span class="signature">(word)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></h4>
+    <h4 class="name" id="stem">
+      stem
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>stem<span class="signature">(word)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></div
 
     
 
@@ -4451,12 +4629,12 @@ not touch apostrophe used to indicate possession.</p>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-stem.js.html">string-stem.js</a>, <a href="string-stem.js.html#line45">line 45</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -4513,7 +4691,7 @@ not touch apostrophe used to indicate possession.</p>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -4538,13 +4716,14 @@ not touch apostrophe used to indicate possession.</p>
 
         <tr>
             
-                <td class="name"><code>word</code></td>
+                <td class="name">word</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -4576,7 +4755,7 @@ not touch apostrophe used to indicate possession.</p>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -4594,6 +4773,7 @@ not touch apostrophe used to indicate possession.</p>
 <span class="param-type"><a href="string.html">string</a></span>
 
 
+
     </dd>
 </dl>
 
@@ -4601,12 +4781,17 @@ not touch apostrophe used to indicate possession.</p>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="tokenize"><span class="type-signature"></span>tokenize<span class="signature">(sentence, detailed<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>|Array.&lt;object>}</span></h4>
+    <h4 class="name" id="tokenize">
+      tokenize
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>tokenize<span class="signature">(sentence, detailed<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>|Array.&lt;object>}</span></div
 
     
 
@@ -4615,12 +4800,12 @@ not touch apostrophe used to indicate possession.</p>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-tokenize.js.html">string-tokenize.js</a>, <a href="string-tokenize.js.html#line66">line 66</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -4695,7 +4880,7 @@ tokenize( 'For details on wink, check out http://winkjs.org/ URL!', true );
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -4724,13 +4909,14 @@ tokenize( 'For details on wink, check out http://winkjs.org/ URL!', true );
 
         <tr>
             
-                <td class="name"><code>sentence</code></td>
+                <td class="name">sentence</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -4759,13 +4945,14 @@ tokenize( 'For details on wink, check out http://winkjs.org/ URL!', true );
 
         <tr>
             
-                <td class="name"><code>detailed</code></td>
+                <td class="name">detailed</td>
             
 
             <td class="type">
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -4786,7 +4973,7 @@ tokenize( 'For details on wink, check out http://winkjs.org/ URL!', true );
             
                 <td class="default">
                 
-                    <code>false</code>
+                    false
                 
                 </td>
             
@@ -4815,7 +5002,7 @@ value of <strong>false</strong> ensures compatibility with previous version.</p>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -4832,9 +5019,10 @@ an array of objects.</p>
     <dd>
         
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
-|
+
 
 <span class="param-type">Array.&lt;object></span>
+
 
 
     </dd>
@@ -4844,12 +5032,17 @@ an array of objects.</p>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="tokenize0"><span class="type-signature"></span>tokenize0<span class="signature">(str)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></h4>
+    <h4 class="name" id="tokenize0">
+      tokenize0
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>tokenize0<span class="signature">(str)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="string.html">string</a>>}</span></div
 
     
 
@@ -4858,12 +5051,12 @@ an array of objects.</p>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-tokenize0.js.html">string-tokenize0.js</a>, <a href="string-tokenize0.js.html#line49">line 49</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -4923,7 +5116,7 @@ however negations are retained and amplified.</p>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -4948,13 +5141,14 @@ however negations are retained and amplified.</p>
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -4986,7 +5180,7 @@ however negations are retained and amplified.</p>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -5004,6 +5198,7 @@ however negations are retained and amplified.</p>
 <span class="param-type">Array.&lt;<a href="string.html">string</a>></span>
 
 
+
     </dd>
 </dl>
 
@@ -5011,12 +5206,17 @@ however negations are retained and amplified.</p>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="trim"><span class="type-signature"></span>trim<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></h4>
+    <h4 class="name" id="trim">
+      trim
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>trim<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></div
 
     
 
@@ -5025,12 +5225,12 @@ however negations are retained and amplified.</p>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-trim.js.html">string-trim.js</a>, <a href="string-trim.js.html#line43">line 43</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -5087,7 +5287,7 @@ however negations are retained and amplified.</p>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -5112,13 +5312,14 @@ however negations are retained and amplified.</p>
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -5150,7 +5351,7 @@ however negations are retained and amplified.</p>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -5168,6 +5369,7 @@ however negations are retained and amplified.</p>
 <span class="param-type"><a href="string.html">string</a></span>
 
 
+
     </dd>
 </dl>
 
@@ -5175,12 +5377,17 @@ however negations are retained and amplified.</p>
 
 
 
+<hr>
+
         
             
 
     
 
-    <h4 class="name" id="upperCase"><span class="type-signature"></span>upperCase<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></h4>
+    <h4 class="name" id="upperCase">
+      upperCase
+    </h4>
+    <div class="name-signature"><span class="type-signature"></span>upperCase<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="string.html">string</a>}</span></div
 
     
 
@@ -5189,12 +5396,12 @@ however negations are retained and amplified.</p>
 
 <dl class="details">
 
-    
+    <!--
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="string-upper-case.js.html">string-upper-case.js</a>, <a href="string-upper-case.js.html#line43">line 43</a>
     </li></ul></dd>
-    
+    -->
 
     
 
@@ -5251,7 +5458,7 @@ however negations are retained and amplified.</p>
 
 
 
-    <h5>Parameters:</h5>
+    <h5>Parameters</h5>
     
 
 <table class="params">
@@ -5276,13 +5483,14 @@ however negations are retained and amplified.</p>
 
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name">str</td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><a href="string.html">string</a></span>
+
 
 
             
@@ -5314,7 +5522,7 @@ however negations are retained and amplified.</p>
 
 
 
-<h5>Returns:</h5>
+<h5>Returns</h5>
 
         
 <div class="param-desc">
@@ -5332,12 +5540,15 @@ however negations are retained and amplified.</p>
 <span class="param-type"><a href="string.html">string</a></span>
 
 
+
     </dd>
 </dl>
 
     
 
 
+
+<hr>
 
         
     
@@ -5353,18 +5564,40 @@ however negations are retained and amplified.</p>
 
 
 
-    
+        
+    </div>
+  </div>
+
+  <nav  id="side-nav">
+      
+      <h2><a href="index.html">Summary</a></h2><h2><a href="https://github.com/winkjs/wink-nlp-utils" target="_blank" >Github</a></h2><h3>Classes</h3><ul><li><a href="Indexer.html">Indexer</a><ul class='methods'><li data-type='method'><a href="Indexer.html#build">build</a></li><li data-type='method'><a href="Indexer.html#result">result</a></li></ul></li><li><a href="WordsFilter.html">WordsFilter</a><ul class='methods'><li data-type='method'><a href="WordsFilter.html#exclude">exclude</a></li><li data-type='method'><a href="WordsFilter.html#set">set</a></li></ul></li></ul><h3>Namespaces</h3><ul><li><a href="helper.html">helper</a><ul class='methods'><li data-type='method'><a href="helper.html#returnIndexer">returnIndexer</a></li><li data-type='method'><a href="helper.html#returnQuotedTextExtractor">returnQuotedTextExtractor</a></li><li data-type='method'><a href="helper.html#returnWordsFilter">returnWordsFilter</a></li></ul></li><li><a href="string.html">string</a><ul class='methods'><li data-type='method'><a href="string.html#amplifyNotElision">amplifyNotElision</a></li><li data-type='method'><a href="string.html#bagOfNGrams">bagOfNGrams</a></li><li data-type='method'><a href="string.html#composeCorpus">composeCorpus</a></li><li data-type='method'><a href="string.html#edgeNGrams">edgeNGrams</a></li><li data-type='method'><a href="string.html#extractPersonsName">extractPersonsName</a></li><li data-type='method'><a href="string.html#extractRunOfCapitalWords">extractRunOfCapitalWords</a></li><li data-type='method'><a href="string.html#lowerCase">lowerCase</a></li><li data-type='method'><a href="string.html#marker">marker</a></li><li data-type='method'><a href="string.html#ngram">ngram</a></li><li data-type='method'><a href="string.html#phonetize">phonetize</a></li><li data-type='method'><a href="string.html#removeElisions">removeElisions</a></li><li data-type='method'><a href="string.html#removeExtraSpaces">removeExtraSpaces</a></li><li data-type='method'><a href="string.html#removeHTMLTags">removeHTMLTags</a></li><li data-type='method'><a href="string.html#removePunctuations">removePunctuations</a></li><li data-type='method'><a href="string.html#removeSplChars">removeSplChars</a></li><li data-type='method'><a href="string.html#retainAlphaNums">retainAlphaNums</a></li><li data-type='method'><a href="string.html#sentences">sentences</a></li><li data-type='method'><a href="string.html#setOfChars">setOfChars</a></li><li data-type='method'><a href="string.html#setOfNGrams">setOfNGrams</a></li><li data-type='method'><a href="string.html#soundex">soundex</a></li><li data-type='method'><a href="string.html#splitElisions">splitElisions</a></li><li data-type='method'><a href="string.html#stem">stem</a></li><li data-type='method'><a href="string.html#tokenize">tokenize</a></li><li data-type='method'><a href="string.html#tokenize0">tokenize0</a></li><li data-type='method'><a href="string.html#trim">trim</a></li><li data-type='method'><a href="string.html#upperCase">upperCase</a></li></ul></li><li><a href="tokens.html">tokens</a><ul class='methods'><li data-type='method'><a href="tokens.html#appendBigrams">appendBigrams</a></li><li data-type='method'><a href="tokens.html#bagOfWords">bagOfWords</a></li><li data-type='method'><a href="tokens.html#bigrams">bigrams</a></li><li data-type='method'><a href="tokens.html#phonetize">phonetize</a></li><li data-type='method'><a href="tokens.html#propagateNegations">propagateNegations</a></li><li data-type='method'><a href="tokens.html#removeWords">removeWords</a></li><li data-type='method'><a href="tokens.html#setOfWords">setOfWords</a></li><li data-type='method'><a href="tokens.html#soundex">soundex</a></li><li data-type='method'><a href="tokens.html#stem">stem</a></li></ul></li></ul>
+  </nav>
 </div>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jun 30 2020 18:01:56 GMT+0530 (India Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Tue Jun 30 2020 18:05:22 GMT+0530 (India Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
 <script src="scripts/linenumber.js"></script>
 
 
+
+<script src="https://embed.runkit.com"></script>
+<script type="text/javascript">
+  var els = document.getElementsByClassName("runkit");
+
+  Array.prototype.forEach.call(els, function(el) {
+    // Do stuff here
+    var source = el.innerHTML;
+    el.innerHTML = '';
+    var n = RunKit.createNotebook( {
+      element: el,
+      source: source
+    } );
+  });
+</script>
 </body>
 </html>

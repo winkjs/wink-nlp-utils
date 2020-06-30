@@ -34,6 +34,10 @@
   ((window.gitter = {}).chat = {}).options = {
     room: 'winkjs/Lobby'
   };
+  window.onload = function () {
+      document.querySelector('.gitter-open-chat-button').innerText = 'Need help?'
+      document.querySelector('.gitter-open-chat-button').style.display = 'block';
+  }
 </script>
 <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
@@ -68,7 +72,13 @@ body {
 .navbar a {
   color: #fff;
   line-height: 60px;
+  margin-left: 0;
+}
+
+.navbar a.navbar-brand {
   margin-left: 20px;
+  display: block;
+  min-width: 40px;
 }
 
 .navbar-right {
@@ -87,10 +97,6 @@ body {
 }
 
 /* Override docdash */
-nav {
-  top: 80px;
-}
-
 #main {
   margin-top: 30px;
 }
@@ -98,6 +104,7 @@ nav {
 /* Gitter */
 .gitter-open-chat-button {
   background: #6C307D;
+  display: none;
 }
 
 .gitter-open-chat-button:hover {
@@ -118,6 +125,16 @@ window.addEventListener('DOMContentLoaded', function () {
       window.scrollTo( 0, (window.pageYOffset || document.documentElement.scrollTop) - 72);
     }, 0)
   }
+
+  document.getElementById('toc-button').addEventListener('click', function () {
+      if (document.getElementById('side-nav').className === '') {
+        document.getElementById('side-nav').className = 'is-open';
+        document.getElementById('toc-button-img').setAttribute('src','./close.svg');
+      } else {
+        document.getElementById('side-nav').className = '';
+        document.getElementById('toc-button-img').setAttribute('src','./menu.svg');
+      }
+  })
 });
 
 window.addEventListener( 'hashchange', function (e) {
@@ -139,36 +156,32 @@ function openMember() {
       <div class="navbar-header">
         <a href="https://winkjs.org/" title="wink" class="navbar-brand">
           <img src="https://winkjs.org/images/logo.svg">
-          wink
+          <span>wink</span>
         </a>
       </div>
-      <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id="main-nav">
-        <li><a href="https://winkjs.org/packages.html" class="">Packages</a></li>
-        <li><a href="https://winkjs.org/blog.html" class="">Blog</a></li>
-        <li><a href="http://github.com/winkjs">Github</a></li>
-        <li><a href="https://twitter.com/winkjs_org">Twitter</a></li>
-        <li><a href="https://winkjs.org/about.html" class="">About</a></li>
-      </ul>
+      <div class="sausage-links">
+        <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id="main-nav">
+          <li><a href="https://winkjs.org/packages.html" class="">Packages</a></li>
+          <li><a href="https://winkjs.org/showcase.html" class="">Showcase</a></li>
+          <li><a href="https://winkjs.org/blog.html" class="">Blog</a></li>
+          <li><a href="http://github.com/winkjs">Github</a></li>
+          <li><a href="https://winkjs.org/about.html" class="">About</a></li>
+        </div>
+      </nav>
     </div>
 </header>
 
+<div id="toc-button">
+  <img src="./menu.svg" alt="" id="toc-button-img">
+</div>
 
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
 
-<label for="nav-trigger" class="overlay"></label>
+<div class="content-container">
+  <div class="main-container">
+    <div id="main">
+        
 
-<nav >
-    
-    <h2><a href="index.html">Summary</a></h2><h2><a href="https://github.com/winkjs/wink-nlp-utils" target="_blank" >Github</a></h2><h3>Classes</h3><ul><li><a href="Indexer.html">Indexer</a><ul class='methods'><li data-type='method'><a href="Indexer.html#build">build</a></li><li data-type='method'><a href="Indexer.html#result">result</a></li></ul></li><li><a href="WordsFilter.html">WordsFilter</a><ul class='methods'><li data-type='method'><a href="WordsFilter.html#exclude">exclude</a></li><li data-type='method'><a href="WordsFilter.html#set">set</a></li></ul></li></ul><h3>Namespaces</h3><ul><li><a href="helper.html">helper</a><ul class='methods'><li data-type='method'><a href="helper.html#returnIndexer">returnIndexer</a></li><li data-type='method'><a href="helper.html#returnQuotedTextExtractor">returnQuotedTextExtractor</a></li><li data-type='method'><a href="helper.html#returnWordsFilter">returnWordsFilter</a></li></ul></li><li><a href="string.html">string</a><ul class='methods'><li data-type='method'><a href="string.html#amplifyNotElision">amplifyNotElision</a></li><li data-type='method'><a href="string.html#bagOfNGrams">bagOfNGrams</a></li><li data-type='method'><a href="string.html#composeCorpus">composeCorpus</a></li><li data-type='method'><a href="string.html#edgeNGrams">edgeNGrams</a></li><li data-type='method'><a href="string.html#extractPersonsName">extractPersonsName</a></li><li data-type='method'><a href="string.html#extractRunOfCapitalWords">extractRunOfCapitalWords</a></li><li data-type='method'><a href="string.html#lowerCase">lowerCase</a></li><li data-type='method'><a href="string.html#marker">marker</a></li><li data-type='method'><a href="string.html#ngram">ngram</a></li><li data-type='method'><a href="string.html#phonetize">phonetize</a></li><li data-type='method'><a href="string.html#removeElisions">removeElisions</a></li><li data-type='method'><a href="string.html#removeExtraSpaces">removeExtraSpaces</a></li><li data-type='method'><a href="string.html#removeHTMLTags">removeHTMLTags</a></li><li data-type='method'><a href="string.html#removePunctuations">removePunctuations</a></li><li data-type='method'><a href="string.html#removeSplChars">removeSplChars</a></li><li data-type='method'><a href="string.html#retainAlphaNums">retainAlphaNums</a></li><li data-type='method'><a href="string.html#sentences">sentences</a></li><li data-type='method'><a href="string.html#setOfChars">setOfChars</a></li><li data-type='method'><a href="string.html#setOfNGrams">setOfNGrams</a></li><li data-type='method'><a href="string.html#soundex">soundex</a></li><li data-type='method'><a href="string.html#splitElisions">splitElisions</a></li><li data-type='method'><a href="string.html#stem">stem</a></li><li data-type='method'><a href="string.html#tokenize">tokenize</a></li><li data-type='method'><a href="string.html#tokenize0">tokenize0</a></li><li data-type='method'><a href="string.html#trim">trim</a></li><li data-type='method'><a href="string.html#upperCase">upperCase</a></li></ul></li><li><a href="tokens.html">tokens</a><ul class='methods'><li data-type='method'><a href="tokens.html#appendBigrams">appendBigrams</a></li><li data-type='method'><a href="tokens.html#bagOfWords">bagOfWords</a></li><li data-type='method'><a href="tokens.html#bigrams">bigrams</a></li><li data-type='method'><a href="tokens.html#phonetize">phonetize</a></li><li data-type='method'><a href="tokens.html#propagateNegations">propagateNegations</a></li><li data-type='method'><a href="tokens.html#removeWords">removeWords</a></li><li data-type='method'><a href="tokens.html#setOfWords">setOfWords</a></li><li data-type='method'><a href="tokens.html#soundex">soundex</a></li><li data-type='method'><a href="tokens.html#stem">stem</a></li></ul></li></ul>
-</nav>
-
-<div id="main">
-    
-
-    
+        
 
 
 
@@ -192,11 +205,17 @@ function openMember() {
 
 
     <section class="readme">
-        <article><h1>wink-nlp-utils</h1><p>NLP Functions for amplifying negations, managing elisions, creating ngrams, stems, phonetic codes to tokens and more.</p>
-<h3><a href="https://travis-ci.org/winkjs/wink-nlp-utils"><img src="https://api.travis-ci.org/winkjs/wink-nlp-utils.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/winkjs/wink-nlp-utils?branch=master"><img src="https://coveralls.io/repos/github/winkjs/wink-nlp-utils/badge.svg?branch=master" alt="Coverage Status"></a> <a href="http://inch-ci.org/github/winkjs/wink-nlp-utils"><img src="http://inch-ci.org/github/winkjs/wink-nlp-utils.svg?branch=master" alt="Inline docs"></a> <a href="https://david-dm.org/winkjs/wink-nlp-utils"><img src="https://david-dm.org/winkjs/wink-nlp-utils/status.svg" alt="dependencies Status"></a> <a href="https://david-dm.org/winkjs/wink-nlp-utils?type=dev"><img src="https://david-dm.org/winkjs/wink-nlp-utils/dev-status.svg" alt="devDependencies Status"></a> <a href="https://gitter.im/winkjs/Lobby"><img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" alt="Gitter"></a></h3><p><a href="http://wink.org.in/"><img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" ></a></p>
+        <article><h1>wink-nlp-utils</h1>
+<p>NLP Functions for amplifying negations, managing elisions, creating ngrams, stems, phonetic codes to tokens and more.</p>
+<h3><a href="https://travis-ci.org/winkjs/wink-nlp-utils"><img src="https://api.travis-ci.org/winkjs/wink-nlp-utils.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/winkjs/wink-nlp-utils?branch=master"><img src="https://coveralls.io/repos/github/winkjs/wink-nlp-utils/badge.svg?branch=master" alt="Coverage Status"></a> <a href="http://inch-ci.org/github/winkjs/wink-nlp-utils"><img src="http://inch-ci.org/github/winkjs/wink-nlp-utils.svg?branch=master" alt="Inline docs"></a> <a href="https://david-dm.org/winkjs/wink-nlp-utils"><img src="https://david-dm.org/winkjs/wink-nlp-utils/status.svg" alt="dependencies Status"></a> <a href="https://david-dm.org/winkjs/wink-nlp-utils?type=dev"><img src="https://david-dm.org/winkjs/wink-nlp-utils/dev-status.svg" alt="devDependencies Status"></a> <a href="https://gitter.im/winkjs/Lobby"><img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" alt="Gitter"></a></h3>
+<p><a href="http://wink.org.in/"><img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" ></a></p>
 <p>Prepare raw text for Natural Language Processing (NLP) using <strong><code>wink-nlp-utils</code></strong>. It offers a set of <a href="http://wink.org.in/wink-nlp-utils/">APIs</a> to work on <a href="http://wink.org.in/wink-nlp-utils/#string">strings</a> such as names, sentences, paragraphs and <a href="http://wink.org.in/wink-nlp-utils/#tokens">tokens</a> represented as an array of strings/words. They perform the required pre-processing for many ML tasks such as <a href="https://www.npmjs.com/package/wink-bm25-text-search">semantic search</a>, and <a href="https://www.npmjs.com/package/wink-naive-bayes-text-classifier">classification</a>.</p>
-<h3>Installation</h3><p>Use <a href="https://www.npmjs.com/package/wink-nlp-utils">npm</a> to install:</p>
-<pre class="prettyprint source"><code>npm install wink-nlp-utils --save</code></pre><h3>Getting Started</h3><p>The <code>wink-nlp-utils</code> provides over <strong>36 utility functions</strong> for Natural Language Processing tasks. Some representative examples are extracting person's name from a string, compose training corpus for a chat bot, sentence boundary detection, tokenization and stop words removal:</p>
+<h3>Installation</h3>
+<p>Use <a href="https://www.npmjs.com/package/wink-nlp-utils">npm</a> to install:</p>
+<pre class="prettyprint source"><code>npm install wink-nlp-utils --save
+</code></pre>
+<h3>Getting Started</h3>
+<p>The <code>wink-nlp-utils</code> provides over <strong>36 utility functions</strong> for Natural Language Processing tasks. Some representative examples are extracting person's name from a string, compose training corpus for a chat bot, sentence boundary detection, tokenization and stop words removal:</p>
 <pre class="prettyprint source lang-javascript"><code>
 // Load wink-nlp-utils
 var nlp = require( 'wink-nlp-utils' );
@@ -238,11 +257,18 @@ console.log( nlp.string.tokenize( s, true ) );
 // Remove stop words:
 var t = nlp.tokens.removeWords( [ 'mary', 'had', 'a', 'little', 'lamb' ] );
 console.log( t );
-// -> [ 'mary', 'little', 'lamb' ]</code></pre><p>Try <a href="https://npm.runkit.com/wink-nlp-utils">experimenting with these examples on Runkit</a> in the browser.</p>
-<h3>Documentation</h3><p>Check out the <a href="http://winkjs.org/wink-nlp-utils/">wink NLP utilities API</a> documentation to learn more.</p>
-<h3>Need Help?</h3><p>If you spot a bug and the same has not yet been reported, raise a new <a href="https://github.com/winkjs/wink-nlp-utils/issues">issue</a> or consider fixing it and sending a pull request.</p>
-<h3>About wink</h3><p><a href="http://winkjs.org/">Wink</a> is a family of open source packages for <strong>Statistical Analysis</strong>, <strong>Natural Language Processing</strong> and <strong>Machine Learning</strong> in NodeJS. The code is <strong>thoroughly documented</strong> for easy human comprehension and has a <strong>test coverage of ~100%</strong> for reliability to build production grade solutions.</p>
-<h3>Copyright &amp; License</h3><p><strong>wink-nlp-utils</strong> is copyright 2017-19 <a href="http://graype.in/">GRAYPE Systems Private Limited</a>.</p>
+// -> [ 'mary', 'little', 'lamb' ]
+
+</code></pre>
+<p>Try <a href="https://npm.runkit.com/wink-nlp-utils">experimenting with these examples on Runkit</a> in the browser.</p>
+<h3>Documentation</h3>
+<p>Check out the <a href="http://winkjs.org/wink-nlp-utils/">wink NLP utilities API</a> documentation to learn more.</p>
+<h3>Need Help?</h3>
+<p>If you spot a bug and the same has not yet been reported, raise a new <a href="https://github.com/winkjs/wink-nlp-utils/issues">issue</a> or consider fixing it and sending a pull request.</p>
+<h3>About wink</h3>
+<p><a href="http://winkjs.org/">Wink</a> is a family of open source packages for <strong>Statistical Analysis</strong>, <strong>Natural Language Processing</strong> and <strong>Machine Learning</strong> in NodeJS. The code is <strong>thoroughly documented</strong> for easy human comprehension and has a <strong>test coverage of ~100%</strong> for reliability to build production grade solutions.</p>
+<h3>Copyright &amp; License</h3>
+<p><strong>wink-nlp-utils</strong> is copyright 2017-19 <a href="http://graype.in/">GRAYPE Systems Private Limited</a>.</p>
 <p>It is licensed under the terms of the MIT License.</p></article>
     </section>
 
@@ -252,18 +278,40 @@ console.log( t );
 
 
 
-    
+        
+    </div>
+  </div>
+
+  <nav  id="side-nav">
+      
+      <h2><a href="index.html">Summary</a></h2><h2><a href="https://github.com/winkjs/wink-nlp-utils" target="_blank" >Github</a></h2><h3>Classes</h3><ul><li><a href="Indexer.html">Indexer</a><ul class='methods'><li data-type='method'><a href="Indexer.html#build">build</a></li><li data-type='method'><a href="Indexer.html#result">result</a></li></ul></li><li><a href="WordsFilter.html">WordsFilter</a><ul class='methods'><li data-type='method'><a href="WordsFilter.html#exclude">exclude</a></li><li data-type='method'><a href="WordsFilter.html#set">set</a></li></ul></li></ul><h3>Namespaces</h3><ul><li><a href="helper.html">helper</a><ul class='methods'><li data-type='method'><a href="helper.html#returnIndexer">returnIndexer</a></li><li data-type='method'><a href="helper.html#returnQuotedTextExtractor">returnQuotedTextExtractor</a></li><li data-type='method'><a href="helper.html#returnWordsFilter">returnWordsFilter</a></li></ul></li><li><a href="string.html">string</a><ul class='methods'><li data-type='method'><a href="string.html#amplifyNotElision">amplifyNotElision</a></li><li data-type='method'><a href="string.html#bagOfNGrams">bagOfNGrams</a></li><li data-type='method'><a href="string.html#composeCorpus">composeCorpus</a></li><li data-type='method'><a href="string.html#edgeNGrams">edgeNGrams</a></li><li data-type='method'><a href="string.html#extractPersonsName">extractPersonsName</a></li><li data-type='method'><a href="string.html#extractRunOfCapitalWords">extractRunOfCapitalWords</a></li><li data-type='method'><a href="string.html#lowerCase">lowerCase</a></li><li data-type='method'><a href="string.html#marker">marker</a></li><li data-type='method'><a href="string.html#ngram">ngram</a></li><li data-type='method'><a href="string.html#phonetize">phonetize</a></li><li data-type='method'><a href="string.html#removeElisions">removeElisions</a></li><li data-type='method'><a href="string.html#removeExtraSpaces">removeExtraSpaces</a></li><li data-type='method'><a href="string.html#removeHTMLTags">removeHTMLTags</a></li><li data-type='method'><a href="string.html#removePunctuations">removePunctuations</a></li><li data-type='method'><a href="string.html#removeSplChars">removeSplChars</a></li><li data-type='method'><a href="string.html#retainAlphaNums">retainAlphaNums</a></li><li data-type='method'><a href="string.html#sentences">sentences</a></li><li data-type='method'><a href="string.html#setOfChars">setOfChars</a></li><li data-type='method'><a href="string.html#setOfNGrams">setOfNGrams</a></li><li data-type='method'><a href="string.html#soundex">soundex</a></li><li data-type='method'><a href="string.html#splitElisions">splitElisions</a></li><li data-type='method'><a href="string.html#stem">stem</a></li><li data-type='method'><a href="string.html#tokenize">tokenize</a></li><li data-type='method'><a href="string.html#tokenize0">tokenize0</a></li><li data-type='method'><a href="string.html#trim">trim</a></li><li data-type='method'><a href="string.html#upperCase">upperCase</a></li></ul></li><li><a href="tokens.html">tokens</a><ul class='methods'><li data-type='method'><a href="tokens.html#appendBigrams">appendBigrams</a></li><li data-type='method'><a href="tokens.html#bagOfWords">bagOfWords</a></li><li data-type='method'><a href="tokens.html#bigrams">bigrams</a></li><li data-type='method'><a href="tokens.html#phonetize">phonetize</a></li><li data-type='method'><a href="tokens.html#propagateNegations">propagateNegations</a></li><li data-type='method'><a href="tokens.html#removeWords">removeWords</a></li><li data-type='method'><a href="tokens.html#setOfWords">setOfWords</a></li><li data-type='method'><a href="tokens.html#soundex">soundex</a></li><li data-type='method'><a href="tokens.html#stem">stem</a></li></ul></li></ul>
+  </nav>
 </div>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jun 30 2020 18:01:56 GMT+0530 (India Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Tue Jun 30 2020 18:05:22 GMT+0530 (India Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
 <script src="scripts/linenumber.js"></script>
 
 
+
+<script src="https://embed.runkit.com"></script>
+<script type="text/javascript">
+  var els = document.getElementsByClassName("runkit");
+
+  Array.prototype.forEach.call(els, function(el) {
+    // Do stuff here
+    var source = el.innerHTML;
+    el.innerHTML = '';
+    var n = RunKit.createNotebook( {
+      element: el,
+      source: source
+    } );
+  });
+</script>
 </body>
 </html>

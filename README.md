@@ -11,7 +11,7 @@ Prepare raw text for Natural Language Processing (NLP) using **`wink-nlp-utils`*
 
 <table><tr><td>
     <h4>Use <a href="https://github.com/winkjs/wink-nlp">wink-nlp</a> if your are looking for an integrated NLP package✨</h4>
-    <a href="https://github.com/winkjs/wink-nlp">WinkNLP</a> is a <b>developer friendly</b> JavaScript library for Natural Language Processing. Designed specifically to make development of NLP solutions <b>easier</b> and <b>faster</b>, winkNLP is optimized for the right balance of performance and accuracy. The package can handle large amount of raw text at speeds <a href="https://github.com/winkjs/wink-nlp#speed--accuracy">over 525,000 tokens/second</a> for the <a href="https://winkjs.org/wink-nlp/processing-pipeline.html">entire NLP pipeline</a>.
+    <a href="https://github.com/winkjs/wink-nlp">WinkNLP</a> is a <b>developer friendly</b> JavaScript library for Natural Language Processing. Designed specifically to make development of NLP solutions <b>easier</b> and <b>faster</b>, winkNLP is optimized for the right balance of performance and accuracy. The package can handle large amount of raw text at speeds <a href="https://github.com/winkjs/wink-nlp#speed--accuracy">over 525,000 tokens/second</a> for the <a href="https://winkjs.org/wink-nlp/processing-pipeline.html">entire NLP pipeline</a> consisting of <i>tokenization</i>, <i>sentence boundary detection (sbd)</i>, <i>negation handling</i>, <i>sentiment analysis</i>, <i>part-of-speech (pos) tagging</i>, <i>named entity recognition (ner)</i>, and <i>custom entities recognition (cer)</i>.
 </td></tr></table>
 
 ### Installation
@@ -82,6 +82,6 @@ If you spot a bug and the same has not yet been reported, raise a new [issue](ht
 
 
 ### Copyright & License
-**wink-nlp-utils** is copyright 2017-19 [GRAYPE Systems Private Limited](http://graype.in/).
+**wink-nlp-utils** is copyright 2017-21 [GRAYPE Systems Private Limited](http://graype.in/).
 
 It is licensed under the terms of the MIT License.

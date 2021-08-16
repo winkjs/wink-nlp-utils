@@ -6,6 +6,7 @@ node_js:
 
 
 cache:
+  npm: false
   directories:
     - "node_modules"
 

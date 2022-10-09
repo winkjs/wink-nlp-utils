@@ -3,7 +3,7 @@
 
 NLP Functions for amplifying negations, managing elisions, creating ngrams, stems, phonetic codes to tokens and more.
 
-### [![Build Status](https://app.travis-ci.com/winkjs/wink-nlp-utils.svg?branch=master)](https://app.travis-ci.com/github/winkjs/wink-nlp-utils) [![Coverage Status](https://coveralls.io/repos/github/winkjs/wink-nlp-utils/badge.svg?branch=master)](https://coveralls.io/github/winkjs/wink-nlp-utils?branch=master) [![Inline docs](http://inch-ci.org/github/winkjs/wink-nlp-utils.svg?branch=master)](http://inch-ci.org/github/winkjs/wink-nlp-utils) [![dependencies Status](https://david-dm.org/winkjs/wink-nlp-utils/status.svg)](https://david-dm.org/winkjs/wink-nlp-utils) [![devDependencies Status](https://david-dm.org/winkjs/wink-nlp-utils/dev-status.svg)](https://david-dm.org/winkjs/wink-nlp-utils?type=dev) [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/winkjs/Lobby)
+### [![Build Status](https://app.travis-ci.com/winkjs/wink-nlp-utils.svg?branch=master)](https://app.travis-ci.com/github/winkjs/wink-nlp-utils) [![Coverage Status](https://coveralls.io/repos/github/winkjs/wink-nlp-utils/badge.svg?branch=master)](https://coveralls.io/github/winkjs/wink-nlp-utils?branch=master) [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/winkjs/Lobby)
 
 [<img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" >](http://wink.org.in/)
 
@@ -82,6 +82,6 @@ If you spot a bug and the same has not yet been reported, raise a new [issue](ht
 
 
 ### Copyright & License
-**wink-nlp-utils** is copyright 2017-21 [GRAYPE Systems Private Limited](http://graype.in/).
+**wink-nlp-utils** is copyright 2017-22 [GRAYPE Systems Private Limited](http://graype.in/).
 
 It is licensed under the terms of the MIT License.

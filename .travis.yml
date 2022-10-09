@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-  - "16"
-  - "18"
+  - "16.17.1"
+  - "v18.10.0"
 
 
 cache:
@@ -10,4 +10,5 @@ cache:
 
 script:
   - npm run pretest
-  - npm run coveralls
+  - npm run test
+  - npm run coverage

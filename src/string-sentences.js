@@ -25,40 +25,12 @@
 //     DEALINGS IN THE SOFTWARE.
 
 //
-// Abbreviations with `.` but are never are EOS.
-const abbrvNoEOS = Object.create( null );
-abbrvNoEOS[ 'mr.' ] = true;
-abbrvNoEOS[ 'mrs.' ] = true;
-abbrvNoEOS[ 'ms.' ] = true;
-abbrvNoEOS[ 'er.' ] = true;
-abbrvNoEOS[ 'dr.' ] = true;
-abbrvNoEOS[ 'miss.' ] = true;
-abbrvNoEOS[ 'shri.' ] = true;
-abbrvNoEOS[ 'smt.' ] = true;
-abbrvNoEOS[ 'i.e.' ] = true;
-abbrvNoEOS[ 'ie.' ] = true;
-abbrvNoEOS[ 'e.g.' ] = true;
-abbrvNoEOS[ 'eg.' ] = true;
-abbrvNoEOS[ 'viz.' ] = true;
-abbrvNoEOS[ 'pvt.' ] = true;
-// et al.
-abbrvNoEOS[ 'et.' ] = true;
-abbrvNoEOS[ 'al.' ] = true;
-// Mount Kailash!
-abbrvNoEOS[ 'mt.' ] = true;
-// Pages!
-abbrvNoEOS[ 'pp.' ] = true;
-
-const abbrvMayBeEOS = Object.create( null );
-abbrvMayBeEOS[ 'inc.' ] = true;
-abbrvMayBeEOS[ 'ltd.' ] = true;
-abbrvMayBeEOS[ 'al.' ] = true;
-// Regex to test potential End-Of-Sentence.
-const rgxPotentialEOS = /\.$|\!$|\?$/;
-// Regex to test special cases of "I" at eos.
-const rgxSplI = /i\?$|i\!$/;
-// Regex to test first char as alpha only
-const rgxAlphaAt0 = /^[^a-z]/i;
+// Load wink-nlp package  & helpers.
+const winkNLP = require( 'wink-nlp' );
+// Load english language model — light version.
+const model = require( 'wink-eng-lite-web-model' );
+// Instantiate winkNLP.
+const nlp = winkNLP( model );
 
 // ## string
 
@@ -83,42 +55,8 @@ const rgxAlphaAt0 = /^[^a-z]/i;
  * //      'I climbed Mt. Everest.' ]
  */
 var punkt = function ( paragraph ) {
-  // The basic idea is to split the paragraph on `spaces` and thereafter
-  // examine each word ending with an EOS punctuation for a possible EOS.
-
-  // Split on **space** to obtain all the `tokens` in the `para`.
-  const paraTokens = paragraph.split( ' ' );
-  var sentenceTokens = [];
-  var sentences = [];
-
-  for ( let k = 0; k < paraTokens.length; k += 1 ) {
-    // A para token.
-    const pt = paraTokens[ k ];
-    // A lower cased para token.
-    const lcpt = pt.toLowerCase();
-    if ( ( rgxPotentialEOS.test( pt ) ) && !abbrvNoEOS[ lcpt ] && ( pt.length !== 2 || rgxAlphaAt0.test( pt ) || rgxSplI.test( lcpt ) ) ) {
-      // Next para token that is non-blank.
-      let nextpt;
-      // Append this token to the current sentence tokens.
-      sentenceTokens.push( pt );
-      // If the current token is one of the abbreviations that may also mean EOS.
-      if ( abbrvMayBeEOS[ lcpt ] ) {
-        for ( let j = k + 1; j < paraTokens.length && !nextpt; j += 1 ) {
-          nextpt = paraTokens[ j ];
-        }
-      }
-      // If no next para token or if present then starts from a Cap Letter then
-      // only complete sentence and start a new one!
-      if ( nextpt === undefined || ( /^[A-Z]/ ).test( nextpt ) ) {
-        sentences.push( sentenceTokens.join( ' ' ) );
-        sentenceTokens = [];
-      }
-    } else sentenceTokens.push( pt );
-  }
-
-  if ( sentenceTokens.length > 0 ) sentences.push( sentenceTokens.join( ' ' ) );
-
-  return sentences;
+  // Leverage winkNLP.
+  return nlp.readDoc( paragraph ).sentences().out();
 }; // punkt()
 
 module.exports = punkt;

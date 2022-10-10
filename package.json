@@ -46,7 +46,9 @@
   },
   "dependencies": {
     "wink-distance": "^2.0.1",
+    "wink-eng-lite-web-model": "^1.4.3",
     "wink-helpers": "^2.0.0",
+    "wink-nlp": "^1.12.0",
     "wink-porter2-stemmer": "^2.0.1",
     "wink-tokenizer": "^5.2.3"
   },

@@ -29,8 +29,8 @@
 const winkNLP = require( 'wink-nlp' );
 // Load english language model — light version.
 const model = require( 'wink-eng-lite-web-model' );
-// Instantiate winkNLP.
-const nlp = winkNLP( model );
+// Instantiate winkNLP, only use SBD.
+const nlp = winkNLP( model, [ 'sbd' ] );
 
 // ## string
 

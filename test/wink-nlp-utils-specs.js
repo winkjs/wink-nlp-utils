@@ -532,6 +532,20 @@ describe( 'string.sentences()', function () {
                           'I work for Google Inc. aNd my name is Larry Page!'
                         ]
     },
+    {
+      whenInputIs: [ 'AI Inc. is focussing on AI. I work for AI Inc. My mail is r2d2@yahoo.com' ],
+      expectedOutputIs: [ 'AI Inc. is focussing on AI.',
+                          'I work for AI Inc.',
+                          'My mail is r2d2@yahoo.com'
+                        ]
+    },
+    {
+      whenInputIs: [ 'U.S.A is my birth place. I was born on 06.12.1924. I climbed Mt. Everest.' ],
+      expectedOutputIs: [ 'U.S.A is my birth place.',
+                          'I was born on 06.12.1924.',
+                          'I climbed Mt. Everest.'
+                        ]
+    }
   ];
 
   tests.forEach( function ( test ) {

@@ -25,7 +25,13 @@
 //     DEALINGS IN THE SOFTWARE.
 
 //
-var winkTokenize = require( 'wink-tokenizer' )().tokenize;
+// Load wink-nlp package  & helpers.
+const winkNLP = require( 'wink-nlp' );
+// Load english language model — light version.
+const model = require( 'wink-eng-lite-web-model' );
+// Instantiate winkNLP, only use SBD.
+const nlp = winkNLP( model, [ 'sbd' ] );
+const its = nlp.its;
 
 // ## string
 
@@ -64,13 +70,18 @@ var winkTokenize = require( 'wink-tokenizer' )().tokenize;
  * //      { value: '!', tag: 'punctuation' } ]
  */
 var tokenize = function ( sentence, detailed ) {
-  var tokens = winkTokenize( sentence.replace( '...', '…' ) );
-  var i;
-  if ( !detailed ) {
-    for ( i = 0; i < tokens.length; i += 1 ) tokens[ i ] = tokens[ i ].value;
+  const doc = nlp.readDoc( sentence.replace( '...', '…' ) );
+  const tokens = [];
+
+  if ( detailed ) {
+    doc.tokens().each( ( t ) => {
+      tokens.push( { value: t.out(), tag: t.out( its.type ) } );
+    } );
+
+    return tokens;
   }
 
-  return tokens;
+  return doc.tokens().out();
 }; // tokenize()
 
 module.exports = tokenize;

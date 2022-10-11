@@ -626,7 +626,7 @@ describe( 'string.tokenize()', function () {
     { whenInputIs: [ 'what\'s ended in the year 1919 ~?  The $1 was equal to 1.2 rupees.' ], expectedOutputIs: [ 'what', '\'s', 'ended', 'in', 'the', 'year', '1919', '~', '?', 'The', '$', '1', 'was', 'equal', 'to', '1.2', 'rupees', '.' ] },
     { whenInputIs: [ 'what ended in the 1919 year~?  The £1 was equal to 1.2 rupees.' ], expectedOutputIs: [ 'what', 'ended', 'in', 'the', '1919', 'year', '~', '?', 'The', '£', '1', 'was', 'equal', 'to', '1.2', 'rupees', '.' ] },
     { whenInputIs: [ 'what\'ll \'end in the year 1919\'?  The ¥1 was equal to 1.2 rupees.' ], expectedOutputIs: [ 'what', '\'ll', '\'', 'end', 'in', 'the', 'year', '1919', '\'', '?', 'The', '¥', '1', 'was', 'equal', 'to', '1.2', 'rupees', '.' ] },
-    { whenInputIs: [ 'what ended in the year\'s last month ?  The €1 cannot be equal to 1.2 rupees.' ], expectedOutputIs: [ 'what', 'ended', 'in', 'the', 'year', '\'s', 'last', 'month', '?', 'The', '€', '1', 'cannot', 'be', 'equal', 'to', '1.2', 'rupees', '.' ] },
+    { whenInputIs: [ 'what ended in the year\'s last month ?  The €1 cannot be equal to 1.2 rupees.' ], expectedOutputIs: [ 'what', 'ended', 'in', 'the', 'year', '\'s', 'last', 'month', '?', 'The', '€', '1', 'can', 'not', 'be', 'equal', 'to', '1.2', 'rupees', '.' ] },
     { whenInputIs: [ 'Isn\'t... it? ' ], expectedOutputIs: [ 'Is', 'n\'t', '…', 'it', '?' ] },
   ];
 

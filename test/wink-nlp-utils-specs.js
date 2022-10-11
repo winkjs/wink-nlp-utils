@@ -627,7 +627,7 @@ describe( 'string.tokenize()', function () {
     { whenInputIs: [ 'what ended in the 1919 year~?  The £1 was equal to 1.2 rupees.' ], expectedOutputIs: [ 'what', 'ended', 'in', 'the', '1919', 'year', '~', '?', 'The', '£', '1', 'was', 'equal', 'to', '1.2', 'rupees', '.' ] },
     { whenInputIs: [ 'what\'ll \'end in the year 1919\'?  The ¥1 was equal to 1.2 rupees.' ], expectedOutputIs: [ 'what', '\'ll', '\'', 'end', 'in', 'the', 'year', '1919', '\'', '?', 'The', '¥', '1', 'was', 'equal', 'to', '1.2', 'rupees', '.' ] },
     { whenInputIs: [ 'what ended in the year\'s last month ?  The €1 cannot be equal to 1.2 rupees.' ], expectedOutputIs: [ 'what', 'ended', 'in', 'the', 'year', '\'s', 'last', 'month', '?', 'The', '€', '1', 'can', 'not', 'be', 'equal', 'to', '1.2', 'rupees', '.' ] },
-    { whenInputIs: [ 'Isn\'t... it? ' ], expectedOutputIs: [ 'Is', 'n\'t', '…', 'it', '?' ] },
+    { whenInputIs: [ 'Isn\'t... it? ' ], expectedOutputIs: [ 'Is', 'n\'t', '…', 'it', '?' ] }
   ];
 
   tests.forEach( function ( test ) {
@@ -647,6 +647,22 @@ describe( 'string.tokenize()', function () {
                    { value: 'with', tag: 'word' },
                    { value: 'O\'kelly', tag: 'word' } ];
     expect( prepare.string.tokenize( '     I\'ll eat      John\'s food today with O\'kelly  ', true ) ).to.deep.equal( output );
+  } );
+
+  it( 'should tokenize a sentence with with detailed = true', function () {
+    var output = [
+      { value: 'For', tag: 'word' },
+      { value: 'details', tag: 'word' },
+      { value: 'on', tag: 'word' },
+      { value: 'wink', tag: 'word' },
+      { value: ',', tag: 'punctuation' },
+      { value: 'check', tag: 'word' },
+      { value: 'out', tag: 'word' },
+      { value: 'http://winkjs.org/', tag: 'url' },
+      { value: 'URL', tag: 'word' },
+      { value: '!', tag: 'punctuation' }
+    ];
+    expect( prepare.string.tokenize( 'For details on wink, check out http://winkjs.org/ URL!', true ) ).to.deep.equal( output );
   } );
 
   errors.slice( 0, 2 ).forEach( function ( error ) {

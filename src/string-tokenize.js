@@ -41,9 +41,9 @@ const its = nlp.its;
  * Tokenizes the input `sentence` according to the value of `detailed` flag.
  * Any occurance of `...` in the `sentence` is
  * converted to ellipses. In `detailed = true` mode, it
- * tags every token with its type; the supported tags are currency, email,
- * emoji, emoticon, hashtag, number, ordinal, punctuation, quoted_phrase, symbol,
- * time, mention, url, and word.
+ * tags every token with its type; the supported tags are word, number, url, email,
+ * mention, hashtag, emoji, emoticon, time, ordinal, currency, punctuation, symbol,
+ * and tabCFLF.
  *
  * @alias string#tokenize
  * @param {string} sentence the input string.

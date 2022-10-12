@@ -36,7 +36,8 @@ var ncrgx = require( './name_cleaner_regexes.js' );
  * Attempts to extract person's name from input string.
  * It assmues the following name format:<br/>
  * `[<salutations>] <name part as FN [MN] [LN]> [<degrees>]`<br/>
- * Entities in square brackets are optional.
+ * Entities in square brackets are optional. Note, it is not a
+ * named entity detection mechanism.
  *
  * @alias string#extractPersonsName
  * @param {string} str the input string.

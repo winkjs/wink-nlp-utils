@@ -9,9 +9,9 @@ NLP Functions for amplifying negations, managing elisions, creating ngrams, stem
 
 Prepare raw text for Natural Language Processing (NLP) using **`wink-nlp-utils`**. It offers a set of [APIs](http://wink.org.in/wink-nlp-utils/) to work on [strings](http://wink.org.in/wink-nlp-utils/#string) such as names, sentences, paragraphs and [tokens](http://wink.org.in/wink-nlp-utils/#tokens) represented as an array of strings/words. They perform the required pre-processing for many ML tasks such as [semantic search](https://www.npmjs.com/package/wink-bm25-text-search), and [classification](https://www.npmjs.com/package/wink-naive-bayes-text-classifier).
 
-<table><tr><td>
-    <h4>Use <a href="https://github.com/winkjs/wink-nlp">wink-nlp</a> if your are looking for an integrated NLP package✨</h4>
-    <a href="https://github.com/winkjs/wink-nlp">WinkNLP</a> is a <b>developer friendly</b> JavaScript library for Natural Language Processing. Designed specifically to make development of NLP solutions <b>easier</b> and <b>faster</b>, winkNLP is optimized for the right balance of performance and accuracy. The package can handle large amount of raw text at speeds <a href="https://github.com/winkjs/wink-nlp#speed--accuracy">over 525,000 tokens/second</a> for the <a href="https://winkjs.org/wink-nlp/processing-pipeline.html">entire NLP pipeline</a> consisting of <i>tokenization</i>, <i>sentence boundary detection (sbd)</i>, <i>negation handling</i>, <i>sentiment analysis</i>, <i>part-of-speech (pos) tagging</i>, <i>named entity recognition (ner)</i>, and <i>custom entities recognition (cer)</i>.
+<table><tr><td>👉🏽</td><td>
+    Use <b><a href="https://github.com/winkjs/wink-nlp">wink-nlp</a></b> if you require an integrated NLP for 
+    <i>tokenization</i>, <i>sentence boundary detection (sbd)</i>, <i>negation handling</i>, <i>sentiment analysis</i>, <i>part-of-speech (pos) tagging</i>, <i>named entity recognition (ner)</i>, and <i>custom entities recognition (cer)</i>. It also runs on web browsers and can process raw text at speeds over 525,000 tokens/second. 
 </td></tr></table>
 
 ### Installation
